@@ -1,0 +1,84 @@
+\ProvidesPackage{thesisstyle}	%define and include all the things you may need to write your thesis here
+
+
+\usepackage{etex}				%use extended latex version
+\usepackage{scrhack}			%supresses a useless KOMA script warning
+
+
+%document options
+\KOMAoptions{draft}					%speed up compilation by replacing images by placeholders, use final for final version
+\KOMAoptions{paper=a4,twoside,fontsize=12pt}
+\KOMAoptions{headinclude=false,footinclude=false}
+\usepackage[utf8]{inputenc}
+\usepackage[german, english]{babel}
+
+
+%table of contents options
+\usepackage{tocbibind}
+
+
+%graphics options
+\usepackage{subfig}
+\usepackage{graphicx}
+\usepackage{ifpdf}
+\ifpdf
+   % put here packages only for the PDF:
+   \DeclareGraphicsExtensions{.pdf,.png,.jpg,.mps}
+\else
+   % put here packages only for the DVI:
+\fi
+
+
+%math options
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage[mathic]{mathtools}
+
+
+%hyperref options
+\usepackage[plain]{fancyref}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true, linktocpage=true, pdfstartpage=3, pdfstartview=FitV,%
+  breaklinks=true, pdfpagemode=UseNone, pageanchor=true, pdfpagemode=UseOutlines,%
+  plainpages=false, bookmarksnumbered, bookmarksopen=true, bookmarksopenlevel=1,%
+  hypertexnames=true, pdfhighlight=/O,%
+}
+
+
+%bibliography and citation options
+\usepackage[autostyle]{csquotes}
+\PassOptionsToPackage{
+  backend=biber,
+  language=auto,
+  style=ieee,
+  % style=numeric-comp,%
+  % style=authoryear-comp, % Author 1999, 2010
+  sorting=nyt, % name, year, title
+  maxbibnames=10, % default: 3, et al.
+  % backref=true,%
+  natbib=true % natbib compatibility mode (\citep and \citet still work)
+}{biblatex}
+\usepackage{biblatex}
+\usepackage{cleveref}
+
+
+%footnotes
+\usepackage[bottom,marginal]{footmisc}
+\usepackage{fnpct}
+
+
+%beautify font
+\usepackage{lmodern}
+\usepackage{xspace}
+
+
+%helpers
+\usepackage{float,caption}
+\usepackage{tabularx,booktabs}
+\usepackage{enumitem}
+
+
+%misc stuff
+\usepackage{blindtext} 				%generates lorem ipsum
+\usepackage{showframe}				%shows the invisible frames around the text for layouting

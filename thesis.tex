@@ -1,0 +1,31 @@
+\documentclass{scrbook}
+
+%The custom style and commands defined for the thesis. Edit .sty files to make additions/changes
+\usepackage{thesisstyle}
+\usepackage{thesiscommands}
+
+\graphicspath{{./figs/}}
+\addbibresource{./bib/thesis.bib}
+
+\begin{document}
+
+%Include custom title page
+\input{./tex/title.tex}
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+% the actual chapters of the thesis
+\input{./tex/test.tex}
+
+\appendix
+\input{./tex/appendix.tex}
+
+% Bibliography:
+\cleardoublepage
+\addcontentsline{toc}{chapter}{Bibliography}
+\input{./tex/bibliography.tex}
+
+
+\end{document}
