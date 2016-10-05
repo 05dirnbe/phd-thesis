@@ -1,0 +1,72 @@
+
+\documentclass[draft,twoside=semi,openright,cleardoublepage=empty,titlepage,numbers=noenddot,headinclude=false,footinclude=false,english,10pt]{scrreprt}
+\usepackage{etex,iftex,ifthen,calc,xspace}
+\ifPDFTeX
+  \usepackage[utf8]{inputenc}
+\fi
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\PassOptionsToPackage{final}{graphicx}
+\usepackage{tikz}
+\PassOptionsToPackage{final}{microtype}
+\usepackage{microtype}
+\usepackage[mathic]{mathtools}
+\usepackage{float,caption}
+\usepackage{tabularx,booktabs}
+\usepackage{enumitem}
+
+% \usepackage{amsthm}
+\usepackage{ntheorem,thmtools}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true, linktocpage=true, pdfstartpage=3, pdfstartview=FitV,%
+  breaklinks=true, pdfpagemode=UseNone, pageanchor=true, pdfpagemode=UseOutlines,%
+  plainpages=false, bookmarksnumbered, bookmarksopen=true, bookmarksopenlevel=1,%
+  hypertexnames=true, pdfhighlight=/O,%
+}
+\PassOptionsToPackage{
+  backend=biber,
+  language=auto,
+  style=alphabetic,
+  % style=numeric-comp,%
+  % style=authoryear-comp, % Author 1999, 2010
+  sorting=nyt, % name, year, title
+  maxbibnames=10, % default: 3, et al.
+  % backref=true,%
+  natbib=true % natbib compatibility mode (\citep and \citet still work)
+}{biblatex}
+\usepackage{biblatex}
+\usepackage{cleveref}
+
+\usepackage[bottom,marginal]{footmisc}
+\usepackage{fnpct}
+
+
+%% JUST FOR THE DRAFT
+\usepackage{fullpage}
+
+%% Schrift etwas schÃ¶ner...
+% \usepackage{lmodern}
+
+%% Schrift recht schÃ¶n, aber funktioniert (noch) nicht mit jeder TeX-Installation
+\usepackage{mathpazo}
+\usepackage[osf]{Alegreya,AlegreyaSans}
+
+%% Es lebe der Selbstbetrug!
+\usepackage{blindtext}
+
+
+\begin{document}
+
+\chapter{Frohes Schreiben!}
+
+Das ist die Essenz von dem ganzen Sammelsurium.
+Entscheidend fÃ¼r mich momentan: eigentlich nur cleveref (weil damit festgelegt wird, mit welchem Befehl zitiert wird),
+und die Entscheidung amsthm oder ntheorem+thmtools.
+Alles andere ist im Grunde Kleinkram, den man spÃ¤ter anpassen kann -- Zitierstil usw.
+
+Wie gesagt, ich kann echt empfehlen, erst Inhalt zu produzieren und sich relativ spÃ¤t um die Form zu kÃ¼mmern...
+
+\blinddocument
+
+\end{document}

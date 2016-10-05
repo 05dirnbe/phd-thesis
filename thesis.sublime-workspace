@@ -1,0 +1,1298 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"im",
+				"image_filename"
+			],
+			[
+				"e",
+				"experiments"
+			],
+			[
+				"log",
+				"log_normal_fit"
+			],
+			[
+				"obser",
+				"observable_x"
+			],
+			[
+				"sa",
+				"save_path"
+			],
+			[
+				"frozen",
+				"frozen_guess"
+			],
+			[
+				"com",
+				"compute_filtered_graphs"
+			],
+			[
+				"x",
+				"x_fit"
+			],
+			[
+				"x_",
+				"x_data"
+			],
+			[
+				"nu",
+				"number_of_nodes"
+			],
+			[
+				"data",
+				"data_series"
+			],
+			[
+				"int",
+				"inputfolder"
+			],
+			[
+				"axis",
+				"axis_rounding"
+			],
+			[
+				"ax",
+				"axis_rounding"
+			],
+			[
+				"nodes",
+				"nodes_iter"
+			],
+			[
+				"dual",
+				"dual_graphs"
+			],
+			[
+				"vol",
+				"volume_data"
+			],
+			[
+				"y",
+				"ylabel"
+			],
+			[
+				"set",
+				"set_ylabel"
+			],
+			[
+				"mas",
+				"masked_data"
+			],
+			[
+				"norme",
+				"normed_datay"
+			],
+			[
+				"max",
+				"max_y_value"
+			],
+			[
+				"y_s",
+				"y_std_err"
+			],
+			[
+				"max_y",
+				"max_y_value"
+			],
+			[
+				"set_y",
+				"set_y_label"
+			],
+			[
+				"le",
+				"lengths"
+			],
+			[
+				"set_min",
+				"set_minor_ticks"
+			],
+			[
+				"minor",
+				"minor_ticks"
+			],
+			[
+				"get_x",
+				"get_xticks"
+			],
+			[
+				"bin",
+				"bins"
+			],
+			[
+				"plt",
+				"plot"
+			],
+			[
+				"par",
+				"par3"
+			],
+			[
+				"sample",
+				"sample_size"
+			],
+			[
+				"to",
+				"total_number_of_samples"
+			],
+			[
+				"total",
+				"total_mean"
+			],
+			[
+				"sta",
+				"stat_bootstrap"
+			],
+			[
+				"cu",
+				"cut_ids"
+			],
+			[
+				"cut",
+				"cut_values"
+			],
+			[
+				"x_a",
+				"x_axis_ticks"
+			],
+			[
+				"min",
+				"min_y_value"
+			],
+			[
+				"in",
+				"inputfolder"
+			],
+			[
+				"si",
+				"sigma_threshold"
+			],
+			[
+				"sq",
+				"s_sq"
+			],
+			[
+				"me",
+				"measurements_std"
+			],
+			[
+				"meas",
+				"measurements"
+			],
+			[
+				"mea",
+				"measurements"
+			],
+			[
+				"a",
+				"attribute"
+			],
+			[
+				"lar",
+				"largest_component_size"
+			],
+			[
+				"att",
+				"attribute"
+			],
+			[
+				"c",
+				"critical_range"
+			],
+			[
+				"co",
+				"coarse_steps"
+			],
+			[
+				"timin",
+				"timings_path"
+			],
+			[
+				"start",
+				"start"
+			],
+			[
+				"se",
+				"seed_nood"
+			],
+			[
+				"g",
+				"graph"
+			],
+			[
+				"err",
+				"errorbar"
+			],
+			[
+				"media",
+				"median_index"
+			],
+			[
+				"grap",
+				"graphs"
+			],
+			[
+				"sc",
+				"scaling_law"
+			],
+			[
+				"graph",
+				"graph_number_of_nodes"
+			],
+			[
+				"path",
+				"path_to_ignored_file"
+			],
+			[
+				"poi",
+				"points_up"
+			],
+			[
+				"poin",
+				"points_up"
+			],
+			[
+				"po",
+				"points_up"
+			],
+			[
+				"fit",
+				"fit_guess"
+			],
+			[
+				"pre",
+				"prepare_path"
+			],
+			[
+				"num",
+				"number_of_edges"
+			],
+			[
+				"pc",
+				"p_c_std"
+			],
+			[
+				"p_",
+				"p_c_std"
+			],
+			[
+				"su",
+				"sub_critical_point"
+			],
+			[
+				"para",
+				"parabola"
+			],
+			[
+				"number",
+				"number_of_nodes"
+			],
+			[
+				"crit",
+				"critical_point"
+			],
+			[
+				"criti",
+				"critical_point_index"
+			],
+			[
+				"gra",
+				"graphs"
+			],
+			[
+				"chu",
+				"chunks_to_be_removed"
+			],
+			[
+				"pi",
+				"points"
+			],
+			[
+				"number_of",
+				"number_of_components"
+			],
+			[
+				"attack",
+				"attack_edges"
+			],
+			[
+				"ed",
+				"edges_to_be_removed"
+			],
+			[
+				"per",
+				"precentage_removed"
+			],
+			[
+				"edges",
+				"edges_in_removal_order"
+			],
+			[
+				"ran",
+				"random"
+			],
+			[
+				"k",
+				"keys"
+			],
+			[
+				"tol",
+				"total_number_of_samples"
+			],
+			[
+				"tota",
+				"total_number_of_samples"
+			],
+			[
+				"u",
+				"u_x"
+			],
+			[
+				"cut_coordinates_",
+				"cut_coordinates_x1"
+			],
+			[
+				"spanning",
+				"spanning_efficiency"
+			],
+			[
+				"Span",
+				"SpanningEfficiency"
+			],
+			[
+				"r",
+				"r_max"
+			],
+			[
+				"nor",
+				"normalized_roundness"
+			],
+			[
+				"plot",
+				"plot_data_dict_mean"
+			],
+			[
+				"da",
+				"data_x_mask"
+			],
+			[
+				"pl",
+				"plot_data_dict_number_of_points"
+			],
+			[
+				"plot_da",
+				"plot_data_dict_data_points"
+			],
+			[
+				"plot_edge_len",
+				"plot_edge_length_cut"
+			],
+			[
+				"p",
+				"plot_line"
+			],
+			[
+				"coor",
+				"coord_range"
+			],
+			[
+				"ma",
+				"max_coord"
+			],
+			[
+				"fa",
+				"face_edges"
+			],
+			[
+				"de",
+				"degree_two_nodes"
+			],
+			[
+				"for",
+				"force_overwrite"
+			],
+			[
+				"dat",
+				"data_points"
+			],
+			[
+				"tar",
+				"target_name"
+			],
+			[
+				"plo",
+				"plot_type"
+			],
+			[
+				"motio",
+				"motion_id"
+			],
+			[
+				"d",
+				"data_set"
+			],
+			[
+				"fo",
+				"force_overwrite"
+			],
+			[
+				"ana",
+				"analysis_data"
+			],
+			[
+				"face",
+				"face_nodes"
+			],
+			[
+				"ke",
+				"key"
+			],
+			[
+				"face_type",
+				"face_type_mean"
+			],
+			[
+				"key",
+				"keys"
+			],
+			[
+				"kye",
+				"keys"
+			],
+			[
+				"len",
+				"length"
+			],
+			[
+				"compute",
+				"compute_dual"
+			],
+			[
+				"du",
+				"dual"
+			],
+			[
+				"are",
+				"area_of_polygon"
+			],
+			[
+				"is",
+				"is_valid"
+			],
+			[
+				"orei",
+				"oriented_p"
+			],
+			[
+				"ne",
+				"neighbors"
+			],
+			[
+				"ori",
+				"oriented_p"
+			],
+			[
+				"node",
+				"nodes_iter"
+			],
+			[
+				"fac",
+				"face_id"
+			],
+			[
+				"comput",
+				"compute_dual"
+			],
+			[
+				"get_ed",
+				"get_edge_to_face_map"
+			],
+			[
+				"edge",
+				"edge_to_face"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "tex/test.tex",
+			"settings":
+			{
+				"buffer_size": 1218,
+				"line_ending": "Unix",
+				"name": "\\section{TEST}"
+			}
+		},
+		{
+			"file": "bib/thesis.bib",
+			"settings":
+			{
+				"buffer_size": 1070,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "thesis.tex",
+			"settings":
+			{
+				"buffer_size": 600,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "thesiscommands.sty",
+			"settings":
+			{
+				"buffer_size": 144,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "thesisstyle.sty",
+			"settings":
+			{
+				"buffer_size": 2055,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 47.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"mig",
+				"LaTeXTools: Reconfigure and migrate settings"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Package Control: Install Package"
+			],
+			[
+				"Install",
+				"Package Control: Install Package"
+			],
+			[
+				"Pack",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2deb499853c4371624f5a07e27c334aa' + 'bf8c4e67d14fb0525ba4f89698a6d7e1'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/mtd/mtd-thesis/bib"
+	],
+	"file_history":
+	[
+		"/Users/mtd/mtd-thesis/tex/bibliography.tex",
+		"/Users/mtd/mtd-thesis/tex/appendix.tex",
+		"/Users/mtd/mtd-thesis/thesis.bib",
+		"/Users/mtd/mtd-thesis/tex/title.tex",
+		"/Users/mtd/mtd-thesis/tex/alex_template.tex",
+		"/Users/mtd/mtd-thesis/tex/titlepage.tex",
+		"/Users/mtd/mtd-thesis/styles/thesisstyle.sty",
+		"/Users/mtd/work/publications/smgr_paper_JoP_D/bibliography.bib",
+		"/Users/mtd/Library/Application Support/Sublime Text 3/Packages/User/WordCount.sublime-settings",
+		"/Users/mtd/work/publications/physarum_networks_pre/physarum_networks_supplement.tex",
+		"/Users/mtd/Library/Application Support/Sublime Text 3/Packages/WordCount/WordCount.sublime-settings",
+		"/Users/mtd/work/publications/physarum_networks/bibliography.bib",
+		"/Users/mtd/work/publications/physarum_networks/pictures/dummy_graph/tracking.tex",
+		"/Users/mtd/work/publications/physarum_db/paper.tex",
+		"/Users/mtd/work/publications/physarum_networks/paper.tex",
+		"/Users/mtd/work/publications/physarum_networks_pre/paper.tex",
+		"/Users/mtd/work/publications/smgr_paper_JoP_D/JoP_D_smgr_supplement.tex",
+		"/Users/mtd/work/publications/physarum_networks/viewer.py",
+		"/Users/mtd/work/publications/physarum_db/viewer.py",
+		"/Users/mtd/work/publications/physarum_networks/viewer.tex",
+		"/Users/mtd/smgr_website/mission.html",
+		"/Users/mtd/smgr_website/faq.html",
+		"/Volumes/Untitled/Kist_Europe_data/README.txt",
+		"/Volumes/Untitled/Kist_Europe_data/license.txt",
+		"/Users/mtd/work/publications/physarum_db/pictures/tracking/tracking_3.tex",
+		"/Users/mtd/work/publications/physarum_db/pictures/tracking/tracking_2.tex",
+		"/Users/mtd/work/publications/physarum_db/pictures/tracking/tracking_1.tex",
+		"/Users/mtd/work/publications/physarum_db/pictures/tracking/tracking.tex",
+		"/Users/mtd/physarum_analysis/utilties/plot_all.sh",
+		"/Users/mtd/physarum_analysis/utilties/analyze_all.sh",
+		"/Users/mtd/work/playground/python/bootstrap/main.py",
+		"/Users/mtd/physarum_analysis/plotting/interactive_fitter.py",
+		"/Users/mtd/physarum_analysis/analysis/dual_graph.py",
+		"/Users/mtd/physarum_analysis/utilties/analyze_and_plot.sh",
+		"/Users/mtd/physarum_analysis/plotting/plot_module.py",
+		"/Users/mtd/physarum_analysis/utilties/remove_results.sh",
+		"/Users/mtd/work/playground/python/polar_angle/main.py",
+		"/Users/mtd/work/playground/python/fundamental_cycles/problem/dual_graph.py",
+		"/Users/mtd/work/playground/python/fundamental_cycles/problem/physarum_ordering.py",
+		"/Users/mtd/work/playground/python/fundamental_cycles/problem/examples.py",
+		"/Users/mtd/work/playground/python/fundamental_cycles/problem/main.py",
+		"/Users/mtd/Desktop/bio.txt",
+		"/Users/mtd/physarum_analysis/analysis/planar_face_traversal.py",
+		"/Users/mtd/work/playground/python/fundamental_cycles/problem/planar_face_traversal.py",
+		"/Users/mtd/physarum_analysis/utilties/analyze.sh",
+		"/Users/mtd/work/playground/python/split_list/main.py",
+		"/Volumes/MTD_STORAGE/data/input_selection_out/high/motion52/Guo Hall graph detector/motion52_ignored_files.json",
+		"/Users/mtd/work/playground/python/union_find/union_key.py",
+		"/Users/mtd/work/playground/python/graph_filtration/main.py",
+		"/Users/mtd/work/playground/python/network_robustness/networks.py",
+		"/Users/mtd/work/playground/python/network_efficiency/main.py",
+		"/Users/mtd/work/playground/python/test/test.py",
+		"/Users/mtd/work/playground/python/physarum_hirachy/drawing.py",
+		"/Users/mtd/physarum_analysis/graph_drawing/draw_graphs.py",
+		"/Users/mtd/work/playground/python/physarum_hirachy/union_test.py",
+		"/Users/mtd/work/playground/python/physarum_hirachy/draw_graphs.py",
+		"/Users/mtd/work/playground/python/network_robustness/square.py",
+		"/Users/mtd/nefi/tracking/analysis/fit_data.py",
+		"/Users/mtd/work/playground/python/physarum_hirachy/percolation.py",
+		"/Users/mtd/work/projects/kist_leaves/leaf_analysis.py",
+		"/Users/mtd/nefi/tracking/analysis/analysis.py",
+		"/Users/mtd/work/playground/python/fit_histogram/main.py",
+		"/Users/mtd/work/playground/python/fit_histogram/test.py",
+		"/Users/mtd/work/projects/physarum_graz/results/analysis.py",
+		"/Users/mtd/work/playground/python/fit_histogram/exp_fit.py",
+		"/Users/mtd/work/playground/python/post_order_traversal/main.py",
+		"/Users/mtd/work/playground/python/network_robustness/voronoi_helpers.py",
+		"/Users/mtd/work/playground/python/voronoi_graph/main.py",
+		"/Users/mtd/work/playground/python/merge_data_dicts/main.py",
+		"/Users/mtd/work/playground/python/consume_list/main.py",
+		"/Users/mtd/nefi/tracking/analysis/planar_face_traversal.py",
+		"/Users/mtd/physarum_analysis/tracking_data/low/motion1000/motion1000_tracked_graph.gml",
+		"/Users/mtd/physarum_analysis/tracking/FilterAlgorithms.py",
+		"/Users/mtd/physarum_analysis/utilties/process.sh",
+		"/Users/mtd/nefi_validation/evaluate_data.py",
+		"/Users/mtd/physarum_analysis/utilties/test_region_of_interest.py",
+		"/Users/mtd/nefi_validation/evaluate_similarity_scores.py",
+		"/Users/mtd/nefi_validation/compare_networks.py",
+		"/Volumes/MTD_STORAGE/data/phsyarum_db/motion18/motion18_nefi_config.ini",
+		"/Volumes/MTD_STORAGE/data/phsyarum_db/motion13/motion13_nefi_config.ini",
+		"/Volumes/MTD_STORAGE/data/phsyarum_db/motion12/motion12_nefi_config.ini",
+		"/Volumes/MTD_STORAGE/data/phsyarum_db/motion11/motion11_nefi_config.ini",
+		"/Volumes/MTD_STORAGE/data/phsyarum_db/motion14/motion14_nefi_config.ini",
+		"/Volumes/MTD_STORAGE/data/phsyarum_db/motion15/motion15_nefi_config.ini",
+		"/Volumes/MTD_STORAGE/data/phsyarum_db/motion16/motion16_nefi_config.ini",
+		"/Volumes/MTD_STORAGE/data/phsyarum_db/motion17/motion17_nefi_config.ini",
+		"/Users/mtd/physarum_analysis/raw_data/nefi_in/test/test_nefi_config.ini",
+		"/Users/mtd/physarum_analysis/utilties/check_nefi_config_files.py",
+		"/Users/mtd/work/talks/physarum_thesis_proposal/proposal/preamble/preamble.tex",
+		"/Users/mtd/work/talks/physarum_thesis_proposal/proposal/main.tex",
+		"/Users/mtd/work/talks/physarum_thesis_proposal/proposal/abstract.txt",
+		"/Users/mtd/Desktop/our_version_of_latex.txt",
+		"/Users/mtd/Desktop/log.txt",
+		"/Users/mtd/work/publications/nefi_paper/submission/supplementary_material.tex",
+		"/Users/mtd/work/publications/nefi_paper/submission/paper.tex",
+		"/Users/mtd/work/publications/nefi_paper/supplementary_material.tex",
+		"/Users/mtd/work/publications/nefi_paper/paper.tex",
+		"/Users/mtd/Downloads/10.1007%2F978-1-4615-1529-6_8.txt",
+		"/Users/mtd/work/publications/nefi_paper/paper_initial.tex",
+		"/Users/mtd/work/publications/nefi_paper/long_version.tex",
+		"/Users/mtd/work/publications/nefi_paper/reviewer_comments_round_1.txt",
+		"/Users/mtd/work/publications/nefi_paper/supplementary_material_initial.tex",
+		"/Users/mtd/physarum_analysis/raw_data/nefi_in/links.sh",
+		"/Users/mtd/physarum_analysis/utilties/init_nefi_config_files.py",
+		"/Users/mtd/work/playground/python/doris/dict/dict.py",
+		"/Users/mtd/physarum_analysis/utilties/set_nefi_config_files.py",
+		"/Users/mtd/nefi/tracking/analysis/ordering.py",
+		"/Users/mtd/work/playground/python/histograms/main.py",
+		"/Users/mtd/work/playground/python/fundamental_cycles/main.py",
+		"/Users/mtd/nefi/tracking/tracking.py",
+		"/Users/mtd/nefi/tracking/draw_time_graphs/random_color.py",
+		"/Users/mtd/nefi/tracking/draw_time_graphs/main.py",
+		"/Users/mtd/nefi/tracking/draw_time_graphs/draw_graphs.py",
+		"/Users/mtd/nefi/tracking/analysis/GraphFilterCollection.py",
+		"/Users/mtd/nefi/tracking/FilterAlgorithms.py",
+		"/Users/mtd/nefi/tracking/GraphFilterCollection.py",
+		"/Users/mtd/work/publications/nefi_paper/cover_letter.tex",
+		"/Users/mtd/work/publications/nefi_paper/todo.txt",
+		"/Users/mtd/work/playground/python/edge contraction/FilterAlgorithms.py",
+		"/Users/mtd/work/playground/python/edge contraction/weighted_contraction.py",
+		"/Users/mtd/work/playground/python/edge contraction/GraphFilterCollection.py",
+		"/Users/mtd/work/publications/nefi_paper/bibliography.bib",
+		"/Users/mtd/work/publications/nefi_paper/paper.bbl",
+		"/Users/mtd/nefi/draw_time_graphs/main.py",
+		"/Users/mtd/nefi/draw_time_graphs/draw_graphs.py",
+		"/Users/mtd/nefi/graph_movie.py",
+		"/Users/mtd/nefi/FilterAlgorithms.py",
+		"/Users/mtd/nefi/GraphFilterCollection.py"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"",
+			"\\emph{P.~polycephalum}",
+			"",
+			"face_nodes",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"typ",
+			"typo",
+			"type",
+			"linewidth",
+			"scale",
+			"oats",
+			"listings",
+			")) ",
+			"width",
+			"tis",
+			"future",
+			"valuable",
+			"\\begin{figure}",
+			"\\begin{figure}  ",
+			"V_{id}",
+			"m",
+			"p_{V}",
+			"\\Delta_E",
+			"E_{id}",
+			"\\mathcal{V}",
+			"}\n",
+			"\\emph{physarum}",
+			"fig::sup::path_lengths_log",
+			"paper",
+			"NSince",
+			"vairous obser",
+			"\\label",
+			"% \\caption{Data from dense networks.}",
+			"fig::size_cuts_left",
+			"fig:sub2",
+			"fig::face_roundness_per_time",
+			"fig:sub1",
+			"\\ref",
+			"png}",
+			" \\label{fig:sub2}",
+			" \\label{fig::sub2}",
+			" \\label{fig:sub2}",
+			"\\label{fig:sub1}",
+			"}\n",
+			"\\item",
+			"\\item ",
+			"caption",
+			"\\emph{P. polycephalum}",
+			"contain",
+			"$ ",
+			"sclerotia",
+			".html",
+			" cm",
+			"\\emph{Physarum}",
+			"linewidth",
+			"\\item",
+			"\\hat",
+			"path_length",
+			"<n>",
+			"30",
+			"todo",
+			"0.0831829106727",
+			"0.236932110802",
+			"0.0605798532918",
+			"0.210231209731",
+			"log",
+			"motion",
+			",",
+			"motion",
+			"motion11",
+			"<=",
+			"ex",
+			"56",
+			"54",
+			"50",
+			"plot",
+			"kitten_pic",
+			"observable",
+			"regular",
+			"rgeular",
+			".",
+			"node_degree",
+			"node_degree_histogram_cummulative",
+			"width=.3\\textwidth",
+			"numero",
+			"strong",
+			"\\item",
+			"\\emph{Physarum}",
+			"{emph",
+			"enumerate",
+			"Physarum",
+			"1$",
+			"$",
+			"3$",
+			"huge",
+			"1$",
+			"(0,2)",
+			"e",
+			"a",
+			"b",
+			"$\\name$",
+			"$\\weight$",
+			"24",
+			"x_label",
+			"1000",
+			"sigma",
+			"mu",
+			"ready",
+			"width",
+			"assert",
+			"normal",
+			"gamma",
+			"min_x",
+			"pending",
+			"go",
+			"pending and checked",
+			"dual",
+			"graph",
+			"np.pi",
+			"volume",
+			"power",
+			"done",
+			"?",
+			"bootstrap(",
+			"boots",
+			"cut_horizontal_histogram",
+			"cut_vertical_histogram",
+			"width",
+			"self.x_axis_ticks/self.minor_ticks",
+			"arange",
+			"new_tick_locations",
+			"self.min_value",
+			"self.max_value"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"\\begin{figure}[!htbp] ",
+			"\\bar{V}",
+			"p",
+			"\\Delta",
+			"\\bar{E}",
+			"\\bar{V}",
+			"\\emph{P.~polycephalum}",
+			"\\emph{Physarum}",
+			"self.min_x_value",
+			"self.max_x_value",
+			"set_min_x",
+			"set_max_x",
+			"set_min_x",
+			"duration",
+			"time.time()",
+			"self.start_time",
+			"self.name, \"completed in\", time.time - self.start, \"seconds\"",
+			"face_nodes",
+			"color_to_track",
+			". ,",
+			"NEFI",
+			"0.75",
+			"scale=",
+			"",
+			"\\jobname",
+			"\\bar{OPT}",
+			"B",
+			"A",
+			"\\mathcal{B}_0",
+			"euclidean",
+			"plt.savefig(make_title(title))",
+			"plt.save(make_title(title))",
+			"plot.save(make_title(title))",
+			"np.linalg.norm(np.cross(x,y))",
+			".eps",
+			".tiff",
+			"",
+			"\\section*{",
+			"tracking_graph",
+			"uncertainty",
+			"remove_black_images.py",
+			"supplementary information",
+			"vertex",
+			"vertices",
+			"NEFI's",
+			"on top",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "tex/test.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1218,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								196,
+								196
+							]
+						],
+						"settings":
+						{
+							"WordCount":
+							{
+								"changes": 811,
+								"count": 68,
+								"modified": false,
+								"selection": false,
+								"status": -1,
+								"syntax": "plain text"
+							},
+							"auto_name": "\\section{TEST}",
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "bib/thesis.bib",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 1070,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"WordCount":
+							{
+								"changes": 0,
+								"count": 52,
+								"modified": false,
+								"selection": false,
+								"status": -1,
+								"syntax": "plain text"
+							},
+							"syntax": "Packages/LaTeXTools/BibLaTeX.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 2,
+					"file": "thesis.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 600,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								48,
+								48
+							]
+						],
+						"settings":
+						{
+							"WordCount":
+							{
+								"changes": 426,
+								"count": 31,
+								"modified": false,
+								"selection": false,
+								"status": -1,
+								"syntax": "plain text"
+							},
+							"spell_check": true,
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "thesiscommands.sty",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 144,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"WordCount":
+							{
+								"changes": 25,
+								"count": 11,
+								"modified": true,
+								"selection": true,
+								"status": -1,
+								"syntax": "tex"
+							},
+							"syntax": "Packages/LaTeX/TeX.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "thesisstyle.sty",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2055,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								104,
+								104
+							]
+						],
+						"settings":
+						{
+							"WordCount":
+							{
+								"changes": 1442,
+								"count": 109,
+								"modified": false,
+								"selection": false,
+								"status": -1,
+								"syntax": "tex"
+							},
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.554605102539,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.latextools":
+	{
+		"height": 100.0
+	},
+	"pinned_build_system": "Packages/LaTeXTools/LaTeX.sublime-build",
+	"project": "thesis.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/work/playground/python/fundamental_cycles/problem/examples.py"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+		"last_automatic_layout":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		]
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
