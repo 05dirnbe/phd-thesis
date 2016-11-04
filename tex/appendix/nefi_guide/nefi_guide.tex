@@ -65,15 +65,17 @@
 		\caption[\NEFIs caveats: An ideal iamge of \A.]{An ideal image depicting a detail of the wing of \A. Image courtesy of Pam and Richard Winegar.}
 		\label{fig:sup:good2}
 	\end{figure}
-
+ 
 \section{How to deal with challenging images}
+
+	\todo{Fix the sizes of the images while youre at it \dots}
 
 	\NEFI operates best on images produced under controlled laboratory conditions that fulfill the properties described in the last section. However, more difficult inputs may still be processed, but most likely at the cost of reduced quality. Based on our experience when dealing with more challenging input and the results of our evaluation, we are able to formulate the following recommendations for the usage of \NEFI:
 
 	\begin{description}
-	\item [Otsu's method] may be used on noisy or blurred images. It will do reasonably well as long as if the image has a high contrast between network and background. Adaptive threshold, watershed based on adaptive threshold, and GrabCut with deletion and erosion may even perform slightly better under these conditions. Otsu's has the advantage that no parameters have to be set in order to get good results. The choice should be based on the desired degree of resolution of the extracted graph. We would recommend these methods to process supplementary \Fref{fig:sup:petri_dish} after clipping the image accordingly.
+	\item [Otsu's method] may be used on noisy or blurred images. It will do reasonably well as long as if the image has a high contrast between network and background. Adaptive threshold, watershed based on adaptive threshold, and GrabCut with deletion and erosion may even perform slightly better under these conditions. Otsu's has the advantage that no parameters have to be set in order to get good results. The choice should be based on the desired degree of resolution of the extracted graph. We would recommend these methods to process \Fref{fig:sup:petri_dish} after clipping the image accordingly.
 
-	\item [Adaptive threshold and watershed based on adaptive threshold] may\\be used if differences in contrast between foreground and background are local and not too strong. If this is the case good results may still be obtained. Both methods allow to analyze images that contain a color gradient in the background or that contain edges which have differing levels in brightness. One might try to process images like supplementary \Fref{fig:sup:reflection} and supplementary \Fref{fig:sup:gradient} with these methods while experimenting with different parameter settings. However, such images remain challenging.\NEFIs current algorithms may not deliver sufficient results.
+	\item [Adaptive threshold and watershed based on adaptive threshold] may\\be used if differences in contrast between foreground and background are local and not too strong. If this is the case good results may still be obtained. Both methods allow to analyze images that contain a color gradient in the background or that contain edges which have differing levels in brightness. One might try to process images like \Fref{fig:sup:reflection} and \Fref{fig:sup:gradient} with these methods while experimenting with different parameter settings. However, such images remain challenging.\NEFIs current algorithms may not deliver sufficient results.
 
 	\item [Preprocessing methods] like Gaussian and Median Blurring, Denoising as well as Bilateral Filtering can be used to remove small artifacts, contaminations or irregularities from the image. Although these methods can reduce the amount of artifacts produced during segmentation and thinning, improvements come at a price. For example, imposing a strong blur causes the depicted edges to appear slightly wider. This effect will propagate through the pipeline causing the edge widths of the final graph to overestimate the true widths depicted in the image. We recommend to use preprocessing with care especially if a high accuracy regarding edge weights is required.
 
@@ -84,6 +86,6 @@
 
 	As a first suggestion, we recommend to user to look for available software specializing in segmentation. In this regard we like to point out the Kitware,~\href{http://www.itk.org/itkindex.html}{ITK Project}~\cite{ITKSoftwareGuideThirdEdition}. It's \emph{C++} code base has been developed by the medical image processing community and serves as the basis for many other specialized tools that deal with image processing as well as segmentation. 
 
-	After a segmented image has been obtain using specialized third party segmentation software, NEFI can take this image and proceed with graph detection and filtering directly.
+	After a segmented image has been obtain using specialized third party segmentation software, \NEFI can take this image and proceed with graph detection and filtering directly.
 
 	If no proper software is available, the user has the option to extend \NEFIs segmentation capabilities by adding more sophisticated code. When doing so, one can built on top of existing features already implemented in \NEFI. The literature offers a wealth of different approaches to segmentation leading to algorithms of varying complexity. Before diving into any implementation efforts, we strongly recommend to survey existing methods and their domains of effectiveness by consulting~\cite{chellappa,Pal19931277,pham2000current}.
