@@ -161,6 +161,27 @@
 
 		Graph filtering and its various applications delivers excellent results. To our knowledge, no other software offers such tools as part of its core workflow. For this reason, we consider this one of NEFI's strong points.
 
+\section*{Evaluation}
+
+	To assess NEFI's performance we investigate the output quality given input images of varying quality. Additionally we report on NEFI's speed. 
+ 
+	\subsection{Defining a Graph Similarity Measure}
+
+		As a quality measure, we need to quantify the degree of congruence between the graph depicted in the original input image $i$ and the graph computed by NEFI.  
+
+		Let $A = (V_A, E_A)$ be the \emph{true} graph correctly describing the structure depicted in $i$, with $V_A$ and $E_A$ denoting its vertex and edge set respectively. We call $A$ the \emph{ground truth}, which is of course not known in general. Furthermore, let $B$ denote the graph obtained by executing one of NEFI's pipelines. Note that, $A, B \in \mathcal{G}$, where $\mathcal{G}$ denotes the set of undirected edge-weighted planar graphs where vertices are labeled with their respective euclidean coordinates in the plane. With these definitions we propose a similarity measure $s$ mapping any pair of graphs $A,B \in \mathcal{G}$ onto a number $s \in [0,1]$. 
+
+		We compute a correspondence of vertices in $A$ to vertices in $B$. Two edges $e \in E_A$ and $f \in E_B$ then correspond if their endpoints correspond. We choose the correspondence such that the following intuitive notion of similarity are optimized.
+
+		\begin{enumerate}
+		\item Positions of vertices in $V_A$ are similar to positions of corresponding vertices in $V_B$.  
+		\item Edges in $E_A$ including their weights are similar corresponding edges in $E_B$. 
+		\end{enumerate}
+
+		For an exact definition of $s$ and the notions of \emph{similarity} and \emph{correspondence}, we refer the reader to the supplementary material. \todo{Transfer this part to the main text \ldots}
+
+
+		We require that the measure is maximal if any graph $A$ is compared with itself, that is $s(A,A) = 1$. Consequently, if $A$ is completely different from $B$ we have $s(A,B) = 0$. This minimum value is assumed if no viable correspondence between $V_A$ and $V_B$ can be found. Naturally, the value of $s(A,B)$ increases (decreases) if the similarity between $A$ and $B$ increases (decreases). 
 
 % \chapter{A graphic with caption}
 
