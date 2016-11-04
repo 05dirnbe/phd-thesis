@@ -50,7 +50,7 @@
 	
 	\begin{figure}
 		\centering
-		\includegraphics{workflow.png}
+		\includegraphics[keepaspectratio]{workflow.png}
 		\caption[Pipeline components of NEFI]{A flow chart illustrating NEFI's pipeline components in green boxes. Dashed arrows depict optional sections of the pipeline. Blue and orange boxes denote NEFI's input and possible outputs respectively.}
 		\label{fig:workflow}
 	\end{figure}
@@ -59,12 +59,12 @@
 
 	\begin{figure}
 		\centering
-		\subfloat[NEFI's pipeline - Input image][Input image.]{\includegraphics{pipeline/input.jpg}\label{fig:pipeline:input}}
-		\subfloat[NEFI's pipeline - Segmented image][Segmented image.]{\includegraphics{pipeline/segmented.jpg}\label{fig:pipeline:segmented}}
-		\subfloat[NEFI's pipeline - Skeletonized image][Skeletonized image.]{\includegraphics{pipeline/skeleton.jpg}\label{fig:pipeline:skeleton}}
-		\subfloat[NEFI's pipeline - Detected graph][Detected graph drawn ontop of the input.]{\includegraphics{pipeline/full_graph.jpg}\label{fig:pipeline:full_graph}}
-		\subfloat[NEFI's pipeline - Filtered graph][Filtered graph drawn ontop of the input.]{\includegraphics{pipeline/largest_component.jpg}\label{fig:pipeline:largest_component}}
-		\caption[short toc caption]{Direct comparison of NEFI's pipeline steps given a slice of an image of a slime mold (\P). From left to right: input image, segmented image, skeletonized image, detected graph and filtered graph. The green square contains a very faint vein which the segmentation did not pick up fully. Thus, the skeleton becomes fragmented which leads to spurious vertices in the detected graph. By applying a graph filter we remove stray vertices without manipulation of the segmented or the skeletonized image. Similar filtering can remove ``dead-ends'', \ie vertices that do not belong to any cycle in the graph.}
+		\subfloat[NEFI's pipeline - Input image][Input image.]{\includegraphics[width=0.2\linewidth,keepaspectratio]{pipeline/input.jpg}\label{fig:pipeline:input}}
+		\subfloat[NEFI's pipeline - Segmented image][Segmented image.]{\includegraphics[width=0.2\linewidth,keepaspectratio]{pipeline/segmented.jpg}\label{fig:pipeline:segmented}}
+		\subfloat[NEFI's pipeline - Skeletonized image][Skeletonized image.]{\includegraphics[width=0.2\linewidth,keepaspectratio]{pipeline/skeleton.jpg}\label{fig:pipeline:skeleton}}
+		\subfloat[NEFI's pipeline - Detected graph][Detected graph drawn ontop of the input.]{\includegraphics[width=0.2\linewidth,keepaspectratio]{pipeline/full_graph.jpg}\label{fig:pipeline:full_graph}}
+		\subfloat[NEFI's pipeline - Filtered graph][Filtered graph drawn ontop of the input.]{\includegraphics[width=0.2\linewidth,keepaspectratio]{pipeline/largest_component.jpg}\label{fig:pipeline:largest_component}}
+		\caption[NEFI's pipeline executed]{Direct comparison of NEFI's pipeline steps given a slice of an image of a slime mold (\P). From left to right: input image, segmented image, skeletonized image, detected graph and filtered graph. The green square contains a very faint vein which the segmentation did not pick up fully. Thus, the skeleton becomes fragmented which leads to spurious vertices in the detected graph. By applying a graph filter we remove stray vertices without manipulation of the segmented or the skeletonized image. Similar filtering can remove ``dead-ends'', \ie vertices that do not belong to any cycle in the graph.}
 		\label{fig:pipeline}
 	\end{figure}
 
@@ -72,7 +72,7 @@
 
 	\begin{figure}
 		\centering
-		\includegraphics[width=\textwidth]{gui.jpeg}
+		\includegraphics[width=\linewidth,keepaspectratio]{gui.jpeg}
 		\caption[NEFI's graphical user interface.]{A screenshot of NEFI's GUI running on Mac OS. On the left hand side NEFI lists intermediate results as thumbnails. Bringing the final result to the center workspace allows for direct visual assessment of the quality of the extracted graph. On the right hand side NEFI's pipeline elements can be accessed via drop-down menus. The image was produced in a collaboration with the KIST Europe.}
 		\label{fig:nefi_gui}
 	\end{figure}
@@ -80,14 +80,14 @@
 	There are various predefined pipelines to get started immediately. Alternatively, users may freely combine the various methods to build custom pipelines. 
 	Both approaches allow the user to experiment with the available methods in order to close in on the optimal settings for the data. Once a pipeline is constructed, it can be saved and reused. NEFI's simple pipeline concept together with a self-explanatory graphical user interface make working with NEFI intuitive and straightforward. NEFI also offers a command-line mode, which is suited for batch processing. 
 
-	NEFI comes with a number of example images from different domains which we use to produce the figures in this work. Figure~\ref{fig:physarum} and \Fref{fig:dragonlfy} show NEFI's output on two images using predefined pipelines. Blue squares denote the vertices and red lines the edges of the detected graph. The thickness of the detected edges corresponds to thickness of the depicted structures. For comparison the extracted graph is drawn on top of the input image. We present a detailed quantitative evaluation in a later section.
+	NEFI comes with a number of example images from different domains which we use to produce the figures in this work. \Fref{fig:physarum} and \Fref{fig:dragonlfy} show NEFI's output on two images using predefined pipelines. Blue squares denote the vertices and red lines the edges of the detected graph. The thickness of the detected edges corresponds to thickness of the depicted structures. For comparison the extracted graph is drawn on top of the input image. We present a detailed quantitative evaluation in a later section.
 
 
 	\begin{figure}
 		\centering
-		\subfloat[\P - input to NEFI][]{\includegraphics{p_polycephalum.jpg}\label{fig:physarum:input}}
-		\subfloat[\P - output of NEFI][]{\includegraphics{p_polycephalum_graph.jpg}\label{fig:physarum:graph}}
-		\caption[]{Extracted graph of the network formed by a slime mold (\P). The left hand side shows the input image depicting the network. The right hand side shows the extracted graph overlayed on top off the same image for direct comparison. Note, that no filters have been applied. The image was produced in a collaboration with the KIST Europe.}
+		\subfloat[\P: Input to NEFI][]{\includegraphics[width=0.5\linewidth,keepaspectratio]{p_polycephalum.jpg}\label{fig:physarum:input}}
+		\subfloat[\P: Output of NEFI][]{\includegraphics[width=0.5\linewidth,keepaspectratio]{p_polycephalum_graph.jpg}\label{fig:physarum:graph}}
+		\caption[\P: Input and output of NEFI]{Extracted graph of the network formed by a slime mold (\P). The left hand side shows the input image depicting the network. The right hand side shows the extracted graph overlayed on top off the same image for direct comparison. Note, that no filters have been applied. The image was produced in a collaboration with the KIST Europe.}
 		\label{fig:physarum}
 	\end{figure}
 
@@ -95,11 +95,11 @@
 	\centering
 		\begin{tikzpicture}
 			\begin{scope}[spy using outlines={rectangle,black,magnification=2.5,size=4cm}]
-			\node {\includegraphics[width=\textwidth]{dragonfly_optimal.jpeg}};
+			\node {\includegraphics[width=\linewidth,keepaspectratio]{dragonfly_optimal.jpeg}};
 			\spy on (-1,-1) in node (a) [left] at (5.5,-1.5);
 			\end{scope}
 		\end{tikzpicture}
-	\caption[\emph{Ajax junius} - Extracted graph]{Extracted graph of the vein network exhibited by a wing of a dragonfly (\emph{Ajax junius}). Note, that after the use of various filters a very clean-looking graph is obtained. Image courtesy of Pam and Richard Winegar.}
+	\caption[\A: Output of NEFI]{Extracted graph of the vein network exhibited by a wing of a dragonfly (\A). Note, that after the use of various filters a very clean-looking graph is obtained. Image courtesy of Pam and Richard Winegar.}
 	\label{fig:dragonlfy}
 	\end{figure}
 
@@ -109,14 +109,67 @@
 	Next, we discuss the purpose and design of each major stage of the pipeline and highlight some of NEFI's strong points.
 
 
+	\subsection{Preprocessing Collection}
+
+		The preprocessing section of the pipeline offers various standard image processing algorithms intended to be used prior to the segmentation step. Preprocessing methods may be exploited to affect the output of the segmentation step. For example, adding a slight blur to an input image may benefit the overall result by reducing the amount of spurious white pixels in the segmented image. However, blurring too much will remove fine detail and reduce accuracy in determining the thickness of depicted edges. As a result, we recommend to experiment with different approaches and parameter settings in order to decide how to use preprocessing. For images of sufficient quality we found that excellent results can be obtained without preprocessing. 
+
+		NEFI relies on \href{http://opencv.org/}{OpenCV}~\cite{opencv} for preprocessing and offers Gaussian and Median Blurring, Denoising as well as Bilateral Filtering.
+
+	\subsection{Segmentation Collection}
+
+		The goal of the segmentation step is separating the image foreground, \ie the structures of interest, from the remaining image. NEFI builds on top of \href{http://opencv.org/}{OpenCV}~\cite{opencv} combining different segmentation algorithms. The general-purpose algorithms shipped with NEFI have become standard in image processing and perform reliably well if input images are clean, devoid of strong gradients and have a good contrast between fore- and background. Conversely, if the input becomes more challenging, the effectiveness of NEFI's segmentation degrades quickly and more complex or domain-specific algorithms become necessary. We defer a quantitative study of how the properties of the input image affect NEFI's performance to the Section \emph{Evaluation}. 
+
+		NEFI's segmentation is designed such that several algorithms can be used interchangeably. We included basic thresholding algorithms like Otsu's method~\cite{otsu1979} or adaptive thresholding as well as more involved segmentation routines such as guided watershed~\cite{watershed91} and the GrabCut algorithm~\cite{grabcut2004}. The last two methods receive as an additional input a so-called marker. The better the markers approximate the foreground, the better these algorithms work. NEFI offers several marker strategies which can be used interchangeably together with the respective marker based segmentation routines. 
+
+		Interchangeability of the algorithms is a core design principle of all pipeline steps.
+
+		This design facilitates easy experimentation with different methods. Our own experience shows that often it is not clear a priori which methods work for a given input image. This decision usually also depends on the desired degree of detail in the final output, where less sensitive methods might produce fewer false positives. This ease of experimentation with quick visual feedback from the GUI is one of the major strong points of NEFI.
+
+		The flexibility is not limited to the algorithms we provide. Instead, NEFI's software design makes it easy to integrate additional methods. We expect that in practice challenging inputs will be encountered for which the algorithms currently offered by NEFI will be insufficient. In these cases a potential user may choose to implement additional, perhaps domain-specific, methods. By extending NEFI, the user can rely on existing modules and thus save a lot of time. The authors are convinced that improved extendability is another strong point of our work.
+
+	\subsection{Graph Detection Collection} 
+
+		The graph detection collection consists of algorithms that take a segmented image as input and detect the nodes and the edges of the graph. We offer a colloquial description of the actual algorithm because we do not rely on well-documented library code for this section of the pipeline. 
+
+		The first step for graph detection is called thinning. Here we reduce the segmented foreground such that every line is only one pixel thick, while preserving the connectivity properties of both the foreground and the background pixels. The result of this process is called the skeleton of the segmented image. To do so we implemented the algorithm by Guo and Hall~\cite{guo1989parallel}. It always produces thin results and preserves 8-connectivity of the foreground pixels. A pure Python implementation proved to be fairly slow, hence we chose to implement this function as a C extension.
+
+		For fairly thin foreground features this method is nearly flawless and finds a skeleton where the lines lie in the center of the foreground areas. However, large foreground sections lead to artifacts in the skeleton whose exact shape depends on the noise present at their borders.
+
+		On the skeleton we then detect the positions of nodes. For this purpose we adapt criteria from thinning algorithm by Zhang and Suen~\cite{zhang1984fast}. A white pixel becomes a node if its removal creates exactly one or at least three 4-connected white components in its 1-neighborhood. In the former case the pixel forms the end of a path, otherwise it is the meeting point of at least three edges.
+
+		Note that due to this step, the maximum degree of the graphs we detect is limited to four. This is inevitable if nodes are detected at single-pixel locations. For higher degree nodes we will create several nodes of limited degree that are very close to each other and can be merged by a later post-processing step.
+
+		Given the node positions, it is very simple to find the edges. We perform a variant of breadth first search on the white pixels in the skeleton, starting from each node simultaneously. Each white pixel around a node gets a unique number and a queue. In each step we iterate over all queues and take out the first pixel. If it is unmarked, we mark it with the unique number of this queue and enqueue all its white neighbors. Otherwise, we have detected an edge, \ie there is a path along white pixels that connects two nodes.
+
+		While walking along the pixels we record the length of the edge. Horizontal and vertical steps count as one unit, diagonal steps count as $\sqrt 2\approx 1.41$ units.
+
+		The diameter of an edge calculated by computing a distance transform on the segmented image. This assumes that the thinned edge lies in the middle of the actual edge. Computing the diameters is now a simple lookup of each edge-pixel from the skeleton in the distance transformed image. As we have the diameters along the whole edge on hand by this procedure, we then compute a median and a variance.
+
+		For handling the graph we rely on \href{https://networkx.github.io/documentation/latest/index.html}{NetworkX}~\cite{networkx}.
+
+	\subsection{Graph Filter Collection}
+
+		The graph filter collection offers the possibility to add powerful processing steps that directly apply to the graph obtained after graph detection. 
+
+		Often it is possible to improve the result by removing unwanted artifacts in the segmented image or during later processing stages.	A common strategy, used for example in \cite{baumgarten2010detection, baumgarten2012computational}, consists of ``reparing'' the errors in the skeleton using heuristics or user assisted methods. However, these methods carry the potential danger of introducing additional errors. 
+
+		NEFI pursues a novel approach by exploiting the structure of the extracted graph. First, we retain a maximum of structural information by not altering the segmented image or the skeleton at all, \ie we establish the graph including all artifacts. Then we use dedicated graph filters to remove said artifacts. For example, if the network in the input image is reasonably large, it will result in a large connected component in the graph. Small components resulting from noise can thus be removed effectively and safely. Since the effects of filtering the graph can immediately be evaluated by visual inspection, we prefer graph filtering over less transparent approaches that take place before the graph was established. \Fref{fig:pipeline} illustrates the use of filtering.
+
+		We have used filtering with sensitive segmentation to obtain surprisingly good results. Overly sensitive segmentation picks up fine detail but also introduces artifacts. However, almost all of the artifacts result in very small components that can easily be removed by filtering. The desired detail will remain mostly unaffected because it is part of the largest component. The graph depicted in \Fref{fig:dragonlfy} was obtained using this technique.
+
+		Filtering may also be used to remove parts of the graph which are not of interest. The following filters are predefined in NEFI. A filter removing everything not in the largest connected component, one smoothing vertices of degree two except if this introduces parallel edges and finally, one which removes all vertices and edges that are not contained in a cycle. Filters may be freely combined in any order. Naturally, the filter collection is designed for extendability.
+
+		Graph filtering and its various applications delivers excellent results. To our knowledge, no other software offers such tools as part of its core workflow. For this reason, we consider this one of NEFI's strong points.
+
+
 % \chapter{A graphic with caption}
 
 % ü \Fref{fig:oats}! ä \Fref{fig:oats:a}! Look at that~\cite{newman2003structure}.
 
 % \begin{figure}
 %      \centering
-%      \subfloat[][a]{\includegraphics{oats.jpg}\label{fig:oats:a}}
-%      \subfloat[][b]{\includegraphics{oats.jpg}\label{fig:oats:b}}
+%      \subfloat[][a]{\includegraphics[keepaspectratio]{oats.jpg}\label{fig:oats:a}}
+%      \subfloat[][b]{\includegraphics[keepaspectratio]{oats.jpg}\label{fig:oats:b}}
 %      \caption[short toc caption]{Comparison of steady state results (a) x method (b) y method}
 %      \label{fig:oats}
 % \end{figure}
