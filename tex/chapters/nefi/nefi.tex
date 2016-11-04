@@ -11,7 +11,7 @@
 	The study of complex network-like objects is of increasing importance for many scientific domains. 
 	The mathematical study of networks, Graph Theory, formalizes a network's structure by modeling the constituents of a network as \emph{vertices} and the pairwise relations between them as \emph{edges}. Some communities traditionally refer to vertices as nodes or sites and to edges as arcs or links. Networks are ubiquitous in everyday life. Examples are as diverse as the Internet, social networks, transportation networks, metabolic networks, blood vessels or the vein networks of leaves. For a comprehensive review see~\cite{newman2003}. 
 
-	In situations where the extraction of a mathematical graph from a physical network is easy, the size of graphs that can be analyzed quickly increased from hundreds to millions of vertices. At the same time it became feasible to build large databases of various types of networks. This enabled the application of software incorporating methods from statistics and graph theory to obtain many results that changed our understanding of large scale network structures. However, digitization remains difficult for many types of networks, e.g. leaf venations, blood vessels or food webs, and therefore ready-to-analyze datasets are often not available. In these cases, investigation on a larger scale requires tedious and sometimes error prone data acquisition.
+	In situations where the extraction of a mathematical graph from a physical network is easy, the size of graphs that can be analyzed quickly increased from hundreds to millions of vertices. At the same time it became feasible to build large databases of various types of networks. This enabled the application of software incorporating methods from statistics and graph theory to obtain many results that changed our understanding of large scale network structures. However, digitization remains difficult for many types of networks, \eg leaf venations, blood vessels or food webs, and therefore ready-to-analyze datasets are often not available. In these cases, investigation on a larger scale requires tedious and sometimes error prone data acquisition.
 
 	In many experimental settings networks are initially available as high quality images obtained under laboratory control. Before any analysis can take place, it is necessary to extract the associated graphs from these images. This requires the identification of vertices and edges within the depicted structure. This process can quickly become very work-intensive even for smaller networks, which makes automated solutions indispensable. 
 
@@ -161,7 +161,7 @@
 
 		Graph filtering and its various applications delivers excellent results. To our knowledge, no other software offers such tools as part of its core workflow. For this reason, we consider this one of NEFI's strong points.
 
-\section*{Evaluation}
+\section{Evaluation}
 
 	To assess NEFI's performance we investigate the output quality given input images of varying quality. Additionally we report on NEFI's speed. 
  
@@ -178,10 +178,263 @@
 		\item Edges in $E_A$ including their weights are similar corresponding edges in $E_B$. 
 		\end{enumerate}
 
-		For an exact definition of $s$ and the notions of \emph{similarity} and \emph{correspondence}, we refer the reader to the supplementary material. \todo{Transfer this part to the main text \ldots}
-
+		For an exact definition of $s$ and the notions of \emph{similarity} and \emph{correspondence}, we refer the reader to the supplementary material. \todo{Connect this part to the next section instead \ldots}
 
 		We require that the measure is maximal if any graph $A$ is compared with itself, that is $s(A,A) = 1$. Consequently, if $A$ is completely different from $B$ we have $s(A,B) = 0$. This minimum value is assumed if no viable correspondence between $V_A$ and $V_B$ can be found. Naturally, the value of $s(A,B)$ increases (decreases) if the similarity between $A$ and $B$ increases (decreases). 
+
+	\subsection{Similarity Measure for Evaluation}
+
+		In order to determine the overall quality of NEFI's output we need to quantify the degree of similarity between two graphs $A = (V_A, E_A)$ and $B = (V_B, E_B)$ using a graph similarity measure. Let $A, B \in \mathcal{G}$, where $\mathcal{G}$ is a set of undirected edges-weighted planar graphs where the nodes are labeled with their respective coordinates in the eucledian plane. Then we may define a similarity measure $s$ as follows:
+		
+		\begin{align}
+		s &: \mathcal{G} \times \mathcal{G} \rightarrow [0,1] \\
+		\forall \ A, B \in \mathcal{G} &: s(A,B) = matching(A,B)
+		\end{align}
+
+		Where $matching(A,B)$ denotes the normalized cost of a minimum cost graph matching problem which we will define shortly. Given this definition the degree of similarity between $A$ and $B$ is quantified by the value of $s(A,B)$. The similarity measure we propose has the following desirable properties:
+
+
+		\begin{itemize}
+			\item $A$ compared to itself yields a maximum similarity score of $s(A,A) = 1$.
+			\item If there are no vertices in $V_A$ with corresponding similar nodes in $V_B$ and no edges $E_A$ with corresponding similar edges in $E_B$ the minimum similarity score of $s(A,B) = 0$ is obtained.
+			\item The similarity score $s(A,B)$ increases (decreases) if the similarity between $A$ and $B$ increases (decreases).
+		\end{itemize}
+
+		We proceed with making the notions of \emph{similarity} and \emph{correspondence} more precise by constructing a minimum cost graph matching problem. Given the two graphs $A,B \in \mathcal{G}$, let $n_A,n_B$ denote the number of nodes and $m_A,m_B$ denote the number edges of the respective graphs. Note that $n_A$ and $n_B$ can differ, as can $m_A$ and $m_B$.
+
+		We can now define a matching between $A$ and $B$ consisting of three parts. First we define a matching between the node sets $V_A, V_B$, then we define a matching between the edges sets $E_A, E_B$ and finally we introduce a coupling between the two. To obtain a solution to the problem we rephrase the combined matching problem as an integer linear program and solve it using IBM CPLEX. For ease of exposition, however, we discuss the problem using the language of matchings.
+
+		For the node matching, we match each node $i \in V_A$ with at most one node $j \in V_B$. We define a variable $x_{ij}$ that is 1 if we match $i$ with $j$ and 0 otherwise. With a match we associate a cost of $\Delta_V(i,j)$. The function $\Delta_V(i,j)$ returns the euclidean distance between node $i$ and node $j$. If any node $u$ remains unmatched, we assign a penalty of $p_V(u)$ to it. A node can either be penalized or matched. We thus compute a minimum cost node matching, in which it is favorable for nodes in $A$ to be matched with similar nodes in $B$. We call such a matching pair of similar nodes \emph{corresponding}.
+
+		The edge matching proceeds analogously to the node matching. Each edge $e \in E_A$ is matched with at most one edge $f \in E_B$. We denote this match with a decision variable $y_{ef}$ and associate a cost of $\Delta_E(e,f)$ with it. The function $\Delta_E(e,f)$ returns the sum of the differences in edge weights between edge $e$ and edge $f$. If any edge $d$ remains unmatched, we assign a penalty of $p_E(d)$ to it. An edge can either be penalized or matched. We thus compute a minimum cost edge matching, in which it is favorable for edges in $E_A$ to find a match with a similar edge in $E_B$. We call such a matching pair of similar edges \emph{corresponding}.
+
+		As of yet both matchings are independent of each other. In particular this allows an edge $e$ to be matched with an edge $f$ independently from their respective positions in the plane as long as they have similar weights. A more meaningful matching favors pairing similar edges where the endpoints of both edges are similar to each other, \ie geographically close. This additional constraint introduces a coupling between node and edge matching. To enforce coupling we add the constraint that an edge $e = (a,b) \in E_A$ can only be matched to an edge $f = (a',b')$ if the respective nodes participate in a matching as well. That is, we require $a$ to be matched to $a'$ and $b$ to be matched to $b'$ or alternatively $a$ to be matched to $b'$ and $b$ to be matched to $a'$. 
+
+		By combining node matching, edge matching and the additional coupling constraint we obtain the final minimum cost matching problem. We rephrase the uncoupled matching problem as an integer linear program (ILP) as follows:
+
+		\begin{alignat}{4}
+		minimize & : & \ \ f = &\sum_{ \substack{i \in V_A \\ j \in V_B }} \Delta_V(i,j) x_{ij}  &+  \sum_{ \substack{i \in V_A}} p_{V}(i) \overline{x}_{i} &+   \sum_{ \substack{j \in V_B}} p_{V}(j) \overline{x}_{j} & + \\ 
+		 &   & \ \     &\sum_{ \substack{e \in E_A \\ f \in E_B }} \Delta_E(e,f) y_{ef}  &+  \sum_{ \substack{e \in E_A}} p_{E}(e) \overline{y}_{e} &+   \sum_{ \substack{f \in E_B}} p_{E}(f) \overline{y}_{f} & 
+		\end{alignat}
+
+		\begin{alignat}{3}
+		s.t.: & \ \     & x_{ij} \in \{0,1\}   \quad \quad                                          & i \in V_A                                           & j \in V_B                                            \\
+		& \ \     & y_{ef} \in \{0,1\}   \quad \quad                                          & e \in E_A                                           & f \in E_B                                             \\
+		& \ \     & \forall \ i \sum_{j} x_{ij} \leq 1                                          &                                                     & \forall \ j \sum_{i} x_{ij} \leq     1                \\
+		& \ \     & \forall \ e \sum_{f} y_{ef} \leq 1                                          &                                                     & \forall \ f \sum_{e} y_{ef} \leq 1                \\
+		& \ \     & \overline{x}_{i} =  1 - \sum_{j \in V_B} x_{ij}                                &                                                     & \overline{x}_{j} =  1 - \sum_{i \in V_A} x_{ij}      \\          
+		& \ \     & \overline{y}_{e} =  1 - \sum_{f \in E_B} y_{ef}                                &                                                     & \overline{y}_{f} =  1 - \sum_{e \in E_A} y_{ef}               
+		% & \ \     &  \forall e = (a,b), f = (a',b') & & & 2y_{ef} \leq x_{aa'} + x_{ab'} + x_{ba'} + x_{bb'}                                                                 
+		\end{alignat}
+
+		To introduce the coupling between the vertex and the edge matching, we add an additional constraint as described above: 
+
+		\begin{equation}
+		\quad \forall \ e = (a,b), f = (a',b') \colon \quad 2y_{ef} \leq x_{aa'} + x_{ab'} + x_{ba'} + x_{bb'}     
+		\end{equation}
+
+		\todo{Fix the look and feel of this chapter, especially when it comes to maths \ldots}
+
+		Given the optimal solution to the ILP the optimal matching for nodes and edges can be recovered. Thus, we know what matching pairs have been formed and which nodes and edges remained unmatched. We use this information to define true positives, false positives and false negatives as described in the main manuscript. 
+
+		In addition, we obtain the optimal value of the objective function $OPT$, \ie the cost associated with the selected optimal matching. The value of $OPT$ includes both the costs incurred by node and edge matches as well as the penalty terms arising from nodes and edges that cannot be matched. As a result it reflects the similarity between the two graphs $A$ and $B$.
+
+		We point out that $OPT = 0$ if a graph $G$ is matched with itself. Every single node and edge finds its exact copy as a match of cost $0$ for itself and thus no penalties arise. The other extreme is realized when there are no vertices in $V_A$ with corresponding similar nodes in $V_B$ and no edges $E_A$ with corresponding similar edges in $E_B$. In this case the value of $OPT$ attains its maximum $\overline{OPT}$ because all nodes and edges of both graphs are penalized. Naturally, the value of $OPT$ increases (decreases) with decreasing (increasing) graph similarity. Given these observations it is natural to use $OPT$ and $\overline{OPT}$ to define a similarity measure betweens two graphs $A, B \in \mathcal{G}$ as follows
+
+		\begin{equation}
+		s(A,B) = matching(A,B) = 1 - \frac{OPT(A,B)}{\overline{OPT}(A,B)}
+		\end{equation}
+
+		with
+
+		\begin{equation}
+		\overline{OPT}(A,B) =   \sum_{ \substack{i \in V_A }} p_{V}(i) + \sum_{ \substack{j \in V_B}} p_{V}(j)  + \sum_{ \substack{e \in E_A }} p_{E}(e) + \sum_{ \substack{f \in E_B}} p_{E}(f)
+		\end{equation}
+
+
+		As a practical remark, we note that the number of variables entering the integer linear program grows like $\mathcal{O}(n_A n_B + m_A m_B)$. As a result, the linear program may become prohibitively large even for graphs of moderate size. 
+
+		To meet this issue, it is convenient to define a circle with search radius $r$ centered around each node $i$. Our goal is to exclusively consider nodes $j$ within this search radius to consider as possible matches for node $i$. In other words, we label all nodes $j$ outside the search circle as too expensive. To correctly enforce this idea in the integer linear program, we require $p_V(u) > r$ for all nodes $u$ in both graphs. 
+
+		With this definition in place, none of the nodes $j$ outside of the search circle will be selected as an optimal match for node $i$ because two nodes $i$ and $j$ are matched if and only if the cost of forming the pair is smaller than the penalty due for payment in case the match is not established. Thus, the respective variables $x_{ij}$ may safely be omitted from the linear program. 
+
+		Choosing the search radius and adjusting the penalties accordingly in order to control the size of the linear program seems more natural to the authors than the other way around. This approach has the additional advantage that a sensible value for the search radius can often be inferred by the looking at the length scales of the structures of interest in the original input image.
+
+		The number of variables $y_{ef}$ referring to edge pairs can be reduced by separately applying the previous argument to each of the nodes involved. We enumerate the set of all possible edges $f = (a',b')$ to be matched with edge $e = (a,b)$. The edges $f = (a',b')$ are constructed by connecting all nodes $a'$ within a radius $r$ around the node $a$ with all nodes $b'$ within a radius $r$ around node $b$. This process can create self-loops $f =(a',a')$ which we exclude as candidates. If there are no nodes within a distance $r$ from $a$ or $b$, the associated edge variables $y_{ef}$ can be omitted from the linear program. To correctly enforce this idea in the ILP, we normalize the cost of the edges associated with the variables $y_{ef}$ and choose the edge penalties as $p_E(d) > r $ for all edges $d$ in both graphs. There is considerable freedom in the choice of the edge penalties as long as they are large enough that sensible matches $y_{ef}$ are not ignored in favor of paying cheaper penalties. 
+
+		It is advised to experiment with different values or to simply choose them larger than the largest edge match cost. The latter choice has the effect that whenever a match is available it will be selected, even if the cost is extremely large. As a result this choice is justified in particular when the edge costs are known to be comparable in magnitude. As a concluding remark, we stress that the choice of penalties for nodes and edges affects the final value of the similarity measure $s(A, B)$ via the normalization. As a result, when using this measure to compare several graphs with each other, the penalties and tracking radius $r$ must be chosen consistently in order to guarantee the viability of the comparison.
+
+	\subsection{Evaluation of NEFI's Output}
+
+		We proceed with the evaluation of NEFI's output using the above similarity measure. To do so we create a set $\mathcal{A}$ of ground truth graphs such that $\mathcal{A} \subset \mathcal{G}$. We start by processing a real-life set $I_0$ of images of the slime mold \P with NEFI. Thus we obtain a set of graphs $\mathcal{B}_0 \subset \mathcal{G}$. Given those graphs we obtain the set $\mathcal{A}$ by distorting the graphs $B_i \in \mathcal{B}_0$ using different graph filters. At this point we will not use the images in $I_0$ or the graphs in $\mathcal{B}_0$ anymore. 
+
+		Next, we turn the graphs in $\mathcal{A}$ into a test set $I_1$ of 2D images by simply drawing them. The drawing preserves the euclidean positions of the nodes, the edge lengths and the thickness of the edges. As a result, the image $i \in I_1$ depicts the graph $ A_i \in \mathcal{A}$. In other words, we know the \emph{ground truth} $A_i$ for every image $i$ in the test set $I_1$.
+
+		To compare different segmentation methods, we prepare a set $\mathcal{P}$ of pipelines differing only in the segmentation algorithms used. The parameters of the pipeline where chosen manually for each test set using experimentation and visual inspection.
+
+		Given the sets $I_1$ and $\mathcal{A}$ as well as our similarity measure we can now evaluate NEFI's output. We take an image $i \in I_1$ and process it with a given $p \in \mathcal{P}$ to obtain a graph $B_i \in \mathcal{B}_1$, \ie the graph NEFI extracted from the input image. Then we compute the similarity $s(A_i, B_i)$. To obtain statistical statements, we repeat this procedure for all images and all pipelines.
+
+		During the computation of $s(A_i, B_i)$, we record features NEFI failed to detect in $i$, namely the number of vertices (edges) in $A_i$ which remain without corresponding vertices (edges) in $B_i$. This is the number of false negatives (FN). Furthermore, we record the number of vertices (edges) in $B$ for which no corresponding vertices (edges) exist in $A_i$. These are features which NEFI detects in $i$ but which are in fact not present. These are false positives (FP). Finally we record the number of vertices (edges) in $B_i$ that have corresponding elements in $A_i$. That is, features correctly extracted from the image $i$, which we count as true positives (TP). Unfortunately, we cannot determine the number of true negatives (TN) in a similar fashion. For this reason we restrict ourselves to computing sensitivity ($\tfrac{TP}{TP + FN}$) and precision ($\tfrac{TP}{TP + FP}$) in the results of the evaluation. Sensitivity and precision reported in the following Tables combine the respective values for vertices and edges. 
+
+		\Fref{tab:optimal} summarizes the results of processing the set $I_1$. The images in $I_1$ are ideal inputs for NEFI for which all our segmentation routines produce very good results. Otsu's method and adaptive thresholding yield perfect segmentations. Hence, any difference between NEFI's output and the ground truth cannot originate in the segmentation part of the pipeline but must be attributed to thinning and graph detection. The excellent correspondence between NEFI's output and the ground truth confirms that thinning and graph detection are very reliable.
+
+		\begin{table}
+			\centering
+			\begin{tabular}{@{} l *3c @{}}
+			\toprule
+			\multicolumn{1}{c}{Method}    & Similarity score $s$  & Sensitivity  & Precision \\ 
+			\midrule
+			Otsu's method                   & $0.984 \pm 0.005$ & $0.970 \pm 0.011$ & $0.998 \pm 0.001$ \\
+			Adaptive threshold              & $0.984 \pm 0.005$ & $0.970 \pm 0.011$ & $0.997 \pm 0.001$ \\
+			Watershed (deletion/erosion)    & $0.980 \pm 0.006$ & $0.959 \pm 0.013$ & $0.988 \pm 0.001$ \\
+			Watershed (distance transform)  & $0.906 \pm 0.121$ & $0.837 \pm 0.160$ & $0.998 \pm 0.001$ \\
+			Watershed (adaptive)            & $0.977 \pm 0.008$ & $0.956 \pm 0.016$ & $0.998 \pm 0.001$ \\
+			Grabcut (deletion/erosion)      & $0.984 \pm 0.005$ & $0.970 \pm 0.011$ & $0.998 \pm 0.001$ \\
+			Grabcut (distance transform)    & $0.983 \pm 0.005$ & $0.967 \pm 0.011$ & $0.998 \pm 0.001$ \\
+			\bottomrule
+			\end{tabular}
+			\caption[NEFI's evaluation: Ideal images]{Summary of the evaluation of $250$ ideal test images $I_1$.}
+			\label{tab:optimal}
+		\end{table}
+
+		\todo{Fix the look of these tables \dots}
+
+		One might question the validity of using graphs which were detected by NEFI in the first place as the input set. However, the approach is valid because the origin of the images in $I_1$ has no significance regarding NEFI's performance. In other words, they are just as hard or as easy to process as images obtained in any other comparable way. 
+
+		The perfect images in $I_1$ do not represent real life input very well. Therefore we produced three more test sets and evaluate them as described above.
+
+		For the set $I_2$ we take the images in $I_1$ and change the brightness of the edge drawings randomly. As a result the local contrast between foreground and background varies widely across the image. To create set $I_3$ we take the images in $I_1$ and insert a color gradient into the background while leaving the foreground unchanged. Set $I_4$ is obtained by taking the images in $I_1$ and subjecting them to a global blur.
+
+		\Fref{tab:colored_edges} summarizes the results of processing the set $I_2$. We observe that both similarity score as well sensitivity are deteriorating for almost all methods except for adaptive thresholding and watershed based on adaptive thresholding. Adaptive thresholding is still able to compensate the local changes in brightness present in the test images and returns segmented images of high quality. We stress that for images showing more severe irregularities the performance of these methods is expected to suffer. 
+
+		\begin{table}
+			\centering
+			\begin{tabular}{@{} l *3c @{}}
+			\toprule
+			\multicolumn{1}{c}{Method}    & Similarity score $s$  & Sensitivity  & Precision \\ 
+			\midrule
+			Otsu's method                   & $0.868 \pm 0.018$ & $0.704 \pm 0.028$ & $0.987 \pm 0.005$ \\
+			Adaptive threshold              & $0.941 \pm 0.010$ & $0.853 \pm 0.034$ & $0.976 \pm 0.025$ \\
+			Watershed (deletion/erosion)    & $0.859 \pm 0.018$ & $0.693 \pm 0.028$ & $0.984 \pm 0.006$ \\
+			Watershed (distance transform)  & $0.408 \pm 0.176$ & $0.239 \pm 0.154$ & $0.987 \pm 0.007$ \\
+			Watershed (adaptive)            & $0.966 \pm 0.008$ & $0.936 \pm 0.016$ & $0.984 \pm 0.017$ \\
+			Grabcut (deletion/erosion)      & $0.864 \pm 0.019$ & $0.696 \pm 0.029$ & $0.986 \pm 0.005$ \\
+			Grabcut (distance transform)    & $0.858 \pm 0.020$ & $0.688 \pm 0.030$ & $0.986 \pm 0.005$ \\
+			\bottomrule
+			\end{tabular}
+			\caption[NEFI's evaluation: Edges with varying brigthness]{Summary of the evaluation of $250$ test images $I_2$ with edges drawn with random brightness.}
+			\label{tab:colored_edges}
+		\end{table}
+
+		Note that the precision remains comparably high, which indicates that the vertices and edges detected by NEFI are indeed part of the ground truth.
+
+		\Fref{tab:background_gradient} summarizes the results of processing the set $I_3$. We observe that almost all methods, with the exception of adaptive thresholding and watershed based on adaptive thresholding perform very poorly. In particular watershed based on a distance transform marker is completely unable to handle the input images.
+
+		\begin{table}
+			\centering
+			\begin{tabular}{@{} l *3c @{}}
+			\toprule
+			\multicolumn{1}{c}{Method}    & Similarity score $s$  & Sensitivity  & Precision \\ 
+			\midrule
+			Otsu's method                   & $0.737 \pm 0.060$ & $0.602 \pm 0.065$ & $0.911 \pm 0.065$ \\
+			Adaptive threshold              & $0.984 \pm 0.005$ & $0.970 \pm 0.011$ & $0.998 \pm 0.001$ \\
+			Watershed (deletion/erosion)    & $0.752 \pm 0.047$ & $0.588 \pm 0.061$ & $0.977 \pm 0.009$ \\
+			Watershed (distance transform)  & $0.334 \pm 0.303$ & $0.240 \pm 0.261$ & $0.943 \pm 0.043$ \\
+			Watershed (adaptive)            & $0.982 \pm 0.005$ & $0.967 \pm 0.012$ & $0.997 \pm 0.001$ \\
+			Grabcut (deletion/erosion)      & $0.733 \pm 0.053$ & $0.573 \pm 0.066$ & $0.987 \pm 0.005$ \\
+			Grabcut (distance transform)    & $0.742 \pm 0.052$ & $0.582 \pm 0.065$ & $0.983 \pm 0.008$ \\
+			\bottomrule
+			\end{tabular}
+			\caption[NEFI's evaluation: Images with background color gradient]{Summary of the evaluation of $250$ test images $I_3$ with a color gradient in the background.}
+			\label{tab:background_gradient}
+		\end{table}
+
+		\Fref{tab:blur} summarizes the results of processing the set $I_4$. We observe that almost all methods, with the exception of watershed with distance transform, perform reasonably well. Sensitivity and similarity scores are slightly smaller than the results obtained for the optimal test images $I_1$. This is due to the fact that blurring an image $i$ causes the depicted edges to appear slightly wider. This increase in width is detected in the edges of the graphs $B_i$. As a result the similarity score $s(A_i,B_i)$ decreases accordingly.
+
+		\begin{table}
+			\centering
+			\begin{tabular}{@{} l *3c @{}}
+			\toprule
+			\multicolumn{1}{c}{Method}    & Similarity score $s$  & Sensitivity  & Precision \\ 
+			\midrule
+			Otsu's method                   & $0.953 \pm 0.011$ & $0.909 \pm 0.022$ & $0.993 \pm 0.003$ \\
+			Adaptive threshold              & $0.947 \pm 0.010$ & $0.863 \pm 0.028$ & $0.989 \pm 0.005$ \\
+			Watershed (deletion/erosion)    & $0.950 \pm 0.010$ & $0.915 \pm 0.022$ & $0.981 \pm 0.010$ \\
+			Watershed (distance transform)  & $0.738 \pm 0.127$ & $0.575 \pm 0.147$ & $0.915 \pm 0.059$ \\
+			Watershed (adaptive)            & $0.954 \pm 0.010$ & $0.909 \pm 0.329$ & $0.975 \pm 0.020$ \\
+			Grabcut (deletion/erosion)      & $0.950 \pm 0.012$ & $0.903 \pm 0.024$ & $0.993 \pm 0.003$ \\
+			Grabcut (distance transform)    & $0.918 \pm 0.024$ & $0.838 \pm 0.046$ & $0.990 \pm 0.004$ \\
+			\bottomrule
+			\end{tabular}
+			\caption[NEFI's evaluation: Images with a blur]{Summary of the evaluation of $250$ blurred test images $I_4$.}
+			\label{tab:blur}
+		\end{table}
+
+		Summarizing the results we conclude that the quality of a graph detected by NEFI depends on the input image and the selected pipeline. We have established that the major factor determining the quality of the extracted graph is indeed the segmentation step. Errors introduced by thinning and graph detection appear negligible in comparison. 
+
+		Consequently, NEFI's major limitations arises from the limited applicability of its the segmentation algorithms. As a result, NEFI operates best on clean and uncluttered images such as images produced under controlled laboratory conditions. More difficult input may still be processed, possibly at the cost of reduced quality. For these inputs, domain specific algorithms might be necessary and can be implemented as extensions for NEFI. Alternatively, the segmentation step can be entirely outsourced to more specialized third-party software. Given the externally segmented image as an input, NEFI's pipeline may proceed directly with graph detection.
+
+		We refer the reader to the Supplementary Material for a short guide that summarizes our experience when dealing with more challenging input.
+
+	\subsection{Evaluation of Speed Performance}
+
+		NEFI was designed to efficiently process large quantities of images. Thus it outsources computationally intensive tasks to highly optimized and reliable libraries such as Itseez,~\href{http://opencv.org/}{OpenCV}~\cite{opencv} and NetworkX Developer Team,~\href{https://networkx.github.io/documentation/latest/index.html}{NetworkX}~\cite{networkx}. Table~\ref{tab:timings} illustrates the effectiveness of some of NEFI's algorithms. 
+
+
+		\begin{table}
+			\centering
+			\begin{tabular}{@{} l *2c @{}}
+			\toprule
+			\multicolumn{1}{c}{Pipeline element}    & Image small ($1152 \times 864$)  & Image large ($5760 \times 3840$) \\ 
+			\midrule
+			Watershed & $<$ 1  & 2  \\
+			GrabCut  & 6  & 160  \\
+			Adaptive threshold & $<$ 1  & 7  \\
+			Guo-Hall thinning &  $<$ 1  & 12  \\
+			Vertex detection & $<$ 1  & 5  \\
+			Edge detection & $<$ 1   & 6  \\
+			Computing edge weights & $<$ 1  & 5 \\
+			\bottomrule
+			\end{tabular}
+			\caption[Timings of NEFI's pipeline elements]{Timings of some of NEFI's pipeline elements on images of different size. All values are in seconds. The timings were obtained on a Macbook Pro notebook equipped with a 2.4 GHz Intel i5 processor and 8 GB RAM.}
+			\label{tab:timings}
+		\end{table}
+
+\section{Limitations of NEFI}
+
+		In the last section we have seen how the quality of the extracted graph changes depending on the input image and the selected segmentation algorithms. We have established that the major factor determining the quality of the extracted graph is indeed the segmentation step. As a result NEFI's major limitation naturally arises from the limited domain of effectiveness of NEFI's general purpose segmentation collection. It's methods do not work very well if the input contains irregular background or color/brightness gradients, has low contrast or insufficient resolution to detect structures that are either too dense or too fine. For these inputs, domain specific algorithms are necessary and should be implemented as extensions for NEFI. Alternatively, the segmentation step can be entirely outsourced to more specialized third-party software. Given the externally segmented image as an input NEFI's pipeline may proceed directly with graph detection.
+
+		In general, however, NEFI's domain of effectiveness is limited to sufficiently clean and uncluttered images such as images produced under controlled laboratory conditions. We refer the reader to the supplementary material for a short trouble-shooting guide that summarizes our experience when dealing with more challenging input.
+
+		Another limitation arises due to the nature of NEFI's vertex detection. Since we walk the skeleton in search junctions, no vertices of degree two are detected. Furthermore, vertices of high degree (4 or more) are split into several degree three vertices. The latter can be undone by merging vertices using a suitable graph filter.
+
+		As a concluding remark, we stress that NEFI tries to compensate some of its limitations by offering the possibility to work with segmented images from other sources or to integrate additional algorithms with comparably little effort. NEFI should be regarded as a flexible platform suitable for further development rather than a universal solution to the network extraction problem. 
+
+\section{Synergies With Other Software}
+
+	\subsection{Analysis of Graphs}
+
+		NEFI is a tool that facilitates data acquisition, which is a necessary precursor to data analysis. To analyze NEFI's output one can either rely on open source graph analysis software~\cite{ICWSM09154,snap,batagelj1998pajek,5437689,loscalzo2008social,hagberg2008exploring} or write custom programs. NEFI can output many common graph formats, readable by most popular graph libraries. To get the user started immediately, we provide a minimal Python program that illustrates the basic steps required to perform graph analysis. It shows how to read NEFI's output from disk and how to compute a histogram of a given edge attribute. The code can be downloaded from NEFI's project page at the Max Planck Institute for Informatics, \href{http://nefi.mpi-inf.mpg.de}{http://nefi.mpi-inf.mpg.de}.
+
+	\subsection{Third-party Segmentation Software}
+
+		NEFI's graph detection takes a segmented image as an input. Such an image need not be produced by using NEFI but can be obtained by relying on arbitrary third-party segmentation algorithms or tools. 
+
+		In this context an interesting tool called ilastik~\cite{sommer2011ilastik} was brought to our attention. ilastik offers a so-called \emph{classification workflow} in which a pixel classifier is trained by interactive user inputs. The trained classifier can then be used to automatically segment previously unseen images. The segmented images obtained in this way can then directly be turned into graphs using NEFI. 
+
+		By using NEFI in conjunction with third-party software the benefits of both can be realized.
+
+\section{Discussion}
+
+	We anticipate NEFI to become a valuable tool that allows scientists from any domain to automate graph extraction from images in an intuitive fashion requiring no expert knowledge. We hope that researchers will be able to spend more time on analyzing their data and less time on processing it. By providing a flexible platform for graph extraction, we invite experts to extend and improve NEFI in order to introduce their contributions to a wider interdisciplinary audience. In the long run we would like NEFI to further the field of network science by promoting the creation of new network databases.
+
+\section{Acknowledgments}
+
+	We thank Prof.~M.~Hauser for sparking our interest in this topic. We thank Prof.~K.~Mehlhorn for supporting this project with valuable comments and encouragement. We thank P.~and R.~Winegar as well as the Korea Institue of Science and Technology Europe for contributing sample data. This work was supported by the Max Planck Institute for Informatics and the IMPRS Saarbr\"ucken.
+
+\subsection{General Information about NEFI}
+
+    NEFI is an open source Python application and available at its project page at Max Planck Institute for Informatics, \href{http://nefi.mpi-inf.mpg.de}{http://nefi.mpi-inf.mpg.de}. NEFI's homepage includes a gallery of various use-cases and a comprehensive guide containing instructions on how to download, install and use NEFI on Windows, Mac and Linux. Additionally, a supplementary datasets is available for download there, allowing for a quick evaluation of NEFI's main features. This dataset can be used to reproduce the figures and evaluation results shown in this manuscript.
 
 % \chapter{A graphic with caption}
 
