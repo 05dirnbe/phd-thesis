@@ -4,7 +4,7 @@
 \section{abstract}
 
 	Networks are amongst the central building blocks of many systems. Given a graph of a network, methods from graph theory enable a precise investigation of its properties. Software for the analysis of graphs is widely available and has been applied to study various types of networks. In some applications, graph acquisition is relatively simple. However, for many networks data collection relies on images where graph extraction requires domain-specific solutions.
-	Here we introduce NEFI, a tool that extracts graphs from images of networks originating in various domains. Regarding previous work on graph extraction, theoretical results are fully accessible only to an expert audience and ready-to-use implementations for non-experts are rarely available or insufficiently documented. NEFI provides a novel platform allowing practitioners to easily extract graphs from images by combining basic tools from image processing, computer vision and graph theory. Thus, NEFI constitutes an alternative to tedious manual graph extraction and special purpose tools. We anticipate NEFI to enable time-efficient collection of large datasets. The analysis of these novel datasets may open up the possibility to gain new insights into the structure and function of various networks. NEFI is open source and available at~\href{http://nefi.mpi-inf.mpg.de}{http://nefi.mpi-inf.mpg.de}.
+	Here we introduce \NEFI, a tool that extracts graphs from images of networks originating in various domains. Regarding previous work on graph extraction, theoretical results are fully accessible only to an expert audience and ready-to-use implementations for non-experts are rarely available or insufficiently documented. \NEFI provides a novel platform allowing practitioners to easily extract graphs from images by combining basic tools from image processing, computer vision and graph theory. Thus, \NEFI constitutes an alternative to tedious manual graph extraction and special purpose tools. We anticipate \NEFI to enable time-efficient collection of large datasets. The analysis of these novel datasets may open up the possibility to gain new insights into the structure and function of various networks. \NEFI is open source and available at~\href{http://nefi.mpi-inf.mpg.de}{http://nefi.mpi-inf.mpg.de}.
 
 \section{introduction}
 
@@ -36,11 +36,11 @@
 
 	From experience we know that when producing an easy-to-use software, a large part of the required work consists of specifying and improving the user-interface as well as working out minor bugs and annoyances. This type of work, while time consuming, is essential for any software aiming to reach a non-negligible audience. However, efforts like these are hardly attractive to researchers whose focus is on obtaining the next result. While we understand that under these circumstances the aforementioned limitations arise naturally, we strongly believe that it is necessary to overcome those limitations in order to increase the value and the impact of scientific software in general and network extraction software in particular. 
 
-	To this end, we introduce NEFI, a lightweight piece of ready-to-go software intended to enable the non-expert to automatically extract networks from images. NEFI constitutes an extensible framework of interchangeable algorithms accessible through an intuitive graphical user interface. 
+	To this end, we introduce \NEFI, a lightweight piece of ready-to-go software intended to enable the non-expert to automatically extract networks from images. \NEFI constitutes an extensible framework of interchangeable algorithms accessible through an intuitive graphical user interface. 
 
-	We emphasize at this point that we do not claim to introduce novel techniques for image processing or computer vision. Instead, our contribution consists of a reusable, flexible and easily extendable toolbox combining well-known methods, which have become standard in their respective fields of origin, in a meaningful way. By introducing NEFI, we hope to make these methods more widely accessible to practitioners in other fields.
+	We emphasize at this point that we do not claim to introduce novel techniques for image processing or computer vision. Instead, our contribution consists of a reusable, flexible and easily extendable toolbox combining well-known methods, which have become standard in their respective fields of origin, in a meaningful way. By introducing \NEFI, we hope to make these methods more widely accessible to practitioners in other fields.
 
-	NEFI's segmentation is based on a combination of standard routines available in~\href{http://opencv.org/}{OpenCV},~(2015),~\cite{opencv}. These algorithms are known to perform well on clean and uncluttered images obtained under controlled laboratory conditions. However, on more challenging inputs of low contrast, strong gradients or similar irregularities, their performance is severely reduced. Nevertheless, in these cases more involved algorithms, currently not implemented as part of a reliable library and thus not integrated into NEFI, may still be able to process these images. To help meet this situation, NEFI was designed with extendability in mind. As a result users will find it easy to build on-top of NEFI's code in order to add their own implementations of more sophisticated methods. 
+	 \NEFIs segmentation is based on a combination of standard routines available in~\href{http://opencv.org/}{OpenCV},~(2015),~\cite{opencv}. These algorithms are known to perform well on clean and uncluttered images obtained under controlled laboratory conditions. However, on more challenging inputs of low contrast, strong gradients or similar irregularities, their performance is severely reduced. Nevertheless, in these cases more involved algorithms, currently not implemented as part of a reliable library and thus not integrated into \NEFI, may still be able to process these images. To help meet this situation, \NEFI was designed with extendability in mind. As a result users will find it easy to build on-top of \NEFIs code in order to add their own implementations of more sophisticated methods. 
 
 \section{Network Extraction From Images}	%	2298 words
 
@@ -51,43 +51,43 @@
 	\begin{figure}
 		\centering
 		\includegraphics[keepaspectratio]{workflow.png}
-		\caption[Pipeline components of NEFI]{A flow chart illustrating NEFI's pipeline components in green boxes. Dashed arrows depict optional sections of the pipeline. Blue and orange boxes denote NEFI's input and possible outputs respectively.}
+		\caption[Pipeline components of \NEFI]{A flow chart illustrating \NEFIs pipeline components in green boxes. Dashed arrows depict optional sections of the pipeline. Blue and orange boxes denote \NEFIs input and possible outputs respectively.}
 		\label{fig:workflow}
 	\end{figure}
 
-	For each pipeline section, NEFI typically offers several interchangeable algorithms to choose from. After executing preprocessing routines, a segmentation algorithm separates foreground from background. Then the foreground is thinned to a skeleton from which the vertices and edges of the graph are determined. In the process various edge weights are computed. Finally, the graph can be subjected to a variety of useful graph filters. \Fref{fig:pipeline} illustrates the intermediate results of NEFI's pipeline steps listed in the order of their execution. When a pipeline is executed, NEFI makes all intermediate results available via its clean and intuitive GUI, see \Fref{fig:nefi_gui}. 
+	For each pipeline section, \NEFI typically offers several interchangeable algorithms to choose from. After executing preprocessing routines, a segmentation algorithm separates foreground from background. Then the foreground is thinned to a skeleton from which the vertices and edges of the graph are determined. In the process various edge weights are computed. Finally, the graph can be subjected to a variety of useful graph filters. \Fref{fig:pipeline} illustrates the intermediate results of \NEFIs pipeline steps listed in the order of their execution. When a pipeline is executed, \NEFI makes all intermediate results available via its clean and intuitive GUI, see \Fref{fig:nefi_gui}. 
 
 	\begin{figure}
 		\centering
-		\subfloat[NEFI's pipeline - Input image][Input image.]{\includegraphics[width=0.2\linewidth,keepaspectratio]{pipeline/input.jpg}\label{fig:pipeline:input}}
-		\subfloat[NEFI's pipeline - Segmented image][Segmented image.]{\includegraphics[width=0.2\linewidth,keepaspectratio]{pipeline/segmented.jpg}\label{fig:pipeline:segmented}}
-		\subfloat[NEFI's pipeline - Skeletonized image][Skeletonized image.]{\includegraphics[width=0.2\linewidth,keepaspectratio]{pipeline/skeleton.jpg}\label{fig:pipeline:skeleton}}
-		\subfloat[NEFI's pipeline - Detected graph][Detected graph drawn ontop of the input.]{\includegraphics[width=0.2\linewidth,keepaspectratio]{pipeline/full_graph.jpg}\label{fig:pipeline:full_graph}}
-		\subfloat[NEFI's pipeline - Filtered graph][Filtered graph drawn ontop of the input.]{\includegraphics[width=0.2\linewidth,keepaspectratio]{pipeline/largest_component.jpg}\label{fig:pipeline:largest_component}}
-		\caption[NEFI's pipeline executed]{Direct comparison of NEFI's pipeline steps given a slice of an image of a slime mold (\P). From left to right: input image, segmented image, skeletonized image, detected graph and filtered graph. The green square contains a very faint vein which the segmentation did not pick up fully. Thus, the skeleton becomes fragmented which leads to spurious vertices in the detected graph. By applying a graph filter we remove stray vertices without manipulation of the segmented or the skeletonized image. Similar filtering can remove ``dead-ends'', \ie vertices that do not belong to any cycle in the graph.}
+		\subfloat[\NEFIs pipeline - Input image][Input image.]{\includegraphics[width=0.2\linewidth,keepaspectratio]{pipeline/input.jpg}\label{fig:pipeline:input}}
+		\subfloat[\NEFIs pipeline - Segmented image][Segmented image.]{\includegraphics[width=0.2\linewidth,keepaspectratio]{pipeline/segmented.jpg}\label{fig:pipeline:segmented}}
+		\subfloat[\NEFIs pipeline - Skeletonized image][Skeletonized image.]{\includegraphics[width=0.2\linewidth,keepaspectratio]{pipeline/skeleton.jpg}\label{fig:pipeline:skeleton}}
+		\subfloat[\NEFIs pipeline - Detected graph][Detected graph drawn ontop of the input.]{\includegraphics[width=0.2\linewidth,keepaspectratio]{pipeline/full_graph.jpg}\label{fig:pipeline:full_graph}}
+		\subfloat[\NEFIs pipeline - Filtered graph][Filtered graph drawn ontop of the input.]{\includegraphics[width=0.2\linewidth,keepaspectratio]{pipeline/largest_component.jpg}\label{fig:pipeline:largest_component}}
+		\caption[\NEFIs pipeline executed]{Direct comparison of \NEFIs pipeline steps given a slice of an image of a slime mold (\P). From left to right: input image, segmented image, skeletonized image, detected graph and filtered graph. The green square contains a very faint vein which the segmentation did not pick up fully. Thus, the skeleton becomes fragmented which leads to spurious vertices in the detected graph. By applying a graph filter we remove stray vertices without manipulation of the segmented or the skeletonized image. Similar filtering can remove ``dead-ends'', \ie vertices that do not belong to any cycle in the graph.}
 		\label{fig:pipeline}
 	\end{figure}
 
-	Using the GUI all basic functions of NEFI can be accessed in an intuitive fashion. To facilitate ease-of-use, most of NEFI's algorithms come with default parameters based on the settings in \href{http://opencv.org/}{OpenCV}~\cite{opencv}, which were found to perform well on our test sets as well as on many other images.
+	Using the GUI all basic functions of \NEFI can be accessed in an intuitive fashion. To facilitate ease-of-use, most of \NEFIs algorithms come with default parameters based on the settings in \href{http://opencv.org/}{OpenCV}~\cite{opencv}, which were found to perform well on our test sets as well as on many other images.
 
 	\begin{figure}
 		\centering
 		\includegraphics[width=\linewidth,keepaspectratio]{gui.jpeg}
-		\caption[NEFI's graphical user interface.]{A screenshot of NEFI's GUI running on Mac OS. On the left hand side NEFI lists intermediate results as thumbnails. Bringing the final result to the center workspace allows for direct visual assessment of the quality of the extracted graph. On the right hand side NEFI's pipeline elements can be accessed via drop-down menus. The image was produced in a collaboration with the KIST Europe.}
+		\caption[\NEFIs graphical user interface.]{A screenshot of \NEFIs GUI running on Mac OS. On the left hand side \NEFI lists intermediate results as thumbnails. Bringing the final result to the center workspace allows for direct visual assessment of the quality of the extracted graph. On the right hand side \NEFIs pipeline elements can be accessed via drop-down menus. The image was produced in a collaboration with the KIST Europe.}
 		\label{fig:nefi_gui}
 	\end{figure}
 
 	There are various predefined pipelines to get started immediately. Alternatively, users may freely combine the various methods to build custom pipelines. 
-	Both approaches allow the user to experiment with the available methods in order to close in on the optimal settings for the data. Once a pipeline is constructed, it can be saved and reused. NEFI's simple pipeline concept together with a self-explanatory graphical user interface make working with NEFI intuitive and straightforward. NEFI also offers a command-line mode, which is suited for batch processing. 
+	Both approaches allow the user to experiment with the available methods in order to close in on the optimal settings for the data. Once a pipeline is constructed, it can be saved and reused. \NEFIs simple pipeline concept together with a self-explanatory graphical user interface make working with \NEFI intuitive and straightforward. \NEFI also offers a command-line mode, which is suited for batch processing. 
 
-	NEFI comes with a number of example images from different domains which we use to produce the figures in this work. \Fref{fig:physarum} and \Fref{fig:dragonlfy} show NEFI's output on two images using predefined pipelines. Blue squares denote the vertices and red lines the edges of the detected graph. The thickness of the detected edges corresponds to thickness of the depicted structures. For comparison the extracted graph is drawn on top of the input image. We present a detailed quantitative evaluation in a later section.
+	NEFI comes with a number of example images from different domains which we use to produce the figures in this work. \Fref{fig:physarum} and \Fref{fig:dragonlfy} show \NEFIs output on two images using predefined pipelines. Blue squares denote the vertices and red lines the edges of the detected graph. The thickness of the detected edges corresponds to thickness of the depicted structures. For comparison the extracted graph is drawn on top of the input image. We present a detailed quantitative evaluation in a later section.
 
 
 	\begin{figure}
 		\centering
-		\subfloat[\P: Input to NEFI][]{\includegraphics[width=0.5\linewidth,keepaspectratio]{p_polycephalum.jpg}\label{fig:physarum:input}}
-		\subfloat[\P: Output of NEFI][]{\includegraphics[width=0.5\linewidth,keepaspectratio]{p_polycephalum_graph.jpg}\label{fig:physarum:graph}}
-		\caption[\P: Input and output of NEFI]{Extracted graph of the network formed by a slime mold (\P). The left hand side shows the input image depicting the network. The right hand side shows the extracted graph overlayed on top off the same image for direct comparison. Note, that no filters have been applied. The image was produced in a collaboration with the KIST Europe.}
+		\subfloat[\P: Input to \NEFI][]{\includegraphics[width=0.5\linewidth,keepaspectratio]{p_polycephalum.jpg}\label{fig:physarum:input}}
+		\subfloat[\P: Output of \NEFI][]{\includegraphics[width=0.5\linewidth,keepaspectratio]{p_polycephalum_graph.jpg}\label{fig:physarum:graph}}
+		\caption[\P: Input and output of \NEFI]{Extracted graph of the network formed by a slime mold (\P). The left hand side shows the input image depicting the network. The right hand side shows the extracted graph overlayed on top off the same image for direct comparison. Note, that no filters have been applied. The image was produced in a collaboration with the KIST Europe.}
 		\label{fig:physarum}
 	\end{figure}
 
@@ -99,14 +99,14 @@
 			\spy on (-1,-1) in node (a) [left] at (5.5,-1.5);
 			\end{scope}
 		\end{tikzpicture}
-	\caption[\A: Output of NEFI]{Extracted graph of the vein network exhibited by a wing of a dragonfly (\A). Note, that after the use of various filters a very clean-looking graph is obtained. Image courtesy of Pam and Richard Winegar.}
+	\caption[\A: Output of \NEFI]{Extracted graph of the vein network exhibited by a wing of a dragonfly (\A). Note, that after the use of various filters a very clean-looking graph is obtained. Image courtesy of Pam and Richard Winegar.}
 	\label{fig:dragonlfy}
 	\end{figure}
 
 
-	We stress that NEFI can deal with a range of inputs from various domains as long as they are of sufficient quality. In addition to the examples shown above, it has been successfully used to process images of natural (\eg leaf venation, patterns of mud cracks) as well as man-made structures (tilings). It is also straightforward to add custom extensions. We provide a well documented platform which allows programmers to include more specialized segmentation algorithms or additional graph filters. For an overview of alternative graph extraction approaches see for example~\cite{dehkordi2011review}.
+	We stress that \NEFI can deal with a range of inputs from various domains as long as they are of sufficient quality. In addition to the examples shown above, it has been successfully used to process images of natural (\eg leaf venation, patterns of mud cracks) as well as man-made structures (tilings). It is also straightforward to add custom extensions. We provide a well documented platform which allows programmers to include more specialized segmentation algorithms or additional graph filters. For an overview of alternative graph extraction approaches see for example~\cite{dehkordi2011review}.
 
-	Next, we discuss the purpose and design of each major stage of the pipeline and highlight some of NEFI's strong points.
+	Next, we discuss the purpose and design of each major stage of the pipeline and highlight some of \NEFIs strong points.
 
 
 	\subsection{Preprocessing Collection}
@@ -117,15 +117,15 @@
 
 	\subsection{Segmentation Collection}
 
-		The goal of the segmentation step is separating the image foreground, \ie the structures of interest, from the remaining image. NEFI builds on top of \href{http://opencv.org/}{OpenCV}~\cite{opencv} combining different segmentation algorithms. The general-purpose algorithms shipped with NEFI have become standard in image processing and perform reliably well if input images are clean, devoid of strong gradients and have a good contrast between fore- and background. Conversely, if the input becomes more challenging, the effectiveness of NEFI's segmentation degrades quickly and more complex or domain-specific algorithms become necessary. We defer a quantitative study of how the properties of the input image affect NEFI's performance to the Section \emph{Evaluation}. 
+		The goal of the segmentation step is separating the image foreground, \ie the structures of interest, from the remaining image. \NEFI builds on top of \href{http://opencv.org/}{OpenCV}~\cite{opencv} combining different segmentation algorithms. The general-purpose algorithms shipped with \NEFI have become standard in image processing and perform reliably well if input images are clean, devoid of strong gradients and have a good contrast between fore- and background. Conversely, if the input becomes more challenging, the effectiveness of \NEFIs segmentation degrades quickly and more complex or domain-specific algorithms become necessary. We defer a quantitative study of how the properties of the input image affect \NEFIs performance to the Section \emph{Evaluation}. 
 
-		NEFI's segmentation is designed such that several algorithms can be used interchangeably. We included basic thresholding algorithms like Otsu's method~\cite{otsu1979} or adaptive thresholding as well as more involved segmentation routines such as guided watershed~\cite{watershed91} and the GrabCut algorithm~\cite{grabcut2004}. The last two methods receive as an additional input a so-called marker. The better the markers approximate the foreground, the better these algorithms work. NEFI offers several marker strategies which can be used interchangeably together with the respective marker based segmentation routines. 
+		 \NEFIs segmentation is designed such that several algorithms can be used interchangeably. We included basic thresholding algorithms like Otsu's method~\cite{otsu1979} or adaptive thresholding as well as more involved segmentation routines such as guided watershed~\cite{watershed91} and the GrabCut algorithm~\cite{grabcut2004}. The last two methods receive as an additional input a so-called marker. The better the markers approximate the foreground, the better these algorithms work. \NEFI offers several marker strategies which can be used interchangeably together with the respective marker based segmentation routines. 
 
 		Interchangeability of the algorithms is a core design principle of all pipeline steps.
 
-		This design facilitates easy experimentation with different methods. Our own experience shows that often it is not clear a priori which methods work for a given input image. This decision usually also depends on the desired degree of detail in the final output, where less sensitive methods might produce fewer false positives. This ease of experimentation with quick visual feedback from the GUI is one of the major strong points of NEFI.
+		This design facilitates easy experimentation with different methods. Our own experience shows that often it is not clear a priori which methods work for a given input image. This decision usually also depends on the desired degree of detail in the final output, where less sensitive methods might produce fewer false positives. This ease of experimentation with quick visual feedback from the GUI is one of the major strong points of \NEFI.
 
-		The flexibility is not limited to the algorithms we provide. Instead, NEFI's software design makes it easy to integrate additional methods. We expect that in practice challenging inputs will be encountered for which the algorithms currently offered by NEFI will be insufficient. In these cases a potential user may choose to implement additional, perhaps domain-specific, methods. By extending NEFI, the user can rely on existing modules and thus save a lot of time. The authors are convinced that improved extendability is another strong point of our work.
+		The flexibility is not limited to the algorithms we provide. Instead, \NEFIs software design makes it easy to integrate additional methods. We expect that in practice challenging inputs will be encountered for which the algorithms currently offered by \NEFI will be insufficient. In these cases a potential user may choose to implement additional, perhaps domain-specific, methods. By extending \NEFI, the user can rely on existing modules and thus save a lot of time. The authors are convinced that improved extendability is another strong point of our work.
 
 	\subsection{Graph Detection Collection} 
 
@@ -157,19 +157,19 @@
 
 		We have used filtering with sensitive segmentation to obtain surprisingly good results. Overly sensitive segmentation picks up fine detail but also introduces artifacts. However, almost all of the artifacts result in very small components that can easily be removed by filtering. The desired detail will remain mostly unaffected because it is part of the largest component. The graph depicted in \Fref{fig:dragonlfy} was obtained using this technique.
 
-		Filtering may also be used to remove parts of the graph which are not of interest. The following filters are predefined in NEFI. A filter removing everything not in the largest connected component, one smoothing vertices of degree two except if this introduces parallel edges and finally, one which removes all vertices and edges that are not contained in a cycle. Filters may be freely combined in any order. Naturally, the filter collection is designed for extendability.
+		Filtering may also be used to remove parts of the graph which are not of interest. The following filters are predefined in \NEFI. A filter removing everything not in the largest connected component, one smoothing vertices of degree two except if this introduces parallel edges and finally, one which removes all vertices and edges that are not contained in a cycle. Filters may be freely combined in any order. Naturally, the filter collection is designed for extendability.
 
-		Graph filtering and its various applications delivers excellent results. To our knowledge, no other software offers such tools as part of its core workflow. For this reason, we consider this one of NEFI's strong points.
+		Graph filtering and its various applications delivers excellent results. To our knowledge, no other software offers such tools as part of its core workflow. For this reason, we consider this one of \NEFIs strong points.
 
 \section{Evaluation}
 
-	To assess NEFI's performance we investigate the output quality given input images of varying quality. Additionally we report on NEFI's speed. 
+	To assess \NEFIs performance we investigate the output quality given input images of varying quality. Additionally we report on \NEFIs speed. 
  
 	\subsection{Defining a Graph Similarity Measure}
 
-		As a quality measure, we need to quantify the degree of congruence between the graph depicted in the original input image $i$ and the graph computed by NEFI.  
+		As a quality measure, we need to quantify the degree of congruence between the graph depicted in the original input image $i$ and the graph computed by \NEFI.  
 
-		Let $A = (V_A, E_A)$ be the \emph{true} graph correctly describing the structure depicted in $i$, with $V_A$ and $E_A$ denoting its vertex and edge set respectively. We call $A$ the \emph{ground truth}, which is of course not known in general. Furthermore, let $B$ denote the graph obtained by executing one of NEFI's pipelines. Note that, $A, B \in \mathcal{G}$, where $\mathcal{G}$ denotes the set of undirected edge-weighted planar graphs where vertices are labeled with their respective euclidean coordinates in the plane. With these definitions we propose a similarity measure $s$ mapping any pair of graphs $A,B \in \mathcal{G}$ onto a number $s \in [0,1]$. 
+		Let $A = (V_A, E_A)$ be the \emph{true} graph correctly describing the structure depicted in $i$, with $V_A$ and $E_A$ denoting its vertex and edge set respectively. We call $A$ the \emph{ground truth}, which is of course not known in general. Furthermore, let $B$ denote the graph obtained by executing one of \NEFIs pipelines. Note that, $A, B \in \mathcal{G}$, where $\mathcal{G}$ denotes the set of undirected edge-weighted planar graphs where vertices are labeled with their respective euclidean coordinates in the plane. With these definitions we propose a similarity measure $s$ mapping any pair of graphs $A,B \in \mathcal{G}$ onto a number $s \in [0,1]$. 
 
 		We compute a correspondence of vertices in $A$ to vertices in $B$. Two edges $e \in E_A$ and $f \in E_B$ then correspond if their endpoints correspond. We choose the correspondence such that the following intuitive notion of similarity are optimized.
 
@@ -184,7 +184,7 @@
 
 	\subsection{Similarity Measure for Evaluation}
 
-		In order to determine the overall quality of NEFI's output we need to quantify the degree of similarity between two graphs $A = (V_A, E_A)$ and $B = (V_B, E_B)$ using a graph similarity measure. Let $A, B \in \mathcal{G}$, where $\mathcal{G}$ is a set of undirected edges-weighted planar graphs where the nodes are labeled with their respective coordinates in the eucledian plane. Then we may define a similarity measure $s$ as follows:
+		In order to determine the overall quality of \NEFIs output we need to quantify the degree of similarity between two graphs $A = (V_A, E_A)$ and $B = (V_B, E_B)$ using a graph similarity measure. Let $A, B \in \mathcal{G}$, where $\mathcal{G}$ is a set of undirected edges-weighted planar graphs where the nodes are labeled with their respective coordinates in the eucledian plane. Then we may define a similarity measure $s$ as follows:
 		
 		\begin{align}
 		s &: \mathcal{G} \times \mathcal{G} \rightarrow [0,1] \\
@@ -233,11 +233,11 @@
 		\quad \forall \ e = (a,b), f = (a',b') \colon \quad 2y_{ef} \leq x_{aa'} + x_{ab'} + x_{ba'} + x_{bb'}     
 		\end{equation}
 
-		\todo{Fix the look and feel of this chapter, especially when it comes to maths \ldots}
-
 		Given the optimal solution to the ILP the optimal matching for nodes and edges can be recovered. Thus, we know what matching pairs have been formed and which nodes and edges remained unmatched. We use this information to define true positives, false positives and false negatives as described in the main manuscript. 
 
 		In addition, we obtain the optimal value of the objective function $OPT$, \ie the cost associated with the selected optimal matching. The value of $OPT$ includes both the costs incurred by node and edge matches as well as the penalty terms arising from nodes and edges that cannot be matched. As a result it reflects the similarity between the two graphs $A$ and $B$.
+
+		\todo{Fix the look and feel of this chapter, especially when it comes to maths \ldots}
 
 		We point out that $OPT = 0$ if a graph $G$ is matched with itself. Every single node and edge finds its exact copy as a match of cost $0$ for itself and thus no penalties arise. The other extreme is realized when there are no vertices in $V_A$ with corresponding similar nodes in $V_B$ and no edges $E_A$ with corresponding similar edges in $E_B$. In this case the value of $OPT$ attains its maximum $\overline{OPT}$ because all nodes and edges of both graphs are penalized. Naturally, the value of $OPT$ increases (decreases) with decreasing (increasing) graph similarity. Given these observations it is natural to use $OPT$ and $\overline{OPT}$ to define a similarity measure betweens two graphs $A, B \in \mathcal{G}$ as follows
 
@@ -266,17 +266,17 @@
 
 	\subsection{Evaluation of NEFI's Output}
 
-		We proceed with the evaluation of NEFI's output using the above similarity measure. To do so we create a set $\mathcal{A}$ of ground truth graphs such that $\mathcal{A} \subset \mathcal{G}$. We start by processing a real-life set $I_0$ of images of the slime mold \P with NEFI. Thus we obtain a set of graphs $\mathcal{B}_0 \subset \mathcal{G}$. Given those graphs we obtain the set $\mathcal{A}$ by distorting the graphs $B_i \in \mathcal{B}_0$ using different graph filters. At this point we will not use the images in $I_0$ or the graphs in $\mathcal{B}_0$ anymore. 
+		We proceed with the evaluation of \NEFIs output using the above similarity measure. To do so we create a set $\mathcal{A}$ of ground truth graphs such that $\mathcal{A} \subset \mathcal{G}$. We start by processing a real-life set $I_0$ of images of the slime mold \P with \NEFI. Thus we obtain a set of graphs $\mathcal{B}_0 \subset \mathcal{G}$. Given those graphs we obtain the set $\mathcal{A}$ by distorting the graphs $B_i \in \mathcal{B}_0$ using different graph filters. At this point we will not use the images in $I_0$ or the graphs in $\mathcal{B}_0$ anymore. 
 
 		Next, we turn the graphs in $\mathcal{A}$ into a test set $I_1$ of 2D images by simply drawing them. The drawing preserves the euclidean positions of the nodes, the edge lengths and the thickness of the edges. As a result, the image $i \in I_1$ depicts the graph $ A_i \in \mathcal{A}$. In other words, we know the \emph{ground truth} $A_i$ for every image $i$ in the test set $I_1$.
 
 		To compare different segmentation methods, we prepare a set $\mathcal{P}$ of pipelines differing only in the segmentation algorithms used. The parameters of the pipeline where chosen manually for each test set using experimentation and visual inspection.
 
-		Given the sets $I_1$ and $\mathcal{A}$ as well as our similarity measure we can now evaluate NEFI's output. We take an image $i \in I_1$ and process it with a given $p \in \mathcal{P}$ to obtain a graph $B_i \in \mathcal{B}_1$, \ie the graph NEFI extracted from the input image. Then we compute the similarity $s(A_i, B_i)$. To obtain statistical statements, we repeat this procedure for all images and all pipelines.
+		Given the sets $I_1$ and $\mathcal{A}$ as well as our similarity measure we can now evaluate \NEFIs output. We take an image $i \in I_1$ and process it with a given $p \in \mathcal{P}$ to obtain a graph $B_i \in \mathcal{B}_1$, \ie the graph \NEFI extracted from the input image. Then we compute the similarity $s(A_i, B_i)$. To obtain statistical statements, we repeat this procedure for all images and all pipelines.
 
-		During the computation of $s(A_i, B_i)$, we record features NEFI failed to detect in $i$, namely the number of vertices (edges) in $A_i$ which remain without corresponding vertices (edges) in $B_i$. This is the number of false negatives (FN). Furthermore, we record the number of vertices (edges) in $B$ for which no corresponding vertices (edges) exist in $A_i$. These are features which NEFI detects in $i$ but which are in fact not present. These are false positives (FP). Finally we record the number of vertices (edges) in $B_i$ that have corresponding elements in $A_i$. That is, features correctly extracted from the image $i$, which we count as true positives (TP). Unfortunately, we cannot determine the number of true negatives (TN) in a similar fashion. For this reason we restrict ourselves to computing sensitivity ($\tfrac{TP}{TP + FN}$) and precision ($\tfrac{TP}{TP + FP}$) in the results of the evaluation. Sensitivity and precision reported in the following Tables combine the respective values for vertices and edges. 
+		During the computation of $s(A_i, B_i)$, we record features \NEFI failed to detect in $i$, namely the number of vertices (edges) in $A_i$ which remain without corresponding vertices (edges) in $B_i$. This is the number of false negatives (FN). Furthermore, we record the number of vertices (edges) in $B$ for which no corresponding vertices (edges) exist in $A_i$. These are features which \NEFI detects in $i$ but which are in fact not present. These are false positives (FP). Finally we record the number of vertices (edges) in $B_i$ that have corresponding elements in $A_i$. That is, features correctly extracted from the image $i$, which we count as true positives (TP). Unfortunately, we cannot determine the number of true negatives (TN) in a similar fashion. For this reason we restrict ourselves to computing sensitivity ($\tfrac{TP}{TP + FN}$) and precision ($\tfrac{TP}{TP + FP}$) in the results of the evaluation. Sensitivity and precision reported in the following Tables combine the respective values for vertices and edges. 
 
-		\Fref{tab:optimal} summarizes the results of processing the set $I_1$. The images in $I_1$ are ideal inputs for NEFI for which all our segmentation routines produce very good results. Otsu's method and adaptive thresholding yield perfect segmentations. Hence, any difference between NEFI's output and the ground truth cannot originate in the segmentation part of the pipeline but must be attributed to thinning and graph detection. The excellent correspondence between NEFI's output and the ground truth confirms that thinning and graph detection are very reliable.
+		\Fref{tab:optimal} summarizes the results of processing the set $I_1$. The images in $I_1$ are ideal inputs for \NEFI for which all our segmentation routines produce very good results. Otsu's method and adaptive thresholding yield perfect segmentations. Hence, any difference between \NEFIs output and the ground truth cannot originate in the segmentation part of the pipeline but must be attributed to thinning and graph detection. The excellent correspondence between \NEFIs output and the ground truth confirms that thinning and graph detection are very reliable.
 
 		\begin{table}
 			\centering
@@ -293,13 +293,13 @@
 			Grabcut (distance transform)    & $0.983 \pm 0.005$ & $0.967 \pm 0.011$ & $0.998 \pm 0.001$ \\
 			\bottomrule
 			\end{tabular}
-			\caption[NEFI's evaluation: Ideal images]{Summary of the evaluation of $250$ ideal test images $I_1$.}
+			\caption[\NEFIs evaluation: Ideal images]{Summary of the evaluation of $250$ ideal test images $I_1$.}
 			\label{tab:optimal}
 		\end{table}
 
 		\todo{Fix the look of these tables \dots}
 
-		One might question the validity of using graphs which were detected by NEFI in the first place as the input set. However, the approach is valid because the origin of the images in $I_1$ has no significance regarding NEFI's performance. In other words, they are just as hard or as easy to process as images obtained in any other comparable way. 
+		One might question the validity of using graphs which were detected by \NEFI in the first place as the input set. However, the approach is valid because the origin of the images in $I_1$ has no significance regarding \NEFIs performance. In other words, they are just as hard or as easy to process as images obtained in any other comparable way. 
 
 		The perfect images in $I_1$ do not represent real life input very well. Therefore we produced three more test sets and evaluate them as described above.
 
@@ -322,11 +322,11 @@
 			Grabcut (distance transform)    & $0.858 \pm 0.020$ & $0.688 \pm 0.030$ & $0.986 \pm 0.005$ \\
 			\bottomrule
 			\end{tabular}
-			\caption[NEFI's evaluation: Edges with varying brigthness]{Summary of the evaluation of $250$ test images $I_2$ with edges drawn with random brightness.}
+			\caption[\NEFIs evaluation: Edges with varying brigthness]{Summary of the evaluation of $250$ test images $I_2$ with edges drawn with random brightness.}
 			\label{tab:colored_edges}
 		\end{table}
 
-		Note that the precision remains comparably high, which indicates that the vertices and edges detected by NEFI are indeed part of the ground truth.
+		Note that the precision remains comparably high, which indicates that the vertices and edges detected by \NEFI are indeed part of the ground truth.
 
 		\Fref{tab:background_gradient} summarizes the results of processing the set $I_3$. We observe that almost all methods, with the exception of adaptive thresholding and watershed based on adaptive thresholding perform very poorly. In particular watershed based on a distance transform marker is completely unable to handle the input images.
 
@@ -345,7 +345,7 @@
 			Grabcut (distance transform)    & $0.742 \pm 0.052$ & $0.582 \pm 0.065$ & $0.983 \pm 0.008$ \\
 			\bottomrule
 			\end{tabular}
-			\caption[NEFI's evaluation: Images with background color gradient]{Summary of the evaluation of $250$ test images $I_3$ with a color gradient in the background.}
+			\caption[\NEFIs evaluation: Images with background color gradient]{Summary of the evaluation of $250$ test images $I_3$ with a color gradient in the background.}
 			\label{tab:background_gradient}
 		\end{table}
 
@@ -366,19 +366,19 @@
 			Grabcut (distance transform)    & $0.918 \pm 0.024$ & $0.838 \pm 0.046$ & $0.990 \pm 0.004$ \\
 			\bottomrule
 			\end{tabular}
-			\caption[NEFI's evaluation: Images with a blur]{Summary of the evaluation of $250$ blurred test images $I_4$.}
+			\caption[\NEFIs evaluation: Images with a blur]{Summary of the evaluation of $250$ blurred test images $I_4$.}
 			\label{tab:blur}
 		\end{table}
 
-		Summarizing the results we conclude that the quality of a graph detected by NEFI depends on the input image and the selected pipeline. We have established that the major factor determining the quality of the extracted graph is indeed the segmentation step. Errors introduced by thinning and graph detection appear negligible in comparison. 
+		Summarizing the results we conclude that the quality of a graph detected by \NEFI depends on the input image and the selected pipeline. We have established that the major factor determining the quality of the extracted graph is indeed the segmentation step. Errors introduced by thinning and graph detection appear negligible in comparison. 
 
-		Consequently, NEFI's major limitations arises from the limited applicability of its the segmentation algorithms. As a result, NEFI operates best on clean and uncluttered images such as images produced under controlled laboratory conditions. More difficult input may still be processed, possibly at the cost of reduced quality. For these inputs, domain specific algorithms might be necessary and can be implemented as extensions for NEFI. Alternatively, the segmentation step can be entirely outsourced to more specialized third-party software. Given the externally segmented image as an input, NEFI's pipeline may proceed directly with graph detection.
+		Consequently, \NEFIs major limitations arises from the limited applicability of its the segmentation algorithms. As a result, \NEFI operates best on clean and uncluttered images such as images produced under controlled laboratory conditions. More difficult input may still be processed, possibly at the cost of reduced quality. For these inputs, domain specific algorithms might be necessary and can be implemented as extensions for \NEFI. Alternatively, the segmentation step can be entirely outsourced to more specialized third-party software. Given the externally segmented image as an input, \NEFIs pipeline may proceed directly with graph detection.
 
 		We refer the reader to the Supplementary Material for a short guide that summarizes our experience when dealing with more challenging input.
 
 	\subsection{Evaluation of Speed Performance}
 
-		NEFI was designed to efficiently process large quantities of images. Thus it outsources computationally intensive tasks to highly optimized and reliable libraries such as Itseez,~\href{http://opencv.org/}{OpenCV}~\cite{opencv} and NetworkX Developer Team,~\href{https://networkx.github.io/documentation/latest/index.html}{NetworkX}~\cite{networkx}. Table~\ref{tab:timings} illustrates the effectiveness of some of NEFI's algorithms. 
+		NEFI was designed to efficiently process large quantities of images. Thus it outsources computationally intensive tasks to highly optimized and reliable libraries such as Itseez,~\href{http://opencv.org/}{OpenCV}~\cite{opencv} and NetworkX Developer Team,~\href{https://networkx.github.io/documentation/latest/index.html}{NetworkX}~\cite{networkx}. Table~\ref{tab:timings} illustrates the effectiveness of some of \NEFIs algorithms. 
 
 
 		\begin{table}
@@ -396,37 +396,37 @@
 			Computing edge weights & $<$ 1  & 5 \\
 			\bottomrule
 			\end{tabular}
-			\caption[Timings of NEFI's pipeline elements]{Timings of some of NEFI's pipeline elements on images of different size. All values are in seconds. The timings were obtained on a Macbook Pro notebook equipped with a 2.4 GHz Intel i5 processor and 8 GB RAM.}
+			\caption[Timings of \NEFIs pipeline elements]{Timings of some of \NEFIs pipeline elements on images of different size. All values are in seconds. The timings were obtained on a Macbook Pro notebook equipped with a 2.4 GHz Intel i5 processor and 8 GB RAM.}
 			\label{tab:timings}
 		\end{table}
 
 \section{Limitations of NEFI}
 
-		In the last section we have seen how the quality of the extracted graph changes depending on the input image and the selected segmentation algorithms. We have established that the major factor determining the quality of the extracted graph is indeed the segmentation step. As a result NEFI's major limitation naturally arises from the limited domain of effectiveness of NEFI's general purpose segmentation collection. It's methods do not work very well if the input contains irregular background or color/brightness gradients, has low contrast or insufficient resolution to detect structures that are either too dense or too fine. For these inputs, domain specific algorithms are necessary and should be implemented as extensions for NEFI. Alternatively, the segmentation step can be entirely outsourced to more specialized third-party software. Given the externally segmented image as an input NEFI's pipeline may proceed directly with graph detection.
+		In the last section we have seen how the quality of the extracted graph changes depending on the input image and the selected segmentation algorithms. We have established that the major factor determining the quality of the extracted graph is indeed the segmentation step. As a result \NEFIs major limitation naturally arises from the limited domain of effectiveness of \NEFIs general purpose segmentation collection. It's methods do not work very well if the input contains irregular background or color/brightness gradients, has low contrast or insufficient resolution to detect structures that are either too dense or too fine. For these inputs, domain specific algorithms are necessary and should be implemented as extensions for \NEFI. Alternatively, the segmentation step can be entirely outsourced to more specialized third-party software. Given the externally segmented image as an input \NEFIs pipeline may proceed directly with graph detection.
 
-		In general, however, NEFI's domain of effectiveness is limited to sufficiently clean and uncluttered images such as images produced under controlled laboratory conditions. We refer the reader to the supplementary material for a short trouble-shooting guide that summarizes our experience when dealing with more challenging input.
+		In general, however, \NEFIs domain of effectiveness is limited to sufficiently clean and uncluttered images such as images produced under controlled laboratory conditions. We refer the reader to the supplementary material for a short trouble-shooting guide that summarizes our experience when dealing with more challenging input.
 
-		Another limitation arises due to the nature of NEFI's vertex detection. Since we walk the skeleton in search junctions, no vertices of degree two are detected. Furthermore, vertices of high degree (4 or more) are split into several degree three vertices. The latter can be undone by merging vertices using a suitable graph filter.
+		Another limitation arises due to the nature of \NEFIs vertex detection. Since we walk the skeleton in search junctions, no vertices of degree two are detected. Furthermore, vertices of high degree (4 or more) are split into several degree three vertices. The latter can be undone by merging vertices using a suitable graph filter.
 
-		As a concluding remark, we stress that NEFI tries to compensate some of its limitations by offering the possibility to work with segmented images from other sources or to integrate additional algorithms with comparably little effort. NEFI should be regarded as a flexible platform suitable for further development rather than a universal solution to the network extraction problem. 
+		As a concluding remark, we stress that \NEFI tries to compensate some of its limitations by offering the possibility to work with segmented images from other sources or to integrate additional algorithms with comparably little effort. \NEFI should be regarded as a flexible platform suitable for further development rather than a universal solution to the network extraction problem. 
 
 \section{Synergies With Other Software}
 
 	\subsection{Analysis of Graphs}
 
-		NEFI is a tool that facilitates data acquisition, which is a necessary precursor to data analysis. To analyze NEFI's output one can either rely on open source graph analysis software~\cite{ICWSM09154,snap,batagelj1998pajek,5437689,loscalzo2008social,hagberg2008exploring} or write custom programs. NEFI can output many common graph formats, readable by most popular graph libraries. To get the user started immediately, we provide a minimal Python program that illustrates the basic steps required to perform graph analysis. It shows how to read NEFI's output from disk and how to compute a histogram of a given edge attribute. The code can be downloaded from NEFI's project page at the Max Planck Institute for Informatics, \href{http://nefi.mpi-inf.mpg.de}{http://nefi.mpi-inf.mpg.de}.
+		NEFI is a tool that facilitates data acquisition, which is a necessary precursor to data analysis. To analyze \NEFIs output one can either rely on open source graph analysis software~\cite{ICWSM09154,snap,batagelj1998pajek,5437689,loscalzo2008social,hagberg2008exploring} or write custom programs. \NEFI can output many common graph formats, readable by most popular graph libraries. To get the user started immediately, we provide a minimal Python program that illustrates the basic steps required to perform graph analysis. It shows how to read \NEFIs output from disk and how to compute a histogram of a given edge attribute. The code can be downloaded from \NEFIs project page at the Max Planck Institute for Informatics, \href{http://nefi.mpi-inf.mpg.de}{http://nefi.mpi-inf.mpg.de}.
 
 	\subsection{Third-party Segmentation Software}
 
-		NEFI's graph detection takes a segmented image as an input. Such an image need not be produced by using NEFI but can be obtained by relying on arbitrary third-party segmentation algorithms or tools. 
+		 \NEFIs graph detection takes a segmented image as an input. Such an image need not be produced by using \NEFI but can be obtained by relying on arbitrary third-party segmentation algorithms or tools. 
 
-		In this context an interesting tool called ilastik~\cite{sommer2011ilastik} was brought to our attention. ilastik offers a so-called \emph{classification workflow} in which a pixel classifier is trained by interactive user inputs. The trained classifier can then be used to automatically segment previously unseen images. The segmented images obtained in this way can then directly be turned into graphs using NEFI. 
+		In this context an interesting tool called ilastik~\cite{sommer2011ilastik} was brought to our attention. ilastik offers a so-called \emph{classification workflow} in which a pixel classifier is trained by interactive user inputs. The trained classifier can then be used to automatically segment previously unseen images. The segmented images obtained in this way can then directly be turned into graphs using \NEFI. 
 
-		By using NEFI in conjunction with third-party software the benefits of both can be realized.
+		By using \NEFI in conjunction with third-party software the benefits of both can be realized.
 
 \section{Discussion}
 
-	We anticipate NEFI to become a valuable tool that allows scientists from any domain to automate graph extraction from images in an intuitive fashion requiring no expert knowledge. We hope that researchers will be able to spend more time on analyzing their data and less time on processing it. By providing a flexible platform for graph extraction, we invite experts to extend and improve NEFI in order to introduce their contributions to a wider interdisciplinary audience. In the long run we would like NEFI to further the field of network science by promoting the creation of new network databases.
+	We anticipate \NEFI to become a valuable tool that allows scientists from any domain to automate graph extraction from images in an intuitive fashion requiring no expert knowledge. We hope that researchers will be able to spend more time on analyzing their data and less time on processing it. By providing a flexible platform for graph extraction, we invite experts to extend and improve \NEFI in order to introduce their contributions to a wider interdisciplinary audience. In the long run we would like \NEFI to further the field of network science by promoting the creation of new network databases.
 
 \section{Acknowledgments}
 
@@ -434,43 +434,4 @@
 
 \subsection{General Information about NEFI}
 
-    NEFI is an open source Python application and available at its project page at Max Planck Institute for Informatics, \href{http://nefi.mpi-inf.mpg.de}{http://nefi.mpi-inf.mpg.de}. NEFI's homepage includes a gallery of various use-cases and a comprehensive guide containing instructions on how to download, install and use NEFI on Windows, Mac and Linux. Additionally, a supplementary datasets is available for download there, allowing for a quick evaluation of NEFI's main features. This dataset can be used to reproduce the figures and evaluation results shown in this manuscript.
-
-% \chapter{A graphic with caption}
-
-% ü \Fref{fig:oats}! ä \Fref{fig:oats:a}! Look at that~\cite{newman2003structure}.
-
-% \begin{figure}
-%      \centering
-%      \subfloat[][a]{\includegraphics[keepaspectratio]{oats.jpg}\label{fig:oats:a}}
-%      \subfloat[][b]{\includegraphics[keepaspectratio]{oats.jpg}\label{fig:oats:b}}
-%      \caption[short toc caption]{Comparison of steady state results (a) x method (b) y method}
-%      \label{fig:oats}
-% \end{figure}
-
-
-% \begin{figure}
-%      \centering
-%      \subfloat[][a]{\includegraphics[width=0.5\linewidth]{slime.jpg}\label{fig:slime:a}}
-%      \subfloat[][b]{\includegraphics[width=0.5\linewidth]{slime.jpg}\label{fig:slime:b}}
-%      \caption[another short toc caption]{Hello there beautiful. \P is awesome.}
-%      \label{fig:slime}
-% \end{figure}
-
-% \chapter{A simple table with caption}
-
-% Hello, some citation here \Fref{tab:income}.
-
-% \begin{table}
-% 	\centering
-% 	\begin{tabular}{@{} l *4c @{}}
-% 	\toprule
-% 	 \multicolumn{1}{c}{Models}    & A  & B  & C  & D  \\ 
-% 	\midrule
-% 	 Model $X$ & X1 & X2 & X3 & X4 \\ 
-% 	 Model $Y$ & Y1 & Y2 & Y3 & Y4 \\
-% 	\bottomrule
-% 	\end{tabular}
-% 	\caption[another short toc caption]{Slime of type (a) and (b).}
-% 	\label{tab:income}
-% \end{table}
+    \NEFI is an open source Python application and available at its project page at Max Planck Institute for Informatics, \href{http://nefi.mpi-inf.mpg.de}{http://nefi.mpi-inf.mpg.de}. \NEFIs homepage includes a gallery of various use-cases and a comprehensive guide containing instructions on how to download, install and use \NEFI on Windows, Mac and Linux. Additionally, a supplementary datasets is available for download there, allowing for a quick evaluation of \NEFIs main features. This dataset can be used to reproduce the figures and evaluation results shown in this manuscript.
