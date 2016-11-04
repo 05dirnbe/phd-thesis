@@ -1,43 +1,149 @@
 %!TEX root = ../../../thesis.tex
-\chapter{Some plain text}
+\chapter{NEFI}
 
-\blindtext
+\section{abstract}
 
-\chapter{A graphic with caption}
+	Networks are amongst the central building blocks of many systems. Given a graph of a network, methods from graph theory enable a precise investigation of its properties. Software for the analysis of graphs is widely available and has been applied to study various types of networks. In some applications, graph acquisition is relatively simple. However, for many networks data collection relies on images where graph extraction requires domain-specific solutions.
+	Here we introduce NEFI, a tool that extracts graphs from images of networks originating in various domains. Regarding previous work on graph extraction, theoretical results are fully accessible only to an expert audience and ready-to-use implementations for non-experts are rarely available or insufficiently documented. NEFI provides a novel platform allowing practitioners to easily extract graphs from images by combining basic tools from image processing, computer vision and graph theory. Thus, NEFI constitutes an alternative to tedious manual graph extraction and special purpose tools. We anticipate NEFI to enable time-efficient collection of large datasets. The analysis of these novel datasets may open up the possibility to gain new insights into the structure and function of various networks. NEFI is open source and available at~\href{http://nefi.mpi-inf.mpg.de}{http://nefi.mpi-inf.mpg.de}.
 
-ü \Fref{fig:oats}! ä \Fref{fig:oats:a}! Look at that~\cite{newman2003structure}.
+\section{introduction}
 
-\begin{figure}
-     \centering
-     \subfloat[][a]{\includegraphics{oats.jpg}\label{fig:oats:a}}
-     \subfloat[][b]{\includegraphics{oats.jpg}\label{fig:oats:b}}
-     \caption[short toc caption]{Comparison of steady state results (a) x method (b) y method}
-     \label{fig:oats}
-\end{figure}
+	The study of complex network-like objects is of increasing importance for many scientific domains. 
+	The mathematical study of networks, Graph Theory, formalizes a network's structure by modeling the constituents of a network as \emph{vertices} and the pairwise relations between them as \emph{edges}. Some communities traditionally refer to vertices as nodes or sites and to edges as arcs or links. Networks are ubiquitous in everyday life. Examples are as diverse as the Internet, social networks, transportation networks, metabolic networks, blood vessels or the vein networks of leaves. For a comprehensive review see~\cite{newman2003}. 
+
+	In situations where the extraction of a mathematical graph from a physical network is easy, the size of graphs that can be analyzed quickly increased from hundreds to millions of vertices. At the same time it became feasible to build large databases of various types of networks. This enabled the application of software incorporating methods from statistics and graph theory to obtain many results that changed our understanding of large scale network structures. However, digitization remains difficult for many types of networks, e.g. leaf venations, blood vessels or food webs, and therefore ready-to-analyze datasets are often not available. In these cases, investigation on a larger scale requires tedious and sometimes error prone data acquisition.
+
+	In many experimental settings networks are initially available as high quality images obtained under laboratory control. Before any analysis can take place, it is necessary to extract the associated graphs from these images. This requires the identification of vertices and edges within the depicted structure. This process can quickly become very work-intensive even for smaller networks, which makes automated solutions indispensable. 
+
+	Leveraging advances in computer vision, several authors have proposed and successfully implemented solutions for domain specific graph extraction applications. The authors of~\cite{obara2012bioimage,obara2012contrast} consider the mycelial networks of \emph{P.\ impudicus}. They use	watershed segmentation in combination with a novel enhancement step designed to highlight curvilinear features in the input networks. Based on the segmented image a skeleton is computed and used to extract the graph representing the input network.	The resulting method is designed to be brightness and contrast invariant in order to correctly extract the networks grown by \emph{P.\ impudicus} from challenging noisy or low contrast images.
+	
+	Baumgarten et~al.~\cite{baumgarten2010detection,baumgarten2012computational} investigate the vein networks of \P. For segmenting the input image they rely on careful constant thresholding followed by a sequence of restoration algorithms that try to repair the network in the segmented image. Next, the restored segmented image is used to compute a skeleton. After	applying another sequence of correction steps, the skeleton is scanned to extract the graph of the input network.
+ 
+	In \cite{chai2013recovering} a more general algorithm applicable to a variety of problems is proposed. Based on an original stochastic model, the authors use Monte Carlo sampling to obtain junction-points in the input image. This technically involved solution guarantees structural coherence for the resulting graph representation. Further examples include the extraction of road networks~\cite{nglt2006}, retinal blood vessel analysis~\cite{krause2013fast} and the extraction of plane graphs~\cite{hewrw2010}.
+
+	The three above mentioned algorithmic solutions for the network extraction problem exhibit one or more of the following	limitations: 
+
+	\begin{itemize}
+		\item They do not build on top of well-established computer vision methods and tend to rely on ad-hoc algorithms. As a result the quality of the method and its implementation could likely be improved. In addition, a lot of time is spent on reimplementing algorithms that are already available. 
+
+		\item They are not implemented or only available as pseudo-code.
+
+		\item They are implemented but not designed for easy of use, distribution and extendability.
+	\end{itemize}
+
+	We are aware that the primary objective of the work cited above is not the production of reusable software, but of algorithms and tools for solving a concrete research question.
+	As a result, the above authors have limited time for researching advances in computer vision, following best software engineering practice or writing documentation respectively. 
+
+	From experience we know that when producing an easy-to-use software, a large part of the required work consists of specifying and improving the user-interface as well as working out minor bugs and annoyances. This type of work, while time consuming, is essential for any software aiming to reach a non-negligible audience. However, efforts like these are hardly attractive to researchers whose focus is on obtaining the next result. While we understand that under these circumstances the aforementioned limitations arise naturally, we strongly believe that it is necessary to overcome those limitations in order to increase the value and the impact of scientific software in general and network extraction software in particular. 
+
+	To this end, we introduce NEFI, a lightweight piece of ready-to-go software intended to enable the non-expert to automatically extract networks from images. NEFI constitutes an extensible framework of interchangeable algorithms accessible through an intuitive graphical user interface. 
+
+	We emphasize at this point that we do not claim to introduce novel techniques for image processing or computer vision. Instead, our contribution consists of a reusable, flexible and easily extendable toolbox combining well-known methods, which have become standard in their respective fields of origin, in a meaningful way. By introducing NEFI, we hope to make these methods more widely accessible to practitioners in other fields.
+
+	NEFI's segmentation is based on a combination of standard routines available in~\href{http://opencv.org/}{OpenCV},~(2015),~\cite{opencv}. These algorithms are known to perform well on clean and uncluttered images obtained under controlled laboratory conditions. However, on more challenging inputs of low contrast, strong gradients or similar irregularities, their performance is severely reduced. Nevertheless, in these cases more involved algorithms, currently not implemented as part of a reliable library and thus not integrated into NEFI, may still be able to process these images. To help meet this situation, NEFI was designed with extendability in mind. As a result users will find it easy to build on-top of NEFI's code in order to add their own implementations of more sophisticated methods. 
+
+\section{Network Extraction From Images}	%	2298 words
+
+	NEFI features a collection of image processing routines, segmentation methods and graph algorithms designed to process 2D digital images of various networks and network-like structures. Its main function is executing a so-called extraction pipeline, designed to analyze the structures depicted in the input image. An extraction pipeline, for short pipeline, denotes an ordered sequence of algorithms. A successful execution will return a representation of the network in terms of an edge-weighted undirected planar graph. Computed weights include edge lengths and edge widths. Once the graph is obtained, available graph analysis software~\cite{ICWSM09154,snap,batagelj1998pajek,5437689,loscalzo2008social,hagberg2008exploring} or custom written scripts can be deployed to investigate its properties.
+
+	A typical pipeline combines algorithms from up to four different classes: preprocessing, segmentation, graph detection and graph filtering, see \Fref{fig:workflow}. A more detailed description follows below. 
+	
+	\begin{figure}
+		\centering
+		\includegraphics{workflow.png}
+		\caption[Pipeline components of NEFI]{A flow chart illustrating NEFI's pipeline components in green boxes. Dashed arrows depict optional sections of the pipeline. Blue and orange boxes denote NEFI's input and possible outputs respectively.}
+		\label{fig:workflow}
+	\end{figure}
+
+	For each pipeline section, NEFI typically offers several interchangeable algorithms to choose from. After executing preprocessing routines, a segmentation algorithm separates foreground from background. Then the foreground is thinned to a skeleton from which the vertices and edges of the graph are determined. In the process various edge weights are computed. Finally, the graph can be subjected to a variety of useful graph filters. \Fref{fig:pipeline} illustrates the intermediate results of NEFI's pipeline steps listed in the order of their execution. When a pipeline is executed, NEFI makes all intermediate results available via its clean and intuitive GUI, see \Fref{fig:nefi_gui}. 
+
+	\begin{figure}
+		\centering
+		\subfloat[NEFI's pipeline - Input image][Input image.]{\includegraphics{pipeline/input.jpg}\label{fig:pipeline:input}}
+		\subfloat[NEFI's pipeline - Segmented image][Segmented image.]{\includegraphics{pipeline/segmented.jpg}\label{fig:pipeline:segmented}}
+		\subfloat[NEFI's pipeline - Skeletonized image][Skeletonized image.]{\includegraphics{pipeline/skeleton.jpg}\label{fig:pipeline:skeleton}}
+		\subfloat[NEFI's pipeline - Detected graph][Detected graph drawn ontop of the input.]{\includegraphics{pipeline/full_graph.jpg}\label{fig:pipeline:full_graph}}
+		\subfloat[NEFI's pipeline - Filtered graph][Filtered graph drawn ontop of the input.]{\includegraphics{pipeline/largest_component.jpg}\label{fig:pipeline:largest_component}}
+		\caption[short toc caption]{Direct comparison of NEFI's pipeline steps given a slice of an image of a slime mold (\P). From left to right: input image, segmented image, skeletonized image, detected graph and filtered graph. The green square contains a very faint vein which the segmentation did not pick up fully. Thus, the skeleton becomes fragmented which leads to spurious vertices in the detected graph. By applying a graph filter we remove stray vertices without manipulation of the segmented or the skeletonized image. Similar filtering can remove ``dead-ends'', \ie vertices that do not belong to any cycle in the graph.}
+		\label{fig:pipeline}
+	\end{figure}
+
+	Using the GUI all basic functions of NEFI can be accessed in an intuitive fashion. To facilitate ease-of-use, most of NEFI's algorithms come with default parameters based on the settings in \href{http://opencv.org/}{OpenCV}~\cite{opencv}, which were found to perform well on our test sets as well as on many other images.
+
+	\begin{figure}
+		\centering
+		\includegraphics[width=\textwidth]{gui.jpeg}
+		\caption[NEFI's graphical user interface.]{A screenshot of NEFI's GUI running on Mac OS. On the left hand side NEFI lists intermediate results as thumbnails. Bringing the final result to the center workspace allows for direct visual assessment of the quality of the extracted graph. On the right hand side NEFI's pipeline elements can be accessed via drop-down menus. The image was produced in a collaboration with the KIST Europe.}
+		\label{fig:nefi_gui}
+	\end{figure}
+
+	There are various predefined pipelines to get started immediately. Alternatively, users may freely combine the various methods to build custom pipelines. 
+	Both approaches allow the user to experiment with the available methods in order to close in on the optimal settings for the data. Once a pipeline is constructed, it can be saved and reused. NEFI's simple pipeline concept together with a self-explanatory graphical user interface make working with NEFI intuitive and straightforward. NEFI also offers a command-line mode, which is suited for batch processing. 
+
+	NEFI comes with a number of example images from different domains which we use to produce the figures in this work. Figure~\ref{fig:physarum} and \Fref{fig:dragonlfy} show NEFI's output on two images using predefined pipelines. Blue squares denote the vertices and red lines the edges of the detected graph. The thickness of the detected edges corresponds to thickness of the depicted structures. For comparison the extracted graph is drawn on top of the input image. We present a detailed quantitative evaluation in a later section.
 
 
-\begin{figure}
-     \centering
-     \subfloat[][a]{\includegraphics[width=0.5\linewidth]{slime.jpg}\label{fig:slime:a}}
-     \subfloat[][b]{\includegraphics[width=0.5\linewidth]{slime.jpg}\label{fig:slime:b}}
-     \caption[another short toc caption]{Hello there beautiful. \P is awesome.}
-     \label{fig:slime}
-\end{figure}
+	\begin{figure}
+		\centering
+		\subfloat[\P - input to NEFI][]{\includegraphics{p_polycephalum.jpg}\label{fig:physarum:input}}
+		\subfloat[\P - output of NEFI][]{\includegraphics{p_polycephalum_graph.jpg}\label{fig:physarum:graph}}
+		\caption[]{Extracted graph of the network formed by a slime mold (\P). The left hand side shows the input image depicting the network. The right hand side shows the extracted graph overlayed on top off the same image for direct comparison. Note, that no filters have been applied. The image was produced in a collaboration with the KIST Europe.}
+		\label{fig:physarum}
+	\end{figure}
 
-\chapter{A simple table with caption}
-
-Hello, some citation here \Fref{tab:income}.
-
-\begin{table}
+	\begin{figure}
 	\centering
-	\begin{tabular}{@{} l *4c @{}}
-	\toprule
-	 \multicolumn{1}{c}{Models}    & A  & B  & C  & D  \\ 
-	\midrule
-	 Model $X$ & X1 & X2 & X3 & X4 \\ 
-	 Model $Y$ & Y1 & Y2 & Y3 & Y4 \\
-	\bottomrule
-	\end{tabular}
-	\caption[another short toc caption]{Slime of type (a) and (b).}
-	\label{tab:income}
-\end{table}
+		\begin{tikzpicture}
+			\begin{scope}[spy using outlines={rectangle,black,magnification=2.5,size=4cm}]
+			\node {\includegraphics[width=\textwidth]{dragonfly_optimal.jpeg}};
+			\spy on (-1,-1) in node (a) [left] at (5.5,-1.5);
+			\end{scope}
+		\end{tikzpicture}
+	\caption[\emph{Ajax junius} - Extracted graph]{Extracted graph of the vein network exhibited by a wing of a dragonfly (\emph{Ajax junius}). Note, that after the use of various filters a very clean-looking graph is obtained. Image courtesy of Pam and Richard Winegar.}
+	\label{fig:dragonlfy}
+	\end{figure}
+
+
+	We stress that NEFI can deal with a range of inputs from various domains as long as they are of sufficient quality. In addition to the examples shown above, it has been successfully used to process images of natural (\eg leaf venation, patterns of mud cracks) as well as man-made structures (tilings). It is also straightforward to add custom extensions. We provide a well documented platform which allows programmers to include more specialized segmentation algorithms or additional graph filters. For an overview of alternative graph extraction approaches see for example~\cite{dehkordi2011review}.
+
+	Next, we discuss the purpose and design of each major stage of the pipeline and highlight some of NEFI's strong points.
+
+
+% \chapter{A graphic with caption}
+
+% ü \Fref{fig:oats}! ä \Fref{fig:oats:a}! Look at that~\cite{newman2003structure}.
+
+% \begin{figure}
+%      \centering
+%      \subfloat[][a]{\includegraphics{oats.jpg}\label{fig:oats:a}}
+%      \subfloat[][b]{\includegraphics{oats.jpg}\label{fig:oats:b}}
+%      \caption[short toc caption]{Comparison of steady state results (a) x method (b) y method}
+%      \label{fig:oats}
+% \end{figure}
+
+
+% \begin{figure}
+%      \centering
+%      \subfloat[][a]{\includegraphics[width=0.5\linewidth]{slime.jpg}\label{fig:slime:a}}
+%      \subfloat[][b]{\includegraphics[width=0.5\linewidth]{slime.jpg}\label{fig:slime:b}}
+%      \caption[another short toc caption]{Hello there beautiful. \P is awesome.}
+%      \label{fig:slime}
+% \end{figure}
+
+% \chapter{A simple table with caption}
+
+% Hello, some citation here \Fref{tab:income}.
+
+% \begin{table}
+% 	\centering
+% 	\begin{tabular}{@{} l *4c @{}}
+% 	\toprule
+% 	 \multicolumn{1}{c}{Models}    & A  & B  & C  & D  \\ 
+% 	\midrule
+% 	 Model $X$ & X1 & X2 & X3 & X4 \\ 
+% 	 Model $Y$ & Y1 & Y2 & Y3 & Y4 \\
+% 	\bottomrule
+% 	\end{tabular}
+% 	\caption[another short toc caption]{Slime of type (a) and (b).}
+% 	\label{tab:income}
+% \end{table}
