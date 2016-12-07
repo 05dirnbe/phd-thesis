@@ -5,4 +5,5 @@
 *.lot
 *.tdo
 *.pdf
+*.dvi
 ~$thesis-structure.xlsx
