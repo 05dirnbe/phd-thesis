@@ -44,3 +44,26 @@ depending on the phenomenon under consideration this can require dedicated exper
 the modelling process itself, where the challenge is to look past the intricate bio-physical processes that are observed in \P and find a suitable level of abstraction. It must capture the phenomenon of interest well, yet do away with a large part of the complexity of the organism.
 lastly turning the model into an algorithm.
 this requires a deep understanding of the model itself. The formal analysis of such algorithms belongs to the domain of computer science.
+
+what we want: get a simple model that captures the way \P uses thickness oscillations to generate pressure differences which generate fluid flow. 
+
+Why: because we assume that distribution stuff within its whole body is a vital task that \P needs to handle in order to survive. Here the hope is that the method \P uses to solve this task is also efficient. Experimental evidence is given by Alim \etal. The hope is to extract a bio-inspired fully distributed and fault tolerant algorithm capable of distributing goods in a graph.
+
+why not use the phyarum solver? Because it cannot capture oszillations and the tubes are passive elements. We do take inspiration from the physarum solver because we chose to model \P as an electric system. Studying the properties of the solver helped us realize that they are equivalent.
+
+why not use jones? because a particle model does not automatically lend itself to a graph abstraction. Might be possible to put it on a graph, however, certainly not natural.
+
+so what are you going to do?
+
+* we know that \P needs to solve the problem of efficient nutrient circulation. Alim \etal show evidence that \P does well. Alim \etal model veins as active elements.
+* we look at the oscillator experiment and realize that coupled oscillators replicate the syncronisation behavior. Here we realize that the topology and edge weights determine the behaviour the oscillator
+* we realize that we need to know as much as possible about the topology and the edge weights of \P networks when there is no food around.
+* we do the experiments, we write the software, we get the graphs, we publish everything
+* we look at the modelling of other vein based circulation systems such as the cardio vascular system. Here we learn how to model veins that are actively
+* We decide to model physarum as a system of oscillating electronic elements. In this model the veins are the active part and the nodes have a passive role.
+
+what is your contribution?
+
+* supporting the development of natural computing with \P by providing experimental data in form of images and graphs. To this we add NEFI and the SMGR. We hope that by doing so we enable others.
+
+* working towards the goal of mimicking the way \P distributes fluid all across its body. Ideally, we obtain an effecient, distributed algorithm.
