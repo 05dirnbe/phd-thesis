@@ -1,0 +1,40 @@
+\documentclass[crop,tikz]{standalone}
+
+\usetikzlibrary{arrows,shapes}
+
+\begin{document}
+
+    \definecolor{newblue}{RGB}{116,173,209}
+    \definecolor{neworange}{RGB}{244,109,67}
+
+    \tikzstyle{vertex}=[circle,minimum size=15pt,draw,thick, inner sep=0pt]
+    \tikzstyle{red vertex} = [vertex, fill=neworange]
+    \tikzstyle{blue vertex} = [vertex, fill=newblue]
+    \tikzstyle{edge} = [draw,thick,-]
+    \tikzstyle{weight} = [font=\small]
+      
+    \begin{tikzpicture}[scale=1.8, auto,swap]
+        % First we draw the vertices
+        \foreach \pos/\name in {{(0,1.2)/$a_2$}, {(2.5,2)/$c_2$}}
+            \node[vertex,label={above:\LARGE\name}] (\name) at \pos {};
+         
+        % \foreach \pos/\name in {{(1.2,1.5)/$b_2$}}
+        %     \node[blue vertex,label={above:\LARGE\name}] (\name) at \pos {};
+
+        \foreach \pos/\name in {{(0,0)/$d_2$}, {(2.4,0.8)/$f_2$}}
+            \node[vertex,label={below:\LARGE\name}] (\name) at \pos {};
+
+        % \foreach \pos/\name in {{(1.4,0.4)/$e_2$}}
+        %     \node[red vertex,label={below:\LARGE\name}] (\name) at \pos {};
+
+        % Connect vertices with edges and draw weights
+        % \foreach \source/ \dest /\weight in {$c_2$/$b_2$/7, $a_2$/$b_2$/2, $e_2$/$d_2$/1, $e_2$/$f_2$/2,$e_2$/$b_2$/3}
+        %     \path[edge] (\source) -- node[weight] {} (\dest);
+       
+        \node[draw] at (2.2,-0.4) {\LARGE $t=2$};
+
+        \foreach \source/ \dest /\weight in {$a_2$/$c_2$/3,$d_2$/$f_2$/3}
+            \path[edge] (\source) -- node[weight] {} (\dest);  
+    \end{tikzpicture}
+    
+\end{document}
