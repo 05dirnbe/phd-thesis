@@ -1,0 +1,120 @@
+\documentclass[crop,tikz]{standalone}
+
+\usetikzlibrary{arrows,shapes}
+
+\begin{document}
+
+    \definecolor{newblue}{RGB}{116,173,209}
+    \definecolor{neworange}{RGB}{244,109,67}
+
+    \tikzstyle{vertex}=[circle,minimum size=15pt,draw,thick, inner sep=0pt]
+    \tikzstyle{red vertex} = [vertex, fill=neworange]
+    \tikzstyle{blue vertex} = [vertex, fill=newblue]
+    \tikzstyle{edge} = [draw,thick,-]
+    \tikzstyle{weight} = [font=\small]
+      
+    \tikzstyle{major vertex}=[rectangle,minimum size=15pt,draw,thick, inner sep=0pt, fill=newblue]
+    \tikzstyle{minor vertex}=[circle,minimum size=10pt,draw,thick, inner sep=0pt, fill=none]
+    \tikzstyle{path vertex}=[minor vertex, fill=neworange]
+    \tikzstyle{zero vertex}=[minor vertex, draw=none, fill=none]
+    \tikzstyle{filtered vertex}=[minor vertex, draw=gray, fill=none]
+
+
+    \tikzstyle{edge} = [draw,thick,-]
+    \tikzstyle{dangling} = [edge,dashed]
+    \tikzstyle{path} = [edge,neworange,ultra thick]
+    \tikzstyle{filtered} = [edge,dashed,gray]
+
+    % \begin{tikzpicture}[scale=1.8, auto,swap]
+    %     % First we draw the vertices
+    %     \foreach \pos/\name in {{(0,1.2)/$a_3$}, {(2.5,2)/$c_3$}}
+    %         \node[vertex,label={above:\LARGE\name}] (\name) at \pos {};
+         
+    %     \foreach \pos/\name in {{(1.2,1.5)/$b_3$}}
+    %         \node[blue vertex,label={above:\LARGE\name}] (\name) at \pos {};
+
+    %     \foreach \pos/\name in {{(0,0)/$d_3$}, {(2.4,0.8)/$f_3$}}
+    %         \node[vertex,label={below:\LARGE\name}] (\name) at \pos {};
+
+    %     \foreach \pos/\name in {{(1.4,0.4)/$e_3$}}
+    %         \node[red vertex,label={below:\LARGE\name}] (\name) at \pos {};
+
+    %     % Connect vertices with edges and draw weights
+    %     \foreach \source/ \dest /\weight in {$c_3$/$b_3$/7, $a_3$/$b_3$/2, $e_3$/$d_3$/1, $e_3$/$f_3$/2,$e_3$/$b_3$/3}
+    %         \path[edge] (\source) -- node[weight] {} (\dest);
+       
+    %     \node[draw] at (2.2,-0.4) {\LARGE $t=3$};
+
+    %     % \foreach \source/ \dest /\weight in {$a_1$/$c_1$/3,$d_1$/$f_1$/3}
+    %     %     \path[edge] (\source) -- node[weight] {} (\dest);  
+    % \end{tikzpicture}
+    
+    \begin{tikzpicture}[scale=1.8, auto,swap]
+        % First we draw the vertices
+        
+        \foreach \pos/\name in {{(-1.0,-0.2)/axx}, {(2.5,1.8)/bxx}, {(5.0,0.5)/cxx}, {(4.5,-2)/dxx}, {(0.5,-2.5)/exx}}
+            \node[zero vertex] (\name) at \pos {};
+
+        \foreach \pos/\name in {{(-0.5,-0.1)/ax}, {(2.2,1.3)/bx}, {(4.5,0.45)/cx}, {(4,-1.5)/dx}, {(0.75,-2)/ex}}
+            \node[minor vertex] (\name) at \pos {};
+
+        \foreach \pos/\name in {{(0,0)/A}, {(2,1)/B}, {(4,0.5)/C}, {(3,-1)/D}, {(1,-1.5)/E}}
+            \node[major vertex] (\name) at \pos {\name};
+        
+        \foreach \pos/\name in {{(0.5,0.4)/ab1}, {(1,0.8)/ab2}, {(1.5,0.9)/ab3}}
+            \node[path vertex] (\name) at \pos {};
+
+        \foreach \pos/\name in {{(3,0.9)/bc1}, {(3.5,0.7)/bc2}}
+            \node[minor vertex] (\name) at \pos {};
+
+        \foreach \pos/\name in {{(3.5,-0.5)/cd1}}
+            \node[path vertex] (\name) at \pos {};
+
+        \foreach \pos/\name in {{(2.5,-1.1)/de1}, {(2,-1.3)/de2}, {(1.5,-1.4)/de3}}
+            \node[minor vertex] (\name) at \pos {};
+
+        \foreach \pos/\name in {{(1.5,-0.5)/S}, {(1.6,-1)/Sde3}}
+            \node[filtered vertex] (\name) at \pos {};
+
+        % \foreach \pos/\name in {{(1.2,1.5)/$b_3$}}
+        %     \node[blue vertex,label={above:\LARGE\name}] (\name) at \pos {};
+
+        % \foreach \pos/\name in {{(0,0)/$d_3$}, {(2.4,0.8)/$f_3$}}
+        %     \node[vertex,label={below:\LARGE\name}] (\name) at \pos {};
+
+        % \foreach \pos/\name in {{(1.4,0.4)/$e_3$}}
+        %     \node[red vertex,label={below:\LARGE\name}] (\name) at \pos {};
+
+        % Connect vertices with edges and draw weights
+        \foreach \source/ \dest /\weight in {A/ab1/7, ab1/ab2/2, ab2/ab3/1, ab3/B/2}
+            \path[path] (\source) -- node[weight] {} (\dest);
+       
+        \foreach \source/ \dest /\weight in {B/bc1/7, bc1/bc2/2, bc2/C/1}
+            \path[edge] (\source) -- node[weight] {} (\dest);
+
+        \foreach \source/ \dest /\weight in {C/cd1/7, cd1/D/2}
+            \path[path] (\source) -- node[weight] {} (\dest);
+
+        \foreach \source/ \dest /\weight in {D/de1/7, de1/de2/2, de2/de3/3, de3/E/4}
+            \path[edge] (\source) -- node[weight] {} (\dest);
+
+        \foreach \source/ \dest /\weight in {E/A/7}
+            \path[edge] (\source) -- node[weight] {} (\dest);
+
+        \foreach \source/ \dest /\weight in {A/ax/7, B/bx/2, C/cx/1, D/dx/2, E/ex/2}
+            \path[edge] (\source) -- node[weight] {} (\dest);
+
+        \foreach \source/ \dest /\weight in {ax/axx/7, bx/bxx/2, cx/cxx/1, dx/dxx/2, ex/exx/2}
+            \path[dangling] (\source) -- node[weight] {} (\dest);
+
+         \foreach \source/ \dest /\weight in {S/Sde3/7, Sde3/de3/2}
+            \path[filtered] (\source) -- node[weight] {} (\dest);
+
+        % \node[draw] at (2.2,-0.4) {\LARGE $t=3$};
+
+        % \foreach \source/ \dest /\weight in {$a_1$/$c_1$/3,$d_1$/$f_1$/3}
+        %     \path[edge] (\source) -- node[weight] {} (\dest);  
+    \end{tikzpicture}
+
+
+\end{document}
