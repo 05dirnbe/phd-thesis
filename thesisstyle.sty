@@ -19,8 +19,10 @@
 
 %graphics options
 \usepackage{standalone}
+\usepackage[section]{placeins}
 \usepackage{subfig}
 \usepackage{graphicx}
+\usepackage[format=plain,labelfont=bf]{caption}
 \usepackage{ifpdf}
 \ifpdf
    % put here packages only for the PDF:
@@ -38,6 +40,7 @@
 \usepackage{amssymb}
 \usepackage[mathic]{mathtools}
 \usepackage{siunitx}
+\sisetup{separate-uncertainty}
 
 
 %hyperref options
@@ -79,7 +82,7 @@
 
 
 %helpers
-\usepackage{float,caption}
+\usepackage{float}
 \usepackage{tabularx,booktabs}
 \usepackage{enumitem}
 \usepackage{todonotes}

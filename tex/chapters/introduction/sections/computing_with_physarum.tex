@@ -1,86 +1,90 @@
 % !TEX root = ../../../../thesis.tex
 
-\section{Natural computing with \P}
+\section{Natural Computing with \P}\label{sec:natural_computing_physarum}
 
-	Starting in 2000 a series of break-through experiments caused the unassuming organisms that are slime molds to become the focus of intense research efforts. In particular, it was demonstrated that in its plasmodium stage, \P is capable of reacting to environmental conditions in a manner that is reminiscent of optimization processes. Examples include the maximization of food uptake given a small set of food sources, or the minimization of exposure to light known to be harmful to the organism. It is striking that there is no central control coordinating these nontrivial processes. Since \P lacks any sort of brain or nervous system, it has been speculated that the observed capabilities are emergent as a result of local interactions. The fact that all living organisms perform tasks necessary for their survival, distinguishes \P fas a highly distributed system with properties suitable for natural computing.
+	Starting in 2000 a series of break-through experiments caused the unassuming organisms that are slime molds to become the focus of intense research efforts. In particular, it was demonstrated that in its plasmodium stage, \P is capable of reacting to environmental conditions in a manner that is reminiscent of optimization processes. Examples include the maximization of food uptake given a small set of food sources, or the minimization of exposure to light known to be harmful to the organism. It is striking that there is no central control coordinating these nontrivial processes. Since \P lacks any sort of brain or nervous system, it has been speculated that the observed capabilities are emergent as a result of local interactions. Given its abilities, \P can be seen as a highly distributed system with properties suitable for natural computing.
 
-	In order to explain the behavior of \P and to harness its in-built optimization capabilities, several different approaches were put forward. The most successful amongst those either focus on modeling certain key observations that were discovered experimentally or manipulate the organism \textit{in vivo} in such a way that its behavior can be interpreted as a computation. In the next section we survey some of the most influential experiments that became the precursor for natural computing with \P.
+	In order to explain the behavior of \P and to harness its in-built optimization capabilities, several different approaches were put forward. The most successful amongst those either focus on modeling certain key observations that were discovered experimentally or manipulate the organism \textit{in vivo} in such a way that its behavior can be interpreted as computation. In the next section we survey some of the most influential experiments that paved the way for natural computing with \P.
 
-	\subsection{Key experiments and observations}
+	\subsection{Key Experiments and Observations}
 
-		\subsubsection{Emergence of synchronization in \P }
+		\subsubsection{Emergence of Synchronization in \P }
 		
 			In the last decade of the 20th century the rhythmic contractions exhibited by the plasmodium of \P where the subject of a series of experiments aimed at sheding light onto the basic mechanisms governing \P~\cite{MIYAKE1996341,NAKAGAKI1996261,TAKAHASHI1997105}. Soon it was established that mechanochemical reactions among intracellular chemicals such as ATP and calcium generate periodic cycles of contraction and relaxation of actomyosin fibers which explain the observed oscillations in the thickness of the plasmodium. Periodic changes in thickness induce pressure differences between different parts of the slime mold which cause protoplasmic fluid to be streaming to and fro exhibiting periodic reversals of direction. Given the experimental findings it seemed natural to view the plasmodium of \P as an ensemble of coupled non-linear oscillators. Using this Ansatz, mutual entrainment of intracellular oscillators gives rise to self-organization and the information processing capabilities of \P. 
 
 			In this context, a key experiment was presented in 2000 which uses the plasmodium of \P to realize a living system of coupled oscillators~\cite{PhysRevLett.85.2026}. To this end a micro-fabricated structure was prepared, consisting of two identical circular reservoirs connected by a channel of a certain width and length. In the experiment, the two reservoirs and the channel are populated with plasmodium. The reservoirs act like two distinct \P oscillators while the channel ensures a controllable coupling between the two. Here the width of the channel determines the coupling strength while the length of the channel controls the time delay in the coupling. The setup depicted in \Fref{fig:oscillator_experiment_setup} realizes a system of two delay-coupled oscillators whose thickness oscillation can be studied as a function of the channel dimensions.
 
-			\begin{figure}
+			\begin{figure}[htb]
 				\centering
-				\subfloat[Oscillator experiment - Plasmodium][]{\includegraphics[width=0.45\linewidth,keepaspectratio]{oscillator/plasmodium.png}}
-				\subfloat[Oscillator experiment - Microfabricated structure loaded with plasmodium][]{\includegraphics[width=0.45\linewidth,keepaspectratio]{oscillator/setup.png}}
+				\subfloat[Oscillator experiment - Plasmodium][]{\includegraphics[width=\twoimageswide,keepaspectratio]{oscillator/plasmodium.png}}
+				\subfloat[Oscillator experiment - Microfabricated structure loaded with plasmodium][]{\includegraphics[width=\twoimageswide,keepaspectratio]{oscillator/setup.png}}
 	
-				\caption[Oscillator experiment - Setup]{a) Detail of the growing front of \P. Arrows indicate the presence of thick veins. b) Top: A micro-fabricated structure designed to confine \P. The diameter of the oscillator parts where chosen such that they can be regarded as distinct oscillators. Bottom: The dumbbell shaped structure loaded with \P. Reprinted from~\cite{PhysRevLett.85.2026}.}
+				\caption[Oscillator experiment - Setup]{(a) Detail of the growing front of \P. Arrows indicate the presence of thick veins. (b) Top: A micro-fabricated structure designed to confine \P. The diameter of the oscillator parts where chosen such that they can be regarded as distinct oscillators. Bottom: The dumbbell shaped structure loaded with \P. Reprinted from~\cite{PhysRevLett.85.2026}.}
 				\label{fig:oscillator_experiment_setup}
 			\end{figure}
 
 			\Fref{fig:oscillator_experiment_thickness} shows rich self-synchronizing oscillation patterns exhibiting both in-phase and anti-phase entrainment consistent with theoretical expectations. The experiment shows that the geometry of the channel plays a key role in the generation of thickness oscillations driving peristaltic pumping of protoplasm.
 
+
+
 			\begin{figure}
 				\centering
-				\subfloat[Oscillator experiment - Thickness oscillations visualized][]{\includegraphics[width=\linewidth,keepaspectratio]{oscillator/thickness_oscillations.png}}
+				\subfloat[Oscillator experiment - Thickness oscillations visualized][]{\includegraphics[width=\oneimagewide,keepaspectratio]{oscillator/thickness_oscillations.png}}
 				\newline
-				\subfloat[Oscillator experiment - Thickness oscillations over time][]{\includegraphics[width=\linewidth,keepaspectratio]{oscillator/thickness_oscillations_graph.png}}
+				\subfloat[Oscillator experiment - Thickness oscillations over time][]{\includegraphics[width=\oneimagewide,keepaspectratio]{oscillator/thickness_oscillations_graph.png}}
 	
-				\caption[Oscillator experiment - Thickness oscillations]{a) Visualization of thickness anti-phase oscillations propagating between the two oscillators by means of the transmitted light intensity through the plasmodium. Darker/brighter areas indicate an increase/decease in thickness. The time interval between images is $16$ seconds. b) Time course of thickness oscillations. The thick respectively thin lines represent the thickness of individual oscillators obtained by averaging the transmitted light intensity for each oscillator.
-				Top: Anti-phase oscillation was observed for $W=0.4$ mm and $L=4$ mm. Bottom: In-phase oscillation was observed for $W=0.5$ mm and $L=10$ mm. Adapted and reprinted from~\cite{PhysRevLett.85.2026}.}
+				\caption[Oscillator experiment - Thickness oscillations]{(a) Visualization of thickness anti-phase oscillations propagating between the two oscillators by means of the transmitted light intensity through the plasmodium. Darker/brighter areas indicate an increase/decrease in thickness. The time interval between images is \SI{16}{\second}. (b) Time course of thickness oscillations. The thick respectively thin lines represent the thickness of individual oscillators obtained by averaging the transmitted light intensity for each oscillator.
+				Top: Anti-phase oscillation was observed for $W=\SI{0.4}{\milli\metre}$ and $L=\SI{4}{\milli\metre}$. Bottom: In-phase oscillation was observed for $W=\SI{0.5}{\milli\metre}$ and $L=\SI{010}{\milli\metre}$. Adapted and reprinted from~\cite{PhysRevLett.85.2026}.}
 				\label{fig:oscillator_experiment_thickness}
 			\end{figure}{}
 
-		\subsubsection{Shortest path in a maze}
+			\FloatBarrier
 
-			Introduced in the year 2000, in the so-called ``maze experiment'' the plasmodium of \P is introduced to a maze, see \Fref{fig:maze:initial}~\cite{nakagaki2000intelligence}. After the plasmodium has spread evenly across the entire maze, two food sources are introduced at two specific points in the maze, see \Fref{fig:maze:intermediate}. The organism forms veins while slowly retracting from areas of the maze that do not intersect with any path connecting the two food sources. This process continues until the plasmodium takes the shape of one single thick vein connecting the food sources. In repeated experiments, it was shown that the organism occupies the shortest path ($\alpha_1 + \beta_1$) in most of the cases. This demonstrates the organisms remarkable ability of iteratively improving the connection between the two food sources. In this context an improvement is achieved if veins become either shorter or wider in diameter. Since nutrient transport is subject to hydrodynamic forces, shorter and wider tubes entail less resistance to fluid flow~\cite{kamiya1959motive}.
+		\subsubsection{Shortest Path in a Maze}
 
-			One may interpret the maze as a graph with edge weights equal to the lengths of the associated maze segments and the food sources as two distinct nodes $N_1$ and $N_2$, see~\Fref{fig:maze:abstraction}. Thus the slime mold \Pp can be seen to demonstrate an approximate solution to the $s-t$ shortest path problem with $s=N_1$ and $t=N_2$.
+			Introduced in the year 2000, in the so-called ``maze experiment'' the plasmodium of \P is introduced to a maze, see \Fref{fig:maze:initial}~\cite{nakagaki2000intelligence}. After the plasmodium has spread evenly across the entire maze, two food sources are introduced at two specific points in the maze, see \Fref{fig:maze:intermediate}. The organism reacts to the food source by slowly retracting from areas of the maze that do not coincide with any path connecting them. This process continues for several hours until the plasmodium takes the shape of one single thick vein connecting the food sources. In repeated experiments, it was shown that after sufficient time this vein does not occupy any path, but selects the shortest path ($\alpha_1 + \beta_1$, see \Fref{fig:maze:initial}) in most of the cases. This demonstrates the organisms remarkable ability to iteratively improve the efficiency of fluid flow between the two food sources. By making veins progressively shorter and wider, the hydrodynamic resistance to protoplasmic flow is minimized which is beneficial in terms of nutrient transport\cite{kamiya1959motive}. 
+
+			In terms of natural computing, one may interpret the maze as a graph with edge weights equal to the lengths of the associated maze segments and the food sources as two distinct nodes $N_1$ and $N_2$, see~\Fref{fig:maze:abstraction}. Thus the slime mold \Pp can be seen to demonstrate an \emph{in vivo} approximate solution to the $s-t$ shortest path problem with $s=N_1$ and $t=N_2$. 
 
 			\begin{figure}
 				\centering
-				\subfloat[Maze experiment - Initial state][]{\includegraphics[width=0.45\linewidth,keepaspectratio]{maze/maze_experiment_1.png}\label{fig:maze:initial}}
-				\subfloat[Maze experiment - Intermediate state][]{\includegraphics[width=0.45\linewidth,keepaspectratio]{maze/maze_experiment_2.png}\label{fig:maze:intermediate}}
+				\subfloat[Maze experiment - Initial state][]{\includegraphics[width=\twoimageswide,keepaspectratio]{maze/maze_experiment_1.png}\label{fig:maze:initial}}
+				\subfloat[Maze experiment - Intermediate state][]{\includegraphics[width=\twoimageswide,keepaspectratio]{maze/maze_experiment_2.png}\label{fig:maze:intermediate}}
 				\newline
-				\subfloat[Maze experiment - Final state][]{\includegraphics[width=0.45\linewidth,keepaspectratio]{maze/maze_experiment_3.png}\label{fig:maze:final}}
-				\subfloat[Maze experiment - Graph abstraction][]{\includegraphics[width=0.45\linewidth,keepaspectratio]{maze/maze_experiment_4.png}\label{fig:maze:abstraction}}
+				\subfloat[Maze experiment - Final state][]{\includegraphics[width=\twoimageswide,keepaspectratio]{maze/maze_experiment_3.png}\label{fig:maze:final}}
+				\subfloat[Maze experiment - Graph abstraction][]{\includegraphics[width=\twoimageswide,keepaspectratio]{maze/maze_experiment_4.png}\label{fig:maze:abstraction}}
 				
 				\caption[Classic maze experiment with \P]{ a) The plasmodium of 
-				\P is evenly spread across a maze. Filled black circles denote two specific points in the maze. Arrows indicate segments of possible paths between them. b) Two food sources (AG) are introduced at the specific points. After a while the plasmodium retreats from areas of the maze that do not intersect with a path connecting the food sources. c) The plasmodium settles on the shortest path between the two food sources. d) The maze can be interpreted as an abstract graph with two distinct nodes $N_1$ and $N_2$ corresponding to the food sources. The scale bars denote 1 cm. Reprinted from~\cite{Tero2007553}.}
+				\P is evenly spread across a maze. Filled black circles denote two specific points in the maze. Arrows indicate segments of possible paths between them. b) Two food sources (AG) are introduced at the specific points. After a while the plasmodium retreats from areas of the maze that do not intersect with a path connecting the food sources. c) The plasmodium settles on the shortest path between the two food sources. d) The maze can be interpreted as an abstract graph with two distinct nodes $N_1$ and $N_2$ corresponding to the food sources. The scale bars denote \SI{1}{\centi\metre}. Reprinted from~\cite{Tero2007553}.}
 				\label{fig:maze}
 			\end{figure}
 
-			\todo[inline]{make the explanation concise yet cover everything. Currently still missing are: time scale of the experiment}
-			\todo[inline]{explain the motivation of the experiment. I.e. some people showed that oscillators can navigate a maze. Nakagaki studies \P as oscillators at the time. Thus, he puts it into the maze. References are in the thesis: physarum learner.}
+			\FloatBarrier
 
 		\subsubsection{Maximizing food uptake through efficient networks connecting multiple food sources}
 
-			In 2004 the plasmodium of \P was presented with multiple food sources arranged in various regular patters including equilateral triangles and small grids~\cite{Nakagaki20041,nakagaki2004obtaining}. All settings have in common that after the introduction of the food sources the organism changed its shape from a sheetlike plasmodium to a distinct network formed by thick veins. This network was found to balance two competing yet desirable features. Namely, small total length of the tubular network and high tolerance against accidental loss of connectivity. The first feature implies that the biomass required for maintaining veins be small. As a result the bulk of the biomass may concentrate on the food sources themselves in order to maximize food uptake. The second feature makes sure that the organism is not disconnected upon severing of a small number of veins. This allows the organism to keep integrating information as a whole. This is beneficial for instance if a remote part of the vein networks senses another food source. Then this information may be processed by the entire organism leading to a potential redistribution of biomass in order to obtain more food. If the part that finds the new food source is disconnected from the main body, the latter may not learn about the discovery.
+			In 2004 the plasmodium of \P was presented with multiple food sources arranged in various regular patters including equilateral triangles and small grids~\cite{Nakagaki20041,nakagaki2004obtaining}. All settings have in common that after the introduction of the food sources the organism changed its shape from a sheetlike plasmodium to a distinct network featuring by thick veins. This network was found to balance two competing yet desirable features. Namely, small total length of the tubular network and high tolerance against accidental loss of connectivity. The first feature implies that the biomass required for maintaining veins be small. As a result the bulk of the biomass may concentrate on the food sources themselves in order to maximize food uptake. The second feature makes sure that the organism is not disconnected upon severing of a small number of veins. This allows the organism to keep utilizing obtained food and information as a unit. This is beneficial for instance if a remote part of the vein networks senses another food source. Then this information may be processed by the entire organism leading to a potential redistribution of biomass in order to secure more food overall. If the part that finds the new food source is disconnected from the main body, the latter cannot learn about the discovery .
 
-			Experimentally, Nakagaki \etal find that the networks formed by \P resemble minimum Steiner trees with additional cycles which enhance fault tolerance, see \Fref{fig:steiner_tree_experiment}. The authors allow however, that the approximate Steiner points are likely a byproduct of searching for short connections between food sources. The inherent capability of forming functional networks was demonstrated impressively in another experiment where \P was set up to approximate the railway area of Tokyo and the Kansai area~\cite{tero2010rules}.
+			Experimentally, Nakagaki \etal find that the networks formed by \P resemble minimum Steiner trees with additional cycles enhancing fault tolerance, see \Fref{fig:steiner_tree_experiment}. The authors allow however, that the approximate Steiner points are likely to be a mere byproduct of searching for short connections between food sources. The inherent capability of forming functional networks was demonstrated impressively in another experiment where \P was set up to approximate the railway area of Tokyo and the greater Kanto area~\cite{tero2010rules}.
 
 			\begin{figure}
 				\centering
-				\subfloat[Network formation experiment - Approximate MST][]{\includegraphics[width=0.3\linewidth,keepaspectratio]{mst/mst_a.png}}
-				\subfloat[Network formation experiment - Approximate MST with additional cycles][]{\includegraphics[width=0.3\linewidth,keepaspectratio]{mst/mst_b.png}}
-				\subfloat[Network formation experiment - Optimal MST][]{\includegraphics[width=0.3\linewidth,keepaspectratio]{mst/mst_c.png}}
-				\caption[Network of food sources by \P]{ a) A network resembling the minimum Steiner tree connecting six food sources (FS) laid out in a regular pattern. b) An example of a network pattern with an SMT-like pattern in the upper half and a cycle of veins in lower half. c) A sample minimum Steiner tree. Reprinted from~\cite{nakagaki2004obtaining}.}
+				\subfloat[Network formation experiment - Approximate MST][]{\includegraphics[height=0.3\textheight,keepaspectratio]{mst/mst_a.png}}
+				\subfloat[Network formation experiment - Approximate MST with additional cycles][]{\includegraphics[height=0.3\textheight,keepaspectratio]{mst/mst_b.png}}
+				\subfloat[Network formation experiment - Optimal MST][]{\includegraphics[height=0.3\textheight,keepaspectratio]{mst/mst_c.png}}
+				\caption[Network of food sources by \P]{ (a) A network resembling the minimum Steiner tree connecting six food sources (FS) laid out in a regular pattern. (b) An example of a network pattern with an SMT-like pattern in the upper half and a cycle of veins in lower half. (c) A sample minimum Steiner tree. Reprinted from~\cite{nakagaki2004obtaining}.}
 				\label{fig:steiner_tree_experiment}
 			\end{figure}
 
+			\FloatBarrier
+
 		\subsubsection{Minimizing risk associated with illumination}
 
-			In 2007 the \P was faced with a different variant of optimization problem involving the organisms strong tendency to avoid light. 
+			In 2007 the plasmodium of \P was challenged with a different variant of optimization problem involving the organisms strong tendency to avoid light. 
 
-			In the experiment the plasmodium is allowed to spread evenly across a rectangular petri dish. Next, two food sources are introduced at two adjacent corners of the container and a fraction of the container is evenly illuminated with white light. When the whole container is illuminated \P forms a thick vein connecting the two food sources, approximating the shortest path between them. If only a fraction of the container is illuminated, \P still connects the two food sources. However, now the organism is trying to minimize its exposure to light by striking a balance between short connection and a short path through the illuminated area. In fact, the behavior of \P in this experiment is strikingly similar to the behavior of refracting light as given by Snell's law. \Fref{fig:snell} illustrates the experiment.
+			In the experiment the plasmodium is allowed to spread evenly across a rectangular petri dish. Next, two food sources are introduced at two adjacent corners of the container and a fraction of the container is evenly illuminated with white light. When the whole container is illuminated \P forms a thick vein connecting the two food sources, approximating the shortest path between them. If only a fraction of the container is illuminated, \P still connects the two food sources forming a thick vein. However, now the organism is trying to minimize its exposure to light by striking a balance between short connection and a short path through the illuminated area. In fact, the behavior of \P in this experiment is strikingly similar to the behavior of refracting light as given by Snell's law. \Fref{fig:snell} illustrates the experiment.
 
-			The illumination experiments again demonstrates the ability of \P to solve a complex problem. Furthermore, it shows how \P can be effectively steered by light. Together with the possibility to use chemical attractants and repellents, rich avenues to control the behavior of the slime mold are given.
-
+			The illumination experiments yet again demonstrates the ability of \P to solve complex problems. Furthermore, it shows that the behavior of \P can be effectively steered using light. Together with the potential to use chemical attractants and repellents, rich possibilities of controlling the behavior of the slime mold are given.
 
 			\begin{figure}[htop]
 				\centering
@@ -93,14 +97,15 @@
 				\subfloat[Illumination experiment - Full illumination control][]{\includegraphics[width=0.45\linewidth,keepaspectratio]{snell/experiment_panel_c.png}\label{fig:snell:c}}
 				\subfloat[Illumination experiment - Partial illumination][]{\includegraphics[width=0.45\linewidth,keepaspectratio]{snell/experiment_panel_f.png}\label{fig:snell:f}}
 
-				\caption[Classic maze experiment with \P]{(a)  The  rectangular  sheetlike  morphology  of  the organism  immediately  before  the  introduction  of  two  food sources (FS). The region affected by illumination is indicated by a dashed rectangle. In c) and d) the entire region was illuminated. As a result an the shortest path between the two food sources is approximated by a thick vein. In b), d) and f) partial illumination results in a reduced path length was reduced in the illuminated field while the total path length increased. Note the natural variation in the exhibited paths from experiment to experiment.  Reprinted from~\cite{PhysRevLett.99.068104}.}
+				\caption[Classic maze experiment with \P]{(a)  The  rectangular  sheetlike  morphology  of  the organism  immediately  before  the  introduction  of  two  food sources (FS). The region affected by illumination is indicated by a dashed rectangle. In (c) and (d) the entire region was illuminated. As a result an the shortest path between the two food sources is approximated by a thick vein. In (b), (d) and (f) partial illumination results in a reduced path length was reduced in the illuminated field while the total path length increased. Note the natural variation in the exhibited paths from experiment to experiment.  Reprinted from~\cite{PhysRevLett.99.068104}.}
 				\label{fig:snell}
 			\end{figure}
 
+			\FloatBarrier
+
 	\subsection{Natural computing approaches}
 
-		After introducing key experimental observations in the previous section, we move on to discuss common strategies to use the plasmodium of \P as a medium for natural computing. 
-		Here we present examples for the different paradigms discussed in the section natural computing. In the interest of brevity, we focus on the most successful approaches.
+		After a short survey of key experimental observations in the previous section, we move on to discuss common strategies to use the plasmodium of \P as a medium for natural computing. Here we present examples for the different paradigms discussed in the section natural computing. In the interest of brevity, we focus on the most successful approaches and refer the reader to the literature for details.
 
 		% The first approach consists of modeling some aspect of \P with the goal of using this model for \textit{in silico} computation. The major challenge here is to look past the intricate bio-physical processes that are observed experimentally and find a suitable level of abstraction capable of capturing the computational abilities of \P
 		% Once a reliable model has been established, its suitability to solve computational problems can be studied. Since most of the resulting computational algorithms are comparably complicated, they frequently resist theoretical analysis. However, in some cases the algorithms are well understood and convergence properties and runtime guarantees have been established.
@@ -111,11 +116,11 @@
 
 		\subsubsection{Computing inspired by \P}
 
-			The approach starts with modeling some aspect of \P with the goal of using the resulting model for \textit{in silico} computation. The major challenge here is to look past the intricate bio-physical processes that are observed experimentally and find a suitable level of abstraction capable of capturing the computational abilities of \P.
+			The approach aims at modeling certain aspects of \P with the goal of using the resulting models for \textit{in silico} computation. The major challenge here is to look past the intricate bio-physical processes that are observed experimentally and find a suitable level of abstraction capable of reproducing the computational abilities of \P.
 			
 			Shortly after experiments demonstrated how \P forms networks connecting experiments with more than two food sources, Nakagaki \etal went on to explain their own observations on a physiological level in~\cite{Tero2006115}. 
 
-			They claim that the plasmodium of \P organizes itself through the formation of thick veins through which the protoplasm is driven as a result of periodic contractions of the veins themselves, \ie peristaltic pumping. The veins are formed if streaming of protoplasm persist in a given direction for a sufficiently long time~\cite{nakagaki2000interaction}. On a molecular scale Actomyosin fibers carried by the protoplasmic flow attach along the lengths of a vein resulting in tubular structures. The fast flowing protoplasm also causes shear stress, exerting a force which stretch-induces a regular orientation of the otherwise arbitrarily oriented Actomyosin fibers. As a result, veins with a large flux manage to accumulate and orient additional Actomyosin fibers which over time leads to an increase in vein diameter. This in turn further reduces the resistance to flow because under the assumption that the fluid flow in the veins of \P is a Poiseuille flow, the theory of hydrodynamics dictates that it be proportional to the forth power of the vein diameter and inverse proportional to the vein length. It follows that veins that are carrying little flow either because they are long and/or thin or happen to be dead-end veins are likely to degenerate over time as experimentally observed above. At the same time, reinforcing thick and short veins ensures efficient fluid flow, which in turn enables effective circulation and transport of nutrients, nuclei and signaling molecules.
+			They claim that the plasmodium of \P organizes itself through the formation of thick veins through which the protoplasm is driven as a result of periodic contractions of the veins themselves, \ie peristaltic pumping. The veins are formed when streaming of protoplasm persist in a given direction for a sufficiently long time~\cite{nakagaki2000interaction}. On a molecular scale Actomyosin fibers carried by the protoplasmic flow attach themselves to each other forming a mesh of fibers, eventually resulting in tubular structures. The fast flowing protoplasm causes shear stress, exerting a force which stretch-induces a regular orientation of the otherwise arbitrarily oriented Actomyosin fibers along the length of the veins. As a result, veins with a large flux manage to accumulate and orient even more Actomyosin fibers which over time lead to an increase in vein diameter. This in turn further reduces the resistance to flow because under the assumption that the fluid flow in the veins of \P is a Poiseuille flow, the theory of hydrodynamics dictates that it be proportional to the forth power of the vein diameter and inverse proportional to the vein length. It follows that veins which are carrying little flow either are long and/or thin or happen to be dead-end veins. The latter are likely to degenerate over time as experimentally demonstrated in various experiments. At the same time, reinforcing thick and short veins increases the efficiency of fluid flow, which in turn enables effective circulation and transport of nutrients, nuclei and signaling molecules.
 
 			These considerations became the basis of a concise model presented in 2006, which captures the behavior of the slime mold as demonstrated in the maze experiment and lead to the first natural computing approaches based on \P~\cite{Tero2006115}. The model can be formulated on a graph $G = (V,E)$, where the node set $V$ denotes the junction points of veins and the edge set $E$ denotes the veins themselves. Each node $u \in V$ has a hydrodynamic pressure associated with it denoted by $p_u(t)$. Each edge $e = (u,v) \in E$ has a length $L_e$ as well as a time-dependent flow through the vein $Q_e(t)$. Here it is assumed that the flow is a Poiseuille flow such that
 
@@ -154,11 +159,9 @@
 
 			The model thus evolves the thickness of veins in \P according to \Fref{eq:evolution} relying on the values of $p_u(t)$ and $Q_e(t)$ which are governed by \Fref{eq:conservation_of_flow}. For suitable choices of $f(Q_e)$ this system can be discretized and solved numerically~\cite{Tero2006115}. For the graph depicted in~\Fref{fig:maze:abstraction} a stationary state was found where the $D_e(t)$ of all edges that do not belong to the shortest path between $s=N_1$ and $t=N_2$ vanished. At the same time $D_e(t)$ of the edge on the shortest path approached a constant. That is, just like the slime mold, the model has selected the shortest path in the graph between $s$ and $t$. 
 
-			After this initial demonstration of the viability of \P as a medium for natural computing, computer scientists shortly thereafter started to analyze the model and its variants contributing a sequence of convergence proofs and complexity bounds. For suitable choices of $f(Q_e)$ convergence was proven for planar graphs at first~\cite{miyaji2007mathematical,miyaji2008physarum}, but shortly thereafter proofs were extended to general graphs for the original model and for variations thereof~\cite{Bonifaci2012121,bonifaci2013physarum,ito2011convergence,becchetti2013physarum}. The fact that the theoretical properties of the so-called \emph{Physarum solver} are rather well understood is a rarity amongst natural computing algorithms.
+			After this initial demonstration of the viability of \P as a medium for natural computing, mathematicians and computer scientists started to analyze the model and its variants contributing a sequence of convergence proofs and complexity bounds. For suitable choices of $f(Q_e)$ convergence was proven for planar graphs at first~\cite{miyaji2007mathematical,miyaji2008physarum}, but shortly thereafter proofs were extended to general graphs for the original model and for variations thereof~\cite{Bonifaci2012121,bonifaci2013physarum,ito2011convergence,becchetti2013physarum}. The fact that the theoretical properties of the so-called \emph{Physarum solver} are rather well understood is a rarity amongst natural computing algorithms.
 
-			Due to its success and intuitive basic idea, the physarum solver has received much interest in the scientific community. Subsequently it inspired several other algorithms with varying degree of similarity to the original problem. A selection is given in \Fref{tab:list_inspired}. 
-
-			\todo[inline]{present a list of problems for which a solution based on the physarum solver exists}
+			Due to its success and intuitive basic idea, the physarum solver has received much interest in the scientific community. Subsequently it inspired several other algorithms with varying degree of similarity to the original problem. An incomplete selection is given in \Fref{tab:list_inspired}. 
 
 			\begin{table}
 				\centering
@@ -166,46 +169,45 @@
 				\toprule
 				 \multicolumn{1}{c}{Problem}    & Authors  & Year   \\ 
 				\midrule
-				 multiple food sources & ? & ? \\
-				 transport network design & Tero \etal~\cite{tero2010rules} & 2010 \\
-				 linear programs & Johannson, Zou & 2012  \\ 
-				 learning Bayesian network structure & Sch\"on \etal & 2014, thesis  \\ 
-				 stuff & chinesen \etal & ?  \\ 
-
+				 Transport network design & Tero \etal~\cite{tero2010rules} & 2010 \\
+				 Linear programs & Johannson \etal~\cite{Johannson2012} & 2012  \\ 
+				 Learning Bayesian network structure & Sch\"on \etal~\cite{schon2012structure} & 2012, thesis  \\ 
 				\bottomrule
 				\end{tabular}
 				\caption[Computing inspired by \P]{Various problems and solution approaches inspired by the original physarum solver.}
 				\label{tab:list_inspired}
 			\end{table}
 
+			\FloatBarrier
+
 		\subsubsection{Synthesis of \P using computation}
 
 			This approach seeks to faithfully synthesize \P by means of simulation. To do so, it relies on a suitable model capable of mimicking the behavior of the organism. Contrary to the approach presented in the previous section, finding a model that solves a computational problem is not the main goal. However, it has been shown that in the case of \P accurate modeling of the organism produces a model with problem solving capabilities. 
 
-			In 2010 Jones suggested to take a closer look towards the foraging behavior of \P and focus on its ability to move toward food based on sensing chemicals signaling its presence~\cite{jones2010characteristics}. In particular he puts forward the idea of modeling the plasmodium of \P as a virtual 2D material consisting of a large population of virtual agents. These agents reside on a 2D lattice whose nodes are associated with the concentration of a hypothetical chemical representing the presence of food. Agents are equipped with sensors that allow them to orient themselves towards the locally strongest concentration $c$ of this chemical in the lattice. After reorientation the agent deposits a chemical concentration equal to $c$ at its current location and then takes a step forward. This behavior effectively couples neighboring agents with each other, since they read the trails of chemicals that are being deposited by others. Figure \Fref{fig:agent} depicts a schematic of an agent and its sensors.
+			In 2010 Jones suggested to take a closer look towards the foraging behavior of \P and focus on its ability to move toward food based on sensing chemicals signaling its presence~\cite{jones2010characteristics}. In particular he puts forward the idea of modeling the plasmodium of \P as a virtual 2D material consisting of a large population of virtual agents. These agents reside on a 2D lattice whose nodes are associated with the concentration of a hypothetical chemical representing the presence of food. Agents are equipped with sensors that allow them to orient themselves towards the locally strongest concentration $c$ of this chemical in the lattice. After reorientation the agent deposits a chemical concentration equal to $c$ at its current location and then takes a step forward. This behavior effectively couples neighboring agents with each other, since they read and react to the trails of chemicals that are being deposited by others. Figure \Fref{fig:agent} depicts a schematic of an agent and its sensors.
 
 			\begin{figure}
 				\centering
-				\subfloat[Oscillator experiment - Plasmodium][]{\includegraphics[width=\linewidth,keepaspectratio]{agents/agent.png}}
+				\subfloat[Oscillator experiment - Plasmodium][]{\includegraphics[width=0.45\linewidth,keepaspectratio]{agents/agent.png}}
 				
 				\caption[Multi-agent \P - Agent schematic]{Structure of a virtual agent showing central position and $3$ forward-facing offset sensors. Reprinted from~\cite{jones2010characteristics}.}
 				\label{fig:agent}
 			\end{figure}
 
-			Given suitable parameters settings, the collective behavior of all agents leads to the spontaneous formation of transport networks. The emergent global patterns formed by the collective of agents resemble the actin-myosin mesh structure that form the veins of \P, while the individual trajectories of of the agents can be interpreted as the fluid flow in through the veins of the organism, see \Fref{fig:agent_structures}. \Fref{fig:agent_evolution} shows how an initially randomly distributed collection of agents evolves in time to eventually form a network. In particular the model can be tuned such that the collective demonstrates minimization processes observed in~\cite{jones2011influences,jones2015applications,baumgarten2015network}. 
+			Given suitable parameters settings, the collective behavior of all agents leads to the spontaneous formation of transport networks. The emergent global patterns formed by the collective of agents resemble the actin-myosin mesh structure that form the veins of \P, while the individual trajectories of of the agents can be interpreted as protoplasmic fluid flowing through the veins of the organism, see \Fref{fig:agent_structures}. \Fref{fig:agent_evolution} shows how an initially randomly distributed collection of agents evolves in time to eventually form a network. In particular, certain parameters of the model can be tuned such that the collective demonstrates minimization processes observed in~\cite{jones2011influences,jones2015applications,baumgarten2015network}. 
 
 			\begin{figure}
 				\centering
-				\subfloat[Oscillator experiment - Plasmodium][]{\includegraphics[width=0.45\linewidth,keepaspectratio]{agents/agent_structure.png}}
-				\subfloat[Oscillator experiment - Plasmodium][]{\includegraphics[width=0.45\linewidth,keepaspectratio]{agents/agent_flow.png}}
+				\subfloat[Oscillator experiment - Plasmodium][]{\includegraphics[width=\twoimageswide,keepaspectratio]{agents/agent_structure.png}}
+				\subfloat[Oscillator experiment - Plasmodium][]{\includegraphics[width=\twoimageswide,keepaspectratio]{agents/agent_flow.png}}
 				
-				\caption[Multi-agent \P - Collective behavior of agents]{a) A static collective of agents approximates plasmodium actin-myosin mesh. b) A mobile stream of agents approximates protoplasmic flow within the plasmodium. Caption and figures reprinted from~\cite{jones2010characteristics}.}
+				\caption[Multi-agent \P - Collective behavior of agents]{(a) A static collective of agents approximates plasmodium actin-myosin mesh. (b) A mobile stream of agents approximates protoplasmic flow within the plasmodium. Caption and figures reprinted from~\cite{jones2010characteristics}.}
 				\label{fig:agent_structures}
 			\end{figure}
 
 			\begin{figure}
 				\centering
-				\subfloat[Oscillator experiment - Plasmodium][]{\includegraphics[width=\linewidth,keepaspectratio]{agents/evolution.png}}
+				\subfloat[Oscillator experiment - Plasmodium][]{\includegraphics[width=\oneimagewide,keepaspectratio]{agents/evolution.png}}
 				
 				
 				\caption[Multi-agent \P - Evolution of agents]{The coupling of agents with each other causes spontenous formation and evolution of transport networks. Reprinted from~\cite{jones2016multi}.}
@@ -214,7 +216,7 @@
 
 			In~\cite{jones2016multi} it is pointed out that pattern formation in itself does not yet constitute computation. Thus inspired by previous experimental results, it was suggested to add additional external stimuli to the lattice that act as an input and constraints necessary for controlled computation. These can be attractants or repellents that when projected onto the lattice create concentration gradients which agents react to. The placement of additional stimuli act as constraints to the natural minimization process realized by the virtual material. The constrained process may be interpreted as computation. It is halted once the material has reached a stable configuration which is then interpreted as the solution or the output of the computation.
 
-			An example of this approach can be seen in \Fref{fig:agent_mst} where 6 attractants where projected onto the chemoattractant lattice. They correspond to 6 food sources representing the input to the virtual \P experiment. The virtual material is introduced and undergoes morphological changes constrained by the input. After a certain number of iteration the configuration has stabilized, revealing a minimum Steiner tree.
+			An example of this approach can be seen in \Fref{fig:agent_mst} where $6$ attractants where projected onto the chemoattractant lattice. They correspond to $6$ food sources representing the input to the virtual \P experiment. The virtual material is introduced and undergoes morphological changes constrained by the input. After a certain number of iteration the configuration has stabilized, revealing a minimum Steiner tree.
 
 			Further examples of problem solving by synthesizing \P \textit{in silico} are given in \Fref{tab:list_synthesize}.
 
@@ -229,7 +231,7 @@
 				\subfloat[Oscillator experiment - MST][$t=5000$]{\includegraphics[width=0.3\linewidth,keepaspectratio]{agents/mst/6.png}}
 				
 				
-				\caption[Multi-agent \P - Evolution of agents]{Material computation by constraining pattern formation. a) Pattern of 6 nodes inside circular arena is projected into diffusive lattice as attractant stimuli, b) spontaneous formation of transport network from random inoculation positions (4000 particles, SA = 60, RA = 60, SO = 7), c-e) minimization of network is constrained by attraction to nodes, f) final stable configuration (output) is a Steiner minimum tree. Caption and figure reprinted from~\cite{jones2016multi}.}
+				\caption[Multi-agent \P - Evolution of agents]{Material computation by constraining pattern formation. (a) Pattern of $6$ nodes inside circular arena is projected into diffusive lattice as attractant stimuli, (b) spontaneous formation of transport network from random inoculation positions (4000 particles, $SA = 60$, $RA = 60$, $SO = 7$), (c)-(e) minimization of network is constrained by attraction to nodes, (f) final stable configuration (output) is a Steiner minimum tree. Caption and figure reprinted from~\cite{jones2016multi}.}
 				\label{fig:agent_mst}
 			\end{figure}
 
@@ -239,12 +241,13 @@
 				\toprule
 				 \multicolumn{1}{c}{Problem}    & Authors  & Year   \\ 
 				\midrule
-				 convex and concave hull & Jones & ? \\ 
-				 voronoi diagrams & Jones & ? \\ 
-				 travelling salesman & Jones & ? \\ 
-				 data smoothing and filtering & Jones & ? \\ 
-				 cellular atutomata & gunji ? & ? \\ 
-				 cellular atutomata & check physarum learner paper  & ? \\ 
+				 Cellular atutomata & Gunji \etal~\cite{gunji2008minimal,gunji2011adaptive}  & 2008,2011 \\ 
+				 Voronoi diagrams & Jones \etal~\cite{jones2015slime} & 2013 \\ 
+				 Traveling salesman & Jones \etal~\cite{jones2014computation} & 2014 \\ 
+				 Data smoothing and filtering & Jones \etal~\cite{jones2014material} & 2014 \\ 
+				 Convex and concave hull & Jones \etal~\cite{jones2016multi} & 2016 \\ 
+				
+				
 
 
 				\bottomrule
@@ -253,16 +256,15 @@
 				\label{tab:list_synthesize}
 			\end{table}
 
-
-			\todo[inline]{fix citation in this section.}
+			\FloatBarrier
 
 		\subsubsection{Computing with live \P}
 
-			In order to realize computation with live \P, the plasmodium may be interpreted as an parallel amorphous biological computing system. Here input is encoded via the spatial configuration of food sources. The slime mold reacts to the presented stimuli in a dynamic process which is interpreted as computation. Finally, once the organism has settled in response to the input, the configuration of its vein network is interpreted as the output of the process. The initial experiments conducted by Nakagaki \etal can be considered the first successful realization of natural computing with \P as a computing medium. Soon thereafter further possibilities to manipulate and steer the behavior of the plasmodium with chemical attractants, repellents and light where explored, see Table.  
+			In order to realize computation with live \P, the plasmodium may be interpreted as an parallel amorphous biological computing system. Here input is encoded via the spatial configuration of food sources. The slime mold reacts to the presented stimuli in a dynamic process which is interpreted as computation. Finally, once the organism has settled in response to the input, the configuration of its vein network is interpreted as the output of the process. The initial experiments conducted by Nakagaki \etal can be considered the first deliberate realizations of natural computing with \P as a computing medium. Soon thereafter further possibilities to manipulate and steer the behavior of the plasmodium with chemical attractants, repellents and light where explored.  
 
 			Two approaches, amongst the perhaps most impressive, deserve to be mentioned separately. The first demonstrates an \textit{in vivo} solution to the problem of planning a transportation network connecting a set of cities. The second shows how a cleverly devised feedback-control system allows \P to act as an entirely different natural computing system, namely a neural network.
 
-			Tero \etal cultivated \P in a Petri dish designed as a miniature of the greater Kansai region where oat flakes were placed at the locations of Tokyo and other major cities. Geographical constraints such as oceans, lakes and mountains were realized by means of an corresponding illumination mask. Since \P tends to avaid light, growth thus was restricted to more shaded areas. Under these conditions \P soon formed a network spanning all the food sources. Surprisingly, the networks formed by \P were found to resemble the actual railway networks serving the Kansai region balancing efficiency, fault tolerance and cost~\cite{Tero439}. 
+			Tero \etal cultivated \P in a Petri dish designed as a miniature replica of the greater Kanto region where oat flakes were placed at the locations of Tokyo and other major cities. Geographical constraints such as oceans, lakes and mountains were realized by means of an corresponding illumination mask. Since \P tends to avoid light, growth was restricted to the shaded areas. Under these conditions \P soon formed a network spanning all the food sources available in the shade. Surprisingly, the networks formed by \P were found to resemble the actual railway networks serving the Kanto region while balancing efficiency, fault tolerance and cost~\cite{Tero439}. 
 
 			\begin{figure}
 				\centering
@@ -275,21 +277,37 @@
 				\subfloat[Tokyo railway experiment][]{\includegraphics[width=0.3\linewidth,keepaspectratio]{jr/F.png}}
 				
 				
-				\caption[Tokyo railway experiment]{Network formation in \Pp. a) At $t = 0$, a small plasmodium of Physarum was placed at the location of Tokyo in an experimental arena bounded by the Pacific coastline (white border) and supplemented with additional food sources at each of the major cities in the region (white dots). The horizontal width of each panel is $17$ cm. b) to f): The plasmodium grew out from the initial food source with a contiguous margin and progressively colonized each of the food sources. Behind the growing margin, the spreading mycelium resolved into a network of tubes interconnecting the food sources. Caption and figure reprinted from~\cite{Tero439}.}
+				\caption[Tokyo railway experiment]{Network formation in \Pp. (a) At $t = 0$, a small plasmodium of Physarum was placed at the location of Tokyo in an experimental arena bounded by the Pacific coastline (white border) and supplemented with additional food sources at each of the major cities in the region (white dots). The horizontal width of each panel is $17$ cm. (b) to (f): The plasmodium grew out from the initial food source with a contiguous margin and progressively colonized each of the food sources. Behind the growing margin, the spreading mycelium resolved into a network of tubes interconnecting the food sources. Caption and figure reprinted from~\cite{Tero439}.}
 				\label{fig:tokyo}
 			\end{figure}
 
-			The experiment impressively demonstrated that \P can compute a feasible solution to the complex problem of designing a desirable real-life transport network, see \Fref{fig:tokyo}. Note that properly encoding the input combining the location and quality of food sources as well as the illumination mask representing geographical constraints is critical. In addition to the \textit{in vivo} computation, Tero \etal also suggested a model based on the Physarum solver suitable for \textit{in silico} computations.
+			The experiment impressively demonstrated that \P can compute a feasible solution to the complex problem of designing a desirable real-life transport network, see \Fref{fig:tokyo}. Note that properly encoding the input by combining the location and quality of food sources as well as the illumination mask representing geographical constraints is critical. In addition to the \textit{in vivo} computation, Tero \etal also suggested a model based on the Physarum solver suitable for \textit{in silico} computations.
 
-			While Tero \etal harvested the natural computing capabilities that follow from the natural foraging behavior and light-sensitivity of \P, Aono \etal suggest to trick \P into realizing a neural network. Their scheme is as follows: First, they design a star-shaped container representing $8$ identical ``neurons'', see Figure.  When \P is placed inside the container it spreads equally across it. A neuron $x_i$ is considered active if more than a quarter of its area is occupied by the organism. Consequently, any neuron can be deactivated by illuminating its branch, which causes the plasmodium to retreat owing to its photo avoidance. The behavior of \P can be exploited to realize logical functions such as logical NOR by enforcing that a neuron $x_i$ be deactivated if any of its neighbors are active. 
+			\FloatBarrier
 
+			While Tero \etal harvested the natural computing capabilities that follow from the natural foraging behavior and light-sensitivity of \P, Aono \etal suggest to trick \P into realizing a neural network~\cite{Aono:2007:ANC:1284621.1284651,Aono2009,Aono2007,Aono200883}. Their scheme is as follows: First, they design a star-shaped container where the ``legs'' of the container represent $8$ identical ``neurons'', see \Fref{fig:neurons_setup}. 
 
-			Thus, the exploring slime mold influences itself through the illumination pattern as it looks to occupy as large an area of possible. Under these conditions the plasmodium is lead towards certain configurations with a stable illumination pattern, see figure. 
-			When all neurons remain unchanged, the adopted configuration is interpreted as the output of the computation.
+			\begin{figure}[!htbp]
+			\centering
+			\includegraphics[width=\oneimagewide]{neurons/star_container.png}
+			\caption[\P neurons setup]{L.h.s.: \P expanding unrestrictedly from an inoculation site. R.h.s.: \P placed in a star-shaped container. Reprinted from~\cite{Aono:2007:ANC:1284621.1284651}.}
+			\label{fig:neurons_setup}
+			\end{figure}
 
-			Interestingly, the shape changes that the plasmodium undergoes in this setup realizing logical NOR may also be interpreted as state transitions in a McCulloch-Pitts neural network. Such networks have well studied computational capabilities and are known to be capable of approximating computational problems such as the traveling salesman problem. Exploiting the computational power of neural networks, Aono \etal demonstrated that \P can be used to realize an \textit{in vivo} computing system. Indeed, using an experimental setup with $N \times N$ branches managed to guide \P towards a solution of a TSP problem for $N=4$. 
+			When \P is placed inside the star it spreads equally across it. A neuron $x_i$ is considered active if more than a quarter of its area is occupied by the organism. Consequently, any neuron can be deactivated by illuminating its branch, which causes the plasmodium to retreat owing to its photo avoidance. The behavior of \P can be exploited to realize logical functions such as logical NOR by enforcing that a neuron $x_i$ be deactivated if any of its neighbors are active. 
 
-			This astonishing ability to guide and manipulate the behavior of \P is the key to various \textit{in vivo} computing systems devised so far, see \Fref{tab:list_invivo}
+			Thus, the exploring slime mold influences itself through the illumination pattern as it looks to occupy as large an area of possible. Under these conditions the plasmodium is lead towards certain configurations with a stable illumination pattern, see figure. When all neurons remain unchanged, the adopted configuration is interpreted as the output of the computation. \Fref{fig:neurons_states} shows various states the experimental setup can take.
+
+			\begin{figure}[!htbp]
+			\centering
+			\includegraphics[width=\oneimagewide]{neurons/container_states.png}
+			\caption[\P neurons undergoing state transitions]{Time development of the \P neuron system. Illuminated branches of the container are indicated by white rectangles. The thickness oscillation phases are binarized as red and yellow for relaxing (thickness increasing) and contracting (decreasing) states, respectively. The l.h.s. row shows examples of transient states where the plasmodium is still exploring the container. The center row illustrates short term changes in thickness. The r.h.s. shows various stable configurations respecting different illumination patterns. Reprinted from~\cite{Aono:2007:ANC:1284621.1284651}. }
+			\label{fig:neurons_states}
+			\end{figure}
+
+			Interestingly, the shape changes that the plasmodium undergoes in this setup may also be interpreted as state transitions in a McCulloch-Pitts neural network~\cite{Aono:2007:ANC:1284621.1284651}. Such networks have well studied computational capabilities and are known to be capable of approximating computational problems such as the traveling salesman problem. Exploiting the computational power of neural networks, Aono \etal demonstrated that \P can be used to realize an \textit{in vivo} computing system. Indeed, using an experimental setup with $N \times N$ branches it is possible to guide \P towards finding a solution for a TSP problem with $N=4$~\cite{Aono2009}. 
+
+			This astonishing ability to guide and manipulate the behavior of \P is the key to various \textit{in vivo} computing systems devised so far, see \Fref{tab:list_invivo}.
 
 			\begin{table}
 				\centering
@@ -297,21 +315,18 @@
 				\toprule
 				 \multicolumn{1}{c}{Problem}    & Authors  & Year   \\ 
 				\midrule
-				 robot control & ? & ? \\ 
-				 phychip & ? & ? \\ 
-				 logic gates & ? & ? \\ 
-				 
+
+				Logic gates & Tsuda \etal~\cite{tsuda2004robust} & 2004 \\ 
+				Robot control & Tsuda \etal~\cite{Tsuda2007215} & 2007 \\ 
+				PhyChip: Growing computers from Slime Mould & Adamatzky \etal~\cite{adamatzky2012physarum} & 2012 \\ 
+				
 				\bottomrule
 				\end{tabular}
 				\caption[Computing with live \P]{Various applications of \P of as a living computing system.}
 				\label{tab:list_invivo}
 			\end{table}
 
-			Various Aono references:!\cite{Aono:2007:ANC:1284621.1284651,Aono2009,Aono2007,Aono200883}.
-
-			\todo[inline]{fix the references and figures of this section \dots}
-
-		\todo[inline]{find out in which natural computing category adamatzkys reaction diffusion stuff fits \dots}
+			\FloatBarrier
 
 
 
