@@ -17,3 +17,19 @@
 
 \newcommand{\twoimageswide}{0.45\linewidth}
 \newcommand{\oneimagewide}{0.75\linewidth}
+
+\newcommand\tn[1]{\textnormal{#1}} % shortcut macro
+
+
+
+\newcommand*{\fancyrefapplabelprefix}{app}
+
+\renewcommand*{\appendixname}{Appendix}
+\newcommand*{\Frefappname}{App.}
+
+\frefformat{plain}{\fancyrefapplabelprefix}{%
+\Frefappname\fancyrefdefaultspacing#1\@\xspace
+}%
+\Frefformat{plain}{\fancyrefapplabelprefix}{%
+\appendixname\fancyrefdefaultspacing#1\@\xspace
+}%
