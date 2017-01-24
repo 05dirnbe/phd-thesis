@@ -1,5 +1,5 @@
 %!TEX root = ../../../thesis.tex
-\chapter{NEFI}
+\chapter{NEFI}\label{chap:nefi}
 
 	Networks are amongst the central building blocks of many systems. Given a graph of a network, methods from graph theory enable a precise investigation of its properties. Software for the analysis of graphs is widely available and has been applied to study various types of networks. In some applications, graph acquisition is relatively simple. However, for many networks data collection relies on images where graph extraction requires domain-specific solutions.	In this chapter we introduce \NEFI, a tool that extracts graphs from images of networks originating in various domains. \NEFI provides a novel platform allowing practitioners to easily extract graphs from images by combining basic tools from image processing, computer vision and graph theory. Thus this novel software constitutes an alternative to tedious manual graph extraction and special purpose tools. In the context of this thesis \NEFI is used to extract graphs that represent vein networks formed by \P depicted in images acquired in the wet lab experiments discussed in the next chapter.
 
@@ -44,7 +44,7 @@
 
 \section{Network Extraction From Images}	%	2298 words
 
-	NEFI features a collection of image processing routines, segmentation methods and graph algorithms designed to process 2D digital images of various networks and network-like structures. Its main function is executing a so-called extraction pipeline, designed to analyze the structures depicted in the input image. An extraction pipeline, for short pipeline, denotes an ordered sequence of algorithms. A successful execution will return a representation of the network in terms of an edge-weighted undirected planar graph. Computed weights include edge lengths and edge widths. Once the graph is obtained, available graph analysis software~\cite{ICWSM09154,snap,batagelj1998pajek,5437689,loscalzo2008social,hagberg2008exploring} or custom written scripts can be deployed to investigate its properties.
+	\NEFI features a collection of image processing routines, segmentation methods and graph algorithms designed to process 2D digital images of various networks and network-like structures. Its main function is executing a so-called extraction pipeline, designed to analyze the structures depicted in the input image. An extraction pipeline, for short pipeline, denotes an ordered sequence of algorithms. A successful execution will return a representation of the network in terms of an edge-weighted undirected planar graph. Computed weights include edge lengths and edge widths. Once the graph is obtained, available graph analysis software~\cite{ICWSM09154,snap,batagelj1998pajek,5437689,loscalzo2008social,hagberg2008exploring} or custom written scripts can be deployed to investigate its properties.
 
 	A typical pipeline combines algorithms from up to four different classes: preprocessing, segmentation, graph detection and graph filtering, see \Fref{fig:workflow}. A more detailed description follows below. 
 	
@@ -79,7 +79,7 @@
 
 	There are various predefined pipelines to get started immediately. Alternatively, users may freely combine the various methods to build custom pipelines. Both approaches allow the user to experiment with the available methods in order to close in on the optimal settings for the data at hand. Once a pipeline is constructed, it can be saved and reused. \NEFIs simple pipeline concept together with a self-explanatory graphical user interface make working with \NEFI intuitive and straightforward. \NEFI also offers a command-line mode, which is suited for batch processing large quantities of input images.
 
-	NEFI comes with a number of example images from different domains which we use to produce the figures in this work. \Fref{fig:physarum} and \Fref{fig:dragonlfy} show \NEFIs output on two images using predefined pipelines. Blue squares denote the vertices and red lines the edges of the detected graph. The thickness of the detected edges corresponds to thickness of the depicted structures. For comparison the extracted graph is drawn on top of the input image. We present a detailed quantitative evaluation in a later section.
+	\NEFI comes with a number of example images from different domains which we use to produce the figures in this work. \Fref{fig:physarum} and \Fref{fig:dragonlfy} show \NEFIs output on two images using predefined pipelines. Blue squares denote the vertices and red lines the edges of the detected graph. The thickness of the detected edges corresponds to thickness of the depicted structures. For comparison the extracted graph is drawn on top of the input image. We present a detailed quantitative evaluation in a later section.
 
 
 	\begin{figure}
@@ -112,7 +112,7 @@
 
 		The preprocessing section of the pipeline offers various standard image processing algorithms intended to be used prior to the segmentation step. Preprocessing methods may be exploited to positively affect the output of the segmentation step. For example, adding a slight blur to an input image may benefit the overall result by reducing the amount of spurious white pixels appearing in the segmented image. However, blurring too much will remove detail and reduce accuracy in determining the thickness of depicted edges. As a result, we recommend to experiment with different approaches and parameter settings in order to decide how to use preprocessing. For images of sufficient quality we found that excellent results can be obtained without preprocessing. 
 
-		NEFI relies on \href{http://opencv.org/}{OpenCV}~\cite{opencv} for preprocessing and offers Gaussian and Median Blurring, Denoising as well as Bilateral Filtering.
+		\NEFI relies on \href{http://opencv.org/}{OpenCV}~\cite{opencv} for preprocessing and offers Gaussian and Median Blurring, Denoising as well as Bilateral Filtering.
 
 	\subsection{Segmentation Collection}
 
@@ -421,7 +421,7 @@
 
 	\subsection{Analysis of Graphs}
 
-		NEFI is a tool that facilitates data acquisition, which is a necessary precursor to data analysis. To analyze \NEFIs output one can either rely on open source graph analysis software~\cite{ICWSM09154,snap,batagelj1998pajek,5437689,loscalzo2008social,hagberg2008exploring} or write custom programs. \NEFI can output many common graph formats, readable by most popular graph libraries. To get the user started immediately, we provide a minimal Python program that illustrates the basic steps required to perform graph analysis. It shows how to read \NEFIs output from disk and how to compute a histogram of a given edge attribute. The code can be downloaded from \NEFIs project page at the Max Planck Institute for Informatics, \href{http://nefi.mpi-inf.mpg.de}{http://nefi.mpi-inf.mpg.de}.
+		\NEFI is a tool that facilitates data acquisition, which is a necessary precursor to data analysis. To analyze \NEFIs output one can either rely on open source graph analysis software~\cite{ICWSM09154,snap,batagelj1998pajek,5437689,loscalzo2008social,hagberg2008exploring} or write custom programs. \NEFI can output many common graph formats, readable by most popular graph libraries. To get the user started immediately, we provide a minimal Python program that illustrates the basic steps required to perform graph analysis. It shows how to read \NEFIs output from disk and how to compute a histogram of a given edge attribute. The code can be downloaded from \NEFIs project page at the Max Planck Institute for Informatics, \href{http://nefi.mpi-inf.mpg.de}{http://nefi.mpi-inf.mpg.de}.
 
 	\subsection{Third-party Segmentation Software}
 
