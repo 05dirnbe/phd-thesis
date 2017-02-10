@@ -125,7 +125,7 @@
 			These considerations became the basis of a concise model presented in 2006, which captures the behavior of the slime mold as demonstrated in the maze experiment and lead to the first natural computing approaches based on \P~\cite{Tero2006115}. The model can be formulated on a graph $G = (V,E)$, where the node set $V$ denotes the junction points of veins and the edge set $E$ denotes the veins themselves. Each node $u \in V$ has a hydrodynamic pressure associated with it denoted by $p_u(t)$. Each edge $e = (u,v) \in E$ has a length $L_e$ as well as a time-dependent flow through the vein $Q_e(t)$. Here it is assumed that the flow is a Poiseuille flow such that
 
 			\begin{equation}
-				Q_e(t) = \frac{\pi r_e(t)^4}{ 8 \eta} \frac{p_u(t)-p_v(t)}{L_e}
+				Q_e(t) = \frac{\pi r_e(t)^4}{ 8 \eta} \frac{p_u(t)-p_v(t)}{L_e},
 				\label{eq:flow_initial}
 			\end{equation}
 			holds. Here $r_e(t)$ is the diameter of an edge and $\eta$ refers to the viscosity of the protoplasmic fluid. Let $D_e(t) = \pi r(t)^4/ 8 \eta$. Then we can simplify \Fref{eq:flow_initial} to read
