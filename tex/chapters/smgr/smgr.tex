@@ -1,21 +1,23 @@
 %!TEX root = ../../../thesis.tex
-\chapter{Slime Mold Graph Repository}
+\chapter{Slime Mold Graph Repository}\label{chap:smgr}
 
 	In this chapter we introduce the Slime Mold Graph Repository (\SMGR), a novel data collection promoting the visibility, accessibility and reuse of experimental data revolving around network-forming slime molds. By making data readily available to researchers across multiple disciplines, the \SMGR promotes novel research as well as the reproduction of original results. While \SMGR data may take various forms, we stress the importance of graph representations of slime mold networks due to their ease of handling and their large potential for reuse. Data added to the \SMGR stands to gain impact beyond initial publications or even beyond its domain of origin. 
 
 	We initiate the \SMGR with the comprehensive \data focusing on the slime mold \Pp, which we obtained in the course of our original research. It contains sequences of images documenting growth and network formation of the organism under constant conditions. Suitable image sequences depicting the typical \P network structures are used to compute sequences of graphs faithfully capturing them. Given such sequences, node identities are computed, tracking the development of nodes over time. Based on this information we demonstrate two out of many possible ways to begin exploring the data. The entire data set is well-documented, self-contained and ready for inspection via the \SMGR at \href{http://smgr.mpi-inf.mpg.de}{http://smgr.mpi-inf.mpg.de}.
 
+	The present chapter reports on joined work with Mag.~T.~Mehlhorn as well as Prof.~Dr.~K.~Mehlhorn. The former was responsible for the realization of all described wet-lab experiments in the laboratories of the Korea Institute of Science and Technology Europe (\href{www.kist-europe.de}{\textsc{Kist} Europe}).
+
 \section{Introduction}
 
 	Slime molds are interesting and complex organisms providing a rich substrate for interdisciplinary research. One member of the family, \Pp, has received increasing interest as of late resulting in intensive research efforts that continue to shed light on many aspects of this organism. Of particular interest is its ability to form and maintain complex networks. Efforts to improve our understanding of formation, structure and function of these networks are manifold~\cite{Marwan419,tero2010rules,alim2013random,baumgarten2010plasmodial,baumgarten2013functional} and ongoing.
 
- 	A popular two-step approach, not restricted to slime molds, consists of taking images of the networks formed by the organism and converting them to graphs\footnote{In this context graphs denote abstract mathematical objects, subject of Graph Theory, consisting of vertices and edges. Note that some scientific communities traditionally refer to vertices as nodes or sites and to edges as arcs or links.}. First, images are obtained by cultivating \Pp in the wet-lab whilst documenting the development of the organism and its networks. This is a time consuming process which needs to be repeated sufficiently often under constant conditions to acquire a reliable body of observations. 
+ 	A popular two-step approach, not restricted to slime molds, consists of taking images of the networks formed by the organism and converting them to graphs\footnote{In this context graphs denote abstract mathematical objects, subject of Graph Theory, consisting of vertices and edges. Throughout this thesis we will use both terms interchangeably}. First, images are obtained by cultivating \Pp in the wet-lab whilst documenting the development of the organism and its networks. This is a time consuming process which needs to be repeated sufficiently often under constant conditions to acquire a reliable body of observations. 
 
  	The second part requires methods capable of analyzing an image and deriving a faithful graph representation of the network depicted therein. Such methods have become available recently as convenient software packages~\cite{dirnberger2015nefi}. Once graphs are available, concepts and methods from Network Science and Graph Theory directly apply, enabling efficient and detailed investigations of graph properties~\cite{baumgarten2012computational,heaton2012analysis}.
 
  	We stress that both steps are challenging as they require time, special laboratory resources and expert knowledge. Data acquisition and graph extraction in particular, may quickly become serious obstacles deterring interested researchers from starting to work with networks formed by \P. 
 
- 	Despite such difficulties, "graph-based" approaches have been quite successful and various interesting results are available today~\cite{baumgarten2010plasmodial,baumgarten2013functional,fessel2014analytical,fessel2012Physarum,ito2011characterization}. However, data used to establish these results, \ie the graphs and their underlying images themselves, are not nearly as available in many cases. This is unfortunate because due to their ease of handling and their abstraction power, graphs naturally lend themselves to reuse, potentially gaining impact beyond their initial publications or even beyond their domain of origin.
+ 	Despite such difficulties, ``graph-based'' approaches have been quite successful and various interesting results are available today~\cite{baumgarten2010plasmodial,baumgarten2013functional,fessel2014analytical,fessel2012Physarum,ito2011characterization}. However, data used to establish these results, \ie the graphs and their underlying images themselves, are not nearly as available in many cases. This is unfortunate because due to their ease of handling and their abstraction power, graphs naturally lend themselves to reuse, potentially gaining impact beyond their initial publications or even beyond their domain of origin.
 
  	Our own experience shows, that most researchers are, at least in principle, willing to share their valuable data. However, data sharing can be cumbersome and constitutes an extra hurdle discouraging data reuse. To combat this, data needs to be collected and made available in an organized fashion. Similar efforts have become best practice for diverse types of data originating in various fields of science. Examples are numerous including collections of images of cells~\cite{cell}, large graphs~\cite{snap} or experimental data in high energy physics~\cite{hepdata}, to name but a few.
 
@@ -64,42 +66,42 @@
 
 	\begin{figure}
 		\centering
-		\includegraphics[width=\linewidth,keepaspectratio]{setup.png}
+		\includegraphics[width=0.5\linewidth,keepaspectratio]{setup.png}
 		\caption[Setup for wetlab experiments.]{Schematic description of the experimental setup.}
 		\label{fig:setup}
 	\end{figure}
 
 	\begin{figure}
 		\centering
-		\includegraphics[width=\linewidth,keepaspectratio]{physarum_sequence_1.JPG}
+		\includegraphics[width=0.5\linewidth,keepaspectratio]{physarum_sequence_1.JPG}
 		\caption[Crumbs of \P sclerotia forming an inoculation line.]{Crumbs of \P sclerotia forming the inoculation line.}
 		\label{fig:sequence_1}
 	\end{figure}
 
 	\begin{figure}
 		\centering
-		\includegraphics[width=\linewidth,keepaspectratio]{physarum_sequence_2.JPG}
+		\includegraphics[width=0.5\linewidth,keepaspectratio]{physarum_sequence_2.JPG}
 		\caption[The apical zone advances.]{The plasmodium explores the dish. The apical zone advances towards the right side of the dish supported by a complex network that is continuously forming.}
 		\label{fig:sequence_2}
 	\end{figure}
 
 	\begin{figure}
 		\centering
-		\includegraphics[width=\linewidth,keepaspectratio]{physarum_sequence_3.JPG}
+		\includegraphics[width=0.5\linewidth,keepaspectratio]{physarum_sequence_3.JPG}
 		\caption[The onset of network coarsening.]{As the apical zone is about to escape the observation region, the coarsening of the network becomes more pronounced.}
 		\label{fig:sequence_3}
 	\end{figure}
 
 	\begin{figure}
 		\centering
-		\includegraphics[width=\linewidth,keepaspectratio]{physarum_sequence_4.JPG}
+		\includegraphics[width=0.5\linewidth,keepaspectratio]{physarum_sequence_4.JPG}
 		\caption[A complex network of veins within a region of interest.]{The apical zone has moved on, leaving behind a complex network of veins. The dashed rectangle depicts a typical region of interest relevant for subsequent image analysis and graph detection.}
 		\label{fig:sequence_4}
 	\end{figure}
 
 	\begin{figure}
 		\centering
-		\includegraphics[width=\linewidth,keepaspectratio]{physarum_sequence_5.JPG}
+		\includegraphics[width=0.5\linewidth,keepaspectratio]{physarum_sequence_5.JPG}
 		\caption[Graph extracted from the sample region of interest.]{The network within the region of interest has been extracted by \NEFI. Note that no filters have been applied. Dead ends and nodes of degree 2 are visible still, leading to small patches of nodes appearing to clump up. Such artifacts can be removed in suitable post-processing steps.}
 		\label{fig:sequence_5}
 	\end{figure}
@@ -126,7 +128,13 @@
 
 		Let us define the length of a track by the number of nodes it contains. We stress that in general a track need not have length $k$. Tracks may start at any $t=i$ such that $1 \le i \le k$ and end at any $t=j$ such that $i \le j \le k$. In particular tracks of length $1$ are possible. Crucially, any node in a track has at most one predecessor and at most one successor node.
 
-		Let us refer to the edges within a track as \emph{tracking edges}. Tracking edges may connect nodes of temporal distance larger than $1$, \ie $e = (u,v) = ((x_u,y_u,t_u), (x_u,y_u,t_v))$, where $1 \le t_u < t_v \le k$. Such tracks simply ``skip'' nodes between the start and the endpoint of the track and correspond to nodes that have not been observed by \NEFI for some amount of time. Given the continued changes in the network topology observed during the growth of \P such tracks are expected to appear frequently. 
+		Let us refer to the edges within a track as \emph{tracking edges}. Tracking edges may connect nodes of temporal distance larger than one, \ie:
+
+		\begin{equation*}
+			e = (u,v) = ((x_u,y_u,t_u), (x_u,y_u,t_v)) \qquad \text{and} \qquad 1 \le t_u < t_v \le k.
+		\end{equation*}
+
+		Such tracks simply ``skip'' nodes between the start and the endpoint of the track and correspond to nodes that have not been observed by \NEFI for some amount of time. Given the continued changes in the network topology observed during the growth of \P such tracks are expected to appear frequently. 
 
 		Let us elaborate on two effects that impact said topology. First, \P networks tend to coarsen as time goes by. Eventually, this process may cause the thickness of receding veins to slowly drop below the detection threshold of \NEFI. Hence, they disappear from the graphs leading to tracks of length much shorter than $k$. Second, periodic changes in the thickness of veins are observed. It may happen that the thickness of a subset of contracting veins may drop below the detection threshold of \NEFI. As a result, those veins disappear from the graph. However, as the contraction cycle of the vein proceeds its thickness may increase again, eventually exceeding the detection threshold and thereby returning to the graph. These periodic changes in the topology of the graphs naturally lead to tracks that skip a certain number of frames periodically. Both effects are present at the same time and can be observed in the graphs we have obtained.
 
@@ -237,7 +245,7 @@
 
     \begin{figure}
 		\centering
-		\includegraphics[width=0.75\textwidth]{demos/edge_tracking.png}%
+		\includegraphics[width=0.60\textwidth]{demos/edge_tracking.png}%
 		\caption{Development of edge widths for edges $A$ (green triangles) and $B$ (blue circles) as given by their established edge tracks. Note that for track $B$ we have set the value of the edge width to zero whenever the edge was missing. This serves to illustrate the fragmentation of rack $B$ compared to track $A$. The widths are given in units of pixel and time is measured in units of \SI{120}{\second}.}
 		\label{fig:edge_tracking}%
     \end{figure}
@@ -253,10 +261,10 @@
 
 	To enable this, we initiate the \SMGR with an extensive set of raw data, ready-to-use graphs and dedicated methods such as the introduced tracking algorithm. We show the usefulness of time-series of graphs by discussing two out of many possible different approaches to investigate them. First, we discuss how to obtain simple statistical observables for all edges in the graph. In particular, we compute the cumulative distribution of edge widths. Second, we illustrate how the information obtained by the tracking algorithm allows us to explore the time-development of single edges.
 
-	Clearly, future investigations are hardly limited to the examples and suggestion given in this manuscript. It is fair to say that any observable defined on a weighted graph, relevant to \P, can be studied using the \data. In particular, we'd like to stress the implications for evaluating and guiding all sorts of theoretical modeling approaches based on graphs. Any model that produces a prediction which can be formulated as an observable defined on a graph can immediately be tested on the \data. This includes time dependent observables. Predictions that agree with the \SMGR data may increase the trust in a given model, while discrepancies between predictions and data hopefully suggest improvements. Thus, data contained in the \data may be used to drive modeling efforts and help bridge the gap between theory and experiment.
+	Clearly, future investigations are hardly limited to the examples and suggestion given in this manuscript. It is fair to say that any observable defined on a weighted graph, relevant to \P, can be studied using the \data. In particular, we'd like to stress the implications for evaluating and guiding all sorts of theoretical modeling approaches based on graphs. Any model that produces a prediction which can be formulated as an observable defined on a graph can immediately be tested on the \data. This includes time dependent observables. Predictions that agree with \SMGR data may increase the trust in a given model, while discrepancies between predictions and data hopefully suggest improvements. Thus, data contained in the \data may be used to drive modeling efforts and help bridge the gap between theory and experiment.
 
 	We would like the research community to interpret the \SMGR as a twofold challenge. First, we challenge people working on slime molds to contribute their data, enable others and to increase the visibility and impact of their experimental work at the same time. Second, we challenge everyone to use the current contents of the \SMGR and to come up with new ways to enrich our understanding of the interesting organisms that are slime molds.
 	   
 \section{Acknowledgments}
 
-	We are grateful to Prof.~T.~Ueda for providing us with sclerotia and for patiently teaching us to the art of culturing \P. We thank Prof.~M.~Grube and Dr.~C.~Westendorf for their expert advice on slime molds and their support. We acknowledge Prof. A. Manz and Prof. L. Abelmann and their group at the KIST Europe for stimulating discussions. Lastly, we are grateful towards Dr. M. F\"ugger for his encouraging comments and proof-reading.
+	We are grateful to Prof.~T.~Ueda for providing us with sclerotia and for teaching us to the art of culturing \Pp with infinite patience. We thank Prof.~M.~Grube and Dr.~C.~Westendorf for hospitality, support and expert advice on slime molds. We acknowledge Prof.~A.~Manz and Prof.~L.~Abelmann and their group at \href{www.kist-europe.de}{\textsc{Kist} Europe} for stimulating discussions. Lastly, we are grateful towards Dr.~M.~F\"ugger for his encouraging comments and proof-reading.

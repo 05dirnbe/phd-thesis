@@ -1,18 +1,15 @@
 %!TEX root = ../../../thesis.tex
-\chapter{NEFI}\label{chap:nefi}
+\chapter{Network Extraction From Images}\label{chap:nefi}
 
-	Networks are amongst the central building blocks of many systems. Given a graph of a network, methods from graph theory enable a precise investigation of its properties. Software for the analysis of graphs is widely available and has been applied to study various types of networks. In some applications, graph acquisition is relatively simple. However, for many networks data collection relies on images where graph extraction requires domain-specific solutions.	In this chapter we introduce \NEFI, a tool that extracts graphs from images of networks originating in various domains. \NEFI provides a novel platform allowing practitioners to easily extract graphs from images by combining basic tools from image processing, computer vision and graph theory. Thus this novel software constitutes an alternative to tedious manual graph extraction and special purpose tools. In the context of this thesis \NEFI is used to extract graphs that represent vein networks formed by \P depicted in images acquired in the wet lab experiments discussed in the next chapter.
+	Networks are amongst the central building blocks of many systems. Given a graph of a network, methods from graph theory enable a precise investigation of its properties. Software for the analysis of graphs is widely available and has been applied to study various types of networks. In some applications, graph acquisition is relatively simple. However, for many networks data collection relies on images where graph extraction requires domain-specific solutions.	In this chapter we introduce \NEFI, a tool that extracts graphs from images of networks originating in various domains. \NEFI provides a novel platform allowing practitioners to easily extract graphs from images by combining basic tools from image processing, computer vision and graph theory. Thus this novel software constitutes an alternative to tedious manual graph extraction and special purpose tools. In the context of this thesis \NEFI is used exclusively to extract graphs that represent vein networks formed by \P depicted in images acquired in the wet lab experiments discussed in \Fref{chap:smgr}.
 
-	As a large software project, \NEFI was created with the support of several individuals. We like to acknowledge Dr.~Adrian~Neumann who actively participated in this project from the start. Furthermore we like to thank Mag.~T.~Kehl and several students from Saarland University for contributing to the success of this project. A full list of acknowledgments is available at \NEFIs project page here: \href{http://nefi.mpi-inf.mpg.de}{http://nefi.mpi-inf.mpg.de}.
-
-
+	This chapter documents joined work with Dr.~A.~Neumann and Mag.~T.~Kehl.
 
 \section{Introduction}
 
-	The study of complex network-like objects is of increasing importance for multiple scientific domains. 
-	The mathematical study of networks, Graph Theory, formalizes a network's structure by modeling the constituents of a network as \emph{vertices} and the pairwise relations between them as \emph{edges}. Some communities traditionally refer to vertices as nodes or sites and to edges as arcs or links. Networks are ubiquitous in everyday life. Examples are as diverse as the Internet, social networks, transportation networks, metabolic networks, blood vessels or the vein networks of leaves. For a comprehensive review see~\cite{newman2003}. 
+	The study of complex network-like objects is of increasing importance for multiple scientific domains. The mathematical study of networks, Graph Theory, formalizes a network's structure by modeling the constituents of a network as \emph{vertices} and the pairwise relations between them as \emph{edges}\footnote{Some communities traditionally refer to vertices as nodes or sites and to edges as arcs or links.}. Networks are ubiquitous in everyday life. Examples are as diverse as the Internet, social networks, transportation networks, metabolic networks, blood vessels or the vein networks of leaves. For a comprehensive review see~\cite{newman2003}. 
 
-	In situations where the extraction of a mathematical graph from a physical network is easy, the size of graphs that can be analyzed may quickly increase from hundreds to millions of vertices. In such cases it is feasible to build large databases of networks which can be explored automatically using software relying on methods from statistics and graph theory. The combination of a large number of available graphs with dedicated methods of analyzing them yielded many results that changed our understanding of large scale network structures. Unfortunately, digitization of networks is not always easy and remains difficult for many types of networks. Examples include \eg leaf venations, blood vessels or food webs, and therefore ready-to-analyze datasets are often not available. In these cases, investigation on a larger scale requires tedious and sometimes error prone data acquisition.
+	In situations where the extraction of a mathematical graph from a physical network is easy, the size of graphs that can be analyzed may quickly increase from hundreds to millions of vertices. In such cases it is possible to build large databases of networks which can be explored automatically using software relying on methods from statistics and graph theory. The combination of a large number of available graphs with dedicated methods of analyzing them yielded many results that changed our understanding of large scale network structures. Unfortunately, digitization of networks is not always easy and remains difficult for many types of networks. Examples include \eg leaf venations, blood vessels or food webs, and therefore ready-to-analyze datasets are often not available. In these cases, investigation on a larger scale requires tedious and sometimes error prone data acquisition.
 
 	In many experimental settings networks are initially available as high quality images obtained under laboratory control. Before any analysis can take place, it is necessary to extract the associated graphs from these images. This requires the identification of vertices and edges within the depicted structure. This process can quickly become very work-intensive even for smaller networks, which makes automated solutions indispensable. 
 
@@ -27,12 +24,12 @@
 	\begin{itemize}
 		\item They do not build on top of well-established computer vision methods and tend to rely on ad-hoc algorithms. As a result the quality of the method and its implementation could likely be improved. In addition, a lot of time is spent on reimplementing algorithms that are already available in commong libraries. 
 
-		\item They are not implemented at all or only available as pseudo-code.
+		\item They are not implemented at all or only available on paper as pseudo-code.
 
-		\item They are implemented but it is clear that the authors never intended anyone else to use their code. Implementations tend to neglect easy of use, distribution or issues of extendability.
+		\item They are implemented but it is clear that the authors never intended for anyone else to use their code. Resulting implementations tend to neglect easy of use, distribution or issues of extendability.
 	\end{itemize}
 
-	One needs to remember that the primary objective of the work cited above is not the production of reusable software, but of algorithms and tools for solving a concrete research question at hand. The aim is to get the job done. As a result, the time for researching computer vision libraries and implementations, following best software engineering practice or writing documentation respectively is limited. 
+	Naturally, we need to keep in mind that the primary objective of the work cited above is not the production of reusable software, but of algorithms and tools for solving a concrete research question at hand. The aim is to get the job done. As a result, the time for researching computer vision libraries and implementations, following best software engineering practice or writing documentation respectively is limited. 
 
 	From experience we know that when trying to produce an easy-to-use software, a large part of the required work consists of specifying and improving the user-interface as well as working out minor bugs and annoyances. This type of work, while very time consuming, is essential for any software aiming to reach a non-negligible audience. However, efforts like these are hardly attractive to researchers whose focus is on obtaining the next result. While we understand that under these circumstances the aforementioned limitations arise naturally, we strongly believe that it is necessary to overcome those limitations in order to increase the value and the impact of scientific software in general and network extraction software in particular. It is possible to do better.
 
@@ -40,7 +37,7 @@
 
 	We emphasize at this point that we do not claim to introduce novel techniques for image processing or computer vision. Instead, our contribution consists of a reusable, flexible and easily extendable toolbox combining well-known methods, which have become standard in their respective fields of origin, in a meaningful way. By introducing \NEFI, we hope to make these methods more widely accessible, especially to practitioners that are unfamiliar with them.
 
-	\NEFIs segmentation is based on a combination of standard routines available in~\href{http://opencv.org/}{OpenCV},~(2015),~\cite{opencv}. These algorithms are known to perform well on clean and uncluttered images obtained under controlled laboratory conditions. However, on more challenging inputs of low contrast, strong gradients or similar irregularities, their performance is severely reduced. Nevertheless, in these cases more involved algorithms, currently not implemented as part of a reliable library and thus not integrated into \NEFI, may still be able to process these images. To help meet this situation, \NEFI was designed with extendability in mind. As a result users will find it easy to build on-top of \NEFIs code in order to add their own implementations of more sophisticated methods. 
+	\NEFIs segmentation is based on a combination of standard routines available in~\href{http://opencv.org/}{OpenCV}~\cite{opencv}. These algorithms are known to perform well on clean and uncluttered images obtained under controlled laboratory conditions. However, on more challenging inputs of low contrast, strong gradients or similar irregularities, their performance is severely reduced. Nevertheless, in these cases more involved algorithms, currently not implemented as part of a reliable library and thus not integrated into \NEFI, may still be able to process these images. To help meet this situation, \NEFI was designed with extendability in mind. As a result users will hoepfully find it easy to build on-top of \NEFIs code in order to add their own implementations of more sophisticated methods. 
 
 \section{Network Extraction From Images}	%	2298 words
 
@@ -50,7 +47,7 @@
 	
 	\begin{figure}
 		\centering
-		\includegraphics[width=\oneimagewide,keepaspectratio]{workflow.png}
+		\includegraphics[width=0.75\linewidth,keepaspectratio]{workflow.png}
 		\caption[Pipeline components of \NEFI]{A flow chart illustrating \NEFIs pipeline components in green boxes. Dashed arrows depict optional sections of the pipeline. Blue and orange boxes denote \NEFIs input and possible outputs respectively.}
 		\label{fig:workflow}
 	\end{figure}
@@ -59,11 +56,11 @@
 
 	\begin{figure}
 		\centering
-		\subfloat[\NEFIs pipeline - Input image][Input image.]{\includegraphics[width=0.15\linewidth,keepaspectratio]{pipeline/input.jpg}\label{fig:pipeline:input}}\quad
-		\subfloat[\NEFIs pipeline - Segmented image][Segmented image.]{\includegraphics[width=0.15\linewidth,keepaspectratio]{pipeline/segmented.jpg}\label{fig:pipeline:segmented}}\quad
-		\subfloat[\NEFIs pipeline - Skeletonized image][Skeletonized image.]{\includegraphics[width=0.15\linewidth,keepaspectratio]{pipeline/skeleton.jpg}\label{fig:pipeline:skeleton}}\quad
-		\subfloat[\NEFIs pipeline - Detected graph][Detected graph drawn ontop of the input.]{\includegraphics[width=0.15\linewidth,keepaspectratio]{pipeline/full_graph.jpg}\label{fig:pipeline:full_graph}}\quad
-		\subfloat[\NEFIs pipeline - Filtered graph][Filtered graph drawn ontop of the input.]{\includegraphics[width=0.15\linewidth,keepaspectratio]{pipeline/largest_component.jpg}\label{fig:pipeline:largest_component}}\quad
+		\subfloat[\NEFIs pipeline - Input image][Input image.]{\includegraphics[width=0.15\linewidth,keepaspectratio]{pipeline/input.jpg}\label{fig:pipeline:input}}\qquad
+		\subfloat[\NEFIs pipeline - Segmented image][Segmented image.]{\includegraphics[width=0.15\linewidth,keepaspectratio]{pipeline/segmented.jpg}\label{fig:pipeline:segmented}}\qquad
+		\subfloat[\NEFIs pipeline - Skeletonized image][Skeletonized image.]{\includegraphics[width=0.15\linewidth,keepaspectratio]{pipeline/skeleton.jpg}\label{fig:pipeline:skeleton}}\qquad
+		\subfloat[\NEFIs pipeline - Detected graph][Detected graph drawn ontop of the input.]{\includegraphics[width=0.15\linewidth,keepaspectratio]{pipeline/full_graph.jpg}\label{fig:pipeline:full_graph}}\qquad
+		\subfloat[\NEFIs pipeline - Filtered graph][Filtered graph drawn ontop of the input.]{\includegraphics[width=0.15\linewidth,keepaspectratio]{pipeline/largest_component.jpg}\label{fig:pipeline:largest_component}}\qquad
 		\caption[\NEFIs pipeline executed]{Direct comparison of \NEFIs pipeline steps given a slice of an image of a slime mold (\P). From left to right: input image, segmented image, skeletonized image, detected graph and filtered graph. The green square contains a very faint vein which the segmentation did not pick up fully. Thus, the skeleton becomes fragmented which leads to spurious vertices in the detected graph. By applying a graph filter we remove stray vertices without manipulation of the segmented or the skeletonized image. Similar filtering can remove ``dead-ends'', \ie vertices that do not belong to any cycle in the graph.}
 		\label{fig:pipeline}
 	\end{figure}
@@ -73,7 +70,7 @@
 	\begin{figure}
 		\centering
 		\includegraphics[width=\oneimagewide,keepaspectratio]{gui.jpeg}
-		\caption[\NEFIs graphical user interface.]{A screenshot of \NEFIs GUI running on Mac OS. On the left hand side \NEFI lists intermediate results as thumbnails. Bringing the final result to the center workspace allows for direct visual assessment of the quality of the extracted graph. On the right hand side \NEFIs pipeline elements can be accessed via drop-down menus. The image was produced in a collaboration with the KIST Europe.}
+		\caption[\NEFIs graphical user interface.]{A screenshot of \NEFIs GUI running on Mac OS. On the left hand side \NEFI lists intermediate results as thumbnails. Bringing the final result to the center workspace allows for direct visual assessment of the quality of the extracted graph. On the right hand side \NEFIs pipeline elements can be accessed via drop-down menus.}
 		\label{fig:nefi_gui}
 	\end{figure}
 
@@ -84,9 +81,9 @@
 
 	\begin{figure}
 		\centering
-		\subfloat[\P: Input to \NEFI][]{\includegraphics[width=\twoimageswide,keepaspectratio]{p_polycephalum.jpg}\label{fig:physarum:input}}
+		\subfloat[\P: Input to \NEFI][]{\includegraphics[width=\twoimageswide,keepaspectratio]{p_polycephalum.jpg}\label{fig:physarum:input}}\qquad
 		\subfloat[\P: Output of \NEFI][]{\includegraphics[width=\twoimageswide,keepaspectratio]{p_polycephalum_graph.jpg}\label{fig:physarum:graph}}
-		\caption[\P: Input and output of \NEFI]{Extracted graph of the network formed by \P. The left hand side shows the input image depicting the network. The right hand side shows the extracted graph overlayed on top off the same image for direct comparison. Note, that no filters have been applied. The image was produced in a collaboration with the KIST Europe.}
+		\caption[\P: Input and output of \NEFI sied-by-side]{Extracted graph of the network formed by \P. The left hand side shows the input image depicting the network. The right hand side shows the extracted graph overlayed on top off the same image for direct comparison. Note, that no filters have been applied.}
 		\label{fig:physarum}
 	\end{figure}
 
@@ -94,11 +91,11 @@
 	\centering
 		\begin{tikzpicture}
 			\begin{scope}[spy using outlines={rectangle,black,magnification=2.5,size=4cm}]
-			\node {\includegraphics[width=\oneimagewide,keepaspectratio]{dragonfly_optimal.jpeg}};
+			\node {\includegraphics[width=0.8\linewidth,keepaspectratio]{dragonfly_optimal.jpeg}};
 			\spy on (-1,-1) in node (a) [left] at (5.5,-1.5);
 			\end{scope}
 		\end{tikzpicture}
-	\caption[\A: Output of \NEFI]{Extracted graph of the vein network exhibited by a wing of a dragonfly (\A). Note, that after the use of various filters a very clean-looking graph is obtained. Image courtesy of Pam and Richard Winegar.}
+	\caption[\A: Output of \NEFI]{Extracted graph of the vein network exhibited by a wing of a dragonfly (\A). Note, that after the use of various filters an extraordinarily clean-looking graph is obtained. Image courtesy of Pam and Richard Winegar.}
 	\label{fig:dragonlfy}
 	\end{figure}
 
@@ -407,7 +404,7 @@
 			\label{tab:timings}
 		\end{table}
 
-\section{Limitations of NEFI}
+\section{Limitations of NEFI}\label{sec:limitations}
 
 		In\Fref{sec:evaluation} we have seen how the quality of the extracted graph changes depending on the input image and the selected segmentation algorithms. We have established that the major factor determining the quality of the extracted graph is indeed the segmentation step. As a result \NEFIs major limitation naturally arises from the limited domain of effectiveness of \NEFIs general purpose segmentation collection. It's methods do not work very well if the input contains irregular background or color/brightness gradients, has low contrast or insufficient resolution to detect structures that are either too dense or too fine. For these inputs, domain specific algorithms are necessary and should be implemented as extensions for \NEFI. Alternatively, the segmentation step can be entirely outsourced to more specialized third-party software. Given the externally segmented image as an input \NEFIs pipeline may proceed directly with graph detection.
 
@@ -429,7 +426,7 @@
 
 		In this context an interesting tool called Ilastik~\cite{sommer2011ilastik} was brought to our attention. Ilastik offers a so-called \emph{classification workflow} in which a pixel classifier is trained by interactive user inputs. The trained classifier can then be used to automatically segment previously unseen images. Using clues generated by humans can potentially train the classifier to deal with images that are hard for non-supervised, automatic segmentation. The segmented images obtained in this way can then directly be turned into graphs using \NEFI. By cleverly combining \NEFIs graph extraction with with third-party segmentation software \NEFIs major weakness can be circumvented.
 
-\section{Where to Download NEFI and How to Contribute}
+\section{Where to Download NEFI and how to Contribute}
 
 	\NEFI is an open source Python application and available at its project page at Max Planck Institute for Informatics, \href{http://nefi.mpi-inf.mpg.de}{http://nefi.mpi-inf.mpg.de}. \NEFIs homepage includes a gallery of various use-cases and a comprehensive guide containing instructions on how to download, install and use \NEFI on Windows, Mac and Linux. Additionally, a supplementary datasets is available for download there, allowing for a quick evaluation of \NEFIs main features. This dataset can be used to reproduce the figures and evaluation results shown in this manuscript. 
 
@@ -441,6 +438,8 @@
 
 \section{Acknowledgments}
 
-	We thank Prof.~M.~Hauser for sparking our interest in this topic. We thank Prof.~K.~Mehlhorn for supporting this project with valuable comments and encouragement. We thank P.~and R.~Winegar as well as the Korea Institue of Science and Technology Europe for contributing sample data.
+	We thank Prof.~M.~Hauser for his hospitality and for sparking our interest in this topic. We thank P.~and R.~Winegar as well as the Korea Institute of Science and Technology Europe (\href{www.kist-europe.de}{\textsc{Kist} Europe}) for contributing sample data which was critical during the early development stages of \NEFI.
+
+	As a large software project, \NEFI was created with the support of several individuals. In particular we are grateful towards several students from Saarland University for contributing to the code base of \NEFI. A full list of acknowledgments is available at \NEFIs project page here: \href{http://nefi.mpi-inf.mpg.de}{http://nefi.mpi-inf.mpg.de}.
 
 

@@ -2,33 +2,31 @@
 
 \chapter{Guide on how to use NEFI}\label{app:nefi}
 
-\section{Properties of ideal and non-ideal images}
+	Here we document our experiences with using \NEFI. As discussed in \Fref{chap:nefi}, the combination of input image quality and \NEFIs segmentation algorithms makes or breaks the resulting graph. Let us first disucss the properties of ideal and non-ideal input images. Our goal is to give the prospective user an idea of what to avoid and what to look out for regarding inputs. Furthermore, we add some pointers on how to deal with challenging inputs and what one can try to do in order to improve the output of \NEFI. 
 
-	In order to obtain good graph extraction results, \NEFI relies on input of certain quality. In this section we give a description of desirable properties of ideal input images.
+\section{Properties of Ideal and Non-ideal Images}
 
 	Since, the determining factor of the quality of \NEFIs graph extraction is the segmentation step, ideal images should enable a nearly perfect separation of foreground and background. Such images should have a high contrast between the depicted structures of interest and the background. At the same time it is very important that images are free of strong reflections or shadows because such areas are likely to show an even higher contrast to the background than the actual structures of interest. As a result, the segmentation algorithms are prone to identify these regions as foreground causing the actual structures of interest to be ignored. The presence of strong color or brightness gradients can have similar detrimental effects and should thus be prevented if possible. See \Fref{fig:sup:reflection} and \Fref{fig:sup:gradient} for examples of challenging images which \NEFI will have difficulties working with.
 
 	\begin{figure}
 		\centering
-		\includegraphics[width=\linewidth]{reflections.jpeg}
+		\includegraphics[width=0.5\linewidth]{reflections.jpeg}
 		\caption[\NEFIs caveats: Reflections]{This image of \P contains strong light reflections in the upper right quadrant which will cause \NEFIs segmentation algorithms to be lead astray. The fact that the image is not properly focused is less of a problem in comparison.}
 		\label{fig:sup:reflection}
 	\end{figure}
 
 	\begin{figure}
 		\centering
-		\includegraphics[width=\linewidth]{gradient.jpeg}
+		\includegraphics[width=0.5\linewidth]{gradient.jpeg}
 		\caption[\NEFIs caveats: Gradients]{This image of \P was not illuminated evenly from below. As a result it contains a brightness gradient which is detrimental for many of the segmentation algorithms currently implemented in \NEFI. The fact that the image contains a lot of visible noise makes it a bad candidate for processing with \NEFI.}
 		\label{fig:sup:gradient}
 	\end{figure}
-
-	\todo{Fix the typesetting of the images in this chapter \dots}
 
 	Another factor that influences segmentation, and by extension graph detection, are contaminations of different origin. Parts of the image might not belong to the object of interest at all. Such regions should be removed before loading the image into \NEFI, see \Fref{fig:sup:petri_dish}. 
 
 	\begin{figure}
 		\centering
-		\includegraphics[width=\linewidth]{petri_dish.jpeg}
+		\includegraphics[width=0.5\linewidth]{petri_dish.jpeg}
 		\caption[\NEFIs caveats: Non-network objects]{In addition to the network of \P the image contains the edge of a petri dish and pieces of the background on the right hand side (as well as light reflections). Prior to any attempt of processing the image, petri dish and background should be removed.}
 		\label{fig:sup:petri_dish}
 	\end{figure}
@@ -37,7 +35,7 @@
 
 	\begin{figure}
 		\centering
-		\includegraphics[width=\linewidth]{clutter.jpeg}
+		\includegraphics[width=0.5\linewidth]{clutter.jpeg}
 		\caption[\NEFIs caveats: Non-network objects]{The network of \P depicted in the image contains 4 massive, non-network-like regions (oat flakes completely covered by the mold). After segmentation, thinning will try to reduce these regions to lines leading to unpredictable results. The remaining parts of the network, however, will be extracted correctly.}
 		\label{fig:sup:clutter}
 	\end{figure}
@@ -54,21 +52,19 @@
 
 	\begin{figure}
 		\centering
-		\includegraphics[width=\linewidth]{perfect_physarum.jpeg}
+		\includegraphics[width=0.5\linewidth]{perfect_physarum.jpeg}
 		\caption[\NEFIs caveats: An ideal iamge of \P.]{An ideal image of \P. The image has been obtained using bright field illumination and was produced in a collaboration with the KIST Europe.}
 		\label{fig:sup:good1}
 	\end{figure}
 
 	\begin{figure}
 		\centering
-		\includegraphics[width=\linewidth]{perfect_dragonfly.jpeg}
+		\includegraphics[width=0.5\linewidth]{perfect_dragonfly.jpeg}
 		\caption[\NEFIs caveats: An ideal iamge of \A.]{An ideal image depicting a detail of the wing of \A. Image courtesy of Pam and Richard Winegar.}
 		\label{fig:sup:good2}
 	\end{figure}
  
-\section{How to deal with challenging images}
-
-	\todo{Fix the sizes of the images while youre at it \dots}
+\section{Dealing With Challenging Images}
 
 	\NEFI operates best on images produced under controlled laboratory conditions that fulfill the properties described in the last section. However, more difficult inputs may still be processed, but most likely at the cost of reduced quality. Based on our experience when dealing with more challenging input and the results of our evaluation, we are able to formulate the following recommendations for the usage of \NEFI:
 
