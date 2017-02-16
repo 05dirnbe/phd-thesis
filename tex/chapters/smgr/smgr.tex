@@ -238,7 +238,7 @@
 	    \subfloat[]{%
 		\label{fig:split}%
 		\includegraphics[width=0.45\textwidth]{demos/snipped_split.JPG}}%
-		\caption[Demo: Tracking of individual edges]{Details of a \emph{P. polycephalum} graph, see dashed rectangle in \Fref{fig:graph}. L.h.s.: Two edges $A$ and $B$ are selected for tracking. R.h.s.: A third edge appears, causing $B$ to split up and disappear from its track.}
+		\caption[Demo: Setup for tracking of individual edges]{Details of a \emph{P. polycephalum} graph, see dashed rectangle in \Fref{fig:graph}. L.h.s.: Two edges $A$ and $B$ are selected for tracking. R.h.s.: A third edge appears, causing $B$ to split up and disappear from its track.}
     \end{figure}
 
     Finally, \Fref{fig:edge_tracking} shows the edge widths for edges $A$ and $B$ given their established tracks. Note that the track including the thicker edge $A$ runs across the entire $60$ graph in the series. The situation is different for edge $B$ where its track reflects that it is repeatedly split by a third edge which is sometimes present. Eventually, the splitting edge remains established for much of the latter half of the time series, thus superseding edge $B$ permanently. This simple example shows how the tracking information allows one to ``zoom in'' on what happens with selected edges and study them in detail.
@@ -246,7 +246,7 @@
     \begin{figure}
 		\centering
 		\includegraphics[width=0.60\textwidth]{demos/edge_tracking.png}%
-		\caption{Development of edge widths for edges $A$ (green triangles) and $B$ (blue circles) as given by their established edge tracks. Note that for track $B$ we have set the value of the edge width to zero whenever the edge was missing. This serves to illustrate the fragmentation of rack $B$ compared to track $A$. The widths are given in units of pixel and time is measured in units of \SI{120}{\second}.}
+		\caption[Demo: Results for tracking individual edges]{Development of edge widths for edges $A$ (green triangles) and $B$ (blue circles) as given by their established edge tracks. Note that for track $B$ we have set the value of the edge width to zero whenever the edge was missing. This serves to illustrate the fragmentation of rack $B$ compared to track $A$. The widths are given in units of pixel and time is measured in units of \SI{120}{\second}.}
 		\label{fig:edge_tracking}%
     \end{figure}
 
