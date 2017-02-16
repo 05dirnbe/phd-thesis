@@ -19,6 +19,11 @@
 \newcommand{\Pp}{\textit{Physarum~polycephalum}\@\xspace}
 \newcommand{\A}{\textit{A.~junius}\@\xspace}
 
+\newcommand{\Pe}{\emph{Physarum} element\@\xspace}
+\newcommand{\Pes}{\emph{Physarum} elements\@\xspace}
+\newcommand{\Pn}{\emph{Physarum} network\@\xspace}
+\newcommand{\Pns}{\emph{Physarum} networks\@\xspace}
+
 \newcommand{\ie}{i.e.\@\xspace}
 \newcommand{\eg}{e.g.\@\xspace}
 \newcommand{\etc}{etc.\@\xspace}
@@ -42,3 +47,18 @@
 \Frefformat{plain}{\fancyrefapplabelprefix}{%
 \appendixname\fancyrefdefaultspacing#1\@\xspace
 }%
+
+\newcommand*{\fancyreflemlabelprefix}{lem}
+\newcommand*{\lemmaname}{Lemma}
+\newcommand*{\Freflemname}{Lem.}
+\frefformat{plain}{\fancyreflemlabelprefix}{%
+\Freflemname\fancyrefdefaultspacing#1\@\xspace
+}%
+\Frefformat{plain}{\fancyreflemlabelprefix}{%
+\lemmaname\fancyrefdefaultspacing#1\@\xspace
+}%
+
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newcommand{\IR}{\mathbb{R}}
+\newcommand{\IN}{\mathbb{N}}

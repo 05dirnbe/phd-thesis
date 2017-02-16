@@ -1,0 +1,51 @@
+\documentclass{standalone}
+% \usepackage{pgfplots}
+% \pgfplotsset{compat=newest}
+% \usepackage{amsmath}
+% \DeclareMathOperator{\sgn}{sgn}
+
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[
+    axis lines=middle,
+    xlabel=$t$,
+    ylabel={$U$},
+    xmin=-0, xmax=6,
+    ymin=-0.5, ymax=1.5,
+    xtick=\empty,
+    ytick=\empty,
+    extra x ticks={2},
+    extra x tick labels={$t_1$},
+    x tick label style={anchor=north west},
+    function line/.style={
+      red,
+      thick,
+      samples=100,
+    },
+    single dot/.style={
+      red,
+      mark=*,
+    },
+    empty point/.style={
+      only marks,
+      mark=*,
+      mark options={fill=white, draw=black},
+    },
+  ]
+    % \addplot[function line, domain=\pgfkeysvalueof{/pgfplots/xmin}:0] {-1};
+    \addplot[function line, domain=2:\pgfkeysvalueof{/pgfplots/xmax}] {1};
+    \addplot[function line, domain=0:2] {0};
+    \addplot +[function line, mark=none] coordinates {(2, 0) (2, 1)};
+    
+
+    \draw[thick, samples=1000, domain=2:\pgfkeysvalueof{/pgfplots/xmax}] plot({\x},{(1 - (1 * exp((2-\x)*3))}) ;
+    \draw[gray, thick, dotted, samples=100, domain=1:\pgfkeysvalueof{/pgfplots/xmax}] plot(\x,{3*\x-6}) ;
+   
+    \draw[thick, red] (1.5,1) node {$u^*_p(t)$};
+    \draw[thick] (3,0.5) node {$u(t)$};
+   
+    % \addplot[single dot] coordinates {(0, 0)};
+    % \addplot[empty point] coordinates {(0, -1) (0, 1)};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

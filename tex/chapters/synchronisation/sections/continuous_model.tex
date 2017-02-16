@@ -1,0 +1,264 @@
+%!TEX root = ../../../../thesis.tex
+
+
+\section{Continuous Model}\label{sec:continuous}
+
+  We model a single vein of \P, respectively a sufficiently short segment of a vein, by an electrical circuit. Here we rely on the hydraulic analogy where current represents protoplasmic flow and voltage refers to differences in fluid pressure. The basis of our model is formed by the three-element Windkessel model~\cite{hales1733statical,frank1899grundform}, comprised of two resistors and a capacitor. The electrical resistance is analogous to hydrodynamic resistance, a result of viscous dissipation inside the viscoelastic veins of \P. Capacitors accommodate the fact that the veins of \P are not rigid but exhibit a degree of volume compliance. Their addition also prevents changes in current to propagate through the entire network instantaneously as is the case in purely resistive networks. We ignore the inertia of the protoplasmic fluid which in the Windkessel model is captured by inductors. For a full derivation of the Windkessel model we refer the reader to~\cite{olufsen2004deriving}.
+
+  At this point we extend the model by adding active components, namely current controlled voltage sources. These voltage sources create potential differences leading to a current. In this way, they account for the fact that veins of \P act as peristaltic pumps capable of creating pressure differences which induce fluid flow. Figure~\ref{fig:vein} depicts the resulting circuit. Note that the circuit is symmetric, ensuring that its behavior does not depend on the sign of the current flowing through it. 
+
+
+\begin{figure}
+\centering
+\begin{circuitikz}[american voltages]
+\draw
+  % rotor circuit
+  (0,0) to [short, *-] (1,0)
+  to [american controlled voltage source, cV=$u_p$] (2,0) % the pump
+  to [short, i_=$i_p$] (3,0)
+  to [R, l_=$R$] (4,0) % first R
+  to [short] (4.5,0)
+
+  (9,0) to [short, *-] (8,0)
+  to [american controlled voltage source, cV^=$u'_p$] (7,0) % the pump
+  to [short, i^=$i'_p$] (6,0)
+  to [R, l^=$R$] (5,0) % snd R
+  to [short] (4.5,0)
+    
+  (4.5,0) to [C, l_=$C$,i_=$i_C$,v^>=$u_{C}$] (4.5,-2)
+  to [short,-*] (0,-2)
+  
+  (4.5,-2) to [short,-*] (9,-2)
+
+  (0,0) to[open, v=$x$] (0,-2)
+
+  (9.4,0) to[open, v=$y$] (9.4,-2)
+
+  (4.5,-2) to (4.5,-2.0) node[ground] {};
+  
+\end{circuitikz}
+\caption[Electrical model of \P]{Electrical model of a \P vein segment. The two resistors $R$ and the capacitor $C$ form the three-element Windkessel model~\cite{olufsen2004deriving}. The two current controlled voltage sources $u_p$ and $u_p'$ augment the model to include the effects of peristaltic pumping.}
+\label{fig:vein}
+\end{figure}
+
+  
+We specify the behavior of both current controlled voltage sources by:
+
+
+\begin{align}
+  u^*_p(t) &= \max(\min(\beta i_p(t),\hat{U}),-\hat{U})\label{eq:steady}\\
+  \frac{du_p(t)}{dt} &= \alpha (u^*_p(t)-u_p(t))\,,\label{eq:transient}
+\end{align}
+where $\alpha,\beta > 0$ and $\hat{U}> 0$ are fixed.
+To ensure that the currents induced by the current controlled voltage sources are not completely damped by resistances, we further assume that
+\begin{align}
+\beta > R\,.\label{eq:beta}
+\end{align}
+
+Note that \Fref{eq:steady} specifies the limit behavior of the current controlled voltage source. Voltage is directly proportional to current, but cut off symmetrically at $\hat{U}$ and $-\hat{U}$. Thus the output of the current controlled voltage source is capped yielding both negative as well as positive voltages depending on the sign of the current. The constant $\beta$ controls how sensitive the current controlled voltage source reacts to changes in current, see \Fref{fig:steady}.
+
+These choices were inspired by empirical observations linking the diameter of veins of \P to the fluid flow through them. If throughput is high/low, the vein diameter is expected to grow/shrink~\cite{nakagaki2000intelligence}. As a result, effectiveness of the peristaltic pumping is altered since the generated flow is directly proportional to the diameter of the vein. To capture this positive feedback our model is setup such that current is proportional to the voltage of the current controlled voltage source which in turn affects the current. Note that an increase/decrease in vein diameter also decreases/increases the hydrodynamic resistance of the vein. Thus, the electrical resistors $R$ in our model should have a dependency on the current. At this stage of modeling, however, we choose to ignore this dependency in favor of a simpler model. Taking into account the interplay between current and resistance would yield a more accurate model and thus is a strong contender for future augmentations.
+
+\Fref{eq:transient} accounts for the inertia by a first order differential equation. To model the fact that pumping in \P does not adapt arbitrarily fast to changes in fluid flow, we chose to delay the reaction of the current controlled voltage source through the use of a low-pass filter.
+  
+\begin{figure}
+    \centering
+        \subfloat[]{%
+    \label{fig:steady}%
+    \includestandalone[width=.45\textwidth]{steady/steady}}%
+    \qquad
+      \subfloat[]{%
+    \label{fig:transient}%
+    \includestandalone[width=.45\textwidth]{transient/transient}}%
+      \caption[Details for current controlled voltage sources.]{(a) Current controlled voltage $u^*_p(t)$ may not grow uncontrollably but is capped at a constant value. The constant $\beta$ defines the slope of the line passing through the origin. (b) $u_p(t)$ is gained after applying a first order low-pass filter to $u^*_p(t)$. Note that the slope
+      at time $t_1$ is proportional to $\alpha$.}
+\end{figure}
+
+
+\subsection{Putting the model on a graph}
+
+  In the previous section we have defined the basic electronic building block of our model representing a vein segment of \P. In the following we shall refer to it as \Pe. Next we define how \Pes are combined according to a graph $G$ in order to form electronic networks representing arbitrary vein network of \P.
+
+  A {\em Physarum network\/} is specified by a directed graph $G(V,E)$ where each edge $e = (i,j) \in E$ represents a \Pe with $i,j \in V$ with $x$ at node $i$ and $y$ at node $j$, connecting all segments accordingly when they share a common node.
+  Note that solely for the purpose of analysis we assume that edges are directed. By construction, two \Pes which differ only in orientation will behave the same.
+
+  Edges are labeled by a choice for parameters $R,C,\alpha,\beta,\hat{U}$ specifying the electric properties of an \Pe. Note that at this exploratory stage of modeling, any sensible choice of constants allows us to study the model. In particular we may postpone a detailed study of the physical meaning of these constants for now. 
+
+  Furthermore, we add initial values for the capacitor voltage $u_C(0)$ and the initial current controlled voltage source voltages $u_p(t=0)$. Here the choices do not matter since the model is going to adjust these values dynamically in a self-organized manner.
+
+  An {\em execution of a Physarum network\/} is a function that maps each edge in $G$ to a signal $t \mapsto u_C(t)$, tracking the time development of the capacitor voltages in the network defined by $G$.
+
+  Our exposition follows the notational convention to refer to the voltage present at a node $v \in G$ by $u_v$, and adding an index $e \in E$ for variables of the corresponding \Pe. For example, $u_{C,e}$ is the voltage at the capacitance at \Pe $e$.
+
+  We say a \Pn $G$ {\em converges\/} if for its execution we have that $u_{C,e}$ converges for all $e \in G$. We say that a \Pn $G$ {\em dies\/} if it converges, and for all its edges $e \in G$, $i_{p,e} = 0$.
+  
+\begin{figure}
+\centering
+\begin{circuitikz}[american voltages]
+\draw
+  (0,0) to [short, *-] ++(1,0)
+  to [american controlled voltage source, cV=$u_{p,e}$] ++(1,0) % the pump
+  to [short, i_=$i_{p,e}$] ++(1,0)
+  to [R, l^=$R_e$] ++(1,0) % first R
+  to [short] ++(0.5,0)
+  to [C, l_=$C_e$,i_=$i_{C,e}$,v^>=$u_{C,e}$] ++(0,-1.5)
+  to ++(0,0) node[ground] {};
+
+  \draw
+  (0,0) to [short] ++(0,2.5)
+  to [short] ++(1,0)
+  to [american controlled voltage source, cV=$u_{p,e'}$] ++(1,0) % the pump
+  to [short, i_=$i_{p,e'}$] ++(1,0)
+  to [R, l^=$R_{e'}$] ++(1,0) % first R
+  to [short] ++(0.5,0)
+  to [C, l_=$C_{e'}$,i_=$i_{C,e'}$,v^>=$u_{C,e'}$] ++(0,-1.5)
+  to ++(0,0) node[ground] {};
+
+  \draw
+  (0,0) to [short] ++(0,5)
+  to [short] ++(1,0)
+  to [american controlled voltage source, cV=$u_{p,e''}$] ++(1,0) % the pump
+  to [short, i_=$i_{p,e''}$] ++(1,0)
+  to [R, l^=$R_{e''}$] ++(1,0) % first R
+  to [short] ++(0.5,0)
+  to [C, l_=$C_{e''}$,i_=$i_{C,e''}$,v^>=$u_{C,e''}$] ++(0,-1.5)
+  to ++(0,0) node[ground] {};
+
+  \draw
+  (0,0) to [open, v=$u_v$] ++(0,-1.5)
+  to ++(0,0) node[ground] {};
+\end{circuitikz}
+\caption[Example of $3$ \Pes attached to a node.]{Voltage $u_v$ at a node $v \in G$ of degree $3$ with incident edges $e$, $e'$, and $e''$. The r.h.s part of the \Pes are not shown because they do not affect $u_v$.}
+\label{fig:junction}
+\end{figure}
+
+Figure~\ref{fig:junction} depicts an exemplary \Pn featuring a node $v \in G$ with three incident \Pes denoted by $E(v)$. Observe, that we may apply Kirchhoff's voltage law to the junction node $v$, as well as to the paths over each voltage source, resistor, and
+  capacitance of each edge.
+Further, from Kirchhoff's current law at the junction $v$, we have that in-flows must be equal to out-flows at $v$.
+For arbitrary degree the voltage at node $v$ at time $t$ is denoted by $u_v(t)$, thus is determined by,
+\begin{align}
+  \forall e \in E(v):\, (u_{C,e}(t)-u_{p,e}(t)) + i_{p,e}(t)R_e = u_v(t)\\
+  \sum_{e \in E(v)}i_{p,e}(t) = 0\,.
+\end{align}
+In the remainder of this work we assume that all \Pes are identical, \ie have equal $R$ and $C$. This is a strong simplification we believe is necessary to keep the model simple enough for analytic treatment. Relaxing it is non-trivial and subject of future improvements.
+
+Thus,
+\begin{align}
+  u_v = \frac{1}{|E(v)|}\sum_{e \in E(v)}(u_{C,e}-u_{p,e})\,.\label{eq:uv}
+\end{align}
+
+
+\section{Basic Properties of Continuous Model}\label{sec:basic_cont}
+
+  Given the definition of our model, we explore it by establishing some basic properties and investigate \Pns with simple topologies such as rings and trees.
+
+  Let the sum of the charge stored by all capacitors in a \Pn be $Q$. We show that $Q$ is conserved, \ie constant in time.
+
+\begin{lem}\label{lem:inv_cont}
+For all Physarum networks, there exists a $Q \in \IR$ such that,
+\begin{align}
+\forall t\ge 0:\,\sum_{e \in E}C_e u_{C,e}(t) = Q\,.
+\end{align}
+\end{lem}
+\begin{proof}
+Since all capacitors are connected with one end to ground, we may apply Kirchhoff's current law to the ground.
+Thus,  
+\begin{align}
+\sum_{e \in E}i_{C,e}(t) = 0\notag
+\end{align}
+holds. Furthermore for capacitor current $I$ and voltage $U$ it is $I= C \frac{dU}{dt}$. Thus we get,
+\begin{align}
+\sum_{e \in E}C_e\frac{du_{C,e}(t)}{dt} = 0\,\notag
+\end{align}
+and consequently with \Fref{lem:inv_cont},
+\begin{align}
+\frac{d}{dt}\sum_{e \in E}C_eu_{C,e}(t) = \frac{d}{dt} Q = 0\,.\notag
+\end{align}
+\end{proof}
+
+Next let us study \Pns with the topology of a ring. Here \Pes are chained one after another with the last edge connecting back to the start. Interestingly, the analysis implies that these networks show very distinct behavior. 
+
+\begin{lem}\label{lem:ring_cont}
+Let $G$ be a physarum network that is a ring. If $G$ converges, then it converges to either of three steady states:
+\begin{enumerate}
+\item it dies, i.e., for all edges $e$ in $G$, $i_{p,e}=0$,
+\item it does not die, and for all edges $e$ in $G$, $i_{p,e}=\frac{|E|\hat{U}}{\sum_{e \in E} R_e}$,
+\item it does not die, and for all edges $e$ in $G$, $i_{p,e}=-\frac{|E|\hat{U}}{\sum_{e \in E} R_e}$.
+\end{enumerate}
+\end{lem}
+\begin{proof}
+Let $e$ be an arbitrary \Pe in $G$. Since we assume that $G$ has converged the capacitor voltage $u_{C,e}(t)$ is constant. Thus we have
+\begin{align}
+0 = C_e\frac{du_{C,e}(t)}{dt} = i_{C,e}(t)\,,
+\end{align}
+which implies that no current flows into the capacitors. Since charge is conserved and $G$ is a ring, all current must flow through the resistors instead. Thus, for all edges $e \in G$ we have
+\begin{align}
+  i_{p,e}(t) = - i'_{p,e}(t) = i^*\,,
+\end{align}
+illustrating that all currents have identical strength and flow in the same direction provided $i^* \neq 0$. In a ring this is either clock-wise or counter-clockwise. 
+
+Next we substitute $i^*$ in \Fref{eq:steady} and obtain
+
+\begin{align}
+  u_{p,e}(t) = u^*_{p,e}(t) = \max(\min(\beta i^*,\hat{U}),-\hat{U})\, =: u_p,\label{eq:up}
+\end{align}
+showing that the current controlled voltage source voltages are also identical and constant for all $e \in G$.
+Furthermore, the circuit implies that $u'_{p,e}(t) = - u_p = u'_p$.
+
+We next apply Kirchhoff's voltage law along the path cycling the whole ring and obtain,
+\begin{align}
+0 = \sum_{e \in E} (u_p - u'_p - 2 i^* R_e) = 2\sum_{e \in E} (u_p - i^* R_e)\label{eq:sum1}
+\end{align}
+
+Next, we distinguish between three cases for $u_p$, according to \Fref{eq:up}: (i) $u_p = \beta i^*$, (ii) $u_p = \hat{U}$,
+  and (iii) $u_p = -\hat{U}$.
+
+\medskip
+
+\noindent
+{\em Case (i).} Substituting $u_p = \beta i^*$ into \Fref{eq:sum1},
+\begin{align}
+0 = 2 i^*\sum_{e \in E} (\beta - R_e)\,.
+\end{align}
+Since $\beta \neq R_e$ by the assumption, see \Fref{eq:beta}, the above equation is
+  only fulfilled if $i^* = 0$; corresponding to case (i) in the lemma.
+
+\medskip
+  
+\noindent
+{\em Case (ii).} From $u_p = \hat{U}$ and \eqref{eq:sum1},
+\begin{align}
+i^* = \frac{|E|\hat{U}}{\sum_{e \in E} R_e}\,.
+\end{align}
+Since, case (ii) only applies when $\beta i^* > \hat{U}$, we further obtain,
+\begin{align}
+\frac{|E|\beta}{\sum_{e \in E} R_e} > 1\,.
+\end{align}
+Note, that the above is implied by assumption \eqref{eq:beta}.
+
+\medskip
+
+\noindent
+{\em Case (iii).} The proof for case $u_p = -\hat{U}$ is analogous
+  to case (ii). 
+
+\end{proof}
+
+
+\begin{lem}\label{lem:tree_cont}
+Let $G$ be a physarum network that is a tree.
+If $G$ converges, then it dies.
+\end{lem}
+\begin{proof}
+Assume that $G$ converges.
+By definition $u_{C,e}(t)$ is constant for all edges $e$ in $G$. 
+We will show by induction on the distance of an edge $e$ to the leaf edges,
+  that its currents $i_{p,e}$ and $i'_{p,e}$ are $0$.
+
+To begin the induction, consider a leaf edge $e$.
+Without loss of generality we may assume that the $e$ is oriented in a way such that node $x$ in Figure~\ref{fig:vein} is of degree $1$. From Kirchhoff's current law we then have that $i_{p,e} = 0$. From the fact that $G$ converged, we know that $i_{C,e} = 0$. By Kirchhoff's current law it follows that $i'_{C,e} = 0$.
+
+As induction hypothesis, assume that all edges $e$ at distance $\ell \ge 0$ have $i_{p,e} = i'_{p,e} = 0$.
+Consider an edge $e'$ at distance $\ell+1$. Assuming, again without loss of generality, that it is oriented in a way such that its node $x$ is incident to an edge at distance $\ell$. Observe that by the induction hypothesis, $i_{p,e'} = 0$. By arguments analogous to the start of the induction we find that $i'_{C,e'} = 0$ and the inductive step follows.  
+\end{proof}
+  

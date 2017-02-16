@@ -34,10 +34,13 @@
 \usepackage{tikz}
 \usetikzlibrary{spy}
 \usetikzlibrary{arrows}
+\usepackage[europeanresistors,americaninductors]{circuitikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
 
 %math options
-\usepackage[fleqn]{amsmath}
-\usepackage{amssymb}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{algorithm,algorithmic}
 \usepackage[mathic]{mathtools}
 \usepackage{siunitx}
 \sisetup{separate-uncertainty}
@@ -90,4 +93,4 @@
 
 %misc stuff
 \usepackage{blindtext} 				%generates lorem ipsum
-%\usepackage{showframe}				%shows the invisible frames around the text for layouting
+\usepackage{showframe}				%shows the invisible frames around the text for layouting

@@ -1,43 +1,14 @@
 %!TEX root = ../../../thesis.tex
-\chapter{Synchronisation}\label{chap:model}
+\chapter{Modelling flows}\label{chap:model}
 
-\blindtext
+	In this chapter we propose a variant of modeling the oscillatory flows observed in the vein networks formed by the slime mold \Pp as currents in an electric circuit. Our approach is inspired by the modeling of the human cardiovascular system and relies on electronic elements such as resistors, capacitors and current controlled voltage sources to capture the properties of interacting flow-carrying veins of the organism. In particular we map the effects of oscillatory peristaltic pumping to the behavior of a simple interacting electronic circuit, the so-called \Pe. Connecting these elements according to a given graph, yields an electric \Pn. The currents induced by certain networks exhibit complex emergent flow patterns reminiscent of the flows observed in live \P. Due to its relative simplicity the model is amenable to analytic treatment on simple graphs. For such graphs, we present \emph{in silico} investigations in support of the validity of our approach.
 
-\section{A graphic with caption}
+	This chapter documents joined work with Prof.~Martin~Grube and Dr.~M.~F\"uegger. The former provided many valuable insights regarding the biology of \P while the later was the driving force behind the analytic work presented in this chapter.
 
-ü \Fref{fig:oats}! ä \Fref{fig:oats:a}! Look at that~\cite{newman2003structure}.
+	\input{./tex/chapters/synchronisation/sections/introduction.tex}
+	\input{./tex/chapters/synchronisation/sections/introduction_model.tex}
+	\input{./tex/chapters/synchronisation/sections/continuous_model.tex}
+	\input{./tex/chapters/synchronisation/sections/discrete_model.tex}
+	\input{./tex/chapters/synchronisation/sections/simulations.tex}
+	\input{./tex/chapters/synchronisation/sections/discussion.tex}
 
-\begin{figure}
-     \centering
-     \subfloat[][a]{\includegraphics{oats.jpg}\label{fig:oats:a}}
-     \subfloat[][b]{\includegraphics{oats.jpg}\label{fig:oats:b}}
-     \caption[short toc caption]{Comparison of steady state results (a) x method (b) y method}
-     \label{fig:oats}
-\end{figure}
-
-
-\begin{figure}
-     \centering
-     \subfloat[][a]{\includegraphics[width=0.5\linewidth]{slime.jpg}\label{fig:slime:a}}
-     \subfloat[][b]{\includegraphics[width=0.5\linewidth]{slime.jpg}\label{fig:slime:b}}
-     \caption[another short toc caption]{Hello there beautiful. \P is awesome.}
-     \label{fig:slime}
-\end{figure}
-
-\section{A simple table with caption}
-
-Hello, some citation here \Fref{tab:income}.
-
-\begin{table}
-	\centering
-	\begin{tabular}{@{} l *4c @{}}
-	\toprule
-	 \multicolumn{1}{c}{Models}    & A  & B  & C  & D  \\ 
-	\midrule
-	 Model $X$ & X1 & X2 & X3 & X4 \\ 
-	 Model $Y$ & Y1 & Y2 & Y3 & Y4 \\
-	\bottomrule
-	\end{tabular}
-	\caption[another short toc caption]{Slime of type (a) and (b).}
-	\label{tab:income}
-\end{table}

@@ -1,0 +1,98 @@
+%!TEX root = ../../../../thesis.tex
+
+\section{Discrete Model}\label{sec:discrete}
+
+In the following we propose a discrete round model, with rounds $r \in \IN$.
+Again, a \Pn is specified by a graph $G(V,E)$ whose edges are labeled as in the continuous time model.
+For simplicity we assume that all parameters $R,C,\alpha,\beta$ and $\hat{U}$ are the same for all edges.
+
+The discrete model is derived from the continuous model using forward Euler integration. Let $\varepsilon > 0$ denote the step-size, \ie the time between two discrete rounds. We refer the reader to TODO:reference for a basic implementation of the crucial updates defined in this section.
+
+\medskip
+
+\noindent
+{\em Intially at $r=0$:}
+For each edge $e$ in $G$ do:  
+\begin{enumerate}
+\item Set $u_{C,e}(0)$ and $u_{p,e}(0)$ as specified by the edge label.
+\end{enumerate}
+
+\medskip
+
+\noindent
+{\em At each round $r \ge 1$:}
+\begin{enumerate}
+\item Update node voltages (TODO:reference): in the continuous model we determine node voltages according to \eqref{eq:uv}.
+We follow the same approach in the discrete model.
+Let $v$ be a node in $G$. Without loss of generality we assume that all edges incident to $v$ are oriented as in \Fref{fig:vein} with $v$ connected to $x$.
+Then,
+\begin{align}
+u_v(r-1) = \frac{1}{|E(v)|}\sum_{e \in E(v)}(u_{C,e}(r-1)-u_{p,e}(r-1))\,.\label{eq:dis:u}
+\end{align}
+
+\item Update capacitance voltages (TODO:reference): in the continuous model, for each edge $e=(v,w)$ in $G$, we have
+\begin{align}
+  C\frac{d u_{C,e}(t)}{dt} &= i_{C,e}(t) = i_{p,e}(t) + i'_{p,e}(t)\notag\\
+  &= \frac{u_v(t)+u_w(t)+u_{p,e}(t)+u'_{p,e}(t)-2u_{C,e}(t)}{R}\,.
+\end{align}
+By first order discretization, we thus obtain
+\begin{align}
+  &u_{C,e}(r) = u_{C,e}(r-1) +\notag\\
+  &+\frac{u_v(r-1)+u_w(r-1)+u_{p,e}(r-1)+u'_{p,e}(r-1)-2u_{C,e}(r-1)}{RC\varepsilon^{-1}}\,.\label{eq:dis:uC}
+\end{align}
+
+\item Update current controlled voltages (TODO:reference): for each edge $e$ in $G$:
+\begin{align}
+i_{p,e}(r-1) &= \frac{u_v(r-1)+u_{p,e}(r-1)-u_{C,e}(r-1)}{R}\\  
+u^*_{p,e}(r) &= \max(\min(\beta i_{p,e}(r-1),\hat{U}),-\hat{U})\\
+u_{p,e}(r)   &= u^*_{p,e}(r)(1-e^{-\alpha \varepsilon})+ u_{p,e}(r-1)e^{-\alpha \varepsilon}
+\end{align}
+Analogously, for the right voltage source, set
+\begin{align}
+i'_{p,e}(r-1) &= \frac{u_w(r-1)+u_{p,e}(r-1)-u_{C,e}(r-1)}{R}\\  
+{u'}^*_{p,e}(r) &= \max(\min(\beta i'_{p,e}(r-1),\hat{U}),-\hat{U})\\
+u'_{p,e}(r)   &= {u'}^*_{p,e}(r)(1-e^{-\alpha \varepsilon})+ u'_{p,e}(r-1)e^{-\alpha \varepsilon}
+\end{align}
+
+\end{enumerate}
+
+\medskip
+
+
+\section{Basic Properties of Discrete Model}\label{sec:basic_disc}
+
+We show that the dynamic system of capacitor voltages can be written as a linear system of potentially changing matrices.
+
+\begin{lem}\label{lem:stochastic}
+Let $G$ be a physarum system and $u_C(r)$ be the column-vector formed by all $u_{C,e}$, where $e$ is an edge in $G$, in an arbitrary fixed order.
+If $\frac{2\varepsilon}{RC} < 1$ then,  
+\begin{align}
+\forall r\ge 1:\,u_C(r)=A(t) \cdot u_C(r-1)\,,
+\end{align}
+with $A(t)$ being a matrix whose column-sums are $1$, diagonal entries lower bounded by some $\gamma > 0$, and $A_{e,e'} = 0$
+  if $e$ and $e'$ are non-incident.
+\end{lem}
+\begin{proof}
+Let $r > 0$.
+From \eqref{eq:dis:uC} we have
+\begin{align}
+  &u_{C,e}(r) = \left(1-\frac{2\varepsilon}{RC}\right)u_{C,e}(r-1) +\notag\\
+  &+\frac{u_v(r-1)+u_{p,e}(r-1)}{RC\varepsilon^{-1}} + \frac{u_w(r-1)+u'_{p,e}(r-1)}{RC\varepsilon^{-1}}\,.\label{eq:dis:uC2}
+\end{align}
+For an edge $e = (v,w)$, we denote $v(e) = v$ and $w(e) = w$.
+From \eqref{eq:dis:u}, we obtain
+\begin{align}
+\sum_{e \in E}u_{v(e)}(r-1) = \frac{1}{|E(v)|}\sum_{e \in E}\sum_{e' \in E(v(e))}(u_{C,e'}(r-1)-u_{p,e'}(r-1))\,,\label{eq:dis:u:v1}\\
+\sum_{e \in E}u_{w(e)}(r-1) = \frac{1}{|E(w)|}\sum_{e \in E}\sum_{e' \in E(w(e))}(u_{C,e'}(r-1)-u_{p,e'}(r-1))\,.\label{eq:dis:u:w1}
+\end{align}
+....
+
+\end{proof}
+
+From Lemma~\ref{lem:stochastic} we obtain the following analogon to Lemma~\ref{lem:inv_cont}.
+\begin{lem}\label{cor:inv_disc}
+For all physarum networks, there exists a $U \in \IR$ such that,
+\begin{align}
+\forall r\ge 0:\,\sum_{e \in E}u_{C,e}(r) = U\,.
+\end{align}
+\end{lem}
