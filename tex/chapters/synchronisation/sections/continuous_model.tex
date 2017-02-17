@@ -46,7 +46,7 @@ We specify the behavior of both current controlled voltage sources by:
 
 
 \begin{align}
-  u^*_p(t) &= \max(\min(\beta i_p(t),\hat{U}),-\hat{U})\label{eq:steady}\\
+  u^*_p(t) &= \max(\min(\beta \cdot i_p(t),\hat{U}),-\hat{U})\label{eq:steady}\\
   \frac{du_p(t)}{dt} &= \alpha (u^*_p(t)-u_p(t))\,,\label{eq:transient}
 \end{align}
 where $\alpha,\beta > 0$ and $\hat{U}> 0$ are fixed.
@@ -170,7 +170,7 @@ holds. Furthermore for capacitor current $I$ and voltage $U$ it is $I= C \frac{d
 \begin{align}
 \sum_{e \in E}C_e\frac{du_{C,e}(t)}{dt} = 0\,\notag
 \end{align}
-and consequently with \Fref{lem:inv_cont},
+and hence,
 \begin{align}
 \frac{d}{dt}\sum_{e \in E}C_eu_{C,e}(t) = \frac{d}{dt} Q = 0\,.\notag
 \end{align}

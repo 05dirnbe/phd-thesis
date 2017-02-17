@@ -58,7 +58,25 @@
 \lemmaname\fancyrefdefaultspacing#1\@\xspace
 }%
 
+\newcommand*{\fancyrefcodelabelprefix}{code}
+\newcommand*{\codename}{Code Listing}
+\newcommand*{\Frefcodename}{Code Listing}
+\frefformat{plain}{\fancyrefcodelabelprefix}{%
+\Frefcodename\fancyrefdefaultspacing#1\@\xspace
+}%
+\Frefformat{plain}{\fancyrefcodelabelprefix}{%
+\codename\fancyrefdefaultspacing#1\@\xspace
+}%
+
 \newtheorem{thm}{Theorem}
 \newtheorem{lem}{Lemma}
 \newcommand{\IR}{\mathbb{R}}
 \newcommand{\IN}{\mathbb{N}}
+
+%is required for code listings
+\newenvironment{codesnippet}{\captionsetup{type=listing}}{}
+\SetupFloatingEnvironment{listing}{name=Code Listing}
+
+%date format for thesis title page
+\newdateformat{thesisdate}{%
+\monthname[\THEMONTH] \THEYEAR}

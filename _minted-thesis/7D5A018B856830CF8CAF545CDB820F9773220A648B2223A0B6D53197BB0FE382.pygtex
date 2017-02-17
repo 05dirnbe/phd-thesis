@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{simulation}\PYG{p}{(}\PYG{n}{graph}\PYG{p}{,} \PYG{n}{epsilon} \PYG{o}{=} \PYG{l+m+mf}{0.01}\PYG{p}{,} \PYG{n}{max\PYGZus{}iterations} \PYG{o}{=} \PYG{l+m+mi}{3000}\PYG{p}{):}
+
+	\PYG{n}{number\PYGZus{}of\PYGZus{}iterations} \PYG{o}{=} \PYG{l+m+mi}{0}
+
+	\PYG{k}{while} \PYG{n+nb+bp}{True}\PYG{p}{:}
+
+		\PYG{n}{update\PYGZus{}node\PYGZus{}voltage}\PYG{p}{(}\PYG{n}{graph}\PYG{p}{)}
+		\PYG{n}{update\PYGZus{}voltage\PYGZus{}source}\PYG{p}{(}\PYG{n}{graph}\PYG{p}{,} \PYG{n}{epsilon}\PYG{p}{)}
+		\PYG{n}{update\PYGZus{}edge\PYGZus{}capacitor\PYGZus{}voltage}\PYG{p}{(}\PYG{n}{graph}\PYG{p}{,} \PYG{n}{epsilon}\PYG{p}{)}
+
+		\PYG{n}{number\PYGZus{}of\PYGZus{}iterations} \PYG{o}{+=} \PYG{l+m+mi}{1}
+
+		\PYG{k}{if} \PYG{n}{number\PYGZus{}of\PYGZus{}iterations} \PYG{o}{\PYGZgt{}=} \PYG{n}{max\PYGZus{}iterations}\PYG{p}{:}
+			\PYG{k}{print} \PYG{l+s+s2}{\PYGZdq{}Reached the maximum number of iterations:\PYGZdq{}}\PYG{p}{,} \PYG{n}{max\PYGZus{}iterations}
+			\PYG{k}{break}
+
+	\PYG{k}{return} \PYG{n}{graph}
+\end{Verbatim}

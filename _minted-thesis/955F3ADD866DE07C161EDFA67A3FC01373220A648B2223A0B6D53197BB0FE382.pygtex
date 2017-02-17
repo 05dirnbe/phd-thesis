@@ -1,0 +1,49 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{update\PYGZus{}node\PYGZus{}voltage}\PYG{p}{(}\PYG{n}{graph}\PYG{p}{):}
+	\PYG{c+c1}{\PYGZsh{} d\PYGZus{}u[\PYGZdq{}U\PYGZdq{}] \PYGZhy{}\PYGZhy{}\PYGZgt{} voltage at node u}
+	\PYG{c+c1}{\PYGZsh{} d\PYGZus{}e[\PYGZdq{}Uc\PYGZdq{}] \PYGZhy{}\PYGZhy{}\PYGZgt{} capacitor voltage at edge e}
+	\PYG{c+c1}{\PYGZsh{} d\PYGZus{}e[\PYGZdq{}R?\PYGZdq{}] \PYGZhy{}\PYGZhy{}\PYGZgt{} resistance at edge e}
+	\PYG{c+c1}{\PYGZsh{} d\PYGZus{}e[\PYGZdq{}Up\PYGZus{}?\PYGZdq{}] \PYGZhy{}\PYGZhy{}\PYGZgt{} current controlled voltage source voltage}
+
+	\PYG{k}{for} \PYG{n}{u}\PYG{p}{,} \PYG{n}{d\PYGZus{}u} \PYG{o+ow}{in} \PYG{n}{graph}\PYG{o}{.}\PYG{n}{nodes\PYGZus{}iter}\PYG{p}{(}\PYG{n}{data}\PYG{o}{=}\PYG{n+nb+bp}{True}\PYG{p}{):}
+
+		\PYG{n}{R\PYGZus{}map} \PYG{o}{=} \PYG{p}{\PYGZob{}\PYGZcb{}}
+		\PYG{n}{Uc\PYGZus{}map} \PYG{o}{=} \PYG{p}{\PYGZob{}\PYGZcb{}}
+		\PYG{n}{edge\PYGZus{}counter} \PYG{o}{=} \PYG{l+m+mi}{0}
+
+		\PYG{k}{if} \PYG{n}{graph}\PYG{o}{.}\PYG{n}{degree}\PYG{p}{(}\PYG{n}{u}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{:}
+
+			\PYG{k}{for} \PYG{n}{\PYGZus{}}\PYG{p}{,}\PYG{n}{\PYGZus{}}\PYG{p}{,}\PYG{n}{d\PYGZus{}e} \PYG{o+ow}{in} \PYG{n}{graph}\PYG{o}{.}\PYG{n}{in\PYGZus{}edges\PYGZus{}iter}\PYG{p}{(}\PYG{n}{u}\PYG{p}{,} \PYG{n}{data}\PYG{o}{=}\PYG{n+nb+bp}{True}\PYG{p}{):}
+				\PYG{n}{d\PYGZus{}u}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}U\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{d\PYGZus{}e}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}Uc\PYGZdq{}}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{n}{d\PYGZus{}e}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}Up\PYGZus{}2\PYGZdq{}}\PYG{p}{]}
+
+			\PYG{k}{for} \PYG{n}{\PYGZus{}}\PYG{p}{,}\PYG{n}{\PYGZus{}}\PYG{p}{,}\PYG{n}{d\PYGZus{}e} \PYG{o+ow}{in} \PYG{n}{graph}\PYG{o}{.}\PYG{n}{out\PYGZus{}edges\PYGZus{}iter}\PYG{p}{(}\PYG{n}{u}\PYG{p}{,} \PYG{n}{data}\PYG{o}{=}\PYG{n+nb+bp}{True}\PYG{p}{):}
+				\PYG{n}{d\PYGZus{}u}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}U\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{d\PYGZus{}e}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}Uc\PYGZdq{}}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{n}{d\PYGZus{}e}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}Up\PYGZus{}1\PYGZdq{}}\PYG{p}{]}
+
+		\PYG{k}{elif} \PYG{n}{graph}\PYG{o}{.}\PYG{n}{degree}\PYG{p}{(}\PYG{n}{u}\PYG{p}{)} \PYG{o}{\PYGZgt{}=} \PYG{l+m+mi}{2}\PYG{p}{:}
+
+			\PYG{k}{for} \PYG{n}{\PYGZus{}}\PYG{p}{,}\PYG{n}{\PYGZus{}}\PYG{p}{,}\PYG{n}{d\PYGZus{}e} \PYG{o+ow}{in} \PYG{n}{graph}\PYG{o}{.}\PYG{n}{in\PYGZus{}edges\PYGZus{}iter}\PYG{p}{(}\PYG{n}{u}\PYG{p}{,} \PYG{n}{data}\PYG{o}{=}\PYG{n+nb+bp}{True}\PYG{p}{):}
+
+				\PYG{n}{R\PYGZus{}map}\PYG{p}{[}\PYG{n}{edge\PYGZus{}counter}\PYG{p}{]} \PYG{o}{=} \PYG{n}{d\PYGZus{}e}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}R2\PYGZdq{}}\PYG{p}{]}
+				\PYG{n}{Uc\PYGZus{}map}\PYG{p}{[}\PYG{n}{edge\PYGZus{}counter}\PYG{p}{]} \PYG{o}{=} \PYG{n}{d\PYGZus{}e}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}Uc\PYGZdq{}}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{n}{d\PYGZus{}e}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}Up\PYGZus{}2\PYGZdq{}}\PYG{p}{]}
+				\PYG{n}{edge\PYGZus{}counter} \PYG{o}{+=} \PYG{l+m+mi}{1}
+
+			\PYG{k}{for} \PYG{n}{\PYGZus{}}\PYG{p}{,}\PYG{n}{\PYGZus{}}\PYG{p}{,}\PYG{n}{d\PYGZus{}e} \PYG{o+ow}{in} \PYG{n}{graph}\PYG{o}{.}\PYG{n}{out\PYGZus{}edges\PYGZus{}iter}\PYG{p}{(}\PYG{n}{u}\PYG{p}{,} \PYG{n}{data}\PYG{o}{=}\PYG{n+nb+bp}{True}\PYG{p}{):}
+
+				\PYG{n}{R\PYGZus{}map}\PYG{p}{[}\PYG{n}{edge\PYGZus{}counter}\PYG{p}{]} \PYG{o}{=} \PYG{n}{d\PYGZus{}e}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}R1\PYGZdq{}}\PYG{p}{]}
+				\PYG{n}{Uc\PYGZus{}map}\PYG{p}{[}\PYG{n}{edge\PYGZus{}counter}\PYG{p}{]} \PYG{o}{=} \PYG{n}{d\PYGZus{}e}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}Uc\PYGZdq{}}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{n}{d\PYGZus{}e}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}Up\PYGZus{}1\PYGZdq{}}\PYG{p}{]}
+				\PYG{n}{edge\PYGZus{}counter} \PYG{o}{+=} \PYG{l+m+mi}{1}
+
+
+			\PYG{n}{R\PYGZus{}product} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{prod}\PYG{p}{(} \PYG{n}{R\PYGZus{}map}\PYG{o}{.}\PYG{n}{values}\PYG{p}{()} \PYG{p}{)}
+			\PYG{n}{combined\PYGZus{}resistance} \PYG{o}{=} \PYG{n+nb}{sum}\PYG{p}{(} \PYG{p}{[} \PYG{n}{np}\PYG{o}{.}\PYG{n}{prod}\PYG{p}{(}\PYG{n}{e}\PYG{p}{)} \PYG{k}{for} \PYG{n}{e} \PYG{o+ow}{in} \PYG{n}{combinations}\PYG{p}{(}\PYG{n}{R\PYGZus{}map}\PYG{o}{.}\PYG{n}{values}\PYG{p}{(),}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{R\PYGZus{}map}\PYG{o}{.}\PYG{n}{values}\PYG{p}{())}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{p}{])}
+
+			\PYG{n}{current} \PYG{o}{=} \PYG{l+m+mf}{0.0}
+
+			\PYG{k}{for} \PYG{n}{key} \PYG{o+ow}{in} \PYG{n}{R\PYGZus{}map}\PYG{o}{.}\PYG{n}{keys}\PYG{p}{():}
+
+				\PYG{n}{current} \PYG{o}{+=} \PYG{n}{R\PYGZus{}product} \PYG{o}{*} \PYG{p}{(}\PYG{n+nb}{float}\PYG{p}{(}\PYG{n}{Uc\PYGZus{}map}\PYG{p}{[}\PYG{n}{key}\PYG{p}{])}\PYG{o}{/}\PYG{n}{R\PYGZus{}map}\PYG{p}{[}\PYG{n}{key}\PYG{p}{])}
+
+			\PYG{n}{voltage} \PYG{o}{=} \PYG{n}{current} \PYG{o}{/} \PYG{n}{combined\PYGZus{}resistance}
+
+			\PYG{n}{d\PYGZus{}u}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}U\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{voltage}
+\end{Verbatim}

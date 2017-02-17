@@ -6,7 +6,7 @@ In the following we propose a discrete round model, with rounds $r \in \IN$.
 Again, a \Pn is specified by a graph $G(V,E)$ whose edges are labeled as in the continuous time model.
 For simplicity we assume that all parameters $R,C,\alpha,\beta$ and $\hat{U}$ are the same for all edges.
 
-The discrete model is derived from the continuous model using forward Euler integration. Let $\varepsilon > 0$ denote the step-size, \ie the time between two discrete rounds. We refer the reader to TODO:reference for a basic implementation of the crucial updates defined in this section.
+The discrete model is derived from the continuous model using forward Euler integration. Let $\varepsilon > 0$ denote the step-size, \ie the time between two discrete rounds. We refer the reader to \Fref{app:code} for a basic implementation of the crucial updates defined in this section.
 
 \medskip
 
@@ -22,7 +22,7 @@ For each edge $e$ in $G$ do:
 \noindent
 {\em At each round $r \ge 1$:}
 \begin{enumerate}
-\item Update node voltages (TODO:reference): in the continuous model we determine node voltages according to \eqref{eq:uv}.
+\item Update node voltages (\Fref{code:node_voltage}): in the continuous model we determine node voltages according to \Fref{eq:uv}.
 We follow the same approach in the discrete model.
 Let $v$ be a node in $G$. Without loss of generality we assume that all edges incident to $v$ are oriented as in \Fref{fig:vein} with $v$ connected to $x$.
 Then,
@@ -30,7 +30,7 @@ Then,
 u_v(r-1) = \frac{1}{|E(v)|}\sum_{e \in E(v)}(u_{C,e}(r-1)-u_{p,e}(r-1))\,.\label{eq:dis:u}
 \end{align}
 
-\item Update capacitance voltages (TODO:reference): in the continuous model, for each edge $e=(v,w)$ in $G$, we have
+\item Update capacitance voltages (\Fref{code:capacitor_voltage}): in the continuous model, for each edge $e=(v,w)$ in $G$, we have
 \begin{align}
   C\frac{d u_{C,e}(t)}{dt} &= i_{C,e}(t) = i_{p,e}(t) + i'_{p,e}(t)\notag\\
   &= \frac{u_v(t)+u_w(t)+u_{p,e}(t)+u'_{p,e}(t)-2u_{C,e}(t)}{R}\,.
@@ -41,17 +41,17 @@ By first order discretization, we thus obtain
   &+\frac{u_v(r-1)+u_w(r-1)+u_{p,e}(r-1)+u'_{p,e}(r-1)-2u_{C,e}(r-1)}{RC\varepsilon^{-1}}\,.\label{eq:dis:uC}
 \end{align}
 
-\item Update current controlled voltages (TODO:reference): for each edge $e$ in $G$:
+\item Update current controlled voltages (\Fref{code:current_controlled_voltage_sources}): for each edge $e$ in $G$:
 \begin{align}
-i_{p,e}(r-1) &= \frac{u_v(r-1)+u_{p,e}(r-1)-u_{C,e}(r-1)}{R}\\  
-u^*_{p,e}(r) &= \max(\min(\beta i_{p,e}(r-1),\hat{U}),-\hat{U})\\
-u_{p,e}(r)   &= u^*_{p,e}(r)(1-e^{-\alpha \varepsilon})+ u_{p,e}(r-1)e^{-\alpha \varepsilon}
+i_{p,e}(r-1) &= \frac{u_v(r-1)+u_{p,e}(r-1)-u_{C,e}(r-1)}{R}\label{eq:left_up_18}\\  
+u^*_{p,e}(r) &= \max(\min(\beta i_{p,e}(r-1),\hat{U}),-\hat{U})\label{eq:left_up_19}\\
+u_{p,e}(r)   &= u^*_{p,e}(r)(1-e^{-\alpha \varepsilon})+ u_{p,e}(r-1)e^{-\alpha \varepsilon}\label{eq:left_up_20}
 \end{align}
 Analogously, for the right voltage source, set
 \begin{align}
-i'_{p,e}(r-1) &= \frac{u_w(r-1)+u_{p,e}(r-1)-u_{C,e}(r-1)}{R}\\  
-{u'}^*_{p,e}(r) &= \max(\min(\beta i'_{p,e}(r-1),\hat{U}),-\hat{U})\\
-u'_{p,e}(r)   &= {u'}^*_{p,e}(r)(1-e^{-\alpha \varepsilon})+ u'_{p,e}(r-1)e^{-\alpha \varepsilon}
+i'_{p,e}(r-1) &= \frac{u_w(r-1)+u_{p,e}(r-1)-u_{C,e}(r-1)}{R}\label{eq:right_up_21}\\  
+{u'}^*_{p,e}(r) &= \max(\min(\beta i'_{p,e}(r-1),\hat{U}),-\hat{U})\label{eq:right_up_22}\\
+u'_{p,e}(r)   &= {u'}^*_{p,e}(r)(1-e^{-\alpha \varepsilon})+ u'_{p,e}(r-1)e^{-\alpha \varepsilon}\label{eq:right_up_23}
 \end{align}
 
 \end{enumerate}

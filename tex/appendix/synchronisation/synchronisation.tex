@@ -1,3 +1,195 @@
 %!TEX root = ../../../thesis.tex
 
-\todo{\dots add code listings and connect them to the proper chapter.}
+\chapter{Simulation Code}\label{app:code}
+
+	Here we list the basic code snippets which constitute the heart of the numerical simulation of our model. They serve merely as an illustration and written documentation of the simulation setup and are not intended to provide a run-able program\footnote{The snippets listed here fully describe the entire non-trivial part of our simulation. We omit code of minor concern such as the creation of test graphs, initialization and data logging.}. A complete run-able version of our simulation is available for download at the \href{https://people.mpi-inf.mpg.de/~mtd/}{authors page}.
+
+\begin{codesnippet}
+\begin{minted}[linenos=true]{python}
+from itertools import combinations
+import networkx as nx
+import numpy as np
+\end{minted}
+\captionof{listing}{Required python libaries.  \mintinline{python}{networkx} provides graph support~\cite{schult2008exploring}.}
+\label{code:libaries}
+\end{codesnippet}
+
+
+\begin{codesnippet}
+\begin{minted}[linenos=true,linenos=true,tabsize=2,breaklines]{python}
+def simulation(graph, epsilon = 0.01, max_iterations = 3000):
+
+	number_of_iterations = 0
+
+	while True:
+		
+		update_node_voltage(graph)
+		update_voltage_source(graph, epsilon)
+		update_edge_capacitor_voltage(graph, epsilon)
+		
+		number_of_iterations += 1	
+
+		if number_of_iterations >= max_iterations:
+			print "Reached the maximum number of iterations:", max_iterations
+			break
+
+	return graph
+\end{minted}
+\captionof{listing}{Setup of the simulation. Note that the sequence of updates is different from \Fref{sec:discrete}. This change simplifies computation but does not affect the results.}
+\label{code:simulation}
+\end{codesnippet}
+
+
+\begin{codesnippet}
+\begin{minted}[linenos=true,tabsize=2,breaklines]{python}
+
+def update_node_voltage(graph):
+	# d_u["U"] --> voltage at node u
+	# d_e["Uc"] --> capacitor voltage at edge e
+	# d_e["R?"] --> resistance at edge e
+	# d_e["Up_?"] --> current controlled voltage source voltage
+
+	for u, d_u in graph.nodes_iter(data=True):
+			
+		R_map = {}
+		Uc_map = {}
+		edge_counter = 0
+
+		if graph.degree(u) == 1:
+
+			for _,_,d_e in graph.in_edges_iter(u, data=True):
+				d_u["U"] = d_e["Uc"] - d_e["Up_2"]
+
+			for _,_,d_e in graph.out_edges_iter(u, data=True):
+				d_u["U"] = d_e["Uc"] - d_e["Up_1"]
+
+		elif graph.degree(u) >= 2:
+
+			for _,_,d_e in graph.in_edges_iter(u, data=True):
+
+				R_map[edge_counter] = d_e["R2"]
+				Uc_map[edge_counter] = d_e["Uc"] - d_e["Up_2"]
+				edge_counter += 1
+
+			for _,_,d_e in graph.out_edges_iter(u, data=True):
+
+				R_map[edge_counter] = d_e["R1"]
+				Uc_map[edge_counter] = d_e["Uc"] - d_e["Up_1"]
+				edge_counter += 1
+
+
+			R_product = np.prod( R_map.values() )
+			combined_resistance = sum( [ np.prod(e) for e in combinations(R_map.values(),len(R_map.values())-1) ])
+
+			current = 0.0
+
+			for key in R_map.keys():
+
+				current += R_product * (float(Uc_map[key])/R_map[key])
+
+			voltage = current / combined_resistance
+		
+			d_u["U"] = voltage
+
+\end{minted}
+\captionof{listing}{Function updating the voltages for all nodes. Implements \Fref{eq:uv}. Using the dictionaries \mintinline{python}{R_map} and \mintinline{python}{R_map} in conjunction with \mintinline{python}{np.prod} and \mintinline{python}{combinations} yields a convenient way to compute the required sums and products.}
+\label{code:node_voltage}
+\end{codesnippet}
+
+
+\begin{codesnippet}
+\begin{minted}[autogobble=true,tabsize=2,linenos=true,breaklines]{python}
+def update_current_controlled_voltage_sources(graph, epsilon):
+	# d_e["beta_?"] --> property beta
+	# d_e["alpha_?"] --> property alpha
+	# d_e["Upmax"] --> cap for current controlled voltage source
+	
+	def voltage_delay(Up_target, Up_current, alpha, epsilon):
+		
+		c = np.exp((-1)*epsilon*alpha)
+		
+		return Up_target * (1 - c) + Up_current * c
+
+		for n, d_u in graph.nodes_iter(data=True):
+
+			for u,v,d_e in graph.out_edges_iter(n,data=True):
+
+				# equation 18, here "Uc" = Uc(r-1) in the text
+				I1 = (d_u["U"] + d_e["Up_1"] - d_e["Uc"])/d_e["R1"]
+				d_e["I1"] = I1
+
+				beta_1 = d_e["beta_factor"]*d_e["R1"]
+				Up_max = d_e["Upmax"]
+				Up_min = (-1)*d_e["Upmax"]
+				alpha = d_e["alpha_factor"]/(d_e["R1"]*d_e["C"])
+
+				# equation 19
+				Up_target = max(min(Up_max, beta_1 * I1), Up_min)
+	
+				Up_current = voltage_delay(Up_target, Up_current = d_e["Up_1"], alpha, epsilon)
+
+				d_e["Up_old_1"] = d_e["Up_1"]
+				d_e["Up_1"] = Up_current
+
+			for u,v,d_e in graph.in_edges_iter(n,data=True):
+
+				# equation 21, here "Uc" = Uc(r-1) in the text
+				I2 = (d_u["U"] + d_e["Up_2"] - d_e["Uc"])/d_e["R2"]
+				d_e["I2"] = I2
+
+				beta_2 = d_e["beta_factor"]*d_e["R2"]
+				Up_max = d_e["Upmax"]
+				Up_min = (-1)*d_e["Upmax"]
+				alpha = d_e["alpha_factor"]/(d_e["R2"]*d_e["C"])
+
+				# equation 22
+				Up_target = max(min(Up_max, beta_2 * I2), Up_min)
+				# equation 23
+				Up_current = voltage_delay(Up_target, Up_current = d_e["Up_2"], alpha, epsilon)
+
+				d_e["Up_old_2"] = d_e["Up_2"]
+				d_e["Up_2"] = Up_current
+\end{minted}
+
+\captionof{listing}{Updates for current controlled voltage source. Implements \Fref{eq:left_up_18}, \Fref{eq:left_up_19} and \Fref{eq:left_up_20} for the l.h.s and \Fref{eq:right_up_21}, \Fref{eq:right_up_22} and \Fref{eq:right_up_23} for r.h.s voltage source respectively.}
+	\label{code:current_controlled_voltage_sources}
+\end{codesnippet}
+
+
+\begin{codesnippet}
+\begin{minted}[linenos=true,tabsize=2,breaklines]{python}
+
+def update_edge_capacitor_voltage(graph, epsilon):
+	# d_e["I1"] --> current ip at edge e
+	# d_e["I2"] --> current ip* at edge e
+	# d_e["C"] --> capacity of capacitor at edge e
+	# d_e["Up_old_?"] --> previous value of d_e["Up_?"]
+	
+	for n in graph.nodes_iter():
+
+		# examine out edges for node n
+		for u,v,d_e in graph.out_edges_iter(n, data=True):
+
+			C = d_e["C"]
+			r1 = d_e["R1"]
+			r2 = d_e["R2"]
+			p1 = d_e["Up_old_1"]
+			p2 = d_e["Up_old_2"]
+						
+			Ux = graph.node[u]["U"]
+			Uy = graph.node[v]["U"]
+
+			a = euler_step_size/(r1*C)
+			b = euler_step_size/(r2*C)
+			
+			Uc = Ux*a + Uy*b + d_e["Uc"] + euler_step_size/(r1*C)*((d_e["Up_old_1"] + d_e["Up_old_2"]) - 2*d_e["Uc"]) 
+
+			d_e["Uc"] = Uc
+
+	# the following quantity is an invariant
+	Ucs = sum(nx.get_edge_attributes(graph,"Uc").values())		
+\end{minted}
+
+\captionof{listing}{Function updating the capacitor voltages for all edges. The quantity \mintinline{python}{Ucs} is the sum over all capacitor voltages and invariant by \Fref{lem:inv_cont} since $C_e = C \quad \forall e \in E$ as determined by the intital conditions.}
+\label{code:capacitor_voltage}
+\end{codesnippet}
