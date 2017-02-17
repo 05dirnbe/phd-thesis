@@ -37,7 +37,7 @@
   (4.5,-2) to (4.5,-2.0) node[ground] {};
   
 \end{circuitikz}
-\caption[Electrical model of \P]{Electrical model of a \P vein segment. The two resistors $R$ and the capacitor $C$ form the three-element Windkessel model~\cite{olufsen2004deriving}. The two current controlled voltage sources $u_p$ and $u_p'$ augment the model to include the effects of peristaltic pumping.}
+\caption[The basic \Pe]{Electrical model of a \P vein segment. The two resistors $R$ and the capacitor $C$ form the three-element Windkessel model~\cite{olufsen2004deriving}. The two current controlled voltage sources $u_p$ and $u_p'$ augment the model to include the effects of peristaltic pumping.}
 \label{fig:vein}
 \end{figure}
 
@@ -70,7 +70,7 @@ These choices were inspired by empirical observations linking the diameter of ve
       \subfloat[]{%
     \label{fig:transient}%
     \includestandalone[width=.45\textwidth]{transient/transient}}%
-      \caption[Details for current controlled voltage sources.]{(a) Current controlled voltage $u^*_p(t)$ may not grow uncontrollably but is capped at a constant value. The constant $\beta$ defines the slope of the line passing through the origin. (b) $u_p(t)$ is gained after applying a first order low-pass filter to $u^*_p(t)$. Note that the slope
+      \caption[Definitions for current controlled voltage sources]{(a) Current controlled voltage $u^*_p(t)$ may not grow uncontrollably but is capped at a constant value. The constant $\beta$ defines the slope of the line passing through the origin. (b) $u_p(t)$ is gained after applying a first order low-pass filter to $u^*_p(t)$. Note that the slope
       at time $t_1$ is proportional to $\alpha$.}
 \end{figure}
 
@@ -128,7 +128,7 @@ These choices were inspired by empirical observations linking the diameter of ve
   (0,0) to [open, v=$u_v$] ++(0,-1.5)
   to ++(0,0) node[ground] {};
 \end{circuitikz}
-\caption[Example of $3$ \Pes attached to a node.]{Voltage $u_v$ at a node $v \in G$ of degree $3$ with incident edges $e$, $e'$, and $e''$. The r.h.s part of the \Pes are not shown because they do not affect $u_v$.}
+\caption[A node with $3$ \Pes attached]{Voltage $u_v$ at a node $v \in G$ of degree $3$ with incident edges $e$, $e'$, and $e''$. The r.h.s part of the \Pes are not shown because they do not affect $u_v$.}
 \label{fig:junction}
 \end{figure}
 

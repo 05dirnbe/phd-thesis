@@ -1,6 +1,6 @@
 %!TEX root = ../../../thesis.tex
 
-\chapter{A Short Guide on Using NEFI}\label{app:nefi}
+\chapter{Guide on Using NEFI}\label{app:nefi}
 
 	Here we document our experiences with using \NEFI. As discussed in \Fref{chap:nefi}, the combination of input image quality and \NEFIs segmentation algorithms makes or breaks the resulting graph. Let us first disucss the properties of ideal and non-ideal input images. Our goal is to give the prospective user an idea of what to avoid and what to look out for regarding inputs. Furthermore, we add some pointers on how to deal with challenging inputs and what one can try to do in order to improve the output of \NEFI. 
 
@@ -11,14 +11,14 @@
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.5\linewidth]{reflections.jpeg}
-		\caption[\NEFIs caveats: Reflections]{This image of \P contains strong light reflections in the upper right quadrant which will cause \NEFIs segmentation algorithms to be lead astray. The fact that the image is not properly focused is less of a problem in comparison.}
+		\caption[\NEFIs caveats - Reflections]{This image of \P contains strong light reflections in the upper right quadrant which will cause \NEFIs segmentation algorithms to be lead astray. The fact that the image is not properly focused is less of a problem in comparison.}
 		\label{fig:sup:reflection}
 	\end{figure}
 
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.5\linewidth]{gradient.jpeg}
-		\caption[\NEFIs caveats: Gradients]{This image of \P was not illuminated evenly from below. As a result it contains a brightness gradient which is detrimental for many of the segmentation algorithms currently implemented in \NEFI. The fact that the image contains a lot of visible noise makes it a bad candidate for processing with \NEFI.}
+		\caption[\NEFIs caveats - Gradients]{This image of \P was not illuminated evenly from below. As a result it contains a brightness gradient which is detrimental for many of the segmentation algorithms currently implemented in \NEFI. The fact that the image contains a lot of visible noise makes it a bad candidate for processing with \NEFI.}
 		\label{fig:sup:gradient}
 	\end{figure}
 
@@ -27,7 +27,7 @@
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.5\linewidth]{petri_dish.jpeg}
-		\caption[\NEFIs caveats: Non-network objects]{In addition to the network of \P the image contains the edge of a petri dish and pieces of the background on the right hand side (as well as light reflections). Prior to any attempt of processing the image, petri dish and background should be removed.}
+		\caption[\NEFIs caveats - Non-network objects]{In addition to the network of \P the image contains the edge of a petri dish and pieces of the background on the right hand side (as well as light reflections). Prior to any attempt of processing the image, petri dish and background should be removed.}
 		\label{fig:sup:petri_dish}
 	\end{figure}
 
@@ -36,7 +36,7 @@
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.5\linewidth]{clutter.jpeg}
-		\caption[\NEFIs caveats: Non-network objects]{The network of \P depicted in the image contains 4 massive, non-network-like regions (oat flakes completely covered by the mold). After segmentation, thinning will try to reduce these regions to lines leading to unpredictable results. The remaining parts of the network, however, will be extracted correctly.}
+		\caption[\NEFIs caveats - Non-network objects]{The network of \P depicted in the image contains 4 massive, non-network-like regions (oat flakes completely covered by the mold). After segmentation, thinning will try to reduce these regions to lines leading to unpredictable results. The remaining parts of the network, however, will be extracted correctly.}
 		\label{fig:sup:clutter}
 	\end{figure}
 
@@ -53,14 +53,14 @@
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.5\linewidth]{perfect_physarum.jpeg}
-		\caption[\NEFIs caveats: An ideal iamge of \P.]{An ideal image of \P. The image has been obtained using bright field illumination and was produced in a collaboration with the KIST Europe.}
+		\caption[\NEFIs strengths - An ideal image of \P]{An ideal image of \P. The image has been obtained using bright field illumination and was produced in a collaboration with the KIST Europe.}
 		\label{fig:sup:good1}
 	\end{figure}
 
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.5\linewidth]{perfect_dragonfly.jpeg}
-		\caption[\NEFIs caveats: An ideal iamge of \A.]{An ideal image depicting a detail of the wing of \A. Image courtesy of Pam and Richard Winegar.}
+		\caption[\NEFIs strengths - An ideal image of \A]{An ideal image depicting a detail of the wing of \A. Image courtesy of Pam and Richard Winegar.}
 		\label{fig:sup:good2}
 	\end{figure}
  

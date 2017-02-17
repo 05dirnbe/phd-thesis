@@ -48,7 +48,7 @@
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.75\linewidth,keepaspectratio]{workflow.png}
-		\caption[Pipeline components of \NEFI]{A flow chart illustrating \NEFIs pipeline components in green boxes. Dashed arrows depict optional sections of the pipeline. Blue and orange boxes denote \NEFIs input and possible outputs respectively.}
+		\caption[\NEFIs pipeline concept]{A flow chart illustrating \NEFIs pipeline components in green boxes. Dashed arrows depict optional sections of the pipeline. Blue and orange boxes denote \NEFIs input and possible outputs respectively.}
 		\label{fig:workflow}
 	\end{figure}
 
@@ -56,11 +56,11 @@
 
 	\begin{figure}
 		\centering
-		\subfloat[\NEFIs pipeline - Input image][Input image.]{\includegraphics[width=0.15\linewidth,keepaspectratio]{pipeline/input.jpg}\label{fig:pipeline:input}}\qquad
-		\subfloat[\NEFIs pipeline - Segmented image][Segmented image.]{\includegraphics[width=0.15\linewidth,keepaspectratio]{pipeline/segmented.jpg}\label{fig:pipeline:segmented}}\qquad
-		\subfloat[\NEFIs pipeline - Skeletonized image][Skeletonized image.]{\includegraphics[width=0.15\linewidth,keepaspectratio]{pipeline/skeleton.jpg}\label{fig:pipeline:skeleton}}\qquad
-		\subfloat[\NEFIs pipeline - Detected graph][Detected graph drawn ontop of the input.]{\includegraphics[width=0.15\linewidth,keepaspectratio]{pipeline/full_graph.jpg}\label{fig:pipeline:full_graph}}\qquad
-		\subfloat[\NEFIs pipeline - Filtered graph][Filtered graph drawn ontop of the input.]{\includegraphics[width=0.15\linewidth,keepaspectratio]{pipeline/largest_component.jpg}\label{fig:pipeline:largest_component}}\qquad
+		\subfloat[\NEFIs pipeline - Input image][Input image]{\includegraphics[width=0.15\linewidth,keepaspectratio]{pipeline/input.jpg}\label{fig:pipeline:input}}\qquad
+		\subfloat[\NEFIs pipeline - Segmented image][Segmented image]{\includegraphics[width=0.15\linewidth,keepaspectratio]{pipeline/segmented.jpg}\label{fig:pipeline:segmented}}\qquad
+		\subfloat[\NEFIs pipeline - Skeletonized image][Skeletonized image]{\includegraphics[width=0.15\linewidth,keepaspectratio]{pipeline/skeleton.jpg}\label{fig:pipeline:skeleton}}\qquad
+		\subfloat[\NEFIs pipeline - Detected graph][Detected graph drawn ontop of the input]{\includegraphics[width=0.15\linewidth,keepaspectratio]{pipeline/full_graph.jpg}\label{fig:pipeline:full_graph}}\qquad
+		\subfloat[\NEFIs pipeline - Filtered graph][Filtered graph drawn ontop of the input]{\includegraphics[width=0.15\linewidth,keepaspectratio]{pipeline/largest_component.jpg}\label{fig:pipeline:largest_component}}\qquad
 		\caption[\NEFIs pipeline executed]{Direct comparison of \NEFIs pipeline steps given a slice of an image of a slime mold (\P). From left to right: input image, segmented image, skeletonized image, detected graph and filtered graph. The green square contains a very faint vein which the segmentation did not pick up fully. Thus, the skeleton becomes fragmented which leads to spurious vertices in the detected graph. By applying a graph filter we remove stray vertices without manipulation of the segmented or the skeletonized image. Similar filtering can remove ``dead-ends'', \ie vertices that do not belong to any cycle in the graph.}
 		\label{fig:pipeline}
 	\end{figure}
@@ -70,7 +70,7 @@
 	\begin{figure}
 		\centering
 		\includegraphics[width=\oneimagewide,keepaspectratio]{gui.jpeg}
-		\caption[\NEFIs graphical user interface.]{A screenshot of \NEFIs GUI running on Mac OS. On the left hand side \NEFI lists intermediate results as thumbnails. Bringing the final result to the center workspace allows for direct visual assessment of the quality of the extracted graph. On the right hand side \NEFIs pipeline elements can be accessed via drop-down menus.}
+		\caption[\NEFIs graphical user interface]{A screenshot of \NEFIs GUI running on Mac OS. On the left hand side \NEFI lists intermediate results as thumbnails. Bringing the final result to the center workspace allows for direct visual assessment of the quality of the extracted graph. On the right hand side \NEFIs pipeline elements can be accessed via drop-down menus.}
 		\label{fig:nefi_gui}
 	\end{figure}
 
@@ -83,7 +83,7 @@
 		\centering
 		\subfloat[\P: Input to \NEFI][]{\includegraphics[width=\twoimageswide,keepaspectratio]{p_polycephalum.jpg}\label{fig:physarum:input}}\qquad
 		\subfloat[\P: Output of \NEFI][]{\includegraphics[width=\twoimageswide,keepaspectratio]{p_polycephalum_graph.jpg}\label{fig:physarum:graph}}
-		\caption[\P: Input and output of \NEFI sied-by-side]{Extracted graph of the network formed by \P. The left hand side shows the input image depicting the network. The right hand side shows the extracted graph overlayed on top off the same image for direct comparison. Note, that no filters have been applied.}
+		\caption[\NEFIs output - \Pp]{Extracted graph of the network formed by \P. The left hand side shows the input image depicting the network. The right hand side shows the extracted graph overlayed on top off the same image for direct comparison. Note, that no filters have been applied.}
 		\label{fig:physarum}
 	\end{figure}
 
@@ -95,7 +95,7 @@
 			\spy on (-1,-1) in node (a) [left] at (5.5,-1.5);
 			\end{scope}
 		\end{tikzpicture}
-	\caption[\A: Output of \NEFI]{Extracted graph of the vein network exhibited by a wing of a dragonfly (\A). Note, that after the use of various filters an extraordinarily clean-looking graph is obtained. Image courtesy of Pam and Richard Winegar.}
+	\caption[\NEFIs output - \Aa]{Extracted graph of the vein network exhibited by a wing of a dragonfly (\A). Note, that after the use of various filters an extraordinarily clean-looking graph is obtained. Image courtesy of Pam and Richard Winegar.}
 	\label{fig:dragonlfy}
 	\end{figure}
 
@@ -308,7 +308,7 @@
 			Grabcut (distance transform)    & $0.983 \pm 0.005$ & $0.967 \pm 0.011$ & $0.998 \pm 0.001$ \\
 			\bottomrule
 			\end{tabular}
-			\caption[\NEFIs evaluation: Ideal images]{Summary of the evaluation of $250$ ideal test images $I_1$.}
+			\caption[\NEFIs evaluation - Ideal images]{Summary of the evaluation of $250$ ideal test images $I_1$.}
 			\label{tab:optimal}
 		\end{table}
 
@@ -335,7 +335,7 @@
 			Grabcut (distance transform)    & $0.858 \pm 0.020$ & $0.688 \pm 0.030$ & $0.986 \pm 0.005$ \\
 			\bottomrule
 			\end{tabular}
-			\caption[\NEFIs evaluation: Edges with varying brightness]{Summary of the evaluation of $250$ test images $I_2$ with edges drawn with random brightness.}
+			\caption[\NEFIs evaluation - Edges with varying brightness]{Summary of the evaluation of $250$ test images $I_2$ with edges drawn with random brightness.}
 			\label{tab:colored_edges}
 		\end{table}
 
@@ -358,7 +358,7 @@
 			Grabcut (distance transform)    & $0.742 \pm 0.052$ & $0.582 \pm 0.065$ & $0.983 \pm 0.008$ \\
 			\bottomrule
 			\end{tabular}
-			\caption[\NEFIs evaluation: Images with background color gradient]{Summary of the evaluation of $250$ test images $I_3$ with a color gradient in the background.}
+			\caption[\NEFIs evaluation - Images with background color gradient]{Summary of the evaluation of $250$ test images $I_3$ with a color gradient in the background.}
 			\label{tab:background_gradient}
 		\end{table}
 
@@ -379,7 +379,7 @@
 			Grabcut (distance transform)    & $0.918 \pm 0.024$ & $0.838 \pm 0.046$ & $0.990 \pm 0.004$ \\
 			\bottomrule
 			\end{tabular}
-			\caption[\NEFIs evaluation: Images with a blur]{Summary of the evaluation of $250$ blurred test images $I_4$.}
+			\caption[\NEFIs evaluation - Images with a blur]{Summary of the evaluation of $250$ blurred test images $I_4$.}
 			\label{tab:blur}
 		\end{table}
 
@@ -407,7 +407,7 @@
 			Computing edge weights & $<$ 1  & 5 \\
 			\bottomrule
 			\end{tabular}
-			\caption[Timings of \NEFIs pipeline elements]{Timings of some of \NEFIs pipeline elements on images of different size. All values are in seconds. The timings were obtained on a Macbook Pro notebook equipped with a 2.4 GHz Intel i5 processor and 8 GB RAM.}
+			\caption[\NEFIs evaluation - Pipeline timings]{Timings of some of \NEFIs pipeline elements on images of different size. All values are in seconds. The timings were obtained on a Macbook Pro notebook equipped with a 2.4 GHz Intel i5 processor and 8 GB RAM.}
 			\label{tab:timings}
 		\end{table}
 

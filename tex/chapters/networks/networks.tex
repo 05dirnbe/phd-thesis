@@ -52,7 +52,7 @@
 			
 			\includegraphics[width=0.55\linewidth]{dummy_graph/tracking.pdf}
 
-			\caption[Schematic representation of a \P graph.]{Schematic representation of a \P graph. Labeled blue squares form a face cycle (region), representing the veins and junctions of the slime mold. The face cycle is of degree $5$ as it contains $5$ square degree $3$ nodes connected by $5$ distinct paths, two of which are highlighted in orange. Paths consist of circular nodes of degree $2$ which interpolate the veins of \P. Degree $2$ nodes are remnants of removing dead-end paths, one of which is indicated in gray extending into the interior of the face cycle near node $E$.}
+			\caption[Graph representation of a \P graph]{Schematic representation of a \P graph. Labeled blue squares form a face cycle (region), representing the veins and junctions of the slime mold. The face cycle is of degree $5$ as it contains $5$ square degree $3$ nodes connected by $5$ distinct paths, two of which are highlighted in orange. Paths consist of circular nodes of degree $2$ which interpolate the veins of \P. Degree $2$ nodes are remnants of removing dead-end paths, one of which is indicated in gray extending into the interior of the face cycle near node $E$.}
 			\label{fig:graph_schematic}
 		\end{figure}
 
@@ -62,7 +62,7 @@
 
 		Statistical distribution testing was done using \verb+R+, in particular using the excellent \verb+fitdistrplus+ and \verb+bimodalitytest+ packages~\cite{delignette2015fitdistrplus}. The process of determining the theoretical distribution of an observable $\mathcal{O}$ from empirical samples is as follows. For every data series we compute the empirical distributions of $\mathcal{O}$ for the individual graphs as well as the cumulative empirical distribution taking into account all graphs within the given series. Furthermore we fit the obtained empirical distributions with several common distribution functions. To choose suitable candidate distributions we rely on visual inspection of the empirical distributions and their indicative Skewness-Kurtosis plots when no guiding knowledge of the underlying generating processes is available. To evaluate the quality of the resulting fits we rely on four classical goodness-of-fit plots~\cite{cullen1999probabilistic}: the density plot, the CDF plot, the Q-Q plot and the P-P plot. For a detailed description see~\cite{delignette2015fitdistrplus}.
 		
-\section{Results}
+\section{Results}\label{sec:analysis_results}
 
 	In the following we discuss a representative selection of results based on the \data. It is designed to illustrate the most important findings and familiarize the reader with the type of information that is contained in the full set of results which is available for inspection and download at the \SMGR project page. The full set contains plots of individual and cumulative results of all computed observables for all available data series, down to the level of singular \P graphs. Furthermore fit parameters of all applied candidate fit distributions are available together with their goodness-of-fit plots. In addition to that tools and instructions are added that allow the interested reader to investigate aspects of the data that go beyond the scope of this manuscript.
 
@@ -79,7 +79,7 @@
 			\subfloat[][]{\includegraphics[width=\twoimageswide,keepaspectratio]{path_length/path_length_motion35.png}
 			\label{fig:path_lengths_35}}
 
-			\caption[Path length distributions.]{Empirical cumulative path length distributions for \series{22} (a) and \series{35} (b). Associated gamma and log-normal fits are shown. Abscissa in units of pixel.}
+			\caption[Path length distribution]{Empirical cumulative path length distributions for \series{22} (a) and \series{35} (b). Associated gamma and log-normal fits are shown. Abscissa in units of pixel.}
 			\label{fig:path_lengths}
 		\end{figure}
 
@@ -100,7 +100,7 @@
 			\subfloat[][]{\includegraphics[width=\twoimageswide,keepaspectratio]{path_length/physical_edge_length_gamma_fit_rate_35_58.png}
 			\label{fig:path_lengths_fit_parameters_rate}}
 
-			\caption[Path length distribution fit parameters.]{Time dependence of shape $s$ (a) and rate $r$ (b) for \series{35} (blue circles) and \series{58} (green triangles). Linear fits are shown to guide the eye. Abscissa in units of $120$ seconds.}
+			\caption[Path length distribution - Fit parameters]{Time dependence of shape $s$ (a) and rate $r$ (b) for \series{35} (blue circles) and \series{58} (green triangles). Linear fits are shown to guide the eye. Abscissa in units of $120$ seconds.}
 			\label{fig:path_lengths_fit_parameters}
 		\end{figure}
 
@@ -109,7 +109,7 @@
 		\begin{figure}[!htbp]
 			\centering
 				\includegraphics[width=0.75\textwidth]{path_length/physical_edge_length_gamma_fit_rate_shape_scatter_cummulative.png}
-			\caption[Path length distribution fit parameter densities.]{Scatter-plot and kernel density estimates of shape and rate for gamma fits of empirical path lengths using the entire dataset. The maximum of the density is located at $s = 1.84035$ and $r \approx 0.783624 \times 10^{-2}$.}
+			\caption[Path length distribution - Fit parameter densities]{Scatter-plot and kernel density estimates of shape and rate for gamma fits of empirical path lengths using the entire dataset. The maximum of the density is located at $s = 1.84035$ and $r \approx 0.783624 \times 10^{-2}$.}
 			\label{fig:path_lengths_gamma_fit_kde}
 		\end{figure}
 
@@ -124,7 +124,7 @@
 			\subfloat[][]{\includegraphics[width=\twoimageswide,keepaspectratio]{path_width/path_width_motion35.png}
 			\label{fig:path_widths_35}}
 
-			\caption[Path width distributions.]{Empirical cumulative distributions of average path widths for \series{22} (a) and \series{35} (b). Associated gamma and log-normal fits are shown. Abscissa in units of pixel.}
+			\caption[Path width distribution]{Empirical cumulative distributions of average path widths for \series{22} (a) and \series{35} (b). Associated gamma and log-normal fits are shown. Abscissa in units of pixel.}
 			\label{fig:path_widths}
 		\end{figure}
 
@@ -139,7 +139,7 @@
 			\subfloat[][]{\includegraphics[width=\twoimageswide,keepaspectratio]{path_width/physical_edge_width_gamma_fit_rate_38_58.png}
 			\label{fig:path_width_fit_parameters_rate}}
 
-			\caption[Path width distribution fit parameters.]{Time dependence of shape $s$ (a) and rate $r$ (b) for \series{35} (blue circles) and \series{58} (green triangles). Linear fits are shown to guide the eye. Abscissa in units of $120$ seconds.}
+			\caption[Path width distribution - Fit parameters]{Time dependence of shape $s$ (a) and rate $r$ (b) for \series{35} (blue circles) and \series{58} (green triangles). Linear fits are shown to guide the eye. Abscissa in units of $120$ seconds.}
 			\label{fig:path_width_fit_parameters}
 		\end{figure}
 
@@ -153,7 +153,7 @@
 		\begin{figure}[!htbp]
 			\centering
 				\includegraphics[width=0.75\textwidth]{path_width/physical_edge_width_gamma_fit_rate_shape_scatter_cummulative.png}
-			\caption[Path width distribution fit parameter densities.]{Scatter-plot and kernel density estimates of shape and rate for gamma fits of the empirical average path width using the entire dataset. The maximum of the density is located at $s \approx 12.7177$ and $r \approx 1.2799$. A linear fit is shown in yellow.}
+			\caption[Path width distribution - Fit parameter densities]{Scatter-plot and kernel density estimates of shape and rate for gamma fits of the empirical average path width using the entire dataset. The maximum of the density is located at $s \approx 12.7177$ and $r \approx 1.2799$. A linear fit is shown in yellow.}
 			\label{fig:path_widths_gamma_fit_kde}
 		\end{figure}
 
@@ -187,7 +187,7 @@
 		\begin{figure}[!htbp]
 			\centering
 				\includegraphics[width=0.75\textwidth]{face_degree/dual_node_degree_gamma_fit_rate_shape_scatter_cummulative.png}
-			\caption[Face degree distribution fit parameter densities.]{Scatter-plot and kernel density estimates of shape $s$ and rate $r$ for gamma fits of the empirical face degrees using the entire dataset. The maximum of the density is located at $s \approx 9.0387$ and $r \approx 1.6255$.}
+			\caption[Face degree distribution - Fit parameter densities]{Scatter-plot and kernel density estimates of shape $s$ and rate $r$ for gamma fits of the empirical face degrees using the entire dataset. The maximum of the density is located at $s \approx 9.0387$ and $r \approx 1.6255$.}
 			\label{fig:face_degree_kde}
 		\end{figure}
 
@@ -217,7 +217,7 @@
 		\begin{figure}[!htbp]
 			\centering
 				\includegraphics[width=0.75\textwidth]{face_area/face_area_gamma_fit_rate_shape_scatter_cummulative.png}
-			\caption[Face area distribution fit parameter densities.]{Scatter-plot and kernel density estimates of shape and rate for gamma fits of the empirical face areas using the entire dataset. The maximum of the density is located at $s \approx 0.7022$ and $r \approx 1.0381 \times 10^{-5}$.}
+			\caption[Face area distribution - Fit parameter densities]{Scatter-plot and kernel density estimates of shape and rate for gamma fits of the empirical face areas using the entire dataset. The maximum of the density is located at $s \approx 0.7022$ and $r \approx 1.0381 \times 10^{-5}$.}
 			\label{fig:face_area_kde}
 		\end{figure}
 
@@ -226,7 +226,7 @@
 		\begin{figure}[!htbp]
 			\centering
 				\includegraphics[width=0.55\textwidth]{face_area/face_degree_and_area_cummulative.png}
-			\caption[Face degree weighted by face area.]{Global cumulative histogram of face degree weighted by face area. The area under the histogram, which is normalized to one, corresponds to the sum of face areas across all observed faces, i.e. the total area covered by $1998$ \P graphs.}
+			\caption[Face degree weighted by face area]{Global cumulative histogram of face degree weighted by face area. The area under the histogram, which is normalized to one, corresponds to the sum of face areas across all observed faces, i.e. the total area covered by $1998$ \P graphs.}
 			\label{fig:face_degree_per_area}
 		\end{figure}
 
@@ -239,7 +239,7 @@
 			\subfloat[][]{\includegraphics[width=\twoimageswide,keepaspectratio]{face_length/face_length_gamma_fit_parameters_together_motion35.png}
 			\label{fig:face_length_fit_parameters}}
 
-			\caption[Face circumference distribution.]{(a): Cumulative empirical face circumference distribution for \series{35}. Candidate gamma and log normal fits are shown. Abscissa in units of pixel. (b): Gamma fit parameters shape (blue circles) and rate (green triangles) as a function of time for the same series. Linear fits are shown to guide the eye. Abscissa in units of $120$ seconds.}
+			\caption[Face circumference distribution]{(a): Cumulative empirical face circumference distribution for \series{35}. Candidate gamma and log normal fits are shown. Abscissa in units of pixel. (b): Gamma fit parameters shape (blue circles) and rate (green triangles) as a function of time for the same series. Linear fits are shown to guide the eye. Abscissa in units of $120$ seconds.}
 			\label{fig:face_length_fit}
 		\end{figure}
 
@@ -248,7 +248,7 @@
 		\begin{figure}[!htbp]
 			\centering
 				\includegraphics[width=0.75\textwidth]{face_length/face_length_gamma_fit_rate_shape_scatter_cummulative.png}
-			\caption[Face circumference fit parameter densities.]{Scatter-plot and kernel density estimates of shape and rate for gamma fits of the empirical face circumference using the entire dataset. The global maximum of the density is located at $s \approx 3.4247$ and $r \approx 3.8665 \times 10^{-3}$.}
+			\caption[Face circumference distribution - Fit parameter densities]{Scatter-plot and kernel density estimates of shape and rate for gamma fits of the empirical face circumference using the entire dataset. The global maximum of the density is located at $s \approx 3.4247$ and $r \approx 3.8665 \times 10^{-3}$.}
 			\label{fig:face_length_kde}
 		\end{figure}
 
@@ -281,7 +281,7 @@
 			\subfloat[][]{\includegraphics[width=\twoimageswide,keepaspectratio]{face_roundness/face_roundness_mode_motion35.png}
 			\label{fig:face_roundness_evolution}}
 
-			\caption[Face roundness distribution.]{(a) Cumulative normalized face roundness distribution for \series{35}. The kernel density estimation of the cumulative distribution is show as a solid line. The value of the abscissa at the maximum of the KDE serves as an estimate for the mode of the underlying unknown theoretical distribution. (b) The development of the estimates of the mode for the individual networks of \series{35}. Abscissa in units of $120$ seconds.}
+			\caption[Face roundness distribution]{(a) Cumulative normalized face roundness distribution for \series{35}. The kernel density estimation of the cumulative distribution is show as a solid line. The value of the abscissa at the maximum of the KDE serves as an estimate for the mode of the underlying unknown theoretical distribution. (b) The development of the estimates of the mode for the individual networks of \series{35}. Abscissa in units of $120$ seconds.}
 		\end{figure}
 
 		It is interesting to investigate how the roundness is connected to the degree of the faces under consideration. \Fref{fig:face_roundness_per_degree} shows the roundness values averaged over classes of faces that have the same degree. We find that the roundness steadily increases with $k$ to reach a maximum of $0.8206 \pm 0.001411$ for $k=7$. After the maximum is attained the roundness falls off again, albeit slightly. We may also ask which class of faces contributes the most to the global sum of observed roundness values. \Fref{fig:face_roundness_per_time_degree} shows the histogram of face degrees weighted by face roundness. It indicates that faces of degree  $4,5$ and $6$ account for the majority of the global sum of roundness. Since these faces form a large fraction of all available faces, we can now quantify the degree to which \P networks are formed by components that resemble regular polygons.
@@ -293,12 +293,12 @@
 			\subfloat[][]{\includegraphics[width=\twoimageswide]{face_roundness/face_degree_and_roundness_cummulative.png}
 			\label{fig:face_roundness_per_time_degree}}
 
-			\caption[Average face roundness per face type.]{(a) Normalized face roundness averaged over classes of faces with identical face degree. Classes of size smaller than $30$ are excluded as bootstrapping error-bars ceases to be reliable for small sample sizes. (b) Histogram of face degrees weighted by the associated roundness values. Here the area under the histogram, which is normalized to one, corresponds to the sum of roundness values across all observed faces.}
+			\caption[Average face roundness per face type]{(a) Normalized face roundness averaged over classes of faces with identical face degree. Classes of size smaller than $30$ are excluded as bootstrapping error-bars ceases to be reliable for small sample sizes. (b) Histogram of face degrees weighted by the associated roundness values. Here the area under the histogram, which is normalized to one, corresponds to the sum of roundness values across all observed faces.}
 		\end{figure}
 
 		We stress at this point that looking at roundness numbers by themselves is not very instructive. Their usefulness, however, becomes apparent in combination with other face properties when it comes to comparing \P graphs with other structures. While the roundness gives a measure of what shapes of faces are present in a graph, face area and circumference add a physical dimension to them. Together with the degree distribution of faces a comprehensive description of the entire network of \P in terms of its basic two dimensional building blocks is available. Since this description can be computed efficiently for any weighted (planar) graph, a quantitative comparison of different networks becomes possible.
 
-	\subsection{Cut properties}
+	\subsection{Cut properties}\label{sec:cut_properties}
 
 		In this chapter we study the extend of spatial homogeneity of \P networks with respect to two special directions: First, the direction in which the organism expands, i.e. its growth direction and second, the direction perpendicular to it, see \Fref{fig:sup::physarum_expanding}. To do so we use the graph theoretic concept of \emph{cuts}. A cut defines a partition of the nodes of a graph into two disjoint subsets. Furthermore, it determines a \emph{cut-set}, a set of edges with the property that each edge has one endpoint in each of the two node subsets. These are the edges crossing the cut. Since we are interested in the cut-set only, let us refer to it simply as cut from now on. 
 
@@ -319,7 +319,7 @@
 			\subfloat[][]{\includegraphics[width=\twoimageswide,keepaspectratio]{cuts/width_cuts_motion35.png}\label{fig:width_cuts_left}}\qquad
 			\subfloat[][]{\includegraphics[width=\twoimageswide,keepaspectratio]{cuts/width_cuts_motion45.png}\label{fig:width_cuts_right}}
 			
-			\caption[Cut properties.]{Cumulative cut properties for \series{35} (l.h.s. row) and \series{45} (r.h.s. row). The errors denote one $\sigma$ standard deviations. Solid lines give linear fits to the data intended to guide the eye. Green triangles pointing downwards belong to horizontal cuts (moving from top to bottom) while blue triangles pointing to the right illustrate vertical cuts (moving from left to right). Dashed lines illustrate the value of minimum width cut.}
+			\caption[Cut properties]{Cumulative cut properties for \series{35} (l.h.s. row) and \series{45} (r.h.s. row). The errors denote one $\sigma$ standard deviations. Solid lines give linear fits to the data intended to guide the eye. Green triangles pointing downwards belong to horizontal cuts (moving from top to bottom) while blue triangles pointing to the right illustrate vertical cuts (moving from left to right). Dashed lines illustrate the value of minimum width cut.}
 			\label{fig:cuts}
 		\end{figure}
 
@@ -346,7 +346,7 @@
 			\subfloat[][]{\includegraphics[width=\twoimageswide,keepaspectratio]{percolation/random_attack_second_largest_component_fit_motion35.png}}
 
 			
-			\caption[Percolation properties.]{Percolation properties for a sample graph from \series{22} (top row) and from \series{35} (bottom row). The abscissa gives the occupation probability $p$. The ordinate shows the the normalized size of the largest component (LC, l.h.s column) or the normalized size of the second largest component (sLC, r.h.s column). Red squares denote random node removal, blue circles random edge removal. For the second largest component sizes, parabolic fits approximate the location of the peaks by dashed lines. Errors show one $\sigma$ standard deviation.}
+			\caption[Percolation properties]{Percolation properties for a sample graph from \series{22} (top row) and from \series{35} (bottom row). The abscissa gives the occupation probability $p$. The ordinate shows the the normalized size of the largest component (LC, l.h.s column) or the normalized size of the second largest component (sLC, r.h.s column). Red squares denote random node removal, blue circles random edge removal. For the second largest component sizes, parabolic fits approximate the location of the peaks by dashed lines. Errors show one $\sigma$ standard deviation.}
 			\label{fig:percolation_observables}
 		\end{figure}
 
@@ -365,7 +365,7 @@
 		\begin{figure}[!htbp]
 			\centering
 				\includegraphics[width=0.55\textwidth]{percolation/random_attack_second_largest_component_fit_cummulative.png}
-			\caption[Critical percolation thresholds.]{Dependence of the critical threshold $p_c(L)$ for all available \P graphs on the size of the graph $L$. Blue circles refer to random node percolation, red squares to random edge percolation. Dashed lines indicate scaling fits.}
+			\caption[Critical percolation thresholds]{Dependence of the critical threshold $p_c(L)$ for all available \P graphs on the size of the graph $L$. Blue circles refer to random node percolation, red squares to random edge percolation. Dashed lines indicate scaling fits.}
 			\label{fig:percolation_scaling}
 		\end{figure}
 

@@ -67,42 +67,42 @@
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.5\linewidth,keepaspectratio]{setup.png}
-		\caption[Setup for wetlab experiments.]{Schematic description of the experimental setup.}
+		\caption[Setup for wetlab experiments]{Schematic description of the experimental setup.}
 		\label{fig:setup}
 	\end{figure}
 
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.5\linewidth,keepaspectratio]{physarum_sequence_1.JPG}
-		\caption[Crumbs of \P sclerotia forming an inoculation line.]{Crumbs of \P sclerotia forming the inoculation line.}
+		\caption[Crumbs of \P sclerotia forming an inoculation line]{Crumbs of \P sclerotia forming the inoculation line.}
 		\label{fig:sequence_1}
 	\end{figure}
 
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.5\linewidth,keepaspectratio]{physarum_sequence_2.JPG}
-		\caption[The apical zone advances.]{The plasmodium explores the dish. The apical zone advances towards the right side of the dish supported by a complex network that is continuously forming.}
+		\caption[The apical zone advances]{The plasmodium explores the dish. The apical zone advances towards the right side of the dish supported by a complex network that is continuously forming.}
 		\label{fig:sequence_2}
 	\end{figure}
 
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.5\linewidth,keepaspectratio]{physarum_sequence_3.JPG}
-		\caption[The onset of network coarsening.]{As the apical zone is about to escape the observation region, the coarsening of the network becomes more pronounced.}
+		\caption[The onset of network coarsening]{As the apical zone is about to escape the observation region, the coarsening of the network becomes more pronounced.}
 		\label{fig:sequence_3}
 	\end{figure}
 
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.5\linewidth,keepaspectratio]{physarum_sequence_4.JPG}
-		\caption[A complex network of veins within a region of interest.]{The apical zone has moved on, leaving behind a complex network of veins. The dashed rectangle depicts a typical region of interest relevant for subsequent image analysis and graph detection.}
+		\caption[A complex network of veins within a region of interest]{The apical zone has moved on, leaving behind a complex network of veins. The dashed rectangle depicts a typical region of interest relevant for subsequent image analysis and graph detection.}
 		\label{fig:sequence_4}
 	\end{figure}
 
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.5\linewidth,keepaspectratio]{physarum_sequence_5.JPG}
-		\caption[Graph extracted from the sample region of interest.]{The network within the region of interest has been extracted by \NEFI. Note that no filters have been applied. Dead ends and nodes of degree 2 are visible still, leading to small patches of nodes appearing to clump up. Such artifacts can be removed in suitable post-processing steps.}
+		\caption[Graph extracted from a sample region of interest]{The network within the region of interest has been extracted by \NEFI. Note that no filters have been applied. Dead ends and nodes of degree 2 are visible still, leading to small patches of nodes appearing to clump up. Such artifacts can be removed in suitable post-processing steps.}
 		\label{fig:sequence_5}
 	\end{figure}
 
@@ -147,7 +147,7 @@
 		\includestandalone[width=.3\textwidth]{tracking/tracking_1}
 		\includestandalone[width=.3\textwidth]{tracking/tracking_2}
 		\includestandalone[width=.3\textwidth]{tracking/tracking_3}
-		\caption[Schematic description of node tracking.]{Schematic of a graph and its changing topology with respect to time. At time $t=2$ the edge $(b,e)$ and its nodes disappear from the graph because the thickness of the corresponding vein in \P dropped below the detection threshold of \NEFI. The colors indicate tracks $T_b$ and $T_e$ for nodes $b$ and $e$ respectively.}
+		\caption[Schematic description of node tracking]{Schematic of a graph and its changing topology with respect to time. At time $t=2$ the edge $(b,e)$ and its nodes disappear from the graph because the thickness of the corresponding vein in \P dropped below the detection threshold of \NEFI. The colors indicate tracks $T_b$ and $T_e$ for nodes $b$ and $e$ respectively.}
 		\label{fig:tracking}
 		\end{figure}
 
@@ -211,7 +211,7 @@
 	    \subfloat[]{%
 		\label{fig:histogram}%
 		\includegraphics[width=0.45\textwidth]{demos/cummulative_edge_widths.png}}%
-		\caption[Demo: How to compute an observable across an entire series of graphs.]{L.h.s.: A sample graph of \emph{P. polycephalum} from the \data. It is part of a series of $60$ graphs. R.h.s.: Cumulative edge width distribution computed over all $60$ graphs.}
+		\caption[Demo - Computing an observable across an entire series of graphs]{L.h.s.: A sample graph of \emph{P. polycephalum} from the \data. It is part of a series of $60$ graphs. R.h.s.: Cumulative edge width distribution computed over all $60$ graphs.}
     \end{figure}
 
 
@@ -238,7 +238,7 @@
 	    \subfloat[]{%
 		\label{fig:split}%
 		\includegraphics[width=0.45\textwidth]{demos/snipped_split.JPG}}%
-		\caption[Demo: Setup for tracking of individual edges]{Details of a \emph{P. polycephalum} graph, see dashed rectangle in \Fref{fig:graph}. L.h.s.: Two edges $A$ and $B$ are selected for tracking. R.h.s.: A third edge appears, causing $B$ to split up and disappear from its track.}
+		\caption[Demo - Setup for tracking individual edges]{Details of a \emph{P. polycephalum} graph, see dashed rectangle in \Fref{fig:graph}. L.h.s.: Two edges $A$ and $B$ are selected for tracking. R.h.s.: A third edge appears, causing $B$ to split up and disappear from its track.}
     \end{figure}
 
     Finally, \Fref{fig:edge_tracking} shows the edge widths for edges $A$ and $B$ given their established tracks. Note that the track including the thicker edge $A$ runs across the entire $60$ graph in the series. The situation is different for edge $B$ where its track reflects that it is repeatedly split by a third edge which is sometimes present. Eventually, the splitting edge remains established for much of the latter half of the time series, thus superseding edge $B$ permanently. This simple example shows how the tracking information allows one to ``zoom in'' on what happens with selected edges and study them in detail.
@@ -246,7 +246,7 @@
     \begin{figure}
 		\centering
 		\includegraphics[width=0.60\textwidth]{demos/edge_tracking.png}%
-		\caption[Demo: Results for tracking individual edges]{Development of edge widths for edges $A$ (green triangles) and $B$ (blue circles) as given by their established edge tracks. Note that for track $B$ we have set the value of the edge width to zero whenever the edge was missing. This serves to illustrate the fragmentation of rack $B$ compared to track $A$. The widths are given in units of pixel and time is measured in units of \SI{120}{\second}.}
+		\caption[Demo - Results for tracking individual edges]{Development of edge widths for edges $A$ (green triangles) and $B$ (blue circles) as given by their established edge tracks. Note that for track $B$ we have set the value of the edge width to zero whenever the edge was missing. This serves to illustrate the fragmentation of rack $B$ compared to track $A$. The widths are given in units of pixel and time is measured in units of \SI{120}{\second}.}
 		\label{fig:edge_tracking}%
     \end{figure}
 
