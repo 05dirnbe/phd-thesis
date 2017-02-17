@@ -49,7 +49,7 @@
 
 	The \SMGR and all available data can be found here: \href{http://smgr.mpi-inf.mpg.de}{http://smgr.mpi-inf.mpg.de}. 
 
-\section{The KIST Europe data set}	
+\section{The KIST Europe Data Set}	
 
 	In the following we present an overview of the \data designed to give the interested reader a high-level understanding of its nature and content. At the same time, we recommend to inspect the data directly using the browsing and download functions provided on the \href{http://smgr.mpi-inf.mpg.de}{\SMGR project page}. We refer the expert reader, interested in reproducing all the steps involved in the creation of the data set, to an in-depth exposition given in \Fref{app:smgr}.
 
@@ -118,7 +118,7 @@
 
 	Finally, in addition to the actual data, \ie images and graphs, the \data contains scripts and larger programs used to process and evaluate the data. Suitable configuration files specify the used regions of interest and the parameters used with \NEFI. Thus it is possible to repeat the entire data production process from the raw images to the obtained filtered graphs including the tracking of nodes. As part of the \SMGR, the \data is well-structured and self-contained. In particular, sufficient on-the-fly documentation is available when using the online browsing function of the \SMGR.
 
-	\subsection{Node tracking}
+	\subsection{Node Tracking}
 
 		In this section we explain how to compute a node tracking. Our approach is a variant of a tracking method introduced previously~\cite{woll2013novel,Karrenbauer2013}. Here we give a self-contained account of the tracking technique geared towards non-experts in optimization. For technical details, proofs and an experimental evaluation of the method we refer the interested reader to the original publications.
 
@@ -196,7 +196,7 @@
 
 		Partitioning the entire selection into disjoint tracks yields the desired node tracking. As a final step, we assign each track a unique color identifier and propagate this color to each node in the track, \ie across all graphs in a given series. The color information is part of the graphs of all our datasets and thus readily available for further processing. A program constructing and solving this LP using Cplex~\cite{cplex2005high} is provided as part of the data set.
 
-\section{Sample usage of the KIST Europe data set}
+\section{Sample Usage of the KIST Europe Data Set}
 
 	Next we illustrate the principal usefulness of the data contained in the \data set by demonstrating how to compute two different observables. The python code used to obtain the presented plots is available as part of the data set. As sample data we choose a time series of \P graphs consisting of $60$ graphs. Since the time between two graphs is \SI{120}{\second}, the whole series documents the growth of the slime mold for two hours. \Fref{fig:graph} shows one of the graphs superimposed on the image from the laboratory it was extracted from. The intricate network formed by \P is clearly visible. In particular it can be seen that the edges of the graph are of varying thickness. This is to be expected and reflects the variations of thickness observed in the veins of the slime mold. 
 
