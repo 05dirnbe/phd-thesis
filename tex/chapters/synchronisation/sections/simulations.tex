@@ -1,15 +1,14 @@
 %!TEX root = ../../../../thesis.tex
 
-
 \section{Preliminary Simulation Results}
 
-	In this section we present the results of preliminary \emph{in silico} explorations of the discretized model presented in \Fref{sec:discrete}. We investigate several different basic circuits of \Pes and discuss our findings. The circuits are based on small graphs in the hope that the results are not too complex yet to reason about them analytically. This is a preparatory step to towards a better understanding of the behavior of our model. Ultimately, the hope is to gain insights useful for deriving an algorithm based on the model.
+	In this section we present the results of preliminary \emph{in silico} explorations of the discretized model presented in \Fref{sec:discrete}. We investigate several different basic circuits of \Pes and discuss our findings. The circuits are based on small graphs in the hope that one may still reason about them analytically. This is a preparatory step to towards a better understanding of the behavior of our model. Ultimately, the hope is to gain insights useful for deriving an algorithm based on the model.
 
-	The following facts suggest, that our implementation is correct. First, we find that during the execution of our model conversation laws are obeyed. Second, the implementation maintains the distinct invariants we have established analytically as given by \Fref{lem:inv_cont}. Finally, for converged cycles of \Pes we observed precisely the behavior predicted by \Fref{lem:ring_cont}. This constitutes a nice example of how numerical simulation and analytical work are in an symbiotic relationship. Insights gained in one frequently suggest directions of exploration to the other. 
+	The following facts suggest, that our implementation is correct: First, we find that during the execution of our model Kirchoff's laws are obeyed. Second, the implementation maintains the distinct invariants we have established analytically as given by \Fref{lem:inv_cont}. Finally, for converged cycles of \Pes we observed precisely the behavior predicted by \Fref{lem:ring_cont}. This constitutes a nice example of how numerical simulation and analytical work are in an symbiotic relationship. Insights gained in one frequently suggest directions of exploration to the other. 
 
-	All the topologies we present are drawn as directed graphs. The orientation of an edge $e = (x,y)$ corresponds to the definition of the \Pe given in \Fref{fig:vein}. We stress that the orientation has no effect on the results of the simulation since \Pes are symmetric as are the chosen initial conditions. In the plots presented below we always show the value of $i_p$ for all involved \Pes to illustrate the current flow. Thus if $i_p > 0$ current flows in the direction the edges is oriented to, \ie from node $x$ to node $v$. The reverse is true if $i_p <0$. This information is important when interpreting how the flows split up at junctions of the \Pn.
+	All the topologies we present are drawn as directed graphs. The orientation of an edge $e = (x,y)$ corresponds to the definition of the \Pe given in \Fref{fig:vein}. We stress that the orientation has no effect on the results of the simulation since \Pes are symmetric as are the chosen initial conditions. In the plots presented shortly we always show the value of $i_p$ for all involved \Pes to illustrate the current flow. Thus if $i_p > 0$ current flows in the direction the edges is oriented to, \ie from node $x$ to node $y$. The reverse is true if $i_p <0$. This information is important when interpreting how the flows split up at junctions of the \Pn.
 
-	Unless noted otherwise, all presented simulations were initialized with the same starting values for \Pe. The only exception are the initial capacitor voltages which were set at random. They are summarized in \Fref{tab:initialization}\footnote{Unfortunately, many plots appear to start at $i_p(r=0) \neq 0$ instead of $i_p(r=0) = 0$. This illusion is the product of the circuits instantly jumping from $i_p(r=0) = 0$ to $i_p(r=1) \neq 0$ in a single round.}. The number of executed rounds can be read off the plots directly. 
+	Unless noted otherwise, all presented simulations were initialized with the same starting values for all \Pes. The only exception are the initial capacitor voltages which were set at random. They are summarized in \Fref{tab:initialization}\footnote{Unfortunately, many plots appear to start at $i_p(r=0) \neq 0$ instead of $i_p(r=0) = 0$. This illusion is the product of the circuits instantly jumping from $i_p(r=0) = 0$ to $i_p(r=1) \neq 0$ in a single round.}. The number of executed rounds can be read off the plots directly. 
 
 	\begin{table}
         \centering
@@ -40,13 +39,13 @@
 
 		For a converged $4$-cycle of \Pes we obtain precisely the results predicted by \Fref{lem:ring_cont}. Namely, current can either flow clockwise, counter-clockwise or not at all if the \Pn is converged. 
 
-		These scenarios are reflected in the behavior of the capacitor voltages $u_{C,e}(t)$ given by \Fref{fig:cycle_4_uC_zero}, \Fref{fig:cycle_4_uC_positive} and \Fref{fig:cycle_4_uC_negative}, it can be seen that convergence is rapid for all three depicted cases. Note, that only in the in \Fref{fig:cycle_4_uC_zero} the values converge to $0$. This is the case in which the respective currents $i_{p,e}(t)$ converge to zero{} as well, see \Fref{fig:cycle_4_ip_zero}. In this case the flow through the entire cycle dies out. This is expected, since for this case exclusively, $\beta = R$ was chosen as a simulation parameter. As a result, currents are quickly damped to zero as can be seen in the proof of \Fref{lem:ring_cont}.
+		These scenarios are reflected in the behavior of the capacitor voltages $u_{C,e}(t)$ given by \Fref{fig:cycle_4_uC_zero}, \Fref{fig:cycle_4_uC_positive} and \Fref{fig:cycle_4_uC_negative}. It can be seen that convergence is rapid for all three depicted cases. Note, that only in \Fref{fig:cycle_4_uC_zero} the values converge to $0$. This is the case in which the respective currents $i_{p,e}(t)$ converge to zero as well, see \Fref{fig:cycle_4_ip_zero}. The currents indicate that the flow through the entire cycle dies out. This is expected, since for this case exclusively, $\beta = R$ was chosen as a simulation parameter. As a result, currents are quickly damped to zero as can be seen in the proof of \Fref{lem:ring_cont}.
 
-		\Fref{fig:cycle_4_ip_positive} and \Fref{fig:cycle_4_ip_negative} illustrate the remaining cases treated in said proof. For a given period the \Pes of the cycle interact to eventually ``agree'' on a common constant value of current. This value can either be positive leading to counter-clockwise flow through the circuit or negative, resulting in clockwise flow. At present, we do not know how the circuit decides on the sign of the current. Either the initial choice of the capacitor voltages determine the sign or it is random. This question deserves further investigation in the future.
+		\Fref{fig:cycle_4_ip_positive} and \Fref{fig:cycle_4_ip_negative} illustrate the remaining cases treated in said proof. For a given period the \Pes of the cycle interact to eventually ``agree'' on a common, constant value of current. This value can either be positive, leading to counter-clockwise flow through the cycle or negative, resulting in clockwise flow. At present, we do not know how the circuit decides on the sign of the current. Either the initial choice of the capacitor voltages determine the sign or it is random. This question deserves further investigation in the future.
 
-		We have repeated this experiment for various $n$-cycles with $n \in [3,10]$ obtaining identical results. They indicate that edges agree rapidly on the flow for all tested $n$. It seems that for larger $n$ the circuit needs progressively longer to converge. Unfortunately, no precise statements about convergence and its dependence on the size of the cycle are available at this point.
+		We have repeated this experiment for various $n$-cycles with $n \in [3,10]$ obtaining identical results. We find that edges agree rapidly on the flow for all tested $n$. It seems that for larger $n$ the circuit needs progressively longer to converge. Unfortunately, no precise statements about convergence and its dependence on the size of the cycle are available at this point.
 
-		Finally, we remark that the above results are only valid for converged cycles. Extreme initial conditions can also be chosen such that the \Pn does not converge. For a $4$-cycle anti-phase oscillations between pairs of edges forced in this way.  
+		Finally, we remark that the above results are only valid for converged cycles. Extreme initial conditions can also be chosen such that the \Pn does not converge. For a $4$-cycle anti-phase oscillations between pairs of edges have been forced in this way.  
 
 		\begin{figure}
 			\centering
@@ -62,15 +61,17 @@
 			\subfloat[][]{\includegraphics[width=0.4\linewidth,keepaspectratio]{./simulation/cycle/cycle_4_ip_negative.png}\label{fig:cycle_4_ip_negative}}\qquad
 			\subfloat[][]{\includegraphics[width=0.4\linewidth,keepaspectratio]{./simulation/cycle/cycle_4_uC_negative.png}\label{fig:cycle_4_uC_negative}}
 			
-			\caption[Simulation - Cycles]{Simulation experiments for a cycle of $4$ \Pes.}
+			\caption[Simulation - Cycles]{Cycle of $4$ \Pes.}
 			\label{fig:cycle}
 		\end{figure}
 
+		\FloatBarrier
+
 	\subsection{Diamond of \emph{Physarum} Elements}
 
-		The graph we investigate is the so-called diamond graph depicted in \Fref{fig:diamond_graph}. This topology is also widely known under the name of Wheatstone graph or Wheatstone bridge. It consists of a $4$-cycle with an additional ``bridge'' edge $(2,0)$ added. Again \Fref{fig:diamond_graph_legend} defines a color coding which serves as a legend for the remaining plots of \Fref{fig:diamond}. We show the results of three distinct runs of the simulation.
+		The graph we investigate next is the so-called diamond graph depicted in \Fref{fig:diamond_graph}. This topology is also widely known under the name of Wheatstone graph or Wheatstone bridge. It consists of a $4$-cycle with an additional ``bridge'' edge $(2,0)$ added. Again \Fref{fig:diamond_graph_legend} defines a color coding which serves as a legend for the remaining plots of \Fref{fig:diamond}. We show the results of three distinct runs of the simulation.
 
-		Similar to the $4$-cycle explored previously, we investigate several scenarios. In all of them the capacitor voltages quickly converge $u_{C,e}(t)$, see \Fref{fig:diamond_ip_asymmetric_positive}, \Fref{fig:diamond_ip_symmetric_negative} and \Fref{fig:diamond_ip_asymmetric_positive}. However, due to the additional edge introduced to the \Pn, edges do not converge to the same values anymore but split up in three distinct groups. The first group is formed by edges $(0,1)$ and $(1,2)$. The second group are edges $(2,3)$ and $(3,0)$. And the last group is the bridge edge $(2,0)$. Note that all in all shown scenarios the voltages show that the first two groups are symmetric around the value the center edge converges to. Although the capacitor voltages show identical behavior, very different currents can be accommodated.
+		Similar to the $4$-cycle explored previously, we investigate several scenarios. In all of them the capacitor voltages $u_{C,e}(t)$ quickly converge, see \Fref{fig:diamond_uC_symmetric_positive}, \Fref{fig:diamond_uC_symmetric_negative} and \Fref{fig:diamond_uC_asymmetric_positive}. However, due to the additional edge introduced to the \Pn, edges do not converge to the same values anymore but split up in three distinct groups. The first group is formed by edges $(0,1)$ and $(1,2)$. The second group are edges $(2,3)$ and $(3,0)$. And the last group is the bridge edge $(2,0)$. Note that in all scenarios the voltages show that the first two groups are symmetric around the value the center edge converges to. Although the capacitor voltages show identical behavior, very different currents can be accommodated.
 
 		\Fref{fig:diamond_ip_symmetric_positive} shows a scenario, where $1.5$ units of current flow through the center edge to split evenly at node $0$. The split flow then circles back to node $2$ showing appropriate signs and values. \Fref{fig:diamond_ip_symmetric_negative} shows the same situation but with the flow on the center edge reversed. Naturally, there is no reason to assume that flow must split up symmetrically. \Fref{fig:diamond_ip_asymmetric_positive} shows one of many possible unbalanced scenarios. As in the case of the $4$-cycle, we do not know the details of the splitting process nor its dependence on initial conditions at this point.
 
@@ -92,20 +93,21 @@
 			\label{fig:diamond}
 		\end{figure}
 
+		\FloatBarrier
 
 	\subsection{Paths of \emph{Physarum} Elements}
 
-		Next we look at paths of \Pes. Here no circulation is possible but neighboring \Pes still interact with each other leading to non-zero currents. \Fref{fig:path_5} depicts a path consisting of $5$ chained \Pes. Again \Fref{fig:path_5_legend} defines a color coding which serves as a legend for the remaining plots of \Fref{fig:paths}. We show the results of three different sub-path of \Fref{fig:path_5} starting at node $0$. The paths have lengths $l \in [2,3,4]$.
+		Next we look at paths of \Pes. Here no circulation is possible but neighboring \Pes still interact with each other leading to non-zero currents. \Fref{fig:path_5} depicts a path consisting of $5$ chained \Pes. Again \Fref{fig:path_5_legend} defines a color coding which serves as a legend for the remaining plots of \Fref{fig:paths}. We show the results of three different sub-path of \Fref{fig:path_5} all starting at node $0$. The paths have lengths $l \in [2,3,4]$.
 
-		First, note the capacitor voltages of at least one edge does not converge for any of the depicted paths, see \Fref{fig:path_3_uC}, \Fref{fig:path_4_uC} and \Fref{fig:path_5_uC}. All most all voltages are quasi-periodic and thus none of these \Pes are converged. 
+		First, note the capacitor voltages of at least one edge does not converge for any of the depicted paths, see \Fref{fig:path_3_uC}, \Fref{fig:path_4_uC} and \Fref{fig:path_5_uC}. Almost all voltages are quasi-periodic and thus none of these \Pes is converged. 
 
-		A similar behavior is observed for the currents illustrated in \Fref{fig:path_3_ip}, \Fref{fig:path_4_ip} as well as \Fref{fig:path_5_ip}. Note that for all paths we find that the currents of all but one edge periodically revers their sign, \ie flow reversal occurs naturally. At present, we do not know why there always remains one edge with zero flow.
+		A similar behavior is observed for the currents illustrated in \Fref{fig:path_3_ip}, \Fref{fig:path_4_ip} as well as \Fref{fig:path_5_ip}. Note that for all paths we find that the currents of all but one edge periodically reverse their signs, \ie flow reversal occurs naturally. At present, we do not know why there remains one edge with zero flow.
 
 		The distinguishing feature of these \Pes seems to be the period of the oscillations. For paths of length $3$ we repeated the simulation $100$ times with different random initial conditions. Without fail the \Pn produced a signal with a period of $T = 1087$ rounds in every execution. We thus conclude that the period is invariant under initial conditions within the ranges we explored. 
 
-		Furthermore, we find that the period of the oscillations decreases with increasing path length. For small path lengths the observed values suggest a linear relation between path length and period as a best fit. To explore the matter further we extended the simulations to paths lengths of up to $10$. We found that a simple functional relationship between path length and period cannot be confirmed of all tested lengths. Rather, for path lengths longer than $7$, more complicated oscillation patters are found to repeat themselves. Here it appears that higher order oscillations come into play. At present their meaning is not clear to the authors. We conclude, however, that there is complex relation between the oscillation patterns and the size of the underlying \Pes that warrants further exploration.
+		Furthermore, we find that the period of the oscillations decreases with increasing path length. For small path lengths the observed values suggest a linear relation between path length and period as a best fit. To explore the matter further we extended the simulations to paths lengths of up to $10$. We found that a simple functional relationship between path length and period cannot be confirmed for all tested lengths. Rather, for path lengths longer than $7$ more complicated oscillation patters are found to repeat themselves. Here it appears that higher order oscillations come into play. At present their meaning is not clear to the authors. We conclude, however, that there is complex relation between the oscillation patterns and the size of the underlying \Pes that warrants further exploration.
 
-		Another aspect waiting to be investigated for the first time is the nature of the phase shifts observed between the edges of the circuits. 
+		Another aspect awaiting investigation is the nature of the phase shifts observed between the edges of the circuits. 
                 
 		\begin{figure}
 			\centering
@@ -121,19 +123,19 @@
 			\subfloat[][Period $T \approx 1522$ rounds.]{\includegraphics[width=0.4\linewidth,keepaspectratio]{./simulation/path/path_5_ip.png}\label{fig:path_5_ip}}\qquad
 			\subfloat[][Period $T \approx 1522$ rounds.]{\includegraphics[width=0.4\linewidth,keepaspectratio]{./simulation/path/path_5_uC.png}\label{fig:path_5_uC}}
 			
-			\caption[Simulation - Paths]{various paths of \Pes.}
+			\caption[Simulation - Paths]{Various paths of \Pes.}
 			\label{fig:paths}
 		\end{figure}
 
-
+		\FloatBarrier
 
 	\subsection{Trees of \emph{Physarum} Elements}
 		
 		Let us study trees of \Pes next. The situation is similar to paths, with the added possibility of flows splitting up non-trivially at nodes of degree $3$. \Fref{fig:tree_6_graph} depicts a tree rooted at node $0$. We stress that the special status of root node exists only in the picture serving for better illustration. From the viewpoint of the model, all nodes are equal and the orientation of the edges matters not due to the symmetry of \Pes. As before \Fref{fig:tree_6_graph_legend} defines a color coding which serves as a legend for the plots of \Fref{fig:tree}.
 
-		Similar to the study of paths, we find that a \Pn with a tree topology does not converge, see the capacitor voltages in \Fref{fig:tree_6_uC}. Again we observe periodic behavior for both currents and capacitor voltages with a period of $T \approx 1701$ rounds. Of particular interest is the behavior of the currents as given by \Fref{fig:tree_6_ip}. After a brief period of interaction, the network exhibits perfect anti-phase oscillation for several of its parts. Looking at the edges $e_1 = (0,1)$ and $e_2 = (0,2)$ we see that whenever a positive current flows along $e_1$ an equal current with opposite sign flows through $e_2$. The same phase shift can be observed for the subtrees rooted at node $1$ and node $2$ respectively. This exact type of behavior was observed in $100$ independent simulations with different initial conditions.
+		Similar to the study of paths, we find that a \Pn with a tree topology does not converge, see the capacitor voltages in \Fref{fig:tree_6_uC}. Again we observe periodic behavior for both currents and capacitor voltages with a period of $T \approx 1701$ rounds. Of particular interest is the behavior of the currents as given by \Fref{fig:tree_6_ip}. After a brief period of interaction, the tree exhibits perfect anti-phase oscillation between its subtrees. Looking at the edges $e_1 = (0,1)$ and $e_2 = (0,2)$ we see that whenever a positive current flows along $e_1$ an equal current with opposite sign flows through $e_2$. The same phase shift can be observed for the subtrees rooted at node $1$ and node $2$ respectively. This exact type of behavior was observed in $100$ independent simulations with different initial conditions.
 
-		With regards to the period we observe identical values across all $100$ runs. Similar to the path, the period of the tree is robust to varying initial condition given the range we tested. A proof extending this statement is missing at this point.
+		With regards to the period we observe identical values across all $100$ runs. Similar to the path, the period of the tree is robust to varying initial condition given the range we tested. A proof solidifying this statement is missing at this point.
 
 		Let us discuss the behavior of the phases. Note that with respect to \Fref{fig:tree_6_graph} we may state that the currents through the left and the right subtree oscillate in perfect anti-phase. It is striking that the circuit itself suggest that it be viewed as a tree rooted at node $0$. It is not clear why it is precisely the subtrees at node $0$ that show this anti-phase entrainment. In principle we could choose any other node as the root, leading to different subtrees that should show different behavior. To shed light on these observations further numerical studies of various tree layouts could be useful.
 
@@ -150,15 +152,15 @@
 			\label{fig:tree}
 		\end{figure}
 
-	\subsection{Two linked cycles of \emph{Physarum} Elements}
+	\subsection{Two Linked Cycles of \emph{Physarum} Elements}
 
-		Finally, we combine the features of paths and cycles to obtain a \Pns as shown in \Fref{fig:dumbbell_graph}. \Fref{fig:dumbbell_graph_legend} defines a color coding which serves as a legend for the plots of \Fref{fig:dumbbell}.
+		Finally, we combine the features of paths and cycles to obtain a \Pn as shown in \Fref{fig:dumbbell_graph}. \Fref{fig:dumbbell_graph_legend} defines a color coding which serves as a legend for the plots of \Fref{fig:dumbbell}.
 
-		The proposed topology is meant as an first attempt of exploring the connection between the workings of our model and the behavior of live \P. We do so by interpreting the \Pn in \Fref{fig:dumbbell_graph} as an abstract representation of the way \P was modeled as a living system of delay-coupled mechanical oscillators as mentioned in the short survey of existing modeling approaches~\cite{PhysRevLett.85.2026}. The two $3$-cycles represent the reservoirs while the path of length $1$ constitutes the channel connecting them. In the original wet-lab experiment \P showed rich self-synchronizing oscillation patterns between the distinct reservoirs with both in-phase and anti-phase entrainment. It is interesting to ask, whether our model can reproduce any of the observed effects.
+		The proposed topology is meant as an first attempt of exploring the connection between the workings of our model and the behavior of live \P. We do so by interpreting the \Pn in \Fref{fig:dumbbell_graph} as an abstract representation of the way \P was modeled as a living system of delay-coupled mechanical oscillators as mentioned in the short survey of existing modeling approaches~\cite{PhysRevLett.85.2026}. See \Fref{sec:oscillator_experiment} for details. The two $3$-cycles represent the reservoirs while the path of length $1$ constitutes the channel connecting them. In the original wet-lab experiment \P showed rich self-synchronizing oscillation patterns between the distinct reservoirs with both in-phase and anti-phase entrainment. It is interesting to ask, whether our model can reproduce any of the observed effects.
 
-		To explore the behavior of our model, we present $3$ distinct simulation instances. First we look towards the capacitor voltages to find symmetric oscillations in perfect anti-phase within the two $3-cycles$. After a brief period of entrainment, the edges in the two cycles converge symmetrically around the value the channel edges $(0,5)$ converges to, see \Fref{fig:dumbbell_3_1_uC_symmetric_positive}, \Fref{fig:dumbbell_uC_symmetric_negative} and \Fref{fig:dumbbell_uC_asymmetric}. The picture is similar to what was observed for the diamond graph, except that the non-bridge edges, \ie the cycle edges, can now sustain oscillation. While this anti-phase entrainment is reminiscent of the behavior delay-coupled oscillators, we were not able to get our model to show in-phase entrainment. In fact, given the invariants we were able to proof, it is unlikely to be possible.
+		To explore the behavior of our model, we present $3$ distinct simulation instances. First we look towards the capacitor voltages to find symmetric oscillations in perfect anti-phase between the two cycles. After a brief period of entrainment, the edges of the two cycles converge symmetrically around the value the channel edges $(0,5)$ converges to, see \Fref{fig:dumbbell_3_1_uC_symmetric_positive}, \Fref{fig:dumbbell_uC_symmetric_negative} and \Fref{fig:dumbbell_uC_asymmetric}. The picture is similar to what was observed for the diamond graph, except that the non-bridge edges, \ie the cycle edges, can now sustain oscillation. While this anti-phase entrainment is reminiscent of the behavior delay-coupled oscillators, we were not able to get our model to show in-phase entrainment. In fact, given the invariants we were able to proof, it is unlikely to be possible.
 
-		With regards to the currents flowing in the \Pn, we observe scenarios that are intuitive. The currents in both cycles can be identical and flowing in the same direction, either clockwise, see \Fref{fig:dumbbell_ip_symmetric_negative}, or counter-clockwise, see \Fref{fig:dumbbell_3_1_ip_symmetric_positive}. Furthermore, the currents can flow in the opposite directions adding two more scenarios. \Fref{fig:dumbbell_ip_asymmetric} shows one of them with the l.h.s $3$-cycle showing counter-clockwise flow while the r.h.s $3$-cycle exhibits clockwise flow. A scenario where currents are damped is not shown. In contrast to isolated $3$-cycles, the coupling between the two cycles induces oscillations in the circular flows.	Interesting in all scenarios is the behavior of the channel edge $(0,5)$ which shows periodic flow reversals with a period of $T \approx 1629 $ rounds and large peak flows. Again $100$ repetitions of the simulation suggests the period to be independent on the initial conditions within the range we tested.
+		With regards to the currents flowing in the \Pn, we observe scenarios that are intuitive. The currents in both cycles can be identical and flowing in the same direction, either clockwise, see \Fref{fig:dumbbell_ip_symmetric_negative}, or counter-clockwise, see \Fref{fig:dumbbell_3_1_ip_symmetric_positive}. Furthermore, the currents can flow in the opposite directions adding two more scenarios. \Fref{fig:dumbbell_ip_asymmetric} shows one of them with the l.h.s.\ cycle showing counter-clockwise flow while the r.h.s.\ cycle exhibits clockwise flow. A scenario where currents are damped is not shown. In contrast to cycles, the coupling between the two cycles induces oscillations in the circular flows. Interesting in all scenarios, is the behavior of the channel edge $(0,5)$ which shows periodic flow reversals with a period of $T \approx 1629 $ rounds and large peak flows. Again $100$ repetitions of the simulation suggests the period to be independent on the initial conditions within the range we tested.
 
 		Clearly, the model we propose yields only a crude approximation of the behavior of \P. Based on the high degree of abstraction and the relatively simple model, it is surprising that effects like flow reversal and anti-phase entrainment emerge naturally. It is also apparent, that we are limited to simple topologies of \Pes if we are to make sense of the behavior analytically. Of course this does not prohibit using the model as a black box for more complicated and/or larger graphs.
 
@@ -180,6 +182,8 @@
 			\caption[Simulation - Dumbbell graph]{A \Pn designed to mimic aspects of the delay-coupled oscillator model of \P.}
 			\label{fig:dumbbell}
 		\end{figure}
+
+		\FloatBarrier
 
 	\subsection{\emph{Physarum} Elements and Changing Topology}
 
@@ -206,3 +210,5 @@
 		\end{figure}
 
 		These preliminary examples illustrate that changes in topology are naturally accommodated by the model. A more systematic investigation is a possible task for the future. Note, that when obtaining formal robustness properties for \Pns one may start by scanning related literature for classical electronic circuits.
+
+		\FloatBarrier

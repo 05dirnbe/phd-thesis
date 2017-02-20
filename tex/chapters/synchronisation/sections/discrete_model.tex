@@ -14,7 +14,7 @@ The discrete model is derived from the continuous model using forward Euler inte
 {\em Intially at $r=0$:}
 For each edge $e$ in $G$ do:  
 \begin{enumerate}
-\item Set $u_{C,e}(0)$ and $u_{p,e}(0)$ as specified by the edge label.
+\item Set $u_{C,e}(r=0)$ and $u_{p,e}(r=0)$ as specified by the edge label.
 \end{enumerate}
 
 \medskip
@@ -30,7 +30,7 @@ Then,
 u_v(r-1) = \frac{1}{|E(v)|}\sum_{e \in E(v)}(u_{C,e}(r-1)-u_{p,e}(r-1))\,.\label{eq:dis:u}
 \end{align}
 
-\item Update capacitance voltages (\Fref{code:capacitor_voltage}): in the continuous model, for each edge $e=(v,w)$ in $G$, we have
+\item Update capacitor voltages (\Fref{code:capacitor_voltage}): in the continuous model, for each edge $e=(v,w)$ in $G$, we have
 \begin{align}
   C\frac{d u_{C,e}(t)}{dt} &= i_{C,e}(t) = i_{p,e}(t) + i'_{p,e}(t)\notag\\
   &= \frac{u_v(t)+u_w(t)+u_{p,e}(t)+u'_{p,e}(t)-2u_{C,e}(t)}{R}\,.

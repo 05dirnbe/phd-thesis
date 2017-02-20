@@ -2,19 +2,19 @@
 
 \section{Overview of Modeling Approaches}\label{sec:model}
 
-  Before we introduce our approach of modeling the oscillation and flow dynamics observed in \P, let us survey three classes of existing approaches that provided inspiration. 
+  Before we introduce our approach of modeling the oscillations and flow dynamics observed in \P, let us survey three classes of existing approaches that provided inspiration. 
 
   The first class consists of interpreting the plasmodium of \P as a living ensemble of interacting oscillators. These can take different forms, ranging from intricate chemical oscillators~\cite{Smith1992368} to various mechanical ones~\cite{PhysRevLett.85.2026,tero2005coupled,takamatsu2001spatiotemporal}. 
 
-  As an example, we mention interpreting the plasmodium of \P as a living system of delay-coupled mechanical oscillators~\cite{PhysRevLett.85.2026}. To this end a micro-fabricated structure was prepared, consisting of two identical circular reservoirs connected by a channel of variable width and length. In the experiment, the two reservoirs and the channel are populated with plasmodium. The reservoirs act as two distinct \P oscillators while the channel ensures a controllable coupling between the two with its width determining the coupling strength while its length controls the time delay. In the experiment \P shows rich self-synchronizing oscillation patterns between the distinct reservoirs with both in-phase and anti-phase entrainment. A strong dependence on the geometry of the channel was observed. These results were found to agree with the theoretical predictions of an equivalent model consisting of a system of two fully distributed delay-coupled oscillators representing the two reservoirs and the channel. The findings confirmed that the behavior of delay-coupled oscillators yields a good description of the oscillation patterns exhibited by \P in the experiment.
+  As an example, we mention interpreting the plasmodium of \P as a living system of delay-coupled mechanical oscillators~\cite{PhysRevLett.85.2026}, see \Fref{sec:oscillator_experiment} for a detailed description. Here it suffices to say, that a micro-fabricated structure was prepared, consisting of two identical circular reservoirs connected by a channel of variable width and length. In the experiment, the two reservoirs and the channel are populated with plasmodium. The reservoirs act as two distinct \P oscillators while the channel ensures a controllable coupling between the two with its width determining the coupling strength while its length controls the time delay. In the experiment \P shows rich self-synchronizing oscillation patterns between the distinct reservoirs with both in-phase and anti-phase entrainment. A strong dependence on the geometry of the channel was observed. These results were found to agree with the theoretical predictions of an equivalent model consisting of a system of two fully distributed delay-coupled oscillators representing the two reservoirs and the channel. The findings confirmed that the behavior of delay-coupled oscillators yields a good description of the oscillation patterns exhibited by \P in the experiment.
 
   One disadvantage of oscillator approaches is the difficulty of obtaining the actual flow patterns from the knowledge of the oscillation phases. Furthermore, systems with a non-trivial number of interacting oscillators quickly become intractable analytically.
 
-  The second class follows a different approach and focuses on fluid mechanics including the effects of peristaltic pumping~\cite{alim2013random,teplov1991continuum}. Here the central aim is to connect the contractions of vein segments to the resulting hydrodynamic fluid flow.
+  The second class follows a different approach and focuses on fluid mechanics including accurate modeling of peristaltic pumping~\cite{alim2013random,teplov1991continuum}. Here the central aim is to connect the contractions of vein segments to the resulting hydrodynamic fluid flow.
 
-  Recent work along those lines showed that fluid flow and transport through a network of vein segments is optimal if the wavelength of the peristaltic wave is of the order of the size of the network~\cite{alim2013random}. The flow patterns predicted by a hydrodynamic model including the effects of peristalsis showed flow reversals and arrests which were found to be in good agreement with experimental observations. 
+  Recent work along those lines showed that fluid flow and transport through a network of vein segments is optimal if the wavelength of the peristaltic wave is of the order of the size of the network~\cite{alim2013random}. The flow patterns predicted by a hydrodynamic model, including the effects of peristalsis, showed flow reversals and arrests which were found to be in good agreement with experimental observations. 
 
-  The subtle downside of this class of models is the fact that they are not fully decentralized. In order to solve them one must determine certain initial conditions for the hydrodynamic equations. In other words the initial state of a selected set of points needs to be fixed. While sensible choices were shown to lead to excellent model predictions, the entire system evolution is made to depend on these special points. Unfortunately, this dependence contrasts a property of truly decentralized systems such as live \P. For them no such special points exist and the system state is determined by a self-organizing process rather than predetermined initial condition.
+  The subtle downside of this class of models is the fact that they are not fully decentralized. Solving them requires one to fix certain initial conditions for the hydrodynamic equations. In other words the initial states for a selected set of points need to be chosen and the entire system evolution is made to depend the choices made. Note how these choices introduces a central dependence on a small set of distinct points which contrasts truly decentralized systems such as live \P. For them, no such distinct points exist and the system state is determined by a self-organizing process which is often insensitive to starting conditions.
 
   The third class assumes that the hydrodynamic analogy holds true for veins and networks formed by \P. Based on this assumption, notions from the theory of electric circuits are used to model \P as an electrical network rather than a hydraulic one. \Fref{tab:hydraulic_analogy} translates between both descriptions. We remark that the idea of modeling single viscoelastic tubes and complex networks formed by them as electrical circuits is not novel. It has been introduced and subsequently refined with great success in the context of modeling the human cardiovascular system\cite{frank1899grundform,stefanovska1999physics,hardung1962propagation,landes1943einige,dePater1964}. Given the apparent similarities between the networks formed by \P and human vascular networks, it is natural to explore this approach for the modeling of slime molds such as \P.
 
@@ -25,12 +25,12 @@
          \multicolumn{1}{c}{Hydrodynamic System}    & Electrical analogue  \\ 
         \midrule
          Fluid & Charge   \\ 
-         Fluid flow & Charge flow \ie current   \\ 
+         Fluid flow & Charge flow, \ie current   \\ 
          Pressure & Potential   \\ 
-         Pressure difference & Potential difference \ie voltage \\
+         Pressure difference & Potential difference, \ie voltage \\
          Viscosity & Resistance \\
          Distensibility & Capacitance \\
-         Pump & Current controlled voltage souce\\
+         Pump & Voltage souce\\
          Inert mass & Inductance \\
         \bottomrule
         \end{tabular}
@@ -39,13 +39,13 @@
       \end{table}
 
 
-  Shifting the description of the dynamics of \P from the hydraulic to the electric world offers several advantages: First, one may dismiss the hydrodynamic equations in favor of the simpler electrical ones. Second, electrical circuits are subject to Kirchhoff's laws which can be used to simplify their treatment analytically. Third, the approach is very flexible and allows one to study different properties of \P within the same framework. 
+  Shifting the description of the dynamics of \P from the hydraulic to the electric world offers several advantages: First, one may dismiss the challenging hydrodynamic equations in favor of simpler electrical ones. Second, electrical circuits are subject to Kirchhoff's circuit laws which can be used to simplify their treatment analytically. Third, the approach is very flexible and allows one to study different properties of \P within the same framework. 
 
   Extremely recent examples include the study of the mechanisms of information processing in \P~\cite{tagung2017}\footnote{At the time of writing, only the abstract of this work was available.}. Relevant electronic models have also been formulated to describe various abilities of \P which were demonstrated in earlier experiments. Examples include the prediction of periodic changes in its environment~\cite{pershin2009memristive} and the solving of mazes~\cite{ntinas2016oscillation}.
 
   The difficulty with this class of models lies with the fact that the electronic elements they contain (resistors, capacitors, inductors, current controlled voltage sources) require a number of parameters to be set. If relevant statements with actual predictive power are to be obtained by using such a model, extreme care must be taken when deciding on the parameters. Unfortunately, this task remains difficult.
 
-  In the following we present an electric model of \P inspired by earlier attempts of modeling the human cardiovascular network~\cite{stefanovska1999physics,dePater1964}. Our model focuses on capturing the self-organized oscillatory dynamics of \P with the goal of obtaining emergent flow patterns similar to those observed in the slime mold. In particular we mimic the effect of peristalsis through the introduction of current controlled voltage sources. Our approach embodies the most desirable features of previous models, namely a direct representation of fluid flows governed by fully decentralized, tractable dynamics. 
-  At this point, we operate our model with a set of parameters which are suitable for exploring its behavior. Determining parameters that allow reliable physical predictions is not our focus at this point.
+  In the following we present an electric model of \P inspired by earlier attempts of modeling the human cardiovascular network~\cite{stefanovska1999physics,dePater1964}. Our model focuses on capturing the self-organized oscillatory dynamics of \P with the goal of obtaining emergent flow patterns similar to those observed in the slime mold. In particular we mimic the effect of peristalsis through the introduction of current controlled voltage sources. Our approach embodies the most desirable features of previous models, namely a direct representation of fluid flows governed by a fully decentralized, tractable dynamics. 
+  At this point, we operate our model with a set of parameters which is suitable for exploring its behavior. Determining parameters that allow reliable physical predictions is not our focus at this point.
 
   We begin by defining a continuous time model from which we subsequently derive a discrete version suitable for numerical treatment.

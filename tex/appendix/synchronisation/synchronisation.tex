@@ -96,6 +96,44 @@ def update_node_voltage(graph):
 \label{code:node_voltage}
 \end{codesnippet}
 
+\begin{codesnippet}
+\begin{minted}[linenos=true,tabsize=2,breaklines]{python}
+
+def update_edge_capacitor_voltage(graph, epsilon):
+	# d_e["I1"] --> current ip at edge e
+	# d_e["I2"] --> current ip* at edge e
+	# d_e["C"] --> capacity of capacitor at edge e
+	# d_e["Up_old_?"] --> previous value of d_e["Up_?"]
+	
+	for n in graph.nodes_iter():
+
+		# examine out edges for node n
+		for u,v,d_e in graph.out_edges_iter(n, data=True):
+
+			C = d_e["C"]
+			r1 = d_e["R1"]
+			r2 = d_e["R2"]
+			p1 = d_e["Up_old_1"]
+			p2 = d_e["Up_old_2"]
+						
+			Ux = graph.node[u]["U"]
+			Uy = graph.node[v]["U"]
+
+			a = euler_step_size/(r1*C)
+			b = euler_step_size/(r2*C)
+			
+			Uc = Ux*a + Uy*b + d_e["Uc"] + euler_step_size/(r1*C)*((d_e["Up_old_1"] + d_e["Up_old_2"]) - 2*d_e["Uc"]) 
+
+			d_e["Uc"] = Uc
+
+	# the following quantity is an invariant
+	Ucs = sum(nx.get_edge_attributes(graph,"Uc").values())		
+\end{minted}
+
+\captionof{listing}{Function updating the capacitor voltages for all edges. The quantity \mintinline{python}{Ucs} is the sum over all capacitor voltages and invariant by \Fref{lem:inv_cont} since $C_e = C \quad \forall e \in E$ as determined by the intital conditions.}
+\label{code:capacitor_voltage}
+\end{codesnippet}
+
 
 \begin{codesnippet}
 \begin{minted}[autogobble=true,tabsize=2,linenos=true,breaklines]{python}
@@ -156,40 +194,3 @@ def update_current_controlled_voltage_sources(graph, epsilon):
 \end{codesnippet}
 
 
-\begin{codesnippet}
-\begin{minted}[linenos=true,tabsize=2,breaklines]{python}
-
-def update_edge_capacitor_voltage(graph, epsilon):
-	# d_e["I1"] --> current ip at edge e
-	# d_e["I2"] --> current ip* at edge e
-	# d_e["C"] --> capacity of capacitor at edge e
-	# d_e["Up_old_?"] --> previous value of d_e["Up_?"]
-	
-	for n in graph.nodes_iter():
-
-		# examine out edges for node n
-		for u,v,d_e in graph.out_edges_iter(n, data=True):
-
-			C = d_e["C"]
-			r1 = d_e["R1"]
-			r2 = d_e["R2"]
-			p1 = d_e["Up_old_1"]
-			p2 = d_e["Up_old_2"]
-						
-			Ux = graph.node[u]["U"]
-			Uy = graph.node[v]["U"]
-
-			a = euler_step_size/(r1*C)
-			b = euler_step_size/(r2*C)
-			
-			Uc = Ux*a + Uy*b + d_e["Uc"] + euler_step_size/(r1*C)*((d_e["Up_old_1"] + d_e["Up_old_2"]) - 2*d_e["Uc"]) 
-
-			d_e["Uc"] = Uc
-
-	# the following quantity is an invariant
-	Ucs = sum(nx.get_edge_attributes(graph,"Uc").values())		
-\end{minted}
-
-\captionof{listing}{Function updating the capacitor voltages for all edges. The quantity \mintinline{python}{Ucs} is the sum over all capacitor voltages and invariant by \Fref{lem:inv_cont} since $C_e = C \quad \forall e \in E$ as determined by the intital conditions.}
-\label{code:capacitor_voltage}
-\end{codesnippet}
