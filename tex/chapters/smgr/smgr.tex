@@ -5,7 +5,7 @@
 
 	We initiate the \SMGR with the comprehensive \data focusing on the slime mold \Pp, which we obtained in the course of our original research. It contains sequences of images documenting growth and network formation of the organism under constant conditions. Suitable image sequences depicting the typical \P network structures are used to compute sequences of graphs faithfully capturing them. Given such sequences, node identities are computed, tracking the development of nodes over time. Based on this information we demonstrate two out of many possible ways to begin exploring the data. The entire data set is well-documented, self-contained and ready for inspection at \href{http://smgr.mpi-inf.mpg.de}{http://smgr.mpi-inf.mpg.de}.
 
-	The present chapter reports joined work with Mag.~T.~Mehlhorn~\cite{SMGR}. He was responsible for the realization of all described wet-lab experiments in the laboratories of the Korea Institute of Science and Technology Europe (\href{www.kist-europe.de}{\textsc{Kist} Europe}).
+	The present chapter reports joined work with Mag.~T.~Mehlhorn and Prof.~K.~Mehlhorn~\cite{SMGR}. The former was responsible for the realization of all described wet-lab experiments in the laboratories of the Korea Institute of Science and Technology Europe (\href{www.kist-europe.de}{\textsc{Kist} Europe}).
 
 \section{Introduction}
 
@@ -112,7 +112,7 @@
 
 	Note that some parts of the image series showing proper network formation did not yield optimal representations of the depicted networks. This is a result of images exhibiting strong color gradients or other effects rendering them too challenging for automatic network extraction. While such cases may still be handled by tuning the parameters of image processing manually on an image per image basis, we decided to discard affected series from subsequent processing efforts. As a result the number of usable graph sequences of highest quality reduced to $36$. To this we apply a set of filters removing artifacts, isolated small components and dead-end paths. Thus we obtain a total of $3134$ distinct filtered graphs faithfully reflecting the topology and edge attributes which \P displayed during the wet-lab experiments. 
 
-	At this point available graph analysis packages or custom written analysis code can be deployed to investigate the data in various ways, \eg~\cite{ICWSM09154,schult2008exploring}. The dataset includes the filtered graphs as well as all corresponding graph drawings. The latter enable a quick visual inspection of the graph extraction results.
+	At this point available graph analysis packages or custom written analysis code can be deployed to investigate the data in various ways, \eg~\cite{ICWSM09154,networkx}. The dataset includes the filtered graphs as well as all corresponding graph drawings. The latter enable a quick visual inspection of the graph extraction results.
 
 	Given the obtained time-ordered sequences of graphs the development of the entire graph can be investigated. One may also study what happens to single nodes as \P evolves. Given a graph in a sequence of graphs, let us pick any node $u$. Can we determine a set of nodes from graphs in the sequence that are equivalent to $u$, \ie all nodes in the set are earlier or later versions of $u$ in time? We answer this question by computing a so-called \emph{node tracking} which establishes the time development of all nodes in the graph. Crucially, this tracking takes into account topological changes in the evolving graphs. The result of the tracking is available as node properties of the graphs. Naturally, the program computing the tracking is included in the dataset. To the best of our knowledge, this type of data and algorithm is made available for the first time through the \data.
 
@@ -122,7 +122,7 @@
 
 		In this section we explain how to compute a node tracking. Our approach is a variant of a tracking method introduced previously~\cite{woll2013novel,Karrenbauer2013}. Here we give a self-contained account of the tracking technique geared towards non-experts in optimization. For technical details, proofs and an experimental evaluation of the method we refer the interested reader to the original publications.
 
-		For each of our experiments, let us denote the respective time ordered sequence of $k$ filtered graphs with $\mathcal{G} = {G_1, G_2, \dots, G_t, \dots, G_k}$ and the union of the respective node sets with $\bar{V} = \bigcup_{i=1}^{k} V_{k}$. Each node in $\bar{V}$ can be represented as a non-negative integer triple $(x,y,t)$. Here $x$ and $y$ denote a node's pixel coordinates relating to the input image used for graph extraction and $t$ denotes its position in the sequence, \ie its position in time.
+		For each of our experiments, let us denote the respective time ordered sequence of $k$ filtered graphs with $\mathcal{G} = {G_1, G_2, \ldots, G_t, \ldots, G_k}$ and the union of the respective node sets with $\bar{V} = \bigcup_{i=1}^{k} V_{k}$. Each node in $\bar{V}$ can be represented as a non-negative integer triple $(x,y,t)$. Here $x$ and $y$ denote a node's pixel coordinates relating to the input image used for graph extraction and $t$ denotes its position in the sequence, \ie its position in time.
 
 		We seek to exploit this information to partition the set $\bar{V}$ into a collection of disjoint, time-ordered paths such that every $u \in \bar{V}$ is part of exactly one path. We call such a path a \emph{track} and assign an unique identifier to it, \eg a unique color, which is shared by all nodes in the track. Intuitively speaking, rather than thinking of a track as a collection of nodes, one can interpret it as the realization of the same physical node at different points in time.
 
@@ -131,7 +131,7 @@
 		Let us refer to the edges within a track as \emph{tracking edges}. Tracking edges may connect nodes of temporal distance larger than one, \ie:
 
 		\begin{equation*}
-			e = (u,v) = ((x_u,y_u,t_u), (x_u,y_u,t_v)) \qquad \text{and} \qquad 1 \le t_u < t_v \le k.
+			e = (u,v) = ((x_u,y_u,t_u), (x_u,y_u,t_v)) \qquad \text{and} \qquad 1 \le t_u < t_v \le k \,.
 		\end{equation*}
 
 		Such tracks simply ``skip'' nodes between the start and the endpoint of the track and correspond to nodes that have not been observed by \NEFI for some amount of time. Given the continued changes in the network topology observed during the growth of \P such tracks are expected to appear frequently. 
@@ -156,12 +156,12 @@
 		Let us define the optimization problem we want to solve. First, we construct all possible tracking edges using space partition techniques. Assigning a unique identifier to each edge we obtain the set $\bar{E}$. When the linear program considers edges to include in a possible tracking solution it refers to them using the ids in this set. We define the cost of selecting a particular tracking edge $e = (u,v) = ((x_u,y_u,t_u), (x_v,y_v,t_v))$ as
 
 		\begin{equation}
-		\Delta(e) = \epsilon ((x_u - x_v)^2 + (y_u - y_v)^2 ) + \tau (t_u - t_v)^2,
+		\Delta(e) = \epsilon ((x_u - x_v)^2 + (y_u - y_v)^2 ) + \tau (t_u - t_v)^2\,,
 		\end{equation}
 		where $\epsilon$ and $\tau$ are constants used to control the relative strength of the squared Euclidean distance in space and time respectively. Note that using this cost function in our example in \Fref{fig:tracking}, track $T_a = [a_1,a_2,a_3]$ is favored over $T_a = [a_1,c_2,f_3]$. Note also that tracks of length $1$ have cost $0$ since there are no tracking edges to pay for. As a result the minimum cost solution consists of singleton tracks and is not very useful. To circumvent this problem we assign dedicated costs to any node that starts or ends a track as
 
 		\begin{equation}
-		p(u) = C.
+		p(u) = C\,.
 		\end{equation}
 
 		Here it is important that $C$ is selected carefully. It must not be too small since this will force the formation of artificial singleton tracks while too large a value may erroneously suppress such tracks. Going back to \Fref{fig:tracking}, assuming $\epsilon = \tau = 1$, a choice of $ 1 < C < 2^2 = 4$ will lead to two singleton tracks for the node $b$, namely ${b_1}$ and ${b_3}$ because a tracking edge connecting $b_1$ and $b_3$ comes at an edge cost of $\Delta(e)=4$. Increasing the node cost such that $C>2^2 = 4$ changes the picture and results in the desired tracks $T_b = [b_1, b_3]$ and $T_e = [e_1, e_3]$. The example illustrates the importance of the constants involved in the cost functions.
@@ -177,13 +177,13 @@
 		Finally, by combining the considerations discussed above, we are in a position to define the actual linear program computing a node tracking:
 
 		\begin{alignat*}{4}
-		minimize & : & \ \ f = &\sum_{ e \in \bar{E} } \Delta(e) x_{e}  &+  \sum_{ i \in \bar{V}} p(i) y_{i} & +   \sum_{ \substack{j \in \bar{V}}} p(j) z_{j} &  
+		\textbf{Minimize:} &  & \ \ f = &\sum_{ e \in \bar{E} } \Delta(e) x_{e}  &+  \sum_{ i \in \bar{V}} p(i) y_{i} & +   \sum_{ \substack{j \in \bar{V}}} p(j) z_{j} &  
 		\end{alignat*}
 
 		\begin{alignat*}{3}
-		  s.t.:
+		  \textbf{s.t.:}
 		        & \ \     & \forall \ e \in \bar{E} : \ x_{e} \ge 0  \quad \quad    & \forall \ i \in \bar{V} : \ y_{i} \ge 0                                          & \forall \ j \in \bar{V} : \ z_{j} \ge 0                                             \\
-		        & \ \     & \forall \ i: \ y_{i} = 1 - \sum_{e = (n,i) \in \bar{E}} x_{e}                                          &                                                     & \forall \ j: \ z_{j} = 1 - \sum_{e = (j,n) \in \bar{E}} x_{e}                     
+		        & \ \     & \forall \ i: \ y_{i} = 1 - \sum_{e = (n,i) \in \bar{E}} x_{e}                                          &                                                     & \forall \ j: \ z_{j} = 1 - \sum_{e = (j,n) \in \bar{E}} x_{e}\,.                     
 		        % & \ \     & \forall \ e \sum_{f} y_{ef} \leq 1                                          &                                                     & \forall \ f \sum_{e} y_{ef} \leq 1                \\
 		        % & \ \     & \overline{x}_{i} =  1 - \sum_{j \in V_B} x_{ij}                                &                                                     & \overline{x}_{j} =  1 - \sum_{i \in V_A} x_{ij}      \\          
 		        % & \ \     & \overline{y}_{e} =  1 - \sum_{f \in E_B} y_{ef}                                &                                                     & \overline{y}_{f} =  1 - \sum_{e \in E_A} y_{ef}               
@@ -222,7 +222,7 @@
 	Yet another way to study the \data lies in the information provided by the tracking algorithm presented in this manuscript.	Since all the graphs in the data set were tracked already, identifiers are available determining which nodes belong to which unique tracks. For simplicity, we refer to the track identifier as \emph{color}. As a proof-of-principle application, we shall demonstrate how to exploit this information to study the width of selected single edges in time. Since we aim to follow the time development of edges, we first need to establish the concept of tracks for edges. For any edge $e = (u,v)$, we define its color by combining the colors of $u$ and $v$ in a set:
 
 	\begin{equation}
-		\text{color}(e) = \{\text{color}(u), \text{color}(u)\}
+		\text{color}(e) = \{\text{color}(u), \text{color}(u)\} \,.
 	\end{equation}
 
 	Looking at the tracking example given in \Fref{fig:tracking}, the edges $(b_1,e_1)$ and $(b_3,e_3)$ are assigned the color $\{blue, orange\}$ signaling that both edges belong to the same edge track and are merely different instances of one and the same edge at different points in time. Note that this edge is missing at $t=2$ and thus the length of the edge track is reduced by $1$.

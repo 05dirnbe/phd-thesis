@@ -138,6 +138,7 @@ For arbitrary degree the voltage at node $v$ at time $t$ is denoted by $u_v(t)$.
   \forall e \in E(v):\, (u_{C,e}(t)-u_{p,e}(t)) + i_{p,e}(t)R_e = u_v(t)\\
   \sum_{e \in E(v)}i_{p,e}(t) = 0\,.
 \end{align}
+
 In the remainder of this work we assume that all \Pes are identical, \ie have equal $R$ and $C$. This is a strong simplification, but we believe it is necessary to keep the model simple enough for analytic treatment. Relaxing it is non-trivial and subject of future improvements.
 
 Thus,
@@ -158,17 +159,18 @@ For all Physarum networks, there exists a $Q \in \IR$ such that,
 \forall t\ge 0:\,\sum_{e \in E}C_e u_{C,e}(t) = Q\,.
 \end{align}
 \end{lem}
+
 \begin{proof}
 Since all capacitors are connected with one end to ground, we may apply Kirchhoff's current law to the ground.
-Thus,  
+Thus  
 \begin{align}
-\sum_{e \in E}i_{C,e}(t) = 0\notag
+\sum_{e \in E}i_{C,e}(t) = 0\,,\notag
 \end{align}
-holds. Furthermore for capacitor current $I$ and voltage $U$ it is $I= C \frac{dU}{dt}$. Thus we get,
+holds. Furthermore for capacitor current $I$ and voltage $U$ it is $I= C \frac{dU}{dt}$. Thus we get
 \begin{align}
-\sum_{e \in E}C_e\frac{du_{C,e}(t)}{dt} = 0\,\notag
+\sum_{e \in E}C_e\frac{du_{C,e}(t)}{dt} = 0\,,\notag
 \end{align}
-and hence,
+and hence
 \begin{align}
 \frac{d}{dt}\sum_{e \in E}C_eu_{C,e}(t) = \frac{d}{dt} Q = 0\,.\notag
 \end{align}
@@ -177,7 +179,7 @@ and hence,
 Next let us study \Pns with the topology of a cycle. Here \Pes are chained one after another with the last edge connecting back to the start. The analysis implies that these networks show very interesting behavior. 
 
 \begin{lem}\label{lem:ring_cont}
-Let $G$ be a physarum network that is a cycle. If $G$ converges, then it converges to either of three steady states:
+Let $G$ be a Physarum network that is a cycle. If $G$ converges, then it converges to either of three steady states:
 \begin{enumerate}
 \item it dies, \ie, for all edges $e$ in $G$, $i_{p,e}=0$,\label{case:1}
 \item it does not die, and for all edges $e$ in $G$, $i_{p,e}=\frac{|E|\hat{U}}{\sum_{e \in E} R_e}$,\label{case:2}
@@ -198,14 +200,13 @@ illustrating that all currents have identical strength. In a cycle non-zero curr
 Next we substitute $i^*$ in \Fref{eq:steady} and obtain
 
 \begin{align}
-  u_{p,e}(t) = u^*_{p,e}(t) = \max(\min(\beta i^*,\hat{U}),-\hat{U})\, =: u_p,\label{eq:up}
+  u_{p,e}(t) = u^*_{p,e}(t) = \max(\min(\beta i^*,\hat{U}),-\hat{U})\, =: u_p\,,\label{eq:up}
 \end{align}
-indicating that the current controlled voltages are also identical and constant for all $e \in G$.
-The circuit of the \Pe also implies that $u'_{p,e}(t) = - u_p = u'_p$.
+indicating that the current controlled voltages are also identical and constant for all $e \in G$. The circuit of the \Pe also implies that $u'_{p,e}(t) = - u_p = u'_p$.
 
-We next apply Kirchhoff's voltage law along the path traversing the whole cycle and obtain,
+We next apply Kirchhoff's voltage law along the path traversing the whole cycle and obtain
 \begin{align}
-0 = \sum_{e \in E} (u_p - u'_p - 2 i^* R_e) = 2\sum_{e \in E} (u_p - i^* R_e)\label{eq:sum1}
+0 = \sum_{e \in E} (u_p - u'_p - 2 i^* R_e) = 2\sum_{e \in E} (u_p - i^* R_e)\,.\label{eq:sum1}
 \end{align}
 
 Next, we distinguish between three cases for $u_p$, according to \Fref{eq:up}: {\em Case (1):} $u_p = \beta i^*$, {\em Case (2):} $u_p = \hat{U}$, and {\em Case (3):} $u_p = -\hat{U}$.
@@ -213,21 +214,22 @@ Next, we distinguish between three cases for $u_p$, according to \Fref{eq:up}: {
 \medskip
 
 \noindent
-{\em Case (1):} Substituting $u_p = \beta i^*$ into \Fref{eq:sum1} yields,
+{\em Case (1):} Substituting $u_p = \beta i^*$ into \Fref{eq:sum1} yields
 \begin{align}
 0 = 2 i^*\sum_{e \in E} (\beta - R_e)\,.
 \end{align}
-Since $\beta \neq R_e$ by assumption \eqref{eq:beta}, the above equation is
-  only fulfilled if $i^* = 0$, which corresponds to case \ref{case:1} in the lemma. 
+
+Since $\beta \neq R_e$ by assumption \eqref{eq:beta}, the above equation is only fulfilled if $i^* = 0$, which corresponds to case \ref{case:1} in the lemma. 
 
 \medskip
   
 \noindent
-{\em Case (2):} From $u_p = \hat{U}$ and \Fref{eq:sum1} we have,
+{\em Case (2):} From $u_p = \hat{U}$ and \Fref{eq:sum1} we have
 \begin{align}
 i^* = \frac{|E|\hat{U}}{\sum_{e \in E} R_e}\,.
 \end{align}
-Since, case (2) only applies when $\beta i^* > \hat{U}$, we further obtain,
+
+Since, case (2) only applies when $\beta i^* > \hat{U}$, we further obtain
 \begin{align}
 \frac{|E|\beta}{\sum_{e \in E} R_e} > 1\,,
 \end{align}
@@ -236,15 +238,13 @@ in correspondence with case \ref{case:2} in the lemma. Note, that the previous s
 \medskip
 
 \noindent
-{\em Case (3):} The proof for case $u_p = -\hat{U}$, corresponding to case \ref{case:3} in the lemma, is analogous
-  to case (2). 
+{\em Case (3):} The proof for case $u_p = -\hat{U}$, corresponding to case \ref{case:3} in the lemma, is analogous to case (2). 
 
 \end{proof}
 
 
 \begin{lem}\label{lem:tree_cont}
-Let $G$ be a physarum network that is a tree.
-If $G$ converges, then it dies.
+Let $G$ be a Physarum network that is a tree. If $G$ converges, it dies.
 \end{lem}
 \begin{proof}
 Assume that $G$ converges.

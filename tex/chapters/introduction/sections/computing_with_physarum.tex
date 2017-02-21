@@ -123,13 +123,13 @@
 			These considerations became the basis of a concise model presented in 2006, which captures the behavior of the slime mold as demonstrated in the maze experiment and lead to the first natural computing approaches based on \P~\cite{Tero2006115}. The model can be formulated on a graph $G = (V,E)$, where the node set $V$ denotes the junction points of veins and the edge set $E$ denotes the veins themselves. Each node $u \in V$ has a hydrodynamic pressure associated with it denoted by $p_u(t)$. Each edge $e = (u,v) \in E$ has a length $L_e$ as well as a time-dependent flow through the vein labeled $Q_e(t)$. Here it is assumed that the flow is a Poiseuille flow such that
 
 			\begin{equation}
-				Q_e(t) = \frac{\pi r_e(t)^4}{ 8 \eta} \frac{p_u(t)-p_v(t)}{L_e},
+				Q_e(t) = \frac{\pi r_e(t)^4}{ 8 \eta} \frac{p_u(t)-p_v(t)}{L_e}\,,
 				\label{eq:flow_initial}
 			\end{equation}
 			holds. Here $r_e(t)$ is the diameter of an edge and $\eta$ refers to the viscosity of the protoplasmic fluid. Let $D_e(t) = \pi r(t)^4/ 8 \eta$. Then we can simplify \Fref{eq:flow_initial} to read
 
 			\begin{equation}
-				Q_e(t) = \frac{D_e(t)}{L_e} (p_i(t) - p_j(t)).
+				Q_e(t) = \frac{D_e(t)}{L_e} (p_i(t) - p_j(t))\,.
 				\label{eq:flow}
 			\end{equation}
 
@@ -138,25 +138,26 @@
 			\begin{equation}
 				\sum_{e = (u,v) } Q_e(t) =
 				\begin{cases}
-				\quad 1 & \ \text{for} \ u=s, \\
-				\quad -1 & \ \text{for} \ u=t, \\
-				\quad 0 & \ \text{otherwise}.
+				\quad 1 & \ \text{for} \ u=s\,, \\
+				\quad -1 & \ \text{for} \ u=t\,, \\
+				\quad 0 & \ \text{otherwise}\,.
 				\end{cases}
 				\label{eq:conservation_of_flow}
 			\end{equation}
+			
 			Note that the l.h.s is chosen such that flow is conserved everywhere except at the source and the sink where flow is entering respectively leaving the graph. Thus one unit of flow is introduced to the system. \Fref{eq:conservation_of_flow} can be solved to obtain the values of the $Q(t)_e$ and the $p_u(t)$ simultaneously.
 
 			Finally the time-dependence of $D(t)_e$ is choose such, that the positive feedback between $D(t)_e$ and $Q_e(t)$ is as described above. For each $e \in E$ the dimensionless equation for $D(t)_e$ reads
 
 			\begin{equation}
-				\frac{d}{dt} D_e(t) = f( Q(t)_e ) - D_e(t),
+				\frac{d}{dt} D_e(t) = f( Q(t)_e ) - D_e(t)\,,
 				\label{eq:evolution}
 			\end{equation}
 			which is called adaptation or \emph{evolution equation}. Here $f$ is a monotonically increasing continuous function such that $f(0) = 0$. \Fref{eq:evolution} is the key of the model which formalizes the experimental observations reported earlier. If at time $t$ the flux through an edge is such that $f(Q_e(t)) < D_e(t)$ then $D_e(t)$ decreases which further reduces the flux through $e$. In this scenario an edge $e$ is degenerating. Likewise $f(Q_e(t)) > D_e(t)$ leads to an increase in $D_e(t)$ which further increases the flux. In this case $e$ is reinforced. Only ,$f(Q_e(t)) = D_e(t)$ enables a stationary state which leaves $D_e(t)$ and $Q_e(t)$ constant. 
 
 			The model thus evolves the thickness of veins in \P according to \Fref{eq:evolution} relying on the values of $p_u(t)$ and $Q_e(t)$ which are governed by \Fref{eq:conservation_of_flow}. For suitable choices of $f(Q_e)$ this system can be discretized and solved numerically~\cite{Tero2006115}. For the graph depicted in~\Fref{fig:maze:abstraction} a stationary state was found where the $D_e(t)$ of all edges that do not belong to the shortest path between $s=N_1$ and $t=N_2$ vanished. At the same time $D_e(t)$ of the edge on the shortest path approached a constant. That is, just like the slime mold, the model has selected the shortest path in the graph between $s$ and $t$. 
 
-			After this initial demonstration of the viability of \P as a medium for natural computing, mathematicians and computer scientists started to analyze the model and its variants contributing a sequence of convergence proofs and complexity bounds. For suitable choices of $f(Q_e)$ convergence was proven for planar graphs at first~\cite{miyaji2007mathematical,miyaji2008physarum}, but shortly thereafter proofs were extended to general graphs for the original model and for variations thereof~\cite{Bonifaci2012121,bonifaci2013physarum,ito2011convergence,becchetti2013physarum}. The fact that the theoretical properties of the so-called \emph{Physarum solver} are rather well understood is a rarity amongst natural computing algorithms.
+			After this initial demonstration of the viability of \P as a medium for natural computing, mathematicians and computer scientists started to analyze the model and its variants contributing a sequence of convergence proofs and complexity bounds. For suitable choices of $f(Q_e)$ convergence was proven for planar graphs at first~\cite{miyaji2007mathematical,miyaji2008physarum}, but shortly thereafter proofs were extended to general graphs for the original model and for variations thereof~\cite{bonifaci2012physarum,bonifaci2013physarum,ito2011convergence,becchetti2013physarum}. The fact that the theoretical properties of the so-called \emph{Physarum solver} are rather well understood is a rarity amongst natural computing algorithms.
 
 			Due to its success and intuitive basic idea, the Physarum solver has received much interest in the scientific community. Subsequently it inspired several other algorithms with varying degree of similarity to the original problem. An incomplete selection is given in \Fref{tab:list_inspired}. 
 
@@ -261,7 +262,7 @@
 
 			Two approaches, the perhaps most impressive, deserve to be mentioned separately. The first demonstrates an \textit{in vivo} solution to the problem of planning a transportation network connecting a set of cities. The second shows how a cleverly devised feedback-control system allows \P to act as an entirely different natural computing system, namely a neural network.
 
-			Tero \etal cultivated \P in a Petri dish designed as a miniature replica of the greater Kanto region where oat flakes were placed at the locations of Tokyo and other major cities. Geographical constraints such as oceans, lakes and mountains were realized by means of a corresponding illumination mask. Since \P tends to avoid light, growth was restricted to the shaded areas. Under these conditions \P soon formed a network spanning all the food sources available in the shade. Surprisingly, the networks formed by \P were found to resemble the actual railway networks serving the Kanto region while balancing efficiency, fault tolerance and cost~\cite{Tero439}. 
+			Tero \etal cultivated \P in a Petri dish designed as a miniature replica of the greater Kanto region where oat flakes were placed at the locations of Tokyo and other major cities. Geographical constraints such as oceans, lakes and mountains were realized by means of a corresponding illumination mask. Since \P tends to avoid light, growth was restricted to the shaded areas. Under these conditions \P soon formed a network spanning all the food sources available in the shade. Surprisingly, the networks formed by \P were found to resemble the actual railway networks serving the Kanto region while balancing efficiency, fault tolerance and cost~\cite{tero2010rules}. 
 
 			\begin{figure}
 				\centering
@@ -274,7 +275,7 @@
 				\subfloat[Tokyo railway experiment][]{\includegraphics[width=0.3\linewidth,keepaspectratio]{jr/F.png}}
 				
 				
-				\caption[Tokyo railway experiment]{Network formation in \Pp. (a) At $t = 0$, a small batch of plasmodium was placed at the location of Tokyo in an experimental arena bounded by the Pacific coastline (white border) and supplemented with additional food sources at each of the major cities in the region (white dots). The horizontal width of each panel is $17$ cm. (b) to (f): The plasmodium grew out from the initial food source with a contiguous margin and progressively colonized each of the food sources. Behind the growing margin, the spreading mycelium resolved into a network of tubes interconnecting the food sources. Caption and figure reprinted from~\cite{Tero439}.}
+				\caption[Tokyo railway experiment]{Network formation in \Pp. (a) At $t = 0$, a small batch of plasmodium was placed at the location of Tokyo in an experimental arena bounded by the Pacific coastline (white border) and supplemented with additional food sources at each of the major cities in the region (white dots). The horizontal width of each panel is $17$ cm. (b) to (f): The plasmodium grew out from the initial food source with a contiguous margin and progressively colonized each of the food sources. Behind the growing margin, the spreading mycelium resolved into a network of tubes interconnecting the food sources. Caption and figure reprinted from~\cite{tero2010rules}.}
 				\label{fig:tokyo}
 			\end{figure}
 

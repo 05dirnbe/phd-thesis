@@ -5,17 +5,22 @@
 	Here we list the basic code snippets which constitute the heart of the numerical simulation of our model. They serve merely as an illustration and written documentation of the simulation setup and are not intended to provide a run-able program\footnote{The snippets listed here fully describe the entire non-trivial part of our simulation. We omit code of minor concern such as the creation of test graphs, initialization and data logging.}. A complete run-able version of our simulation is available for download at the \href{https://people.mpi-inf.mpg.de/~mtd/}{authors page}.
 
 \begin{codesnippet}
+
+\captionof{listing}[Model implementation - Required libaries]{Required python libaries.  Here the excellent \mintinline{python}{networkx} provides graph support~\cite{networkx}.}
+\label{code:libaries}
+
 \begin{minted}[linenos=true]{python}
 from itertools import combinations
 import networkx as nx
 import numpy as np
 \end{minted}
-\captionof{listing}{Required python libaries.  Here the excellent \mintinline{python}{networkx} provides graph support~\cite{schult2008exploring}.}
-\label{code:libaries}
+
 \end{codesnippet}
 
 
 \begin{codesnippet}
+\captionof{listing}[Model implementation - Core of the simulation]{Core of the simulation. Note that the sequence of updates is different from \Fref{sec:discrete}. This change simplifies computation but does not affect the results.}
+\label{code:simulation}
 \begin{minted}[linenos=true,linenos=true,tabsize=2,breaklines]{python}
 def simulation(graph, epsilon = 0.01, max_iterations = 3000):
 
@@ -35,12 +40,13 @@ def simulation(graph, epsilon = 0.01, max_iterations = 3000):
 
 	return graph
 \end{minted}
-\captionof{listing}{Setup of the simulation. Note that the sequence of updates is different from \Fref{sec:discrete}. This change simplifies computation but does not affect the results.}
-\label{code:simulation}
+
 \end{codesnippet}
 
 
 \begin{codesnippet}
+\captionof{listing}[Model implementation - Update node voltages]{Function updating the voltages for all nodes. Implements \Fref{eq:uv}. Using the dictionaries \mintinline{python}{R_map} and \mintinline{python}{Uc_map} in conjunction with \mintinline{python}{np.prod} and \mintinline{python}{combinations} yields a convenient way to compute the required sums and products.}
+\label{code:node_voltage}
 \begin{minted}[linenos=true,tabsize=2,breaklines]{python}
 
 def update_node_voltage(graph):
@@ -92,11 +98,12 @@ def update_node_voltage(graph):
 			d_u["U"] = voltage
 
 \end{minted}
-\captionof{listing}{Function updating the voltages for all nodes. Implements \Fref{eq:uv}. Using the dictionaries \mintinline{python}{R_map} and \mintinline{python}{R_map} in conjunction with \mintinline{python}{np.prod} and \mintinline{python}{combinations} yields a convenient way to compute the required sums and products.}
-\label{code:node_voltage}
+
 \end{codesnippet}
 
 \begin{codesnippet}
+\captionof{listing}[Model implementation - Update capacitor voltages]{Function updating the capacitor voltages for all edges. The quantity \mintinline{python}{Ucs} is the sum over all capacitor voltages and invariant by \Fref{lem:inv_cont} since $C_e = C$ for all $e \in G$ as determined by the intital conditions.}
+\label{code:capacitor_voltage}
 \begin{minted}[linenos=true,tabsize=2,breaklines]{python}
 
 def update_edge_capacitor_voltage(graph, epsilon):
@@ -130,12 +137,13 @@ def update_edge_capacitor_voltage(graph, epsilon):
 	Ucs = sum(nx.get_edge_attributes(graph,"Uc").values())		
 \end{minted}
 
-\captionof{listing}{Function updating the capacitor voltages for all edges. The quantity \mintinline{python}{Ucs} is the sum over all capacitor voltages and invariant by \Fref{lem:inv_cont} since $C_e = C \quad \forall e \in E$ as determined by the intital conditions.}
-\label{code:capacitor_voltage}
+
 \end{codesnippet}
 
 
 \begin{codesnippet}
+\captionof{listing}[Model implementation - Update current controlled voltage sources]{Updates for current controlled voltage source. Implements \Fref{eq:left_up_18}, \Fref{eq:left_up_19} and \Fref{eq:left_up_20} for the l.h.s.\ and \Fref{eq:right_up_21}, \Fref{eq:right_up_22} and \Fref{eq:right_up_23} for r.h.s.\ voltage source respectively.}
+\label{code:current_controlled_voltage_sources}
 \begin{minted}[autogobble=true,tabsize=2,linenos=true,breaklines]{python}
 def update_current_controlled_voltage_sources(graph, epsilon):
 	# d_e["beta_?"] --> property beta
@@ -189,8 +197,7 @@ def update_current_controlled_voltage_sources(graph, epsilon):
 				d_e["Up_2"] = Up_current
 \end{minted}
 
-\captionof{listing}{Updates for current controlled voltage source. Implements \Fref{eq:left_up_18}, \Fref{eq:left_up_19} and \Fref{eq:left_up_20} for the l.h.s and \Fref{eq:right_up_21}, \Fref{eq:right_up_22} and \Fref{eq:right_up_23} for r.h.s voltage source respectively.}
-	\label{code:current_controlled_voltage_sources}
+
 \end{codesnippet}
 
 

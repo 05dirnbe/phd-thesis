@@ -2,6 +2,8 @@
 \chapter{Network Analysis}\label{chap:analysis}
 
 	We present a systematic study of the characteristic vein networks formed by the slime mold \P. Our study is based on an extensive set of graph representations of slime mold networks. We analyze a total of $1998$ graphs capturing growth and network formation of \P as observed in $36$ independent, identical, wet-lab experiments. Relying on concepts from graph theory such as face cycles and cuts as well as ideas from percolation theory, we establish a broad collection of individual observables taking into account various complementary aspects of \P networks. As a whole, the collection is intended to serve as a specialized knowledge-base providing a comprehensive characterization of \P networks. To this end, it contains individual as well as cumulative results for all investigated observables across all available data series, down to the level of single \P graphs. Furthermore we include the raw numerical data as well as various plotting and analysis tools to ensure reproducibility and increase the usefulness of the collection. All our results are publicly available in an organized fashion in \SMGR introduced in \Fref{chap:smgr}.
+	
+	This chapter presents joined work with Prof.~K.~Mehlhorn~\cite{dirnberger2016}.
 
 \section{Introduction}		
 
@@ -250,22 +252,21 @@
 			\label{fig:face_length_kde}
 		\end{figure}
 
-		Let us complete our report on face properties by characterizing the geometric shape of the faces observed in \P. In particular we want to quantify the resemblance between a face of degree $k$ and a regular polygon consisting of $k$ edges. We do so by defining the dimensionless \emph{roundness} $r(f)$ for any face $f$ as follows
+		Let us complete our report on face properties by characterizing the geometric shape of the faces observed in \P. In particular we want to quantify the resemblance between a face of degree $k$ and a regular polygon consisting of $k$ edges. We do so by defining the dimensionless \emph{roundness} $r(f)$ for any face $f$ as
 
 		\begin{equation}
-			 r(f) = \frac{4 \pi A(f)}{C(f)^2},
+			 r(f) = \frac{4 \pi A(f)}{C(f)^2}\,,
 		\end{equation}
-
 		where $A(f)$ and $C(f)$ denote face area and face circumference respectively. For $k \to \infty$, we have $r(f) = 1$ if $f$ forms a circle, and $0 < r < 1$ if $f$ has any other shape. The closer the polygon defined by $f$ is to a circle, the closer $r$ is to $1$. To obtain an equivalent statement for faces of finite $k$ we need to normalize $r(f)$ with respect to $k$. The normalization factor $r_{max}(k)$ is defined as the roundness of a regular polygon with $k$ edges. It is given by
 
 		\begin{equation}
-			r_{max}(k) = \frac{\pi}{k} (tan(\frac{\pi}{k}))^{-1}.
+			r_{max}(k) = \frac{\pi}{k} (tan(\frac{\pi}{k}))^{-1}\,.
 		\end{equation}
 
 		Hence, we obtain the \emph{normalized roundness} of a face $f$ of degree $k$ as
 
 		\begin{equation}
-			R(f,k) = \frac{r(f)}{r_{max}(k)}.
+			R(f,k) = \frac{r(f)}{r_{max}(k)}\,.
 		\end{equation}
 
 		Thus for any $k$ it holds that, the closer $R(f,k)$ is to $1$, the closer a face $f$ of degree $k$ is to being a regular polygon consisting of $k$ edges. 
@@ -329,7 +330,7 @@
 
 	\subsection{Percolation}
 
-		Previously, concepts from percolation and graph theory where successfully combined to study the assembly of macroscopic \P networks from microscopic slime mold fragments, called microplasmodia~\cite{fessel2012physarum,fessel2014analytical,fessel2015structuring}. Here we shall take the reverse approach to add another item to the collection of characteristic \P properties. To do so, we start with a well-formed \P network and gradually disassemble or ``damage'' it until it becomes maximally fragmented. A network $G$ is damaged by removing nodes or edges successively in a random order. Removal continues until the graph is empty. The result is a sequence of graphs $\mathcal{S} = {G,G_1, \ \dots \ , G_k}$ with a strictly decreasing number of edges or nodes. For each graph in the sequence one may then compute various observables and study their behavior with respect to the inflicted damage. This process has been successfully applied to various networks to determine the extend to which networks can remain operable despite of its components sustaining damage~\cite{callaway2000network,carlson2002complexity}. 
+		Previously, concepts from percolation and graph theory where successfully combined to study the assembly of macroscopic \P networks from microscopic slime mold fragments, called microplasmodia~\cite{fessel2012physarum,fessel2014analytical,fessel2015structuring}. Here we shall take the reverse approach to add another item to the collection of characteristic \P properties. To do so, we start with a well-formed \P network and gradually disassemble or ``damage'' it until it becomes maximally fragmented. A network $G$ is damaged by removing nodes or edges successively in a random order. Removal continues until the graph is empty. The result is a sequence of graphs $\mathcal{S} = {G, G_1, \ldots, G_k}$ with a strictly decreasing number of edges or nodes. For each graph in the sequence one may then compute various observables and study their behavior with respect to the inflicted damage. This process has been successfully applied to various networks to determine the extend to which networks can remain operable despite of its components sustaining damage~\cite{callaway2000network,carlson2002complexity}. 
 
 		Let us focus on random node and edge percolation. We define an occupation probability $p$ such that any given node $u$ or edge $e$ respectively is present in the graph with probability $p$. Equivalently, it is removed with probability $1-p$. For any graph $G_i \in \mathcal{S} $, we study the behavior of two important observables: the sizes of the largest and second largest connected components in $G_i$ as $p$ is varied from $0$ to $1$. We repeat this measurement $1000$ times for each graph in $\mathcal{S}$ and obtain averages and statistical errors for the measured quantities. 
 
@@ -352,7 +353,7 @@
 		To determine the value of $p_c$ we study the size of the second largest component (sLC). The theory of percolation predicts that this quantity diverges for $p=p_c$ on graphs of infinite size. On finite size graphs it becomes maximal. To obtain the location of the maximum, we fit the peak with a parabolic function
 
 		\begin{equation}
-			f(p) = a \ (p-d)^2 + c,\notag
+			f(p) = a \ (p-d)^2 + c\,,
 		\end{equation}
 		where the value of the fit parameter $d$ approximates the value of the critical threshold $p_c$. It is also apparent that the critical threshold for random node percolation is larger than the one for random edge percolation. This is a general property of percolation and serves as a sanity check, suggesting that our simulations were performed correctly. It also dictates that \P graphs are more resilient to the removal of edges than to the removal of nodes.
 
@@ -369,7 +370,7 @@
 
 		As a possible scaling law we propose an \textit{Ansatz} of
 		\begin{equation}
-			p_c(L) = a + b L^{c} + d L^{e} + f log(L)^{g},
+			p_c(L) = a + b L^{c} + d L^{e} + f log(L)^{g}\,,
 		\end{equation}
 		where we add a logarithmic term to the polynomial expression to allow for sub-leading corrections, without which scaling fits may fail, particularly on small size systems. Furthermore we restricted the exponents $c,e$ and $g$ to negative numbers to obtain a finite value of $p_c(L)$ as $L \to \infty$. The resulting fits are shown in \Fref{fig:percolation_scaling}. Note that for small $L$ the fit is lacking as it overestimates the values of $p_c(L)$.  Furthermore it appears that for large $L$ the available data points are underestimated. The effect is small but seems to be systematic. It likely causes us to underestimate the final critical thresholds in the thermodynamic limit. The thresholds are $p_c = 0.7118 \pm 0.0544$ for random node percolation and $p_c = 0.6584 \pm 0.0217$ for random edge percolation. Note that compared to other numerical percolation results, the error of both quantities is very large and thus the obtained values are to be taken as a rough approximation only.
 
@@ -400,5 +401,5 @@
 
 	\section{Acknowledgments}
 
-		We are grateful towards Prof.~M.~Grube and Dr.~C.~Westendorf for their hospitality, expert advice on slime molds and their encouragement in the early stages of this work. We thank to Prof.~H.~G.~D\"obereiner for valuable feedback and suggestions. We acknowledge Prof.~A.~Manz and Prof.~L.~Abelmann and their group at the \textsc{Kist} Europe for stimulating discussions. Lastly, we are grateful towards Dr.~A.~Neumann, Dr.~M.~F\"ugger and Prof.~Axel~Maas for their encouragement and valuable technical suggestions.
+		We are grateful towards Prof.~M.~Grube and Dr.~C.~Westendorf for their hospitality, expert advice on slime molds and their encouragement in the early stages of this work. We thank to Prof.~H.~G.~D\"obereiner for valuable feedback and suggestions. We acknowledge Prof.~A.~Manz and Prof.~L.~Abelmann and their group at the \textsc{Kist} Europe for stimulating discussions. Lastly, we are grateful towards Dr.~A.~Neumann, Dr.~M.~F\"ugger and Prof.~A.~Maas for their encouragement and valuable technical suggestions.
 

@@ -9,7 +9,7 @@
 
 \section{Introduction}
 
-	The study of complex network-like objects is of increasing importance for multiple scientific domains. The mathematical study of networks, Graph Theory, formalizes a network's structure by modeling the constituents of a network as \emph{vertices} and the pairwise relations between them as \emph{edges}\footnote{Some communities traditionally refer to vertices as nodes or sites and to edges as arcs or links.}. Networks are ubiquitous in everyday life. Examples are as diverse as the Internet, social networks, transportation networks, metabolic networks, blood vessels or the vein networks of leaves. For a comprehensive review see~\cite{newman2003}. 
+	The study of complex network-like objects is of increasing importance for multiple scientific domains. The mathematical study of networks, Graph Theory, formalizes a network's structure by modeling the constituents of a network as \emph{vertices} and the pairwise relations between them as \emph{edges}\footnote{Some communities traditionally refer to vertices as nodes or sites and to edges as arcs or links.}. Networks are ubiquitous in everyday life. Examples are as diverse as the Internet, social networks, transportation networks, metabolic networks, blood vessels or the vein networks of leaves. For a comprehensive review see~\cite{newman2003structure}. 
 
 	In situations where the extraction of a mathematical graph from a physical network is easy, the size of graphs that can be analyzed may quickly increase from hundreds to millions of vertices. In such cases it is possible to build large databases of networks which can be explored automatically using software relying on methods from statistics and graph theory. The combination of a large number of available graphs with dedicated methods of analyzing them yielded many results that changed our understanding of large scale network structures. Unfortunately, digitization of networks is not always easy and remains difficult for many types of networks. Examples include \eg leaf venations, blood vessels or food webs, and therefore ready-to-analyze datasets are often not available. In these cases, investigation on a larger scale requires tedious and sometimes error prone data acquisition.
 
@@ -191,14 +191,13 @@
 
 	\subsection{Definition of the Similarity Measure}
 
-		In order to determine the overall quality of \NEFIs output we need to quantify the degree of similarity between two graphs $A = (V_A, E_A)$ and $B = (V_B, E_B)$ using a graph similarity measure. Let $A, B \in \mathcal{G}$, where $\mathcal{G}$ is a set of undirected edges-weighted planar graphs where the nodes are labeled with their respective coordinates in the eucledian plane. Then we may define a similarity measure $s$ as follows:
+		In order to determine the overall quality of \NEFIs output we need to quantify the degree of similarity between two graphs $A = (V_A, E_A)$ and $B = (V_B, E_B)$ using a graph similarity measure. Let $A, B \in \mathcal{G}$, where $\mathcal{G}$ is a set of undirected edges-weighted planar graphs where the nodes are labeled with their respective coordinates in the eucledian plane. Then we may define a similarity measure $s$ as
 		
 		\begin{gather}
-		s : \mathcal{G} \times \mathcal{G} \mapsto [0,1] \notag \\
-		s(A,B) = \text{matching}(A,B) \quad \quad \forall \ A, B \in \mathcal{G}
+		s : \mathcal{G} \times \mathcal{G} \mapsto [0,1]\,, \notag \\
+		s(A,B) = \text{matching}(A,B) \quad \quad \forall \ A, B \in \mathcal{G} \,,
 		\end{gather}
-
-		Where $\text{matching}(A,B)$ denotes the normalized cost of a minimum cost graph matching problem which we will define shortly. Given this definition the degree of similarity between $A$ and $B$ is quantified by the value of $s(A,B)$. The similarity measure we propose has the following desirable properties:
+		where $\text{matching}(A,B)$ denotes the normalized cost of a minimum cost graph matching problem which we will define shortly. Given this definition the degree of similarity between $A$ and $B$ is quantified by the value of $s(A,B)$. The similarity measure we propose has the following desirable properties:
 
 
 		\begin{itemize}
@@ -209,7 +208,7 @@
 
 		We proceed with making the notions of \emph{similarity} and \emph{correspondence} more precise by constructing a minimum cost graph matching problem. Given the two graphs $A,B \in \mathcal{G}$, let $n_A,n_B$ denote the number of nodes and $m_A,m_B$ denote the number edges of the respective graphs. Note that $n_A$ and $n_B$ can differ, as can $m_A$ and $m_B$.
 
-		We can now define a matching between $A$ and $B$ consisting of three parts. First we define a matching between the node sets $V_A, V_B$, then we define a matching between the edges sets $E_A, E_B$ and finally we introduce a coupling between the two. To obtain a solution to the final problem we rephrase the combined matching problem as an integer linear program and obtain a solution using IBM's CPLEX solver~\cite{cplex2009v12}. For ease of exposition, however, we discuss the problem using the language of matchings.
+		We can now define a matching between $A$ and $B$ consisting of three parts. First we define a matching between the node sets $V_A, V_B$, then we define a matching between the edges sets $E_A, E_B$ and finally we introduce a coupling between the two. To obtain a solution to the final problem we rephrase the combined matching problem as an integer linear program and obtain a solution using IBM's CPLEX solver~\cite{cplex2005high}. For ease of exposition, however, we discuss the problem using the language of matchings.
 
 		For the node matching, we match each node $i \in V_A$ with at most one node $j \in V_B$. We define a variable $x_{ij}$ that is $1$ if we match $i$ with $j$ and $0$ otherwise. With a match we associate a cost of $\Delta_V(i,j)$. The function $\Delta_V(i,j)$ returns the euclidean distance between node $i$ and node $j$. If any node $u$ remains unmatched, we assign a penalty of $p_V(u)$ to it. A node can either be penalized or matched but not both. We thus compute a minimum cost node matching, in which it is favorable for a node $i \in V_A$ to find a match with a node $j \in V_B$ such that $i$ and $j$ are close in distance as measured by $\Delta_V(i,j)$. Two nodes are thus \emph{similar} if their euclidean positions are almost the same. For any given node in $V_A$ there can be many similar nodes in $V_B$, all of which are candidates for a match. Amongst all candidates the minimum cost matching selects pairs that are most similar. We call selected pairs of similar nodes \emph{corresponding}.
 
@@ -247,29 +246,28 @@
 
 		\begin{align}
 		\textbf{s.t.:} 	& &\overline{x}_{i} =  1 - \sum_{j \in V_B} x_{ij} &&\overline{x}_{j} =  1 - \sum_{i \in V_A} x_{ij} \\          
-						& &\overline{y}_{e} =  1 - \sum_{f \in E_B} y_{ef} &&\overline{y}_{f} =  1 - \sum_{e \in E_A} y_{ef}                                        
+						& &\overline{y}_{e} =  1 - \sum_{f \in E_B} y_{ef} &&\overline{y}_{f} =  1 - \sum_{e \in E_A} y_{ef} \, .                                        
 		\end{align}
 
 		To introduce the dependence between the vertex and the edge matching, we add an additional constraint as described above: 
 
 		\begin{align}
-			\textbf{s.t.:} 	& &2y_{ef} \leq x_{aa'} + x_{ab'} + x_{ba'} + x_{bb'}     \quad \quad \forall \ e = (a,b), \forall \ f = (a',b')          
+			\textbf{s.t.:} 	& &2y_{ef} \leq x_{aa'} + x_{ab'} + x_{ba'} + x_{bb'}     \quad \quad \forall \ e = (a,b), \forall \ f = (a',b')\,.      
 		\end{align}
 
 		From an ILP solution the optimal matching for nodes and edges can be recovered. Thus, we know what matching pairs have been formed and which nodes and edges remained unmatched. We use this information to define true positives, false positives and false negatives as described in the next section. 
 
 		In addition to that, we obtain the optimal value of the objective function $\OPT$, \ie the cost associated with the selected optimal matching. The value of $\OPT$ includes both the costs incurred by node and edge matches as well as the penalty terms arising from nodes and edges that cannot be matched. Thus, it is a measure of the similarity between the two graphs $A$ and $B$.
 
-		We point out that $\OPT = 0$ if a graph $G$ is matched with itself. Every single node and edge finds its exact copy as a match of cost $0$ for itself and thus no penalties arise. The other extreme is realized when there are no vertices in $V_A$ with corresponding similar nodes in $V_B$ and no edges $E_A$ with corresponding similar edges in $E_B$. In this case the value of $\OPT$ attains its maximum $\overline{\OPT}$ because all nodes and edges of both graphs are penalized. Naturally, the value of $\OPT$ increases (decreases) with decreasing (increasing) graph similarity. Given these observations it is natural to use $\OPT$ and $\overline{\OPT}$ to define a similarity measure betweens two graphs $A, B \in \mathcal{G}$ as follows
+		We point out that $\OPT = 0$ if a graph $G$ is matched with itself. Every single node and edge finds its exact copy as a match of cost $0$ for itself and thus no penalties arise. The other extreme is realized when there are no vertices in $V_A$ with corresponding similar nodes in $V_B$ and no edges $E_A$ with corresponding similar edges in $E_B$. In this case the value of $\OPT$ attains its maximum $\overline{\OPT}$ because all nodes and edges of both graphs are penalized. Naturally, the value of $\OPT$ increases (decreases) with decreasing (increasing) graph similarity. Given these observations it is natural to use $\OPT$ and $\overline{\OPT}$ to define a similarity measure betweens two graphs $A, B \in \mathcal{G}$ as
 
 		\begin{equation}
-		s(A,B) = \text{matching}(A,B) = 1 - \frac{\OPT(A,B)}{\overline{\OPT}(A,B)}
+		s(A,B) = \text{matching}(A,B) = 1 - \frac{\OPT(A,B)}{\overline{\OPT}(A,B)}\,,
 		\end{equation}
-
 		with
 
 		\begin{equation}
-		\overline{\OPT}(A,B) =   \sum_{ \substack{i \in V_A }} p_{V}(i) + \sum_{ \substack{j \in V_B}} p_{V}(j)  + \sum_{ \substack{e \in E_A }} p_{E}(e) + \sum_{ \substack{f \in E_B}} p_{E}(f)
+		\overline{\OPT}(A,B) =   \sum_{ \substack{i \in V_A }} p_{V}(i) + \sum_{ \substack{j \in V_B}} p_{V}(j)  + \sum_{ \substack{e \in E_A }} p_{E}(e) + \sum_{ \substack{f \in E_B}} p_{E}(f)\,.
 		\end{equation}
 
 

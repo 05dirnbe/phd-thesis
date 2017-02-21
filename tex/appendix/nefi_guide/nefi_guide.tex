@@ -2,7 +2,7 @@
 
 \chapter{Guide to Using NEFI}\label{app:nefi}
 
-	Here we document our experiences with using \NEFI. As discussed in \Fref{chap:nefi}, the combination of input image quality and \NEFIs segmentation algorithms makes or breaks the resulting graph. Let us first disucss the properties of ideal and non-ideal input images. Our goal is to give the prospective user an idea of what to avoid and what to look out for regarding inputs. Furthermore, we add some pointers on how to deal with challenging inputs and what one can try to do in order to improve the output of \NEFI. 
+	Here we document our experiences with using \NEFI. As discussed in \Fref{chap:nefi}, the combination of input image quality and \NEFIs segmentation algorithms makes or breaks the resulting graph. Let us first discuss the properties of ideal and non-ideal input images. Our goal is to give the prospective user an idea of what to avoid and what to look out for regarding inputs. Furthermore, we add some pointers on how to deal with challenging inputs and what one can try to do in order to improve the output of \NEFI. 
 
 \section{Properties of Ideal and Non-ideal Images}
 
@@ -22,7 +22,7 @@
 		\label{fig:sup:gradient}
 	\end{figure}
 
-	Another factor that influences segmentation, and by extension graph detection, are contaminations of different origin. Parts of the image might not belong to the object of interest at all. Such regions should be removed before loading the image into \NEFI, see \Fref{fig:sup:petri_dish}. 
+	Another factor that influences segmentation, and by extension graph detection, are contaminations of different origin. Examples include parts of the image which might not belong to the object of interest at all. Such regions should be removed before loading the image into \NEFI, see \Fref{fig:sup:petri_dish}. 
 
 	\begin{figure}
 		\centering
@@ -31,7 +31,7 @@
 		\label{fig:sup:petri_dish}
 	\end{figure}
 
-	\Fref{fig:sup:clutter} depicts an image lacking in a similar way. The image contains objects that are technically part of the network one would be interested to extract, however, they are not suited very well to be represented as a graph. In particular, they will be picked up correctly in the segmentation step yielding four large areas of white pixels. Subsequently, thinning will try to reduce these to a lines resulting in more or less unpredictable results. While the remaining parts of the structure will be processed correctly, such images do not constitute ideal candidates for processing with \NEFI.
+	\Fref{fig:sup:clutter} depicts an image lacking in a similar way. The image contains objects that are technically part of the network one would be interested to extract, however, they are not suited very well to be represented as a graph. In particular, they will be picked up correctly in the segmentation step yielding four large areas of white pixels. Subsequently, thinning will try to reduce these to lines resulting in more or less unpredictable results. While the remaining parts of the structure will be processed correctly, such images do not constitute ideal candidates for processing with \NEFI.
 
 	\begin{figure}
 		\centering
@@ -40,7 +40,9 @@
 		\label{fig:sup:clutter}
 	\end{figure}
 
-	Summarizing this information we can collect the following desirable properties for an ideal image:
+	\newpage
+
+	Summarizing this information we have the following desirable properties for an ideal image:
 
 	\begin{itemize}
 		\item High contrast between foreground and background.
@@ -69,9 +71,9 @@
 	\NEFI operates best on images produced under controlled laboratory conditions that fulfill the properties described in the last section. However, more difficult inputs may still be processed, but most likely at the cost of reduced quality. Based on our experience when dealing with more challenging input and the results of our evaluation, we are able to formulate the following recommendations for the usage of \NEFI:
 
 	\begin{description}
-	\item [Otsu's method] may be used on noisy or blurred images. It will do reasonably well as long as if the image has a high contrast between network and background. Adaptive threshold, watershed based on adaptive threshold, and GrabCut with deletion and erosion may even perform slightly better under these conditions. Otsu's has the advantage that no parameters have to be set in order to get good results. The choice should be based on the desired degree of resolution of the extracted graph. We would recommend these methods to process \Fref{fig:sup:petri_dish} after clipping the image accordingly.
+	\item [Otsu's method] may be used on noisy or blurred images. It will do reasonably well as long as the image has a high contrast between network and background. Adaptive threshold, watershed based on adaptive threshold, and GrabCut with deletion and erosion may even perform slightly better under these conditions. Otsu's has the advantage that no parameters have to be set in order to get good results. The choice should be based on the desired degree of resolution of the extracted graph. We would recommend these methods to process \Fref{fig:sup:petri_dish} after removing areas that are not of interest.
 
-	\item [Adaptive threshold and watershed based on adaptive threshold] may\\be used if differences in contrast between foreground and background are local and not too strong. If this is the case good results may still be obtained. Both methods allow to analyze images that contain a color gradient in the background or that contain edges which have differing levels in brightness. One might try to process images like \Fref{fig:sup:reflection} and \Fref{fig:sup:gradient} with these methods while experimenting with different parameter settings. However, such images remain challenging.\NEFIs current algorithms may not deliver sufficient results.
+	\item [Adaptive threshold and watershed based on adaptive threshold] may\\be used if differences in contrast between foreground and background are local and not too strong. If this is the case, good results may still be obtained. Both methods allow to analyze images that contain a color gradient in the background or that contain edges which have differing levels in brightness. One might try to process images like \Fref{fig:sup:reflection} and \Fref{fig:sup:gradient} with these methods while experimenting with different parameter settings. However, such images remain challenging. \NEFIs current algorithms may not deliver sufficient results.
 
 	\item [Preprocessing methods] like Gaussian and Median Blurring, Denoising as well as Bilateral Filtering can be used to remove small artifacts, contaminations or irregularities from the image. Although these methods can reduce the amount of artifacts produced during segmentation and thinning, improvements come at a price. For example, imposing a strong blur causes the depicted edges to appear slightly wider. This effect will propagate through the pipeline causing the edge widths of the final graph to overestimate the true widths depicted in the image. We recommend to use preprocessing with care especially if a high accuracy regarding edge weights is required.
 
