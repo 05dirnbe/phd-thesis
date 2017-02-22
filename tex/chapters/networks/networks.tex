@@ -3,7 +3,7 @@
 
 	We present a systematic study of the characteristic vein networks formed by the slime mold \P. Our study is based on an extensive set of graph representations of slime mold networks. We analyze a total of $1998$ graphs capturing growth and network formation of \P as observed in $36$ independent, identical, wet-lab experiments. Relying on concepts from graph theory such as face cycles and cuts as well as ideas from percolation theory, we establish a broad collection of individual observables taking into account various complementary aspects of \P networks. As a whole, the collection is intended to serve as a specialized knowledge-base providing a comprehensive characterization of \P networks. To this end, it contains individual as well as cumulative results for all investigated observables across all available data series, down to the level of single \P graphs. Furthermore we include the raw numerical data as well as various plotting and analysis tools to ensure reproducibility and increase the usefulness of the collection. All our results are publicly available in an organized fashion in \SMGR introduced in \Fref{chap:smgr}.
 	
-	This chapter presents joined work with Prof.~K.~Mehlhorn~\cite{dirnberger2016}.
+	This chapter presents joint work with Prof.~K.~Mehlhorn~\cite{dirnberger2016}.
 
 \section{Introduction}		
 
@@ -39,7 +39,7 @@
 
 		Here it suffices to say that the \data contains time series of mathematical graphs derived from images depicting growth and network formation of \P as observed in $36$ independent, identical, wet-lab experiments. Note that no additional food sources where introduced in these experiments. In addition to capturing the topology of \P, the graphs carry information such as the position of the nodes in the plane and edge lengths and widths. The time between two consecutive graphs within a series is \SI{120}{\second}. The image resolution is such that \SI{370.625}{\pixel} correspond to \SI{1}{\centi\metre}. The $36$ data series include a total of $1998$ distinct \P graphs. 
 
-	\subsection{Graph representation}
+	\subsection{Graph Representation}
 
 		The graphs we analyze represent \P networks. They have been processed to ensure that they are connected and that every edge belongs to at least one cycle. In other words, everything not contained in the largest connected component and all dead-end paths were removed. In our graphs, all nodes are of degree $2$ or $3$.
 
@@ -58,7 +58,7 @@
 			\label{fig:graph_schematic}
 		\end{figure}
 
-	\subsection{Statistical methods}
+	\subsection{Statistical Methods}
 
 		Statistical quantities are reported with their associated errors. Unless noted otherwise in the text, we either show bootstrapped standard errors of the mean or errors reported by fit routines where applicable. For the percolation experiments sample sizes were large enough to estimate the errors directly. Fits reported are least square fits, respectively weighted least square fits when errors where taken into account. For kernel density estimation we either rely on \verb+R+ or the \verb+numpy.stats+ packages~\cite{team2013r,jones2001open}.
 
@@ -68,7 +68,7 @@
 
 	In the following we discuss a representative selection of results based on the \data. It is designed to illustrate the most important findings and familiarize the reader with the type of information that is contained in the full set of results which is available for inspection and download at the \SMGR project page. The full set contains plots of individual and cumulative results of all computed observables for all available data series, down to the level of singular \P graphs. Furthermore fit parameters of all applied candidate fit distributions are available together with their goodness-of-fit plots. In addition to that tools and instructions are added that which the interested reader to investigate aspects of the data that go beyond the scope of this chapter.
 
-	\subsection{Path properties}
+	\subsection{Path Properties}
 
 		Recently, the distributions of basic observables including the length and the width of veins of \P graphs have been studied~\cite{baumgarten2010plasmodial}. Here we revisit earlier findings in an attempt to reproduce them. Surprisingly, despite (or because of) the increased amount of data available to us compared to earlier work, we were not able to unambiguously determine the underlying distributions of the observables under consideration. Instead we consider a set of valid candidate distributions and report on the most promising one in detail. 
 
@@ -163,7 +163,7 @@
 
 		While paths are the atomic constituents of \P their weights do not tell us anything about their arrangement within the graphs. To gain some insight we move on to study the next larger building blocks, namely cycles formed by paths, in the next section.
 
-	\subsection{Face properties}
+	\subsection{Face Properties}
 
 		When cultured under the right conditions on flat surfaces, \P forms (almost perfect) $3$-regular planar graphs that have a natural geometric embedding given by the euclidean coordinates of its nodes in the plane ~\cite{baumgarten2010plasmodial}. Each face of the embedding, with the exception of the outer face, is bounded by a cycle of edges. We call such cycles \emph{face cycles} or \emph{faces} for short, see \Fref{fig:graph_schematic}. In other words, faces can be regarded as basic graph building blocks that correspond to loops formed by the veins of the organism. To characterize the structures formed by \P, we study various statistical properties of its faces. Given a graph, all of its faces can be obtained in polynomial time by computing its dual~\cite{mehlhorn1995leda}. 
 
@@ -297,7 +297,7 @@
 
 		We stress at this point that looking at roundness numbers by themselves is not very instructive. Their usefulness, however, becomes apparent in combination with other face properties when it comes to comparing \P graphs amongst themselves or with other structures. While the roundness gives a measure of what shapes of faces are present in a graph, face area and circumference add a physical dimension to them. Together with the degree distribution of faces a comprehensive description of the entire network of \P in terms of its basic two dimensional building blocks is available. Since this description can be computed efficiently for any weighted planar graph, a quantitative comparison with other planar networks becomes possible.
 
-	\subsection{Cut properties}\label{sec:cut_properties}
+	\subsection{Cut Properties}\label{sec:cut_properties}
 
 		In this chapter we study the extend of spatial homogeneity of \P networks with respect to two special directions: First, the direction in which the organism expands, \ie its growth direction and second, the direction perpendicular to it. To do so we use the graph theoretic concept of \emph{cuts}. A cut defines a partition of the nodes of a graph into two disjoint subsets. Furthermore, it determines a \emph{cut-set}, a set of edges with the property that each edge has one endpoint in each of the two node subsets. These are the edges crossing the cut. Since we are interested in the cut-set only, let us refer to it simply as cut from now on. 
 

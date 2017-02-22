@@ -20,7 +20,7 @@
 
 		We are aware of a potential caveat of our approach, namely the light source in the negatoscope emitting the full spectrum of white light. It is well known that \P reacts to specific parts of the spectrum while it is insensitive to others~\cite{nakagaki1996action}. Thus, ideally one chooses a light source such that the organism remains undisturbed. However, such a light source was not at our disposal so we decided to minimize the impact of the light by minimizing the time \P is exposed to it. In particular we couple the triggering of the camera with the power supply of the negatoscope. Thus we ensure that the slime mold is illuminated a mere \SI{1}{\second} every \SI{120}{\second}. Since we did not observe any irregularities in our experiments known to be induced by light we conclude that our precautions were sufficient.
 
-	\section{Graph extraction}
+	\section{Graph Extraction}
 
 		Given the obtained raw data, we discard all series that do not show proper network formation. Thus the number of usable datasets is reduced to $54$. For the remaining series we seek to describe the characteristic \P networks by equivalent graphs. In addition to capturing the topology of the networks, we want to obtain a precise measure on the length and width of each vein observed. Furthermore, we want to establish the positions of the junctions of the veins in the image. Thus, we want to compute a weighted graph, whose nodes carry the positions of the junctions in the plane and whose edges carry weights corresponding to the length and the width of the observed veins. 
 
