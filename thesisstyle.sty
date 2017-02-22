@@ -9,6 +9,8 @@
 \KOMAoptions{draft}					%speed up compilation by replacing images by placeholders, use final for final version
 \KOMAoptions{paper=a4,twoside,fontsize=12pt,BCOR=12mm}
 \KOMAoptions{headinclude=false,footinclude=false}
+\KOMAoptions{headsepline=true}
+\KOMAoptions{open=right}
 \usepackage[utf8]{inputenc}
 \usepackage[german, english]{babel}
 
@@ -44,6 +46,7 @@
 \usepackage[mathic]{mathtools}
 \usepackage{siunitx}
 \sisetup{separate-uncertainty}
+\sisetup{round-mode=places,round-precision=4}
 
 
 %hyperref options
@@ -111,6 +114,7 @@
 \usepackage{todonotes}
 \usepackage[newfloat]{minted}     % is required for code listings
 \usepackage{datetime}
+\usepackage{varwidth}
 
 %\definecolor{gray75}{gray}{0.75}
 %\newcommand{\hsp}{\hspace{20pt}}

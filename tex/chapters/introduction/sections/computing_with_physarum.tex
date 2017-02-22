@@ -2,7 +2,7 @@
 
 \section{Natural Computing with \P}\label{sec:natural_computing_physarum}
 
-	Starting in 2000 a series of break-through experiments caused the unassuming organisms that are slime molds to become the focus of intense research efforts. In particular, it was demonstrated that in its plasmodium stage, \P is capable of reacting to environmental conditions in a manner that is reminiscent of optimization processes. Examples include the maximization of food uptake given a small set of food sources, or the minimization of exposure to light known to be harmful to the organism. It is striking that there is no central control coordinating these nontrivial processes. Since \P lacks any sort of brain or nervous system, it has been speculated that the observed capabilities are emergent as a result of local interactions. Given its abilities, \P can be seen as a highly distributed system with properties suitable for distributed natural computing.
+	Starting with the year 2000 a series of break-through experiments caused the unassuming organisms that are slime molds to become the focus of intense research efforts. In particular, it was demonstrated that in its plasmodium stage, \P is capable of reacting to environmental conditions in a manner that is reminiscent of optimization processes. Examples include the maximization of food uptake given a small set of food sources, or the minimization of exposure to light known to be harmful to the organism. It is striking that there is no central control coordinating these nontrivial processes. Since \P lacks any sort of brain or nervous system, it has been speculated that the observed capabilities are emergent as a result of local interactions. Given its abilities, \P can be seen as a highly distributed system with properties suitable for distributed natural computing.
 
 	In order to explain the behavior of \P and to harness its in-built optimization capabilities, several different approaches were put forward. The most successful amongst those either focus on modeling certain key observations that were discovered experimentally or manipulate the organism \textit{in vivo} in such a way that its behavior can be interpreted as computation. In the next section we survey some of the most influential experiments which paved the way for natural computing with \P.
 
@@ -52,8 +52,8 @@
 				\subfloat[Maze experiment - Final state][]{\includegraphics[width=\twoimageswide,keepaspectratio]{maze/maze_experiment_3.png}\label{fig:maze:final}}
 				\subfloat[Maze experiment - Graph abstraction][]{\includegraphics[width=\twoimageswide,keepaspectratio]{maze/maze_experiment_4.png}\label{fig:maze:abstraction}}
 				
-				\caption[Classic maze experiment with \P]{ a) The plasmodium of 
-				\P is evenly spread across a maze. Filled black circles denote two specific points in the maze. Arrows indicate segments of possible paths between them. b) Two food sources, labeled \textbf{\texttt{AG}}, are introduced at the specific points. After a while the plasmodium retreats from areas of the maze that do not intersect with a path connecting the food sources. c) The plasmodium settles on the shortest path between the two food sources. d) The maze can be interpreted as an abstract graph with two distinct nodes $N_1$ and $N_2$ corresponding to the food sources. The scale bars denote \SI{1}{\centi\metre}. Reprinted from~\cite{Tero2007553}.}
+				\caption[Classic maze experiment with \P]{ (a) The plasmodium of 
+				\P is evenly spread across a maze. Filled black circles denote two specific points in the maze. Arrows indicate segments of possible paths between them. (b) Two food sources, labeled \textbf{\texttt{AG}}, are introduced at the specific points. After a while the plasmodium retreats from areas of the maze that do not intersect with a path connecting the food sources. (c) The plasmodium settles on the shortest path between the two food sources. (d) The maze can be interpreted as an abstract graph with two distinct nodes $N_1$ and $N_2$ corresponding to the food sources. The scale bars denote \SI{1}{\centi\metre}. Reprinted from~\cite{Tero2007553}.}
 				\label{fig:maze}
 			\end{figure}
 
@@ -103,7 +103,7 @@
 
 	\subsection{Natural Computing Approaches}
 
-		After the short survey of key experimental observations presented in the previous section, we move on to discuss common strategies to use the plasmodium of \P as a medium for natural computing. Here we present examples for the different paradigms discussed in the section natural computing. In the interest of brevity, we focus on the most successful approaches and refer the reader to the literature for details.
+		After a short survey of key experimental observations presented in the previous section, we move on to discuss common strategies to use the plasmodium of \P as a medium for natural computing. Here we present examples for the different paradigms discussed in the section natural computing. In the interest of brevity, we focus on the most successful approaches and refer the reader to the literature for details.
 
 		% The first approach consists of modeling some aspect of \P with the goal of using this model for \textit{in silico} computation. The major challenge here is to look past the intricate bio-physical processes that are observed experimentally and find a suitable level of abstraction capable of capturing the computational abilities of \P
 		% Once a reliable model has been established, its suitability to solve computational problems can be studied. Since most of the resulting computational algorithms are comparably complicated, they frequently resist theoretical analysis. However, in some cases the algorithms are well understood and convergence properties and runtime guarantees have been established.

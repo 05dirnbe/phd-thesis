@@ -10,41 +10,37 @@
 
 \begin{document}
 
+\frontmatter
+
 %Include custom title page
-\input{./tex/title.tex}
-\input{./tex/abstract.tex}
-\input{./tex/thanks.tex}
+\include{./tex/title}
+\include{./tex/abstract}
+\include{./tex/thanks}
 
 \tableofcontents
 \listoffigures
 \listoftables
 \listoflistings
 
-% the actual chapters of the thesis 
-\input{./tex/chapters/introduction/introduction.tex}
-\input{./tex/chapters/nefi/nefi.tex}
-\input{./tex/chapters/smgr/smgr.tex}
-\input{./tex/chapters/networks/networks.tex}
-\input{./tex/chapters/synchronisation/synchronisation.tex}
+\mainmatter
 
-\cleardoublepage
-\input{./tex/chapters/discussion.tex}
-\addcontentsline{toc}{chapter}{Discussion}
+%the actual chapters of the thesis 
+\include{./tex/chapters/introduction/introduction}
+\include{./tex/chapters/nefi/nefi}
+\include{./tex/chapters/smgr/smgr}
+\include{./tex/chapters/networks/networks}
+\include{./tex/chapters/synchronisation/synchronisation}
+\include{./tex/chapters/discussion}
 
 \appendix
-\input{./tex/appendix/nefi_guide/nefi_guide.tex}
-\input{./tex/appendix/smgr/smgr.tex}
-\input{./tex/appendix/networks/networks.tex}
-\input{./tex/appendix/synchronisation/synchronisation.tex}
+\include{./tex/appendix/nefi_guide/nefi_guide}
+\include{./tex/appendix/smgr/smgr}
+\include{./tex/appendix/networks/networks}
+\include{./tex/appendix/synchronisation/synchronisation}
 
 % Bibliography:
 \cleardoublepage
 \input{./tex/bibliography.tex}
 \addcontentsline{toc}{chapter}{Bibliography}
-
-% %todo list to work on
-% \cleardoublepage
-% \listoftodos
-% \todototoc
 
 \end{document}

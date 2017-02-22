@@ -5,7 +5,7 @@
 
 	We initiate the \SMGR with the comprehensive \data focusing on the slime mold \Pp, which we obtained in the course of our original research. It contains sequences of images documenting growth and network formation of the organism under constant conditions. Suitable image sequences depicting the typical \P network structures are used to compute sequences of graphs faithfully capturing them. Given such sequences, node identities are computed, tracking the development of nodes over time. Based on this information we demonstrate two out of many possible ways to begin exploring the data. The entire data set is well-documented, self-contained and ready for inspection at \href{http://smgr.mpi-inf.mpg.de}{http://smgr.mpi-inf.mpg.de}.
 
-	The present chapter reports joined work with Mag.~T.~Mehlhorn and Prof.~K.~Mehlhorn~\cite{SMGR}. The former was responsible for the realization of all described wet-lab experiments in the laboratories of the Korea Institute of Science and Technology Europe (\href{www.kist-europe.de}{\textsc{Kist} Europe}).
+	The chapter documents an extensive collaboration with Mag.~T.~Mehlhorn and Prof.~K.~Mehlhorn~\cite{SMGR}. The former was responsible for the realization of all described wet-lab experiments in the laboratories of the Korea Institute of Science and Technology Europe (\href{www.kist-europe.de}{\textsc{Kist} Europe}).
 
 \section{Introduction}
 
@@ -151,7 +151,7 @@
 		\label{fig:tracking}
 		\end{figure}
 
-		Ultimately, we seek to find a partition, that faithfully captures the time development of the nodes in $\bar{V}$. To do so we rely on the observation that optimal tracks are likely to consist of nodes that are close in space as well as close in time. In the following we formalize this requirement and construct a linear program (LP) that selects an optimal partition amongst all possible partitions. Once an LP has been defined, solving it becomes a standard task of optimization and can be done efficiently using solvers like Gurobi~\cite{optimization2012gurobi} or Cplex~\cite{cplex2005high}.
+		Ultimately, we seek to find a partition, that faithfully captures the time development of the nodes in $\bar{V}$. To do so we rely on the observation that optimal tracks are likely to consist of nodes that are close in space as well as close in time. In the following we formalize this requirement and construct a linear program (LP) that selects an optimal partition amongst all possible partitions. Once an LP has been defined, solving it becomes a standard task of optimization and can be done efficiently using solvers like Gurobi~\cite{optimization2012gurobi}, or Cplex~\cite{cplex2005high}.
 
 		Let us define the optimization problem we want to solve. First, we construct all possible tracking edges using space partition techniques. Assigning a unique identifier to each edge we obtain the set $\bar{E}$. When the linear program considers edges to include in a possible tracking solution it refers to them using the ids in this set. We define the cost of selecting a particular tracking edge $e = (u,v) = ((x_u,y_u,t_u), (x_v,y_v,t_v))$ as
 
@@ -225,7 +225,7 @@
 		\text{color}(e) = \{\text{color}(u), \text{color}(u)\} \,.
 	\end{equation}
 
-	Looking at the tracking example given in \Fref{fig:tracking}, the edges $(b_1,e_1)$ and $(b_3,e_3)$ are assigned the color $\{blue, orange\}$ signaling that both edges belong to the same edge track and are merely different instances of one and the same edge at different points in time. Note that this edge is missing at $t=2$ and thus the length of the edge track is reduced by $1$.
+	Looking at the tracking example given in \Fref{fig:tracking}, the edges $(b_1,e_1)$ and $(b_3,e_3)$ are assigned the color $\{blue, orange\}$ signaling that both edges belong to the same edge track and are merely different instances of one and the same edge at different points in time. Note that this edge is missing at $t=2$ and thus the length of the edge track is reduced by one.
 
 	Given this edge color information it trivial to find all the edges that belong to an edge track. Once the tracks are known, it is easy to study how edge properties change within a track. \Fref{fig:unsplit} gives a detail of the graph shown in \Fref{fig:graph} and highlights two distinct edges which we want to investigate in this example. Edge $A$ was chosen such that the length of its track is equal to the length of the entire time series, \ie this thick edge is fully accounted for and does not disappear at any point in time. To illustrate the way the tracking algorithm resolves tracks were edges disappear at different points in time, we have selected an edge $B$ which is much thinner than $A$. There are two ways for an edge to disappear. Either its thickness falls below the detection threshold which means it is not present in the graph anymore, or it is split by a node introduced by the appearance of another edge. \Fref{fig:split} shows the latter situation where $B$ is split into two new edges by a newly detected third edge. The new edges have colors different from $B$.
 
