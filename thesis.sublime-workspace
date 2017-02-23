@@ -520,35 +520,42 @@
 	"buffers":
 	[
 		{
-			"file": "tex/test.tex",
-			"settings":
-			{
-				"buffer_size": 1218,
-				"line_ending": "Unix",
-				"name": "\\section{TEST}"
-			}
-		},
-		{
-			"file": "bib/thesis.bib",
-			"settings":
-			{
-				"buffer_size": 1070,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "thesis.tex",
 			"settings":
 			{
-				"buffer_size": 600,
+				"buffer_size": 1190,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "thesiscommands.sty",
+			"file": "tex/title.tex",
 			"settings":
 			{
-				"buffer_size": 144,
+				"buffer_size": 1487,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tex/chapters/introduction/sections/motivation.tex",
+			"settings":
+			{
+				"buffer_size": 11439,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tex/chapters/nefi/nefi.tex",
+			"settings":
+			{
+				"buffer_size": 63621,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tex/chapters/smgr/smgr.tex",
+			"settings":
+			{
+				"buffer_size": 46589,
 				"line_ending": "Unix"
 			}
 		},
@@ -556,14 +563,78 @@
 			"file": "thesisstyle.sty",
 			"settings":
 			{
-				"buffer_size": 2055,
+				"buffer_size": 3513,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "thesiscommands.sty",
+			"settings":
+			{
+				"buffer_size": 2746,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "bib/thesis.bib",
+			"settings":
+			{
+				"buffer_size": 138964,
 				"line_ending": "Unix"
 			}
 		}
 	],
-	"build_system": "",
+	"build_system": "Packages/LaTeXTools/LaTeX.sublime-build",
 	"build_system_choices":
 	[
+		[
+			[
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					""
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Traditional"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"PdfLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"XeLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"LuaLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder - PdfLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder - XeLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder - LuaLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Script Builder"
+				]
+			],
+			[
+				"Packages/LaTeXTools/LaTeX.sublime-build",
+				"PdfLaTeX"
+			]
+		],
 		[
 			[
 				[
@@ -581,7 +652,7 @@
 			]
 		]
 	],
-	"build_varint": "",
+	"build_varint": "PdfLaTeX",
 	"command_palette":
 	{
 		"height": 47.0,
@@ -630,14 +701,59 @@
 	},
 	"expanded_folders":
 	[
+		"/Users/mtd/mtd-thesis/figs",
 		"/Users/mtd/mtd-thesis/bib"
 	],
 	"file_history":
 	[
+		"/Users/mtd/mtd-thesis/tex/chapters/introduction/sections/computing_with_physarum.tex",
+		"/Users/mtd/mtd-thesis/tex/chapters/nefi/nefi.tex",
+		"/Users/mtd/mtd-thesis/tex/chapters/networks/networks.tex",
+		"/Users/mtd/mtd-thesis/tex/chapters/synchronisation/synchronisation.tex",
+		"/Users/mtd/mtd-thesis/tex/appendix/smgr/smgr.tex",
+		"/Users/mtd/mtd-thesis/tex/title.tex",
+		"/Users/mtd/mtd-thesis/tex/chapters/synchronisation/sections/simulations.tex",
+		"/Users/mtd/mtd-thesis/tex/chapters/synchronisation/sections/continuous_model.tex",
+		"/Users/mtd/mtd-thesis/tex/chapters/synchronisation/sections/introduction_model.tex",
+		"/Users/mtd/mtd-thesis/tex/chapters/synchronisation/sections/introduction.tex",
+		"/Users/mtd/mtd-thesis/tex/appendix/networks/networks.tex",
+		"/Users/mtd/mtd-thesis/tex/chapters/smgr/smgr.tex",
+		"/Users/mtd/mtd-thesis/tex/chapters/introduction/sections/physarum.tex",
+		"/Users/mtd/mtd-thesis/tex/chapters/introduction/sections/natural_computing.tex",
+		"/Users/mtd/mtd-thesis/tex/chapters/discussion.tex",
+		"/Users/mtd/mtd-thesis/tex/chapters/synchronisation/sections/discussion.tex",
+		"/Users/mtd/mtd-thesis/tex/thanks.tex",
+		"/Users/mtd/mtd-thesis/tex/chapters/synchronisation/sections/discrete_model.tex",
+		"/Users/mtd/mtd-thesis/tex/appendix/synchronisation/synchronisation.tex",
 		"/Users/mtd/mtd-thesis/tex/bibliography.tex",
+		"/Users/mtd/mtd-thesis/thesis.bbl",
+		"/Users/mtd/mtd-thesis/tex/abstract.tex",
+		"/Users/mtd/mtd-thesis/tex/appendix/nefi_guide/nefi_guide.tex",
+		"/Users/mtd/mtd-thesis/tex/chapters/introduction/sections/motivation.tex",
+		"/Users/mtd/mtd-thesis/tex/chapters/introduction/introduction.tex",
+		"/Users/mtd/mtd-thesis/bib/thesis.bib",
+		"/Users/mtd/mtd-thesis/figs/synchronisation/transient/transient.tex",
+		"/Users/mtd/mtd-thesis/figs/synchronisation/steady/steady.tex",
+		"/Users/mtd/work/teaching/Ideen-der-Informatik14-15/exercises/2016/endklausur_ergebnisse.txt",
+		"/Users/mtd/mtd-thesis/thesisstyle.sty",
+		"/Users/mtd/mtd-thesis/thesiscommands.sty",
+		"/Users/mtd/mtd-thesis/tex/chapters/overview.tex",
+		"/Users/mtd/work/publications/smgr_paper_JoP_D/JoP_D_smgr_supplement.tex",
+		"/Users/mtd/mtd-thesis/tex/chapters/conclusion.tex",
+		"/Users/mtd/work/publications/physarum_networks_pre/physarum_networks_supplement_pre.tex",
+		"/Users/mtd/work/publications/physarum_networks_pre/physarum_networks_pre.tex",
+		"/Users/mtd/work/publications/smgr_paper_JoP_D/JoP_D_smgr.tex",
+		"/Users/mtd/mtd-thesis/tex/templates/test.tex",
+		"/Users/mtd/Desktop/draft.txt",
+		"/Users/mtd/mtd-thesis/tex/chapters/introduction/physarum.tex",
+		"/Users/mtd/work/publications/nefi_paper/submission/paper.tex",
+		"/Users/mtd/work/publications/nefi_paper/submission/supplementary_material.tex",
+		"/Users/mtd/mtd-thesis/tex/appendix/nefi_guide.tex",
+		"/Users/mtd/work/publications/nefi_paper/submission/paper.bib",
+		"/Users/mtd/work/publications/nefi_scientific_reports/paper.tex",
+		"/Users/mtd/mtd-thesis/tex/test.tex",
 		"/Users/mtd/mtd-thesis/tex/appendix.tex",
 		"/Users/mtd/mtd-thesis/thesis.bib",
-		"/Users/mtd/mtd-thesis/tex/title.tex",
 		"/Users/mtd/mtd-thesis/tex/alex_template.tex",
 		"/Users/mtd/mtd-thesis/tex/titlepage.tex",
 		"/Users/mtd/mtd-thesis/styles/thesisstyle.sty",
@@ -650,7 +766,6 @@
 		"/Users/mtd/work/publications/physarum_db/paper.tex",
 		"/Users/mtd/work/publications/physarum_networks/paper.tex",
 		"/Users/mtd/work/publications/physarum_networks_pre/paper.tex",
-		"/Users/mtd/work/publications/smgr_paper_JoP_D/JoP_D_smgr_supplement.tex",
 		"/Users/mtd/work/publications/physarum_networks/viewer.py",
 		"/Users/mtd/work/publications/physarum_db/viewer.py",
 		"/Users/mtd/work/publications/physarum_networks/viewer.tex",
@@ -718,50 +833,7 @@
 		"/Volumes/MTD_STORAGE/data/phsyarum_db/motion11/motion11_nefi_config.ini",
 		"/Volumes/MTD_STORAGE/data/phsyarum_db/motion14/motion14_nefi_config.ini",
 		"/Volumes/MTD_STORAGE/data/phsyarum_db/motion15/motion15_nefi_config.ini",
-		"/Volumes/MTD_STORAGE/data/phsyarum_db/motion16/motion16_nefi_config.ini",
-		"/Volumes/MTD_STORAGE/data/phsyarum_db/motion17/motion17_nefi_config.ini",
-		"/Users/mtd/physarum_analysis/raw_data/nefi_in/test/test_nefi_config.ini",
-		"/Users/mtd/physarum_analysis/utilties/check_nefi_config_files.py",
-		"/Users/mtd/work/talks/physarum_thesis_proposal/proposal/preamble/preamble.tex",
-		"/Users/mtd/work/talks/physarum_thesis_proposal/proposal/main.tex",
-		"/Users/mtd/work/talks/physarum_thesis_proposal/proposal/abstract.txt",
-		"/Users/mtd/Desktop/our_version_of_latex.txt",
-		"/Users/mtd/Desktop/log.txt",
-		"/Users/mtd/work/publications/nefi_paper/submission/supplementary_material.tex",
-		"/Users/mtd/work/publications/nefi_paper/submission/paper.tex",
-		"/Users/mtd/work/publications/nefi_paper/supplementary_material.tex",
-		"/Users/mtd/work/publications/nefi_paper/paper.tex",
-		"/Users/mtd/Downloads/10.1007%2F978-1-4615-1529-6_8.txt",
-		"/Users/mtd/work/publications/nefi_paper/paper_initial.tex",
-		"/Users/mtd/work/publications/nefi_paper/long_version.tex",
-		"/Users/mtd/work/publications/nefi_paper/reviewer_comments_round_1.txt",
-		"/Users/mtd/work/publications/nefi_paper/supplementary_material_initial.tex",
-		"/Users/mtd/physarum_analysis/raw_data/nefi_in/links.sh",
-		"/Users/mtd/physarum_analysis/utilties/init_nefi_config_files.py",
-		"/Users/mtd/work/playground/python/doris/dict/dict.py",
-		"/Users/mtd/physarum_analysis/utilties/set_nefi_config_files.py",
-		"/Users/mtd/nefi/tracking/analysis/ordering.py",
-		"/Users/mtd/work/playground/python/histograms/main.py",
-		"/Users/mtd/work/playground/python/fundamental_cycles/main.py",
-		"/Users/mtd/nefi/tracking/tracking.py",
-		"/Users/mtd/nefi/tracking/draw_time_graphs/random_color.py",
-		"/Users/mtd/nefi/tracking/draw_time_graphs/main.py",
-		"/Users/mtd/nefi/tracking/draw_time_graphs/draw_graphs.py",
-		"/Users/mtd/nefi/tracking/analysis/GraphFilterCollection.py",
-		"/Users/mtd/nefi/tracking/FilterAlgorithms.py",
-		"/Users/mtd/nefi/tracking/GraphFilterCollection.py",
-		"/Users/mtd/work/publications/nefi_paper/cover_letter.tex",
-		"/Users/mtd/work/publications/nefi_paper/todo.txt",
-		"/Users/mtd/work/playground/python/edge contraction/FilterAlgorithms.py",
-		"/Users/mtd/work/playground/python/edge contraction/weighted_contraction.py",
-		"/Users/mtd/work/playground/python/edge contraction/GraphFilterCollection.py",
-		"/Users/mtd/work/publications/nefi_paper/bibliography.bib",
-		"/Users/mtd/work/publications/nefi_paper/paper.bbl",
-		"/Users/mtd/nefi/draw_time_graphs/main.py",
-		"/Users/mtd/nefi/draw_time_graphs/draw_graphs.py",
-		"/Users/mtd/nefi/graph_movie.py",
-		"/Users/mtd/nefi/FilterAlgorithms.py",
-		"/Users/mtd/nefi/GraphFilterCollection.py"
+		"/Volumes/MTD_STORAGE/data/phsyarum_db/motion16/motion16_nefi_config.ini"
 	],
 	"find":
 	{
@@ -784,134 +856,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"typ",
-			"typo",
-			"type",
-			"linewidth",
-			"scale",
-			"oats",
-			"listings",
-			")) ",
-			"width",
-			"tis",
-			"future",
-			"valuable",
-			"\\begin{figure}",
-			"\\begin{figure}  ",
-			"V_{id}",
-			"m",
-			"p_{V}",
-			"\\Delta_E",
-			"E_{id}",
-			"\\mathcal{V}",
-			"}\n",
-			"\\emph{physarum}",
-			"fig::sup::path_lengths_log",
-			"paper",
-			"NSince",
-			"vairous obser",
-			"\\label",
-			"% \\caption{Data from dense networks.}",
-			"fig::size_cuts_left",
-			"fig:sub2",
-			"fig::face_roundness_per_time",
-			"fig:sub1",
-			"\\ref",
-			"png}",
-			" \\label{fig:sub2}",
-			" \\label{fig::sub2}",
-			" \\label{fig:sub2}",
-			"\\label{fig:sub1}",
-			"}\n",
-			"\\item",
-			"\\item ",
-			"caption",
-			"\\emph{P. polycephalum}",
-			"contain",
-			"$ ",
-			"sclerotia",
-			".html",
-			" cm",
+			"can be found",
+			"http",
+			"url",
 			"\\emph{Physarum}",
-			"linewidth",
-			"\\item",
-			"\\hat",
-			"path_length",
-			"<n>",
-			"30",
-			"todo",
-			"0.0831829106727",
-			"0.236932110802",
-			"0.0605798532918",
-			"0.210231209731",
-			"log",
-			"motion",
-			",",
-			"motion",
-			"motion11",
-			"<=",
-			"ex",
-			"56",
-			"54",
-			"50",
-			"plot",
-			"kitten_pic",
-			"observable",
-			"regular",
-			"rgeular",
-			".",
-			"node_degree",
-			"node_degree_histogram_cummulative",
-			"width=.3\\textwidth",
-			"numero",
-			"strong",
-			"\\item",
-			"\\emph{Physarum}",
-			"{emph",
-			"enumerate",
-			"Physarum",
-			"1$",
-			"$",
-			"3$",
-			"huge",
-			"1$",
-			"(0,2)",
-			"e",
-			"a",
-			"b",
-			"$\\name$",
-			"$\\weight$",
-			"24",
-			"x_label",
-			"1000",
-			"sigma",
-			"mu",
-			"ready",
-			"width",
-			"assert",
-			"normal",
-			"gamma",
-			"min_x",
-			"pending",
-			"go",
-			"pending and checked",
-			"dual",
-			"graph",
-			"np.pi",
-			"volume",
-			"power",
-			"done",
-			"?",
-			"bootstrap(",
-			"boots",
-			"cut_horizontal_histogram",
-			"cut_vertical_histogram",
-			"width",
-			"self.x_axis_ticks/self.minor_ticks",
-			"arange",
-			"new_tick_locations",
-			"self.min_value",
-			"self.max_value"
+			"2000",
+			"varwidth",
+			"P. Polycephalum",
+			"\\textit{P. Polycephalum}",
+			".tex",
+			"input",
+			"\\titleline",
+			"titlerule",
+			"obey",
+			"polycephalum percolation as a paradigm for topological phase transitions ",
+			"Physarum polycephalum percolation as a paradigm for topological phase transitions ",
+			"@article{taylor1993artificial,\n  title={Artificial life as a tool for biological inquiry},\n  author={Taylor, Charles and Jefferson, David},\n  journal={{Artificial Life}},\n  volume={1},\n  number={1\\_2},\n  pages={1--13},\n  year={1993},\n  publisher={MIT Press}\n}",
+			"of{P}hysarum",
+			"by the plasmodium of",
+			"plasmodium ofP",
+			"Physical Review Letters",
+			"review letters",
+			"Phys. Rev. Lett.",
+			"journal = {Commun. ACM}",
+			"commun. of",
+			"voronoi",
+			"{arxiv",
+			"{arxive",
+			"arXiv arXiv",
+			"journal={Handbook of physiology},",
+			"@article{hardung1962propagation,\n  title={Propagation of pulse waves in viscoelastic tubings},\n  author={Hardung, VICTOR},\n  journal={Handbook of physiology},\n  volume={1},\n  pages={107--135},\n  year={1962},\n  publisher={Am. Phys. Soc.,}\n}",
+			"@inproceedings{networkx,\nauthor = {Aric A. Hagberg and Daniel A. Schult and Pieter J. Swart},\ntitle = {Exploring network structure, dynamics, and function using {NetworkX}},\nyear = {2008},\nmonth = Aug,\nurlpdf = {http://math.lanl.gov/~hagberg/Papers/hagberg-2008-exploring.pdf},\nbooktitle = {{Proceedings of the 7th Python in Science Conference (SciPy2008)}},\neditors = {G\\\"{a}el Varoquaux, Travis Vaught, and Jarrod Millman},\npages = {11--15}\n}",
+			"netowkrx",
+			"@inproceedings{hagberg2008exploring,\nauthor = {Aric A. Hagberg and Daniel A. Schult and Pieter J. Swart},\ntitle = {Exploring network structure, dynamics, and function using {NetworkX}},\nyear = {2008},\nmonth = Aug,\nurlpdf = {http://math.lanl.gov/~hagberg/Papers/hagberg-2008-exploring.pdf},\nbooktitle = {{Proceedings of the 7th Python in Science Conference (SciPy2008)}},\neditors = {G\\\"{a}el Varoquaux, Travis Vaught, and Jarrod Millman},\npages = {11--15}\n}",
+			"hagberg2008exploring",
+			"NetworkX",
+			"networkx",
+			"@inproceedings{networkx,\nauthor = {Aric A. Hagberg and Daniel A. Schult and Pieter J. Swart},\ntitle = {Exploring network structure, dynamics, and function using {NetworkX}},\nyear = {2008},\nmonth = Aug,\nurlpdf = {http://math.lanl.gov/~hagberg/Papers/hagberg-2008-exploring.pdf},\nbooktitle = {{Proceedings of the 7th Python in Science Conference (SciPy2008)}},\neditors = {G\\\"{a}el Varoquaux, Travis Vaught, and Jarrod Millman},\npages = {11--15}\n}",
+			"exploring network structure",
+			"@inproceedings{fessel2014analytical,\n  title={An analytical model for percolation in small link degree transportation networks},\n  author={Fessel, Adrian and Oettmeier, Christina and D{\\\"o}bereiner, Hans-G{\\\"u}nther},\n  booktitle={Proceedings of the 8th International Conference on Bioinspired Information and Communications Technologies},\n  pages={81--86},\n  year={2014},\n  organization={ICST (Institute for Computer Sciences, Social-Informatics and Telecommunications Engineering)}\n}",
+			"fessel2014analytical",
+			"istc",
+			"Oettmeier, Christina and Bernitt",
+			"polycephalum percolation as a paradigm",
+			"@article{fessel2012Physarum,\n  title={{P}hysarum polycephalum percolation as a paradigm for topological phase transitions in transportation networks},\n  author={Fessel, Adrian and Oettmeier, Christina and Bernitt, Erik and Gauthier, Nils C and D{\\\"o}bereiner, Hans-G{\\\"u}nther},\n  journal={Physical review letters},\n  volume={109},\n  number={7},\n  pages={078103},\n  year={2012},\n  publisher={APS}\n}",
+			"@article{fessel2012physarum,\n  title={{P}hysarum polycephalum percolation as a paradigm for topological phase transitions in transportation networks},\n  author={Fessel, Adrian and Oettmeier, Christina and Bernitt, Erik and Gauthier, Nils C and D{\\\"o}bereiner, Hans-G{\\\"u}nther},\n  journal={Physical review letters},\n  volume={109},\n  number={7},\n  pages={078103},\n  year={2012},\n  publisher={APS}\n}",
+			"@article{fessel2012Physarum,\n  title={{P}hysarum polycephalum percolation as a paradigm for topological phase transitions in transportation networks},\n  author={Fessel, Adrian and Oettmeier, Christina and Bernitt, Erik and Gauthier, Nils C and D{\\\"o}bereiner, Hans-G{\\\"u}nther},\n  journal={Physical review letters},\n  volume={109},\n  number={7},\n  pages={078103},\n  year={2012},\n  publisher={APS}\n}",
+			"@article{fessel2012physarum,\n  title={{P}hysarum polycephalum percolation as a paradigm for topological phase transitions in transportation networks},\n  author={Fessel, Adrian and Oettmeier, Christina and Bernitt, Erik and Gauthier, Nils C and D{\\\"o}bereiner, Hans-G{\\\"u}nther},\n  journal={Physical review letters},\n  volume={109},\n  number={7},\n  pages={078103},\n  year={2012},\n  publisher={APS}\n}",
+			"fessel2012Physarum",
+			"fessel2012physarum",
+			"percolation as a paradigm for topological",
+			"physarum polycephalum percolation",
+			"Physarum polycephalum percolation",
+			"},\n",
+			"Chellappa",
+			"chellappa",
+			"journal = {Plant Pathology},",
+			"plant pathology",
+			"journal = {Plant Physiology}",
+			"Neural Networks for Pattern Recognition",
+			"Handbook of Evolutionary Computation",
+			"2011 IEEE Congress of Evolutionary Computation (CEC)",
+			"Automation of Electric Power Systems",
+			"[J]",
+			"Automation of Electric Power Systems",
+			"Physical Chemistry Chemical Physics",
+			"Journal of Experimental Biology",
+			"Ideas in Ecology and Evolution",
+			"proceedings of the 9th EAI International Conference on Bio-inspired Information and Communications Technologies (formerly BIONETICS)",
+			"\n\n@article {Tero439,\n  author = {Tero, Atsushi and Takagi, Seiji and Saigusa, Tetsu and Ito, Kentaro and Bebber, Dan P. and Fricker, Mark D. and Yumiki, Kenji and Kobayashi, Ryo and Nakagaki, Toshiyuki},\n  title = {Rules for Biologically Inspired Adaptive Network Design},\n  volume = {327},\n  number = {5964},\n  pages = {439--442},\n  year = {2010},\n  doi = {10.1126/science.1177894},\n  publisher = {American Association for the Advancement of Science},\n  abstract = {Transport networks are ubiquitous in both social and biological systems. Robust network performance involves a complex trade-off involving cost, transport efficiency, and fault tolerance. Biological networks have been honed by many cycles of evolutionary selection pressure and are likely to yield reasonable solutions to such combinatorial optimization problems. Furthermore, they develop without centralized control and may represent a readily scalable solution for growing networks in general. We show that the slime mold {P}hysarum polycephalum forms networks with comparable efficiency, fault tolerance, and cost to those of real-world infrastructure networks{\\textemdash}in this case, the Tokyo rail system. The core mechanisms needed for adaptive network formation can be captured in a biologically inspired mathematical model that may be useful to guide network construction in other domains.},\n  issn = {0036-8075},\n  URL = {http://science.sciencemag.org/content/327/5964/439},\n  eprint = {http://science.sciencemag.org/content/327/5964/439.full.pdf},\n  journal = {Science}\n}",
+			"Tero439",
+			"@article{tero2010rules,\n  title={Rules for biologically inspired adaptive network design},\n  author={Tero, Atsushi and Takagi, Seiji and Saigusa, Tetsu and Ito, Kentaro and Bebber, Dan P and Fricker, Mark D and Yumiki, Kenji and Kobayashi, Ryo and Nakagaki, Toshiyuki},\n  journal={Science},\n  volume={327},\n  number={5964},\n  pages={439--442},\n  year={2010},\n  publisher={American Association for the Advancement of Science}\n}",
+			"rules for",
+			"rules",
+			"Physica A: Statistical Mechanics and its Applications",
+			"@article{Tero2006115,\ntitle = \"Physarum solver: A biologically inspired method of road-network navigation \",\njournal = \"{Physica A: Statistical Mechanics and its Applications} \",\nvolume = \"363\",\nnumber = \"1\",\npages = \"115 - 119\",\nyear = \"2006\",\nnote = \"Information and Material Flows in Complex NetworksInformation and Material Flows in Complex Networks \",\nissn = \"0378-4371\",\ndoi = \"http://dx.doi.org/10.1016/j.physa.2006.01.053\",\nurl = \"http://www.sciencedirect.com/science/article/pii/S0378437106000963\",\nauthor = \"Atsushi Tero and Ryo Kobayashi and Toshiyuki Nakagaki\",\nkeywords = \"Amoeboid movement\",\nkeywords = \"Navigation algorithm\",\nkeywords = \"{P}hysarum polycephalum\",\nkeywords = \"Path-finding \"\n}",
+			"@article{tero2006physarum,\n  title={Physarum solver: a biologically inspired method of road-network navigation},\n  author={Tero, Atsushi and Kobayashi, Ryo and Nakagaki, Toshiyuki},\n  journal={{Physica A: Statistical Mechanics and its Applications}},\n  volume={363},\n  number={1},\n  pages={115--119},\n  year={2006},\n  publisher={Elsevier}\n}",
+			"Physarum solver: A biologically inspired method of road-network navigation",
+			"tero2006physarum",
+			"Physarum solver: a biologically inspired method of road-network navigation",
+			"Physica A: Statistical Mechanics and its Applications",
+			"Physica D: Nonlinear Phenomena",
+			"journal={Artificial life}",
+			"journal={Artificial Life}",
+			"Artificial Life",
+			"Artificial life",
+			"artificial life",
+			"Artificial Life",
+			"Physarum plasmodium",
+			"Journal of theoretical biology",
+			"Journal of Theoretical Biology",
+			"strand",
+			"Contemporary Physics",
+			"European Conference on Machine Learning",
+			"conference on machine",
+			"2011 IEEE international symposium on biomedical imaging: From nano to macro",
+			"Shor",
+			"shor ",
+			"Schwefel:1993:EOS:529401",
+			"lattice",
+			"ACM Trans. Graphics (SIGGRAPH)",
+			"Annual review of biomedical engineering",
+			"Journal of Computer and System Sciences",
+			"Medical electronics and biological engineering",
+			"pattern re",
+			"{Pattern Recognition }",
+			"pattern re",
+			"IEEE Transactions on}",
+			"IEEE Transactions on Systems, Man, and Cybernetics",
+			"cplex2005high",
+			"math bio",
+			"SPIE Medical Imaging",
+			"D",
+			"Frickerc",
+			"SPIE Medical Imaging",
+			"Quantum Computation and Quantum Information: 10th Anniversary Edition",
+			"quantum computing",
+			"@article{newman2003,\nauthor = {Newman, M.},\ntitle = {The Structure and Function of Complex Networks},\njournal = {{SIAM Review}},\nvolume = {45},\nnumber = {2},\npages = {167-256},\nyear = {2003},\ndoi = {10.1137/S003614450342480},\nURL = { http://dx.doi.org/10.1137/S003614450342480},\neprint = { http://dx.doi.org/10.1137/S003614450342480}\n}",
+			"newman",
+			"newmann",
+			"structure and function",
+			"structure",
+			"SIAM Review",
+			"Geoscience and Remote Sensing, IEEE Transactions on",
+			"@article{nakagaki2004smart,\n  title={Smart network solutions in an amoeboid organism},\n  author={Nakagaki, Toshiyuki and Yamada, Hiroyasu and Hara, Masahiko},\n  journal={{Biophysical chemistry}},\n  volume={107},\n  number={1},\n  pages={1--5},\n  year={2004},\n  publisher={Elsevier}\n}",
+			"Nakagaki20041",
+			"nakagaki2004smart",
+			"smart network so",
+			"@article{Nakagaki2000195,\ntitle = \"Interaction between cell shape and contraction pattern in the Physarum plasmodium \",\njournal = \"{Biophysical Chemistry} \",\nvolume = \"84\",\nnumber = \"3\",\npages = \"195 - 204\",\nyear = \"2000\",\nnote = \"\",\nissn = \"0301-4622\",\ndoi = \"http://dx.doi.org/10.1016/S0301-4622(00)00108-3\",\nurl = \"//www.sciencedirect.com/science/article/pii/S0301462200001083\",\nauthor = \"Toshiyuki Nakagaki and Hiroyasu Yamada and Tetsuo Ueda\",\nkeywords = \"Physarum\",\nkeywords = \"Pattern formation\",\nkeywords = \"Network morphology\",\nkeywords = \"Contraction\",\nkeywords = \"Oscillation \"\n}"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -919,6 +991,27 @@
 		"regex": false,
 		"replace_history":
 		[
+			"Physical review letters",
+			" \\SMGR",
+			"\\OPT",
+			"\\text{\\textsc{OPT}}",
+			"\\NEFI",
+			"\\SMGR",
+			"\\series{35}",
+			"\\series{22}",
+			"\\series{",
+			"\\series{58}",
+			"\\series{22}",
+			"Tero2007553 ",
+			"\\NEFI",
+			"\\data",
+			"\\SMGR",
+			"\\NEFI",
+			"\\Fref",
+			"\\NEFI",
+			"\\Fref",
+			" \\NEFI",
+			"\\NEFIs",
 			"\\begin{figure}[!htbp] ",
 			"\\bar{V}",
 			"p",
@@ -981,110 +1074,27 @@
 			[
 				{
 					"buffer": 0,
-					"file": "tex/test.tex",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1218,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								196,
-								196
-							]
-						],
-						"settings":
-						{
-							"WordCount":
-							{
-								"changes": 811,
-								"count": 68,
-								"modified": false,
-								"selection": false,
-								"status": -1,
-								"syntax": "plain text"
-							},
-							"auto_name": "\\section{TEST}",
-							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "bib/thesis.bib",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 1070,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"WordCount":
-							{
-								"changes": 0,
-								"count": 52,
-								"modified": false,
-								"selection": false,
-								"status": -1,
-								"syntax": "plain text"
-							},
-							"syntax": "Packages/LaTeXTools/BibLaTeX.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
-					"buffer": 2,
 					"file": "thesis.tex",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 600,
+						"buffer_size": 1190,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								48,
-								48
+								565,
+								565
 							]
 						],
 						"settings":
 						{
 							"WordCount":
 							{
-								"changes": 426,
-								"count": 31,
+								"changes": 1746,
+								"count": 34,
 								"modified": false,
 								"selection": false,
 								"status": -1,
@@ -1094,46 +1104,121 @@
 							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 119.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "thesiscommands.sty",
+					"buffer": 1,
+					"file": "tex/title.tex",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 144,
+						"buffer_size": 1487,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1476,
+								1476
 							]
 						],
 						"settings":
 						{
 							"WordCount":
 							{
-								"changes": 25,
-								"count": 11,
-								"modified": true,
-								"selection": true,
+								"changes": 22,
+								"count": 93,
+								"modified": false,
+								"selection": false,
 								"status": -1,
-								"syntax": "tex"
+								"syntax": "plain text"
 							},
-							"syntax": "Packages/LaTeX/TeX.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 459.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "tex/chapters/introduction/sections/motivation.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11439,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6482,
+								6482
+							]
+						],
+						"settings":
+						{
+							"WordCount":
+							{
+								"changes": 3,
+								"count": 1762,
+								"modified": false,
+								"selection": false,
+								"status": -1,
+								"syntax": "plain text"
+							},
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 867.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "tex/chapters/nefi/nefi.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 63621,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								61156,
+								61156
+							]
+						],
+						"settings":
+						{
+							"WordCount":
+							{
+								"changes": 5,
+								"count": 8319,
+								"modified": false,
+								"selection": false,
+								"status": -1,
+								"syntax": "plain text"
+							},
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 13719.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
@@ -1141,33 +1226,34 @@
 				},
 				{
 					"buffer": 4,
-					"file": "thesisstyle.sty",
+					"file": "tex/chapters/smgr/smgr.tex",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2055,
+						"buffer_size": 46589,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								104,
-								104
+								8607,
+								8607
 							]
 						],
 						"settings":
 						{
 							"WordCount":
 							{
-								"changes": 1442,
-								"count": 109,
+								"changes": 3,
+								"count": 6531,
 								"modified": false,
 								"selection": false,
 								"status": -1,
-								"syntax": "tex"
+								"syntax": "plain text"
 							},
-							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1175,17 +1261,132 @@
 					},
 					"stack_index": 4,
 					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "thesisstyle.sty",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3513,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3199,
+								3199
+							]
+						],
+						"settings":
+						{
+							"WordCount":
+							{
+								"changes": -1,
+								"modified": true,
+								"selection": true,
+								"status": -1,
+								"syntax": "tex"
+							},
+							"spell_check": true,
+							"syntax": "Packages/LaTeX/TeX.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1428.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "thesiscommands.sty",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2746,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2618,
+								2618
+							]
+						],
+						"settings":
+						{
+							"WordCount":
+							{
+								"changes": -1,
+								"modified": true,
+								"selection": true,
+								"status": -1,
+								"syntax": "tex"
+							},
+							"syntax": "Packages/LaTeX/TeX.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "bib/thesis.bib",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 138964,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								14419,
+								14437
+							]
+						],
+						"settings":
+						{
+							"WordCount":
+							{
+								"changes": 2123,
+								"count": 11476,
+								"modified": false,
+								"selection": false,
+								"status": -1,
+								"syntax": "plain text"
+							},
+							"spell_check": true,
+							"syntax": "Packages/LaTeXTools/BibLaTeX.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 7267.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
 				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 23.0
+		"height": 25.0
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 31.0
 	},
 	"layout":
 	{
@@ -1196,18 +1397,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.554605102539,
 			1.0
 		],
 		"rows":
@@ -1227,13 +1421,13 @@
 	},
 	"output.latextools":
 	{
-		"height": 100.0
+		"height": 96.0
 	},
 	"pinned_build_system": "Packages/LaTeXTools/LaTeX.sublime-build",
 	"project": "thesis.sublime-project",
 	"replace":
 	{
-		"height": 42.0
+		"height": 64.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1277,20 +1471,14 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		]
 	},
 	"show_minimap": true,
-	"show_open_files": false,
+	"show_open_files": true,
 	"show_tabs": true,
-	"side_bar_visible": true,
-	"side_bar_width": 150.0,
+	"side_bar_visible": false,
+	"side_bar_width": 213.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
