@@ -6,4 +6,7 @@
 *.tdo
 *.pdf
 *.dvi
+*.lol
+thesis.synctex.gz(busy)
 ~$thesis-structure.xlsx
+_minted-thesis/

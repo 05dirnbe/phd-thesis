@@ -23,7 +23,7 @@
 
 	To the best of our knowledge no such repository exists for data concerned with networks of slime molds. For this reason we decided to set up the \emph{Slime Mold Graph Repository} with the goal of providing an available collection of networks focused on slime molds. Although this is clearly a niche topic, we believe that due to the many open question revolving around the structure and function of such networks and their large interdisciplinary appeal, setting up a small but dedicated repository is of pronounced value.
 
-	In the following we discuss the concept and benefits of the \SMGR followed by detailed account of its initial contents, the \data. We start by discussing how the data was obtained experimentally and move on to present our tracking algorithm, a novel method designed to resolve how networks formed by \P change in time. To illustrate the usefulness of both data and method, we show proof-of-principle applications which suggest avenues for further research. Our exposition aims to promote the \SMGR across disciplines and is sufficiently detailed and introductory for non-experts to access.
+	In the following we discuss the concept and benefits of the \SMGR followed by a detailed account of its initial contents, the \data. We start by discussing how the data was obtained experimentally and move on to present our tracking algorithm, a novel method designed to resolve how networks formed by \P change in time. To illustrate the usefulness of both data and method, we show proof-of-principle applications which suggest avenues for further research. Our exposition aims to promote the \SMGR across disciplines and is sufficiently detailed and introductory for non-experts to access.
 	
 \section{Repository Concept and Benefits}
 	
@@ -222,7 +222,7 @@
 	Yet another way to study the \data lies in the information provided by the tracking algorithm presented in this manuscript.	Since all the graphs in the data set were tracked already, identifiers are available determining which nodes belong to which unique tracks. For simplicity, we refer to the track identifier as \emph{color}. As a proof-of-principle application, we shall demonstrate how to exploit this information to study the width of selected single edges in time. Since we aim to follow the time development of edges, we first need to establish the concept of tracks for edges. For any edge $e = (u,v)$, we define its color by combining the colors of $u$ and $v$ in a set:
 
 	\begin{equation}
-		\text{color}(e) = \{\text{color}(u), \text{color}(u)\} \,.
+		\text{color}(e) = \{\text{color}(u), \text{color}(v)\} \,.
 	\end{equation}
 
 	Looking at the tracking example given in \Fref{fig:tracking}, the edges $(b_1,e_1)$ and $(b_3,e_3)$ are assigned the color $\{blue, orange\}$ signaling that both edges belong to the same edge track and are merely different instances of one and the same edge at different points in time. Note that this edge is missing at $t=2$ and thus the length of the edge track is reduced by one.
