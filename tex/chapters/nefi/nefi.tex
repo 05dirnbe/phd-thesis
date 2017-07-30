@@ -39,7 +39,7 @@
 
 	We emphasize at this point that we do not claim to introduce novel techniques for image processing or computer vision. Instead, our contribution consists of a reusable, flexible and easily extendable toolbox combining well-known methods, which have become standard in their respective fields of origin, in a meaningful way. By introducing \NEFI, we hope to make these methods more widely accessible, especially to practitioners that are unfamiliar with them.
 
-	\NEFIs segmentation is based on a combination of standard routines available in~\href{http://opencv.org/}{OpenCV}~\cite{opencv}. These algorithms are known to perform well on clean and uncluttered images obtained under controlled laboratory conditions. However, on more challenging inputs of low contrast, strong gradients or similar irregularities, their performance is severely reduced. Nevertheless, in these cases more involved algorithms, currently not implemented as part of a reliable library and thus not integrated into \NEFI, may still be able to process these images. To help meet this situation, \NEFI was designed with extendability in mind. As a result users will hoepfully find it easy to build on-top of \NEFIs code in order to add their own implementations of more sophisticated methods. 
+	\NEFIs segmentation is based on a combination of standard routines available in~\href{http://opencv.org/}{OpenCV}~\cite{opencv}. These algorithms are known to perform well on clean and uncluttered images obtained under controlled laboratory conditions. However, on more challenging inputs of low contrast, strong gradients or similar irregularities, their performance is severely reduced. Nevertheless, in these cases more involved algorithms, currently not implemented as part of a reliable library and thus not integrated into \NEFI, may still be able to process these images. To help meet this situation, \NEFI was designed with extendability in mind. As a result users will hopefully find it easy to build on-top of \NEFIs code in order to add their own implementations of more sophisticated methods. 
 
 \section{Network Extraction From Images}	%	2298 words
 
@@ -130,7 +130,7 @@
 
 		\NEFIs segmentation is designed such that several algorithms can be used interchangeably. We included basic thresholding algorithms like Otsu's method~\cite{otsu1979}, or adaptive thresholding as well as more involved segmentation routines such as guided watershed~\cite{watershed91}, and the GrabCut algorithm~\cite{grabcut2004}. The last two methods receive as an additional input a so-called marker. The better the markers approximate the foreground, the better these algorithms work. \NEFI offers several marker strategies which can be used interchangeably together with the respective marker based segmentation routines. 
 
-		Interchangeability of the algorithms is a core design principle of all pipeline steps. This design facilitates swift experimentation with different methods. Our own experience shows that \emph{a priori} it is often unclear which method will work best for a given input image. A sensitive method may yield excellent segmented images and very detailed graphs. However its sensitivity increases the chance false positives nodes and edges. Since the ideal ideal choice usually depends on several competing factors, targeted experimentation with different settings coupled with immediate visual feedback from the graphical user interface constitute major strong points of \NEFI.
+		Interchangeability of the algorithms is a core design principle of all pipeline steps. This design facilitates swift experimentation with different methods. Our own experience shows that \emph{a priori} it is often unclear which method will work best for a given input image. A sensitive method may yield excellent segmented images and very detailed graphs. However its sensitivity increases the chance of false positives for both nodes and edges. Since the ideal choice usually depends on several competing factors, targeted experimentation with different settings coupled with immediate visual feedback from the graphical user interface constitute major strong points of \NEFI.
 
 		Flexibility is not limited to the algorithms that come with \NEFI. Modular software design makes it easy to integrate additional methods and access them via the graphical user interface. It is likely that sooner or later input images will be encountered in practice, too challenging for the core algorithms presently available in \NEFI. In these cases a potential user may choose to implement additional, perhaps domain-specific, methods capable of meeting the challenge at hand. When extending \NEFI, users may build on existing modules, yielding more reliable code which is easier to understand and to maintain. In this way \NEFI is set up to support future development and growth.
 
@@ -158,7 +158,7 @@
 
 		The graph filter collection offers the possibility to add powerful processing steps that directly apply to the graph obtained after graph detection. Unlike the methods in the preprocessing collection, graph filters do not affect segmentation and graph detection.
 
-		Often it is possible to improve the quality of the obtained graph by removing unwanted artifacts caused by segmentation or later processing steps. A common strategy, used for example in \cite{baumgarten2010detection, baumgarten2012computational}, consists of ``reparing'' the errors present in the skeleton due to bad segmentation using heuristics or user assisted methods. While such methods can do well, they carry the potential risk of introducing additional errors. 
+		Often it is possible to improve the quality of the obtained graph by removing unwanted artifacts caused by segmentation or later processing steps. A common strategy, used for example in \cite{baumgarten2010detection, baumgarten2012computational}, consists of ``repairing'' the errors present in the skeleton due to bad segmentation using heuristics or user assisted methods. While such methods can do well, they carry the potential risk of introducing additional errors. 
 
 		\NEFI pursues a novel approach exploiting knowledge of the structure of the extracted graph together with dedicated filtering methods. We start by using very sensitive segmentation retaining a maximum of structural information. We do not manipulate the resulting segmented image or the skeleton at all. Based on the skeleton, we establish a graph which in general will contain artifacts. For example, if the network in the input image is large and connected, the resulting graph will consist of a large connected component plus a number of spurious smaller components caused by noise and very sensitive segmentation. Such components can easily be spotted by eye when one compares the original images with the output graph. Using one of \NEFIs graph filters they can be removed effectively and safely, increasing the degree of similarity between the original network and the extracted graph. Since the effects of filtering the graph can immediately be evaluated by visual inspection, we prefer graph filtering over less transparent approaches aiming to improve the graph before it was established. \Fref{fig:pipeline} illustrates the use of filtering.
 
@@ -191,7 +191,7 @@
 
 	\subsection{Definition of the Similarity Measure}
 
-		In order to determine the overall quality of \NEFIs output we need to quantify the degree of similarity between two graphs $A = (V_A, E_A)$ and $B = (V_B, E_B)$ using a graph similarity measure. Let $A, B \in \mathcal{G}$, where $\mathcal{G}$ is a set of undirected edges-weighted planar graphs where the nodes are labeled with their respective coordinates in the eucledian plane. Then we may define a similarity measure $s$ as
+		In order to determine the overall quality of \NEFIs output we need to quantify the degree of similarity between two graphs $A = (V_A, E_A)$ and $B = (V_B, E_B)$ using a graph similarity measure. Let $A, B \in \mathcal{G}$, where $\mathcal{G}$ is a set of undirected edges-weighted planar graphs where the nodes are labeled with their respective coordinates in the Euclidean plane. Then we may define a similarity measure $s$ as
 		
 		\begin{gather}
 		s : \mathcal{G} \times \mathcal{G} \mapsto [0,1]\,, \notag \\
@@ -208,7 +208,7 @@
 
 		We proceed with making the notions of \emph{similarity} and \emph{correspondence} more precise by constructing a minimum cost graph matching problem. Given the two graphs $A,B \in \mathcal{G}$, let $n_A,n_B$ denote the number of nodes and $m_A,m_B$ denote the number edges of the respective graphs. Note that $n_A$ and $n_B$ can differ, as can $m_A$ and $m_B$.
 
-		We can now define a matching between $A$ and $B$ consisting of three parts. First we define a matching between the node sets $V_A, V_B$, then we define a matching between the edges sets $E_A, E_B$ and finally we introduce a coupling between the two. To obtain a solution to the final problem we rephrase the combined matching problem as an integer linear program and obtain a solution using IBM's CPLEX solver~\cite{cplex2005high}. For ease of exposition, however, we discuss the problem using the language of matchings.
+		We can now define a matching between $A$ and $B$ consisting of three parts. First we define a matching between the node sets $V_A, V_B$, then we define a matching between the edge sets $E_A, E_B$ and finally we introduce a coupling between the two. To obtain a solution to the final problem we rephrase the combined matching problem as an integer linear program and obtain a solution using IBM's CPLEX solver~\cite{cplex2005high}. For ease of exposition, however, we discuss the problem using the language of matchings.
 
 		For the node matching, we match each node $i \in V_A$ with at most one node $j \in V_B$. We define a variable $x_{ij}$ that is $1$ if we match $i$ with $j$ and $0$ otherwise. With a match we associate a cost of $\Delta_V(i,j)$. The function $\Delta_V(i,j)$ returns the euclidean distance between node $i$ and node $j$. If any node $u$ remains unmatched, we assign a penalty of $p_V(u)$ to it. A node can either be penalized or matched but not both. We thus compute a minimum cost node matching, in which it is favorable for a node $i \in V_A$ to find a match with a node $j \in V_B$ such that $i$ and $j$ are close in distance as measured by $\Delta_V(i,j)$. Two nodes are thus \emph{similar} if their euclidean positions are almost the same. For any given node in $V_A$ there can be many similar nodes in $V_B$, all of which are candidates for a match. Amongst all candidates the minimum cost matching selects pairs that are most similar. We call selected pairs of similar nodes \emph{corresponding}.
 
@@ -249,7 +249,7 @@
 						& &\overline{y}_{e} =  1 - \sum_{f \in E_B} y_{ef} &&\overline{y}_{f} =  1 - \sum_{e \in E_A} y_{ef} \, .                                        
 		\end{align}
 
-		To introduce the dependence between the vertex and the edge matching, we add an additional constraint as described above: 
+		To introduce the dependence between the vertex and the edge matching, we add an additional constraint as described earlier: 
 
 		\begin{align}
 			\textbf{s.t.:} 	& &2y_{ef} \leq x_{aa'} + x_{ab'} + x_{ba'} + x_{bb'}     \quad \quad \forall \ e = (a,b), \forall \ f = (a',b')\,.      
@@ -396,7 +396,7 @@
 
 	\subsection{Evaluation of Speed Performance}
 
-		\NEFI was designed to efficiently process large quantities of images. Thus it outsources computationally intensive tasks to highly optimized and reliable libraries such as \href{http://opencv.org/}{OpenCV}~\cite{opencv} and \href{https://networkx.github.io/documentation/latest/index.html}{NetworkX}~\cite{networkx}. Table~\Fref{tab:timings} illustrates the effectiveness of some of \NEFIs algorithms. 
+		\NEFI was designed to efficiently process large quantities of images. Thus it outsources computationally intensive tasks to highly optimized and reliable libraries such as \href{http://opencv.org/}{OpenCV}~\cite{opencv} and \href{https://networkx.github.io/documentation/latest/index.html}{NetworkX}~\cite{networkx}. \Fref{tab:timings} illustrates the effectiveness of some of \NEFIs algorithms. 
 
 
 		\begin{table}
@@ -414,7 +414,7 @@
 			Computing edge weights & $<$ 1 \si{\second}  & 5 \si{\second} \\
 			\bottomrule
 			\end{tabular}
-			\caption[\NEFIs evaluation - Pipeline timings]{Timings of some of \NEFIs pipeline elements on images of different dimensions as given in \si{\pixel}. The timings were obtained on a Macbook Pro notebook equipped with a 2.4 GHz Intel i5 processor and 8 GB RAM.}
+			\caption[\NEFIs evaluation - Pipeline timings]{Timings of some of \NEFIs pipeline elements on images of different dimensions as given in \si{\pixel}. The timings were obtained on a Macbook Pro notebook equipped with a 2.4 GHz Intel i5 processor and 8 GB of RAM.}
 			\label{tab:timings}
 		\end{table}
 
@@ -456,6 +456,6 @@
 
 	We thank Prof.~M.~Hauser for his hospitality and the stimulating discussions which sparked our interest in the topic of graph extraction. We thank P.~and R.~Winegar as well as the Korea Institute of Science and Technology Europe (\href{www.kist-europe.de}{\textsc{Kist} Europe}) for contributing sample data which was critical during the early development stages of \NEFI.
 
-	A large software project such as \NEFI cannot be realized by an individual. Its development was a team effort requiring the support of several individuals. In particular we are grateful towards several students from Saarland University for contributing to the code base of \NEFI. A full list of acknowledgments is available at \NEFIs project page here: \href{http://nefi.mpi-inf.mpg.de}{nefi.mpi-inf.mpg.de}.
+	A large software project such as \NEFI cannot be realized by one individual alone. Its development was a team effort requiring the support of several individuals. In particular we are grateful towards several students from Saarland University for contributing to the code base of \NEFI. A full list of acknowledgments is available at \NEFIs project page here: \href{http://nefi.mpi-inf.mpg.de}{nefi.mpi-inf.mpg.de}.
 
 

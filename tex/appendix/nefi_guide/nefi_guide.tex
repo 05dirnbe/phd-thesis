@@ -6,7 +6,7 @@
 
 \section{Properties of Ideal and Non-ideal Images}
 
-	Since, the determining factor of the quality of \NEFIs graph extraction is the segmentation step, ideal images should enable a nearly perfect separation of foreground and background. Such images should have a high contrast between the depicted structures of interest and the background. At the same time it is very important that images are free of strong reflections or shadows because such areas are likely to show an even higher contrast to the background than the actual structures of interest. As a result, the segmentation algorithms are prone to identify these regions as foreground causing the actual structures of interest to be ignored. The presence of strong color or brightness gradients can have similar detrimental effects and should thus be prevented if possible. See \Fref{fig:sup:reflection} and \Fref{fig:sup:gradient} for examples of challenging images which \NEFI will have difficulties working with.
+	Since, the determining factor of the quality of \NEFIs graph extraction is the segmentation step, ideal images should enable a nearly perfect separation of foreground and background. Such images have high contrast between the depicted structures of interest and the background. At the same time it is very important that images are free of strong reflections or shadows because such areas are likely to show an even higher contrast to the background than the actual structures of interest. As a result, the segmentation algorithms are prone to identify these regions as foreground causing the actual structures of interest to be ignored. The presence of strong color or brightness gradients can have similar detrimental effects and should thus be prevented if possible. See \Fref{fig:sup:reflection} and \Fref{fig:sup:gradient} for examples of challenging images which \NEFI will have difficulties working with.
 
 	\begin{figure}
 		\centering
@@ -84,6 +84,6 @@
 
 	As a first suggestion, we recommend to user to look for available software specializing in segmentation. In this regard we like to point out the Kitware,~\href{http://www.itk.org/itkindex.html}{ITK Project}~\cite{ITKSoftwareGuideThirdEdition}. It's \emph{C++} code base has been developed by the medical image processing community and serves as the basis for many other specialized tools that deal with image processing as well as segmentation. 
 
-	After a segmented image has been obtain using specialized third party segmentation software, \NEFI can take this image and proceed with graph detection and filtering directly.
+	After a segmented image has been obtained using specialized third party segmentation software, \NEFI can take this image and proceed with graph detection and filtering directly.
 
 	If no proper software is available, the user has the option to extend \NEFIs segmentation capabilities by adding more sophisticated code. When doing so, one can built on top of existing features already implemented in \NEFI. The literature offers a wealth of different approaches to segmentation leading to algorithms of varying complexity. Before diving into any implementation efforts, we strongly recommend to survey existing methods and their domains of effectiveness by consulting~\cite{chellappa,Pal19931277,pham2000current}.

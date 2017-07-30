@@ -133,13 +133,13 @@ These choices were inspired by empirical observations linking the diameter of ve
 
 Figure~\ref{fig:junction} depicts an exemplary \Pn featuring a node $v \in G$ with three incident \Pes denoted by $E(v)$. Observe, that we may apply Kirchhoff's voltage law to the junction node $v$, as well as to the paths over each voltage source, resistor, and capacitance of each edge. Furthermore, from Kirchhoff's current law at the junction $v$, we have that in-flows must be equal to out-flows at $v$, \ie charge is conserved. 
 
-For arbitrary degree the voltage at node $v$ at time $t$ is denoted by $u_v(t)$. It is determined by
+For arbitrary degree, the voltage at node $v$ at time $t$ is denoted by $u_v(t)$. It is determined by
 \begin{align}
   \forall e \in E(v):\, (u_{C,e}(t)-u_{p,e}(t)) + i_{p,e}(t)R_e = u_v(t)\\
   \sum_{e \in E(v)}i_{p,e}(t) = 0\,.
 \end{align}
 
-In the remainder of this work we assume that all \Pes are identical, \ie have equal $R$ and $C$. This is a strong simplification, but we believe it is necessary to keep the model simple enough for analytic treatment. Relaxing it is non-trivial and subject of future improvements.
+In the remainder of this work we assume that all \Pes are identical, \ie have identical sets of constants. This is a strong simplification, but we believe it is necessary to keep the model simple enough for analytic treatment. Relaxing it is non-trivial and subject of future improvements.
 
 Thus,
 \begin{align}
@@ -166,7 +166,7 @@ Thus
 \begin{align}
 \sum_{e \in E}i_{C,e}(t) = 0\,,\notag
 \end{align}
-holds. Furthermore for capacitor current $I$ and voltage $U$ it is $I= C \frac{dU}{dt}$. Thus we get
+holds. Furthermore the relation between capacitor current $I$ and voltage $U$ is given by $I= C \frac{dU}{dt}$. Thus we get
 \begin{align}
 \sum_{e \in E}C_e\frac{du_{C,e}(t)}{dt} = 0\,,\notag
 \end{align}
